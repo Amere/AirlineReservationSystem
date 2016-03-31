@@ -98,4 +98,3 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
   //be accessable later by any scope and by any ctrl
   AirportCodes();
 });
-
