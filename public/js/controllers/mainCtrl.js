@@ -26,6 +26,12 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     $scope.popup2 = {
         opened: false
     };
+                //This will hide the DIV by default.
+                $scope.IsVisible = false;
+                $scope.ShowHide = function () {
+                    //If DIV is visible it will be hidden and vice versa.
+                    $scope.IsVisible = $scope.IsVisible ? false : true;
+                };
 
     /*----------- Angular Bootstrap Typeahead -----------*/
 
@@ -35,6 +41,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
             $scope.Airports = airports;
         });
     };
+
     /* Retrieve List of Offers */
     function offers(){
       lufthansaServ.getOffers().success(function(Offers){
