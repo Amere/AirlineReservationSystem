@@ -21,6 +21,15 @@ lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
             .when('/outgoingFlights', {
                 templateUrl : 'partials/outgoingFlights.html',
                 controller  : 'mainCtrl'
+
+            })
+            .when('/return', {
+                templateUrl : 'partials/return.html',
+                controller  : 'mainCtrl'
+            })
+            .when('/payment',{
+                templateUrl:'partials/payment.html',
+                controller  :'paymentCtrl'
             })
             //Add all parials later and your desired crtl ...
     });
