@@ -87,6 +87,7 @@
     <script src="js/controllers/reservCtrl.js"></script>
     <script src="js/services/lufthansaServ.js"></script>
 		<script src="js/directives/seatMap.js"></script>
+		<script src="js/controllers/paymentCtrl.js"></script>
 
 	<div id="fh5co-page">
 		<nav class="fh5co-nav-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
@@ -110,6 +111,7 @@
 						<li><a href="#">My bookings</a></li>
 						<li><a href="#">My past flights</a></li>
 						<li><button type="button" class="btn btn-primary" id='btnSearch' ng-click='directToReservation()'>Reserve</button></li>
+						<li><button type="button" class="btn btn-primary" id='btnSearch' ng-click='directToOutgoingFlights()'>Outgoing Flights</button></li>
 					</ul>
 				</div>
 				<div class="col-lg-3 col-md-4 col-sm-4 text-right fh5co-link-wrap">
