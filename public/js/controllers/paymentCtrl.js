@@ -1,15 +1,24 @@
 lufthansa.controller('paymentCtrl',function($scope){
-  $scope.myDate = new Date();
-  $scope.minDate = new Date(
-      $scope.myDate.getFullYear(),
-      $scope.myDate.getMonth() - 2,
-      $scope.myDate.getDate());
-  $scope.maxDate = new Date(
-      $scope.myDate.getFullYear(),
-      $scope.myDate.getMonth() + 2,
-      $scope.myDate.getDate());
-  $scope.onlyWeekendsPredicate = function(date) {
-    var day = date.getDay();
-    return day === 0 || day === 6;
-}
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[3];
+
+  $scope.open1 = function() {
+      $scope.popup1.opened = true;
+  };
+
+  $scope.open2 = function() {
+      $scope.popup2.opened = true;
+  };
+
+  $scope.setDate = function(year, month, day) {
+      $scope.dt = new Date(year, month, day);
+  };
+
+  $scope.popup1 = {
+      opened: false
+  };
+
+  $scope.popup2 = {
+      opened: false
+  };
 });
