@@ -60,7 +60,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
-        $location.url('/flights');
+        $location.url('/return');
     };
 
     $scope.flip = (function ($) {
