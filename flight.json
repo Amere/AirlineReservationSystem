@@ -1,0 +1,381 @@
+[
+  {
+    "aircraft" : {
+    "name" : "Airbus A330-300",
+    "economySeatsCount" : 60,
+    "premiumEconomySeatsCount" : 30,
+    "BusinessSeatsCount" : 12,
+    "firstSeatsCount" : 8,
+    "economeySeats" : [
+      {
+        "seatCode" : "k1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k6",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k7",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k8",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k9",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k10",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l6",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l7",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l8",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l9",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l10",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m6",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m7",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m8",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m9",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m10",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i6",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i7",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i8",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i9",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i10",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j6",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j7",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j8",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j9",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j10",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h6",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h7",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h8",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h9",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h10",
+        "reserved" : "false"
+      }
+    ],
+    "premiumEconomySeats" : [
+      {
+        "seatCode" : "k1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "l5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "m5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "i5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "j5",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h3",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h4",
+        "reserved" : "false"
+      },{
+        "seatCode" : "h5",
+        "reserved" : "false"
+      }
+    ],
+    "businessSeats" : [
+      {
+        "seatCode" : "k1",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k2",
+        "reserved" : "false"
+      },{
+        "seatCode" : "k3",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "l1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "l2",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "l3",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "m1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "m2",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "m3",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "i1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "i2",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "i3",
+        "reserved" : "false"
+      }
+    ],
+    "firstClassSeats" : [
+      {
+        "seatCode" : "k1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "k2",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "l1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "l2",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "m1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "m2",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "i1",
+        "reserved" : "false"
+      },
+      {
+        "seatCode" : "i2",
+        "reserved" : "false"
+      }
+    ]
+  },
+    "departureDate" : "28/12/2016 7:00",
+    "arrivalDate" : "28/12/2016 11:00",
+    "departureCity" : "Egypt",
+    "destinationCity" : "Netherlands",
+    "duration" : "4H",
+    "capacity" : 110,
+    "priceClass" : {
+    "economyPrice" : 3000,
+    "permiumEconomyPrice" : 4000 ,
+    "businessPrice" : 8000,
+    "firstPrice" : 14000
+    }
+  }
+]
