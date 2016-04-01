@@ -1,7 +1,7 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ngRoute']);
+lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
 
     /**
      * Angular Routes
@@ -20,7 +20,11 @@ lufthansa = angular.module('lufthansa', ['ngRoute']);
             })
             .when('/outgoingFlights', {
                 templateUrl : 'partials/outgoingFlights.html',
-                controller  : 'outgoingFlightsCtrl'
+                controller  : 'mainCtrl'
+            })
+            .when('/return', {
+                templateUrl : 'partials/return.html',
+                controller  : 'mainCtrl'
             })
             .when('/payment',{
                 templateUrl:'partials/payment.html',
