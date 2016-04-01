@@ -25,6 +25,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
             return $http.get('/api/data/news');
         },
         getReservDummy : function() {
+            return $http.get('/api/data/flight');
             return $http.get('/api/data/dummy');
         },
         getSlides :function(){
