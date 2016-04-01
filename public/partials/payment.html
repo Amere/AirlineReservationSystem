@@ -20,7 +20,27 @@
 
                           <div class="row">
                         <div class="col-xs-4">Expiry date</div>
-                        <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="input-group">
+                                    <input type="text"
+                                           class="form-control"
+                                           uib-datepicker-popup="{{format}}"
+                                           ng-model="dt"
+                                           is-open="popup1.opened"
+                                           ng-required="true"
+                                           close-text="Close"
+                                           alt-input-formats="altInputFormats"/>
+
+                                    <span class="input-group-btn">
+        <button type="button"
+                class="btn btn-default"
+                ng-click="open1()">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+                                </p>
+                            </div>
                         </div>
                         <div class="clearfix visible-xs"></div>
                         <div class="row">

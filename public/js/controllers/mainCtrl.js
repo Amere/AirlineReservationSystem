@@ -5,7 +5,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[3];
+    $scope.format = $scope.formats[2];
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;
@@ -35,6 +35,14 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
             $scope.Airports = airports;
         });
     };
+    function slides() {
+        $scope.myInterval = 5000;
+        lufthansaServ.getSlides().success(function(Slides) {
+            $scope.slides = Slides;
+        });
+        $scope.myInterval = 5000;
+
+    };
     /* Retrieve List of Offers */
     function offers(){
       lufthansaServ.getOffers().success(function(Offers){
@@ -53,6 +61,10 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
         lufthansaServ.setSelectedOriginAirport(originAirport);
     };
 
+   $scope.selectedOrigin=function(){
+       lufthansaServ.getSelectedOriginAirport();
+   };
+    
     /* Record User's Selected Destination Airport  */
     $scope.SetDestinationAirport = function(destAirport) {
         lufthansaServ.setSelectedDestinationAirport(destAirport);
@@ -63,20 +75,11 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
         $location.url('/return');
     };
 
-    $scope.flip = (function ($) {
-        $(document).ready(function () {
-            var ratio = 0.5;
-            $('.resized-splitflap')
-                .splitFlap({
-                    charWidth:  50 * ratio,
-                    charHeight: 100 * ratio,
-                    imageSize:  (2500 * ratio) + 'px ' + (100 * ratio) + 'px'
-                });
-        });
-    })(jQuery);
 
-    /* Get Airports on page render  */
-    AirportCodes();
+
+
+
+
     /* Get offers on page render  */
     offers();
     /* Get news on page render  */
@@ -97,4 +100,5 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
   //make Setters here for your functions and call them to lufthansaServ to
   //be accessable later by any scope and by any ctrl
   AirportCodes();
+    slides();
 });
