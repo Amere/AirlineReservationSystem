@@ -20,9 +20,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use('/users', users);
+app.get('/',function(req,res) {
+  console.log("Received Request");
+  res.send("hellooooooze");
+})
+app.listen(80,function () {
+  console.log("app listening on ec2-54-152-123-100.compute-1.amazonaws.com");
+})
+// app.use('/', routes);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
