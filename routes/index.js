@@ -24,4 +24,8 @@ router.get('/api/data/dummy',function(req,res){
   res.json( dummy );
 });
 
+router.get('/api/data/slides',function(req,res){
+  var slides =  require('../slides.json');
+  res.json( slides );
+});
 module.exports = router;
