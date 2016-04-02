@@ -82,6 +82,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     $scope.SearchFlights = function() {
         $location.url('/return');
     };
+    
 
 
 
