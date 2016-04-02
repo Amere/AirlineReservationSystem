@@ -1,7 +1,7 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
+lufthansa = angular.module('lufthansa', ['ngAnimate','ui.bootstrap','ngRoute']);
 
     /**
      * Angular Routes
@@ -37,3 +37,5 @@ lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
             })
             //Add all parials later and your desired crtl ...
     });
+
+
