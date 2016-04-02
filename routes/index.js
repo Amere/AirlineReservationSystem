@@ -19,9 +19,13 @@ router.get('/api/data/news',function(req,res){
   var news =  require('../news.json');
   res.json( news );
 });
-router.get('/api/data/dummy',function(req,res){
-  var dummy =  require('../reservDummy.json');
+router.get('/api/data/flight',function(req,res){
+  var dummy =  require('../flight.json');
   res.json( dummy );
 });
 
+router.get('/api/data/slides',function(req,res){
+  var slides =  require('../slides.json');
+  res.json( slides );
+});
 module.exports = router;
