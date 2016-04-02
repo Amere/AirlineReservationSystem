@@ -26,6 +26,12 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     $scope.popup2 = {
         opened: false
     };
+                //This will hide the DIV by default.
+                $scope.IsVisible = false;
+                $scope.ShowHide = function () {
+                    //If DIV is visible it will be hidden and vice versa.
+                    $scope.IsVisible = $scope.IsVisible ? false : true;
+                };
 
     /*----------- Angular Bootstrap Typeahead -----------*/
 
@@ -35,6 +41,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
             $scope.Airports = airports;
         });
     };
+
     function slides() {
         $scope.myInterval = 5000;
         lufthansaServ.getSlides().success(function(Slides) {
@@ -43,6 +50,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
         $scope.myInterval = 5000;
 
     };
+
     /* Retrieve List of Offers */
     function offers(){
       lufthansaServ.getOffers().success(function(Offers){
@@ -64,7 +72,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
    $scope.selectedOrigin=function(){
        lufthansaServ.getSelectedOriginAirport();
    };
-    
+
     /* Record User's Selected Destination Airport  */
     $scope.SetDestinationAirport = function(destAirport) {
         lufthansaServ.setSelectedDestinationAirport(destAirport);

@@ -1,7 +1,7 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ngAnimate','ui.bootstrap','ngRoute']);
+lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
 
     /**
      * Angular Routes
@@ -25,17 +25,11 @@ lufthansa = angular.module('lufthansa', ['ngAnimate','ui.bootstrap','ngRoute']);
             })
             .when('/return', {
                 templateUrl : 'partials/return.html',
-                controller  : 'mainCtrl'
+                controller  : 'mainCtrls'
             })
             .when('/payment',{
                 templateUrl:'partials/payment.html',
                 controller  :'paymentCtrl'
-            }) 
-            .when('/bookingAndPastFlights',{
-                templateUrl: 'partials/booking.html',
-                controller:  'bookingCtrl'
             })
             //Add all parials later and your desired crtl ...
     });
-
-

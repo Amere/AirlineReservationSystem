@@ -1,7 +1,12 @@
 # Logs
 logs
 *.log
-npm-debug.log*
+npm-debug.log
+*
+**/.DS_Store
+.DS_Store
+*.DS_Store
+*/.DS_Store
 
 # Runtime data
 pids
