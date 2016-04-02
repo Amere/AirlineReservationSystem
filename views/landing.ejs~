@@ -77,7 +77,6 @@
 		<script src="js/directives/firstclassSeat.js"></script>
 		<script src="js/directives/premiumSeat.js"></script>
 		<script src="js/controllers/paymentCtrl.js"></script>
-                <script src="js/controllers/bookingCtrl.js"></script>
 
 	<div id="fh5co-page">
 		<nav class="fh5co-nav-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
@@ -102,7 +101,6 @@
 						<li><a href="#/reservation">seatMapTest</a></li>
 						<li><a href="#/outgoingFlights">OutgoingFlights</a></li>
 						<li><a href="#/payment">PaymentTest</a></li>
-                                                <li><a href="#/bookingAndPastFlights">BookingsAndPastFlights</a></li>
 
 					</ul>
 				</div>

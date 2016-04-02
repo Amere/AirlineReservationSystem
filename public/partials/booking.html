@@ -1,0 +1,146 @@
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/a3.jpg);">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover-text">
+        <div class="container">
+            <div class="row">
+                <div class="full-height js-full-height">
+                    <div class="fh5co-cover-intro col-md-12">
+
+            <br> <br><br><br><br><br><br><br><br><br>
+
+<uib-tabset active="active">
+	</uib-tab>
+    <uib-tab index="0" heading="My Bookings">
+    <div class="container">
+	<div class="col-md-1">
+						<img src="images/images (1).png" alt="HTML5 Icon" height="50px" width="50px">
+					</div>
+					<div class="col-md-4">
+						<h2>Your Flights</h2>
+					</div>
+					</div>
+    <div>
+    <div class="container-fluid">
+	<button type="button" class="btn btn-default" ng-click="collapse = !collapse">Flight Schedule
+	</button>
+	</div>
+	<div uib-collapse="collapse">
+		<div class="well well-lg"  ng-repeat="flights in bookings">
+        <p> Flight From {{ flights.from }} To {{ flights.to }} </p>
+   <div class="col-md-2">
+   {{ flights.a1 }}
+   </div>
+    <div class="col-md-2">
+
+   {{ flights.a2 }}
+   </div>
+   <div class="col-md-2">
+
+   {{ flights.class }}
+   </div>
+   <div class="col-md-2">
+
+   {{ flights.duration }}
+   </div>
+    <div class="col-md-2">
+
+   {{ flights.date }}
+   </div>
+    <div class="col-md-2">
+   {{ flights.id }}
+   </div>
+   </div>
+   <div>
+        <label>
+            <input type="checkbox" ng-model="showData" ng-change="change()" />
+            Rebook Flight
+        </label>
+        <hr />
+        <div class="container" ng-show="true">
+
+                   <h4>Please Pick Your New Flight Date</h4>
+                   <div class="row">
+                  <div class="col-md-6">
+                    <p class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             uib-datepicker-popup="{{format}}"
+                             ng-model="dt"
+                             is-open="popup1.opened"
+                             ng-required="true"
+                             close-text="Close"
+                             alt-input-formats="altInputFormats" />
+                      <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="open1()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                       </button>
+                      </span>
+                    </p>
+                  </div>
+
+                  </div>
+
+        </div>
+    </div>
+   </div>
+   </div>
+
+    </uib-tab>
+    <uib-tab index="1" heading="My Past Flights">
+    <div class="container" ng-repeat="pastflights in Pastflights">
+    <div class= "col-md-1">
+    {{ pastflights.id }}
+    </div>
+    <div class= "col-md-1">
+    {{ pastflights.aircraft }}
+    </div>
+    <div class= "col-md-1">
+    {{ pastflights.departureDate }}
+    </div>
+    <div class= "col-md-1">
+    {{ pastflights.arrivalDate }}
+    </div>
+    <div class= "col-md-1">
+    {{ pastflights.departureCity }}
+    </div>
+    <div class= "col-md-1">
+    {{ pastflights.destinationCity }}
+    </div>
+    <div class= "col-md-1">
+    {{ pastflights.duration }}
+    </div>
+    </div>
+    <div class="star-rating">
+    <h3>Rating</h3>
+    <uib-rating ng-model="rate" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null"  ></uib-rating>
+    <span class="label" ng-class=ng-show="overStar"></span>
+    <pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>
+   </div>
+   <form>
+   <div class="form-group">
+        <label>Recommendations</label>
+        <input type="text" name="name" class="form-control" ng-model="recommend">
+
+        <button type="submit" class="btn btn-primary">Add</button>
+    <h4>List Of Recommendations</h4>
+   <span ng-show="comment">{{ pastflights.comments }}</span>
+    </div>
+</form>
+
+
+</script>
+
+
+  </uib-tabset>
+  </uib-tab>
+
+  <hr />
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>

@@ -30,10 +30,6 @@ lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
             .when('/payment',{
                 templateUrl:'partials/payment.html',
                 controller  :'paymentCtrl'
-            }) 
-            .when('/bookingAndPastFlights',{
-                templateUrl: 'partials/booking.html',
-                controller:  'bookingCtrl'
             })
             //Add all parials later and your desired crtl ...
     });
