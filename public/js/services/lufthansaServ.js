@@ -30,6 +30,15 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getSlides :function(){
             return $http.get('/api/data/slides');
+        },
+        getBookings : function(){
+            return $http.get('/api/data/bookings');
+        },
+        getPastFlights : function(){
+            return $http.get('api/data/pastFlights');
+        },
+        getBookings : function(){
+            return $http.get('api/data/bookings');
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

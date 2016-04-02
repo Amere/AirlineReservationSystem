@@ -82,8 +82,25 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     $scope.SearchFlights = function() {
         $location.url('/return');
     };
+<<<<<<< HEAD
     
+=======
+    $scope.flip = function(){
+        $(document).ready(function () {
+            var ratio = 0.5;
+            $('.resized-splitflap')
+                .splitFlap({
+                    charWidth:  50 * ratio,
+                    charHeight: 100 * ratio,
+                    imageSize:  (2500 * ratio) + 'px ' + (100 * ratio) + 'px'
+                });
+        });
+    };
+    $scope.flip();
+>>>>>>> 84d0d228eacc788a920cf8e99a9cdc6c947f9260
 
+    $scope.flip();
+   
 
 
 
