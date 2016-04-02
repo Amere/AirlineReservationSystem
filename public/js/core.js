@@ -25,7 +25,7 @@ lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
             })
             .when('/return', {
                 templateUrl : 'partials/return.html',
-                controller  : 'mainCtrls'
+                controller  : 'mainCtrl'
             })
             .when('/payment',{
                 templateUrl:'partials/payment.html',

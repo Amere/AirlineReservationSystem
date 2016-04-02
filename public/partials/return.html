@@ -26,6 +26,25 @@
 <li><a href="#">United States</a></li>
 </ul>
 </div>
+<div class="col-md-3">
+    <p class="input-group">
+        <input type="text"
+               class="form-control"
+               uib-datepicker-popup
+               ng-model="dt"
+               is-open="popup2.opened"
+               ng-required="true"
+               close-text="Close"/>
+<span class="input-group-btn">
+<button type="button"
+class="btn btn-default"
+ng-click="open2()">
+<i class="glyphicon glyphicon-calendar"></i>
+</button>
+</span>
+    </p>
+</div>
+
 <div class="col-md-3" class="dropdown">
 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Destination
 <span class="caret"></span></button>
@@ -35,20 +54,40 @@
 <li><a href="#">United States</a></li>
 </ul>
 </div>
-<form class="col-md-3">
-  From:
-  <input type="date" name="date">
-</form>
-<form class="col-md-3">
-  To:
-  <input type="date" name="date">
-</form>
+<div class="col-md-3" ng-controller="mainCtrl"  ng-cloak="" class="datepickerdemoBasicUsage" ng-app="lufthansa">
+    <p class="input-group">
+        <input type="text"
+               class="form-control"
+               uib-datepicker-popup="{{format}}"
+               ng-model="dt"
+               is-open="popup1.opened"
+               ng-required="true"
+               close-text="Close"
+               alt-input-formats="altInputFormats"/>
+
+        <span class="input-group-btn">
+<button type="button"
+class="btn btn-default"
+ng-click="open1()">
+<i class="glyphicon glyphicon-calendar"></i>
+</button>
+</span>
+    </p>
+</div>
+
+
+
+</div>
+<br>
+
 </div>
 
 
       </div>
-      <button type="button" class="btn btn-danger btn-md">Show flights</button>
+<div ng-app="lufthansa" ng-controller="mainCtrl">
+      <button type="button" class="btn btn-danger btn-md" ng-click="ShowHide()">Show Flights</button>
       <br><br>
+      <div  ng-show = "IsVisible">
       <h2 style="color:grey;">Going</h2>
       <table  name="Going" class="table table-hover">
 
@@ -58,6 +97,7 @@
             <th>From</th>
             <th>To</th>
             <th>Date</th>
+            <th>Book Now</th>
         </tr>
     </thead>
     <tbody>
@@ -66,23 +106,32 @@
             <td>Egypt</td>
             <td>France</td>
             <td>15/4/2016</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">Book</button>
+            </td>
         </tr>
         <tr>
             <td>2</td>
             <td>USA</td>
             <td>Germany</td>
             <td>20/4/2016</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">Book</button>
+            </td>
         </tr>
         <tr>
             <td>3</td>
             <td>Italy</td>
             <td>Egypt</td>
             <td>16/5/2016</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">Book</button>
+            </td>
         </tr>
     </tbody>
 </table>
-    </div>
-  </div>
+
+
   <h2 style="color:grey;">Returning</h2>
   <table  class="table table-hover">
 <thead>
@@ -99,21 +148,33 @@
         <td>Egypt</td>
         <td>France</td>
         <td>15/4/2016</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm">Book</button>
+        </td>
     </tr>
     <tr>
         <td>2</td>
         <td>USA</td>
         <td>Germany</td>
         <td>20/4/2016</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm">Book</button>
+        </td>
     </tr>
     <tr>
         <td>3</td>
         <td>Italy</td>
         <td>Egypt</td>
         <td>16/5/2016</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm">Book</button>
+        </td>
     </tr>
 </tbody>
 </table>
+</div>
+</div>
+
 
 </div>
   </div>
