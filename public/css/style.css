@@ -544,6 +544,18 @@ a:hover .lnk-icon-right {
 #fh5co-offcanvass ul.fh5co-inline {
   width: 100%;
 }
+.close-image {
+  cursor: pointer;
+  display: block;
+  float: right;
+  z-index: 10;
+  position: absolute; /*newly added*/
+  right: 5px; /*newly added*/
+  top: 5px;/*newly added*/
+}
+.wrap {
+  position: relative;
+}
 #fh5co-offcanvass ul.fh5co-inline li {
   display: inline-block;
   float: none;

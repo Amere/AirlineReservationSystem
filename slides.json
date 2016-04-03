@@ -1,20 +1,29 @@
 [
 {
   "id": 0,
-  "title": "Want to go to Paris",
-  "description": "see the word as you never saw before",
+  "msg1": "Paris this summer!",
+  "msg2": "Visitez PARIS",
+  "msg3": "Dites bonjour au monde",
+  "msg4": "Just 5000LE",
+  "msg5": "Non stop you, Lufthansa",
   "img": "images/paris.jpg"
 },
 {
   "id": 1,
-  "title": "Want to go to Berlin",
-  "description": "see the word as you never saw before",
+  "msg1": "Berlin this summer!",
+  "msg2": "Besucht Deutshcland",
+  "msg3": "Alienz-Arena ?!!",
+  "msg4": "Just 4000LE",
+  "msg5": "Non stop you, Lufthansa",
   "img": "images/berlin.jpg"
 },
 {
   "id": 2,
-  "title": "Want to go to New york",
-  "description": "see the word as you never saw before",
+  "msg1": "NYC this summer",
+  "msg2": "Statue of Liberty!?",
+  "msg3": "Don't miss this chance",
+  "msg4": "Just 9000LE",
+  "msg5": "Non stop you, Lufthansa",
   "img": "images/NYC.jpg"
 }
 

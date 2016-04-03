@@ -42,6 +42,9 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getConfirmDummy : function() {
             return $http.get('/api/data/conf');
+        },
+        getFlight : function(){
+            return $http.get('api/data/flight');
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

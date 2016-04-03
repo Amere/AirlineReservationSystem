@@ -4,6 +4,3 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ) {
        $scope.Confirm = dummy;
    });
 });
-
-
-  

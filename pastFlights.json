@@ -9,7 +9,7 @@
   "date": "Saturday 2/3/2016",
   "departureCity": "Barcelona",
   "destinationCity": "Vienna",
-  "comments": [ "amazing service"]
+  "comments": "Amazing Service"
 
  },
  {
@@ -22,7 +22,7 @@
   "date": "Saturday 2/3/2016",
   "departureCity": "Barcelona",
   "destinationCity": "Vienna",
-  "comments": [ "amazing service"]
+  "comments": "Amazing Service"
  },
  {
   "index": "0",
@@ -34,7 +34,7 @@
   "date": "Saturday 2/3/2016",
   "departureCity": "Barcelona",
   "destinationCity": "Vienna",
-  "comments": [ "amazing service"]
+  "comments": "Amazing Service"
  }
   
 
