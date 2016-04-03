@@ -1,0 +1,35 @@
+[
+{ "index": "0",
+  "from": "Berlin",
+  "to": "Vienna",
+  "a1": "Barcelona",
+  "a2": "Frankfurt",
+  "class": "Economy",
+  "id": "LH123",
+  "duration": "2h 55min",
+  "date": "Saturday 2/3/2016"
+},
+{
+  "index": "0",
+  "from": "Paris",
+  "to": "Vienna",
+  "a1": "Barcelona",
+  "a2": "Frankfurt",
+  "class": "Economy",
+  "id": "LH123",
+  "duration": "2h 55min",
+  "date": "Saturday 2/3/2016"
+},
+{
+  "index": "0",
+  "from": "italy",
+  "to": "Vienna",
+  "a1": "Barcelona",
+  "a2": "Frankfurt",
+  "class": "Economy",
+  "id": "LH123",
+  "duration": "2h 55min",
+  "date": "Saturday 2/3/2016"
+}
+
+]
