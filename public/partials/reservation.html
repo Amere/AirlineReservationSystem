@@ -13,13 +13,10 @@
                             <h4>You are traveling from : {{flight.departureCity}}</h4>
                             <h4>To: {{flight.destinationCity}}</h4>
                             <h4>In : {{flight.departureDate}}</h4>
-                            <h4>Your seat: {{seat}}</h4>
+                            <h4>Your seat: {{getSeatID()}}</h4>
                             <div>
-                                <h4>price : {{seat}}</h4>
-                                <div class="input-group " style="float: right;
-    width: 300px;
-
-    padding: 10px;">
+                                <h4>price : {{getSeatID()}}</h4>
+                                <div class="input-group " style="float: right; width: 300px; padding: 10px;">
 
                                     <div class="col-md-4">
                                         <button id="procced" name="procced" class="btn btn-primary" ng-click="payment()">Go to payment </button>
