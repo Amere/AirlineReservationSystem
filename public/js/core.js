@@ -1,13 +1,14 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ngAnimate','ui.bootstrap','ngRoute']);
+lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute']);
 
     /**
      * Angular Routes
      */
-    lufthansa.config(function($routeProvider) {
-        $routeProvider
+
+  lufthansa.config(function($routeProvider) {
+    $routeProvider
 
         // route for the home page
             .when('/', {
@@ -30,12 +31,10 @@ lufthansa = angular.module('lufthansa', ['ngAnimate','ui.bootstrap','ngRoute']);
             .when('/payment',{
                 templateUrl:'partials/payment.html',
                 controller  :'paymentCtrl'
-            }) 
+            })
             .when('/bookingAndPastFlights',{
                 templateUrl: 'partials/booking.html',
                 controller:  'bookingCtrl'
             })
             //Add all parials later and your desired crtl ...
     });
-
-
