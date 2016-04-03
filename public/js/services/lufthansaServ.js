@@ -29,7 +29,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getReservDummy : function() {
             return $http.get('/api/data/flight');
-            return $http.get('/api/data/dummy');
+            //return $http.get('/api/data/dummy');
         },
         getSlides :function(){
             return $http.get('/api/data/slides');
@@ -43,7 +43,6 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getBookings : function(){
             return $http.get('api/data/bookings');
         },
-
 
         getNationss :  function() {
             return $http.get('api/data/nations');

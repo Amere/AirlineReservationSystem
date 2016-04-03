@@ -4,4 +4,5 @@ lufthansa.directive('firstSeat',function(){
   directive.scope={seats:"=seats"};
   directive.templateUrl='js/directives/first.html';
   return directive;
+
 });
