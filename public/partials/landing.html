@@ -184,8 +184,8 @@
                           <table  name="Going" class="table table-hover">
 
                         <thead>
-                            <tr>
-                                <th class="text-danger">From</th>
+                            <tr class="danger">
+                                <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Date</th>
                                 <th class="text-danger">Price</th>
@@ -193,7 +193,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="flight in flights">
+                          <tr class="danger" ng-repeat="flight in flights">
                           <td>{{flight.departureCity}}</td>
                           <td>{{flight.destinationCity}}</td>
                           <td>{{flight.departureDate}}</td>
@@ -204,11 +204,12 @@
                         </tr>
                         </tbody>
                     </table>
+
                     <br><br>
                     <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
-                      <tr>
+                      <tr class="danger">
                           <th class="text-danger">Row</th>
                           <th class="text-danger">From</th>
                           <th class="text-danger">To</th>
@@ -218,7 +219,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
+                      <tr class="danger">
                           <td>1</td>
                           <td>Egypt</td>
                           <td>France</td>
@@ -228,7 +229,7 @@
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
                           </td>
                       </tr>
-                      <tr>
+                      <tr class="danger">
                           <td>2</td>
                           <td>USA</td>
                           <td>Germany</td>
@@ -238,7 +239,7 @@
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
                           </td>
                       </tr>
-                      <tr>
+                      <tr class="danger">
                           <td>3</td>
                           <td>Italy</td>
                           <td>Egypt</td>
