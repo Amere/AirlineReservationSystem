@@ -1,4 +1,5 @@
-<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/a3.jpg);">
+
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/a3.jpg);" >
     <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
         <div class="container">
@@ -11,6 +12,7 @@
 <uib-tabset active="active">
 	</uib-tab>
     <uib-tab index="0" heading="My Bookings">
+    <br>
     <div class="container">
 	<div class="col-md-1">
 						<img src="images/images (1).png" alt="HTML5 Icon" height="50px" width="50px">
@@ -21,12 +23,15 @@
 					</div>
     <div>
     <div class="container-fluid">
-	<button type="button" class="btn btn-default" ng-click="collapse = !collapse">Flight Schedule
+	<button type="button" class="btn btn-info" ng-click="collapse = !collapse">Flight Schedule
 	</button>
 	</div>
 	<div uib-collapse="collapse">
+  <div class="container">
 		<div class="well well-lg"  ng-repeat="flights in bookings">
-        <p> Flight From {{ flights.from }} To {{ flights.to }} </p>
+        <font color="#25383C"><p><b> Flight From {{ flights.from }} To {{ flights.to }} </b></p></font>
+  <font color="#8C001A">
+  <i>
    <div class="col-md-2">
    {{ flights.a1 }}
    </div>
@@ -49,16 +54,22 @@
     <div class="col-md-2">
    {{ flights.id }}
    </div>
-   </div>
+   </i>
+   </font>
    <div>
         <label>
+            <br>
+            
             <input type="checkbox" ng-model="showData" ng-change="change()" />
-            Rebook Flight
+           <font color="#25383C"> Rebook Flight </font>
         </label>
         <hr />
-        <div class="container" ng-show="true">
+       
+    </div>
+   </div>
+    <div class="container" ng-show='isVisible'>
 
-                   <h4>Please Pick Your New Flight Date</h4>
+                   <font color="#25383C"><h4>Please Pick Your New Flight Date</h4></font>
                    <div class="row">
                   <div class="col-md-6">
                     <p class="input-group">
@@ -83,13 +94,16 @@
                   </div>
 
         </div>
-    </div>
    </div>
    </div>
-
+   </div>
     </uib-tab>
     <uib-tab index="1" heading="My Past Flights">
-    <div class="container" ng-repeat="pastflights in Pastflights">
+    <div class="container">
+    <div class="well well-lg" ng-repeat="pastflights in Pastflights">
+     <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
+     <font color=" #8C001A">
+    <i>
     <div class= "col-md-1">
     {{ pastflights.id }}
     </div>
@@ -108,31 +122,35 @@
     <div class= "col-md-1">
     {{ pastflights.destinationCity }}
     </div>
-    <div class= "col-md-1">
+    <div class= "col-md-2">
     {{ pastflights.duration }}
     </div>
+   </i>
+    </font>
+    <div>
+    
     </div>
-    <div class="star-rating">
-    <h3>Rating</h3>
+    <div>
+    <br><br><br>
+    <font color="#25383C"><h3><b>Rating</b></h3></font>
     <uib-rating ng-model="rate" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null"  ></uib-rating>
-    <span class="label" ng-class=ng-show="overStar"></span>
+    <span class="label" ng-show="overStar"></span>
     <pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>
    </div>
    <form>
    <div class="form-group">
-        <label>Recommendations</label>
+        <font color="#25383C"><label><b>Recommendations</b></label></font>
         <input type="text" name="name" class="form-control" ng-model="recommend">
-
+        <br>
         <button type="submit" class="btn btn-primary">Add</button>
-    <h4>List Of Recommendations</h4>
-   <span ng-show="comment">{{ pastflights.comments }}</span>
+        
+    <font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font>
+    <font color=" #8C001A">
+  <i><div>{{ pastflights.comments }}</div></i></font>
     </div>
 </form>
-
-
-</script>
-
-
+ </div>
+ </div>
   </uib-tabset>
   </uib-tab>
 
