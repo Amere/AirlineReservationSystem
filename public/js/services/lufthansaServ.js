@@ -54,10 +54,9 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getFlight : function(){
             return $http.get('api/data/flight');
-
         },
         setSeat : function(value){
-            this.seat="test";
+            this.seat=value;
         },
         getSeat : function() {
             return this.seat;
