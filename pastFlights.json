@@ -20,7 +20,7 @@
   "arrivalDate": "10/5/2016",
   "duration": "2h 55min",
   "date": "Saturday 2/3/2016",
-  "departureCity": "Barcelona",
+  "departureCity": "Paris",
   "destinationCity": "Vienna",
   "comments": [ "amazing service"]
  },
@@ -36,8 +36,6 @@
   "destinationCity": "Vienna",
   "comments": [ "amazing service"]
  }
-  
+
 
 ]
-
-
