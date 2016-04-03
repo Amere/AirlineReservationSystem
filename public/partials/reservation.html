@@ -6,7 +6,33 @@
                 <div class="full-height js-full-height">
                     <div class="fh5co-cover-intro col-md-12">
                       <br> <br><br><br><br><br><br><br>
+                        <h1> Step 2 of 3</h1>
+                        <h2> please select a seat to continue :</h2>
+                        <div>
+                            <h3>Your flight Information :</h3>
+                            <h4>You are traveling from : {{flight.departureCity}}</h4>
+                            <h4>To: {{flight.destinationCity}}</h4>
+                            <h4>In : {{flight.departureDate}}</h4>
+                            <h4>Your seat: {{seat}}</h4>
+                            <div>
+                                <h4>price : {{seat}}</h4>
+                                <div class="input-group " style="float: right;
+    width: 300px;
 
+    padding: 10px;">
+
+                                    <div class="col-md-4">
+                                        <button id="procced" name="procced" class="btn btn-primary" ng-click="payment()">Go to payment </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
                     <div style="background-image: url(images/SeatMapNew.png);">
                       <br><br><br><br><br>
 
@@ -57,10 +83,13 @@
 
 
                   </div>
+                        <br>
+
 
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

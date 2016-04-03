@@ -21,7 +21,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="fname">First Name</label>
                                     <div class="col-md-4">
-                                        <input id="fname" name="fname" type="text" placeholder="your first name" class="form-control input-md" required="">
+                                        <input id="fname" name="fname" type="text" placeholder="your first name" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="lname">Last Name</label>
                                     <div class="col-md-4">
-                                        <input id="lname" name="lname" type="text" placeholder="your last name" class="form-control input-md" required="">
+                                        <input id="lname" name="lname" type="text" placeholder="your last name" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="email">Email</label>
                                     <div class="col-md-4">
-                                        <input id="email" name="email" type="text" placeholder="your email" class="form-control input-md" required="">
+                                        <input id="email" name="email" type="text" placeholder="your email" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                                is-open="popup1.opened"
                                                ng-required="true"
                                                close-text="Close"
-                                               alt-input-formats="altInputFormats"/>
+                                               alt-input-formats="altInputFormats" required/>
 
                                                     <span class="input-group-btn">
                         <button type="button"
@@ -91,7 +91,7 @@
                                                    is-open="popup2.opened"
                                                    ng-required="true"
                                                    close-text="Close"
-                                                   alt-input-formats="altInputFormats"/>
+                                                   alt-input-formats="altInputFormats" required=""/>
 
                                                     <span class="input-group-btn">
                         <button type="button"
@@ -107,7 +107,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="procced">submit to procced :</label>
                                     <div class="col-md-4">
-                                        <button id="procced" name="procced" class="btn btn-primary">submit </button>
+                                        <button id="procced" name="procced" class="btn btn-primary" ng-click="seats()">submit </button>
                                     </div>
                                 </div>
 

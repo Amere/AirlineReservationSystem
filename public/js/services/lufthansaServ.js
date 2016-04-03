@@ -50,6 +50,12 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getFlight : function(){
             return $http.get('api/data/flight');
 
+        },
+        setSeat : function(value){
+            this.seat="test";
+        },
+        getSeat : function() {
+            return this.seat;
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
