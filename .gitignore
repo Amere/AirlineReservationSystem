@@ -25,6 +25,8 @@ coverage
 # node-waf configuration
 .lock-wscript
 
+.idea/
+.idea/workspace.xml
 .idea
 idea 
 *.idea
