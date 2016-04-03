@@ -1,24 +1,125 @@
-<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_4.jpg);">
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/ll3.jpg);">
   <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
         <div class="container">
             <div class="row">
                 <div class="full-height js-full-height">
                     <div class="fh5co-cover-intro col-md-12">
+                      <br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+                      <div class = "table-responsive" >
+                      <table class = "table" align="center">
+                        <thead>
+                        <tr class="success">
+                          <th class="success">Step No.</th>
+                          <th class="success">Status</th>
+                          <th class="success">FlightNo.</th>
+                          <th class="success">FirstName</th>
+                          <th class="success">LastName</th>
+                          <th class="warning">SeatNo.</th>
+                          <th class="danger">PaymentNo.</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="success">1</td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Completed
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>15491
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Ahmed
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Amer
+                          </td>
+                          <td class="warning">
+                            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>InProgress
+                          </td>
+                          <td class="danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td class="warning">2</td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>InProgress
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </td>
+                          <td class="warning">
+                            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>InProgress
+                          </td>
+                          <td class="danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          </td>
+                        </tr>
+
+
+                        <tr>
+                          <td class="danger">3</td>
+                          <td class="danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </td>
+                          <td class="success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </td>
+                          <td class="warning">
+                            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>InProgress
+                          </td>
+                          <td class="danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      </table>
+                    </div>
+                    <div class="col-md-4">
+                        <button id="procced" name="procced" class="btn btn-primary" ng-click="payment()">Go to payment </button>
+
+                    </div>
+              <!--Adding some scroll          <div>
                       <br> <br><br><br><br><br><br><br>
                         <h1> Step 2 of 3</h1>
-                  
+
                         <h2> please select a seat to continue :</h2>
                         <div>
 
                             <h3>Your flight Information :</h3>
+
                             <h4>You are traveling from : {{flight.departureCity}}</h4>
                             <h4>To: {{flight.destinationCity}}</h4>
                             <h4>In : {{flight.departureDate}}</h4>
                             <h4>Your seat: {{getSeatID()}}</h4>
                             <div>
                                 <h4>price : {{getSeatID()}}</h4>
-                                <div class="input-group " style="float: right; width: 300px; padding: 10px;">
+                                <div class="input-group " style="float: right;
+    width: 300px;
+
+    padding: 10px;">
 
                                     <div class="col-md-4">
                                         <button id="procced" name="procced" class="btn btn-primary" ng-click="payment()">Go to payment </button>
@@ -32,6 +133,23 @@
                         <br>
                         <br>
                         <br>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <div style="background-image: url(images/SeatMapNew.png);">
                       <br><br><br><br><br>
 
@@ -59,6 +177,7 @@
                       <td><div class="col-sm-1">
 
                       </div></td>
+
                       <td ><first-seat seats="firstClassSeats"></firstclass-seat> </td>
                         <td><div class="col-sm-1">
 
