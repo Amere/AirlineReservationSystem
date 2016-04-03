@@ -1,7 +1,12 @@
 # Logs
 logs
 *.log
-npm-debug.log*
+npm-debug.log
+*
+**/.DS_Store
+.DS_Store
+*.DS_Store
+*/.DS_Store
 
 # Runtime data
 pids
@@ -21,6 +26,8 @@ coverage
 .lock-wscript
 
 .idea
+idea 
+*.idea
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
