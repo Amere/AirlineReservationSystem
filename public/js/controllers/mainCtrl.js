@@ -121,8 +121,8 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
 
 
 
-  $scope.directToReservation = function() {
-    $location.url('/reservation');
+  $scope.goToReservation = function() {
+    $location.url('/reserv1');
   };
   $scope.directToOutgoingFlights = function() {
     $location.url('/outgoingFlights');
