@@ -1,9 +1,6 @@
-<table>
- <tr ng-repeat="row in seats">
-   <div ng-if="($index+1)%2==0">
-   </div>
+<table ng-repeat="row in seats">
    <td ng-repeat="seat in row" border=3>
      <seat seat="seat" src="images/businessClassSeat.png"></seat>
    </td>
-</tr>
+
 </table>
