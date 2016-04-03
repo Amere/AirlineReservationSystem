@@ -105,7 +105,38 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     };
     $scope.flip();
 
-    $scope.flip();
+<<<<<<< HEAD
+
+
+=======
+
+>>>>>>> 04408e53bb053e53e7609cfe38f0fc64d3c8e3ef
+
+
+
+
+
+    /* Get offers on page render  */
+    offers();
+    /* Get news on page render  */
+    news();
+
+
+
+
+  $scope.directToReservation = function() {
+    $location.url('/reservation');
+  };
+  $scope.directToOutgoingFlights = function() {
+    $location.url('/outgoingFlights');
+  };
+  //Add the direction to your own partial function.
+  //Just call this method to redirect to any other partial on your html
+  //Add all your functions here
+  //make Setters here for your functions and call them to lufthansaServ to
+  //be accessable later by any scope and by any ctrl
+  AirportCodes();
+    slides();
     $scope.flights=[
       {
         "aircraft" : {
@@ -604,32 +635,5 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
         "firstPrice" : 14000
         }
       }
-    ]
-
-
-
-
-
-
-    /* Get offers on page render  */
-    offers();
-    /* Get news on page render  */
-    news();
-
-
-
-
-  $scope.directToReservation = function() {
-    $location.url('/reservation');
-  };
-  $scope.directToOutgoingFlights = function() {
-    $location.url('/outgoingFlights');
-  };
-  //Add the direction to your own partial function.
-  //Just call this method to redirect to any other partial on your html
-  //Add all your functions here
-  //make Setters here for your functions and call them to lufthansaServ to
-  //be accessable later by any scope and by any ctrl
-  AirportCodes();
-    slides();
+    ];
 });
