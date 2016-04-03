@@ -11,8 +11,8 @@ lufthansa.directive('seat',function(lufthansaServ){
       }else {
         r= "the seat is available";
       }
-      alert('you have chose '+scope.seat.seatCode+' '+scope.seat.class+'\n'+r);
       lufthansaServ.setSeat(scope.seat.seatCode);
+      alert('you have chose '+scope.seat.seatCode+' '+scope.seat.class+'\n'+r+scope.$parent);
     }
   };
   return directive;
