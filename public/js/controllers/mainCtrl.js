@@ -135,6 +135,57 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
   $scope.directToOutgoingFlights = function() {
     $location.url('/outgoingFlights');
   };
+
+  var myCenter = new google.maps.LatLng(30.078114, 31.629798);
+
+  function initialize() {
+  var mapProp = {
+    center:myCenter,
+    zoom:5,
+    scrollwheel:true,
+    draggable:true,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+  $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  var marker = new google.maps.Marker({
+    position:myCenter,
+    });
+  }
+
+  $scope.googleMap = google.maps.event.addDomListener(window, 'load', initialize);
+
+  function putMarkerOrigin(lon, lat){
+    console.log($scope.map);
+    var lonlat = new google.maps.LatLng(lon, lat);
+    var marker = new google.maps.Marker({
+      position:lonlat,
+      title:'Your Location',
+      draggable:true,
+      map:$scope.map
+    });
+  }
+  $scope.putMarkerO = function(lon, lat){
+    putMarkerOrigin(lon, lat);
+  }
+
+
+  function putMarkerDest(lon, lat){
+    console.log($scope.map);
+    var lonlat = new google.maps.LatLng(lon, lat);
+    var marker = new google.maps.Marker({
+      position:lonlat,
+      title:'Target Location',
+      draggable:true,
+      map:$scope.map
+    });
+    $scope.map.setCenter(lonlat);
+    $scope.map.setZoom(12);
+  }
+  $scope.putMarkerD = function(lon, lat){
+    putMarkerDest(lon, lat);
+  }
   //Add the direction to your own partial function.
   //Just call this method to redirect to any other partial on your html
   //Add all your functions here

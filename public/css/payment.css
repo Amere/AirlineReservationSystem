@@ -11,10 +11,19 @@ $lightBlue: #ace4fa;
 $silver: #ececec;
 $space: 20px;
 
-body {   
+body {
   background: url(http://i.imgur.com/h97pmPj.png) repeat;
 }
-
+#pay{
+  margin-left: 310px;
+  float: right;
+  display: inline;
+}
+#cancel{
+  margin-left: 20px;
+  float: left;
+  display: inline;
+}
 .cc {
   background: $blue;
   color:white;
@@ -23,13 +32,13 @@ body {
   margin: 50px;
   overflow: hidden;
   padding: $space;
-  position: relative;  
+  position: relative;
   width: 490px;
-  border: 2px solid black;   
+  border: 2px solid black;
 }
 
 .shine {
-  background: rgba(255,255,255,0.05); 
+  background: rgba(255,255,255,0.05);
   left: 390px; top: 0;
   margin: 0 15px 0 0;
   padding: 0;
@@ -61,7 +70,7 @@ body {
   text-transform: uppercase;
 }
 
-.number, 
+.number,
 .date {
   margin-bottom: $space/2;
 }
@@ -84,21 +93,21 @@ body {
 .amex { background-position: 71px 0; }
 .visa { background-position: 147px 0; }
 
- input{ 
-  background: $silver; 
+ input{
+  background: $silver;
   border: 0;
   border-radius: 4px;
   font: 20px Inconsolata, sans-serif; color: #303030;
   margin: 0 2px 3px 0;
   padding: 8px $space/2;
   text-align: center;
-  width: 24%; 
+  width: 24%;
     -moz-box-shadow:    1px 1px 0px 1px #0e306e;
     -webkit-box-shadow: 1px 1px 0px 1px #0e306e;
     box-shadow:         1px 1px 0px 1px #0e306e;
   position: relative;
   z-index: 10;
-  
+
    &:nth-child(4) {
      margin-right: 0;
    }
