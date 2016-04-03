@@ -155,7 +155,7 @@
 
 
 <div class="fh5co-blog-style-1" data-stellar-background-ratio="0.5"  ng-show = "IsVisible" data-next="yes"
-    style="background-image: url(images/l1.png);">
+    style="background-image: url(images/ll3.jpg);">
     <div class="container">
         <div class="row p-b">
           <div class="jumbotron" style="background-color:orange">
@@ -177,15 +177,18 @@
 </div>
         </div>
         <div class="wrapper">
+          <div class="row">
+            <div  class="col-md-6">
           <div ng-show="content == 'first'">
+
 
                           <h2 style="color:white">Going</h2>
 
                           <table  name="Going" class="table table-hover">
 
                         <thead>
-                            <tr>
-                                <th class="text-danger">From</th>
+                            <tr class="danger">
+                                <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Date</th>
                                 <th class="text-danger">Price</th>
@@ -193,7 +196,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="flight in flights">
+                          <tr class="danger" ng-repeat="flight in flights">
                           <td>{{flight.departureCity}}</td>
                           <td>{{flight.destinationCity}}</td>
                           <td>{{flight.departureDate}}</td>
@@ -204,11 +207,12 @@
                         </tr>
                         </tbody>
                     </table>
+
                     <br><br>
                     <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
-                      <tr>
+                      <tr class="danger">
                           <th class="text-danger">Row</th>
                           <th class="text-danger">From</th>
                           <th class="text-danger">To</th>
@@ -218,7 +222,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
+                      <tr class="danger">
                           <td>1</td>
                           <td>Egypt</td>
                           <td>France</td>
@@ -228,7 +232,7 @@
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
                           </td>
                       </tr>
-                      <tr>
+                      <tr class="danger">
                           <td>2</td>
                           <td>USA</td>
                           <td>Germany</td>
@@ -238,7 +242,7 @@
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
                           </td>
                       </tr>
-                      <tr>
+                      <tr class="danger">
                           <td>3</td>
                           <td>Italy</td>
                           <td>Egypt</td>
@@ -250,58 +254,66 @@
                       </tr>
                   </tbody>
                   </table>
+
+
+
           </div>
           <div ng-show="content == 'other'">
-            <h2 style="color:white">Going</h2>
-            <table class="table table-hover" >
-          <thead>
-              <tr>
-                  <th class="text-danger">Row</th>
-                  <th class="text-danger">From</th>
-                  <th class="text-danger">To</th>
-                  <th class="text-danger">Date</th>
-                  <th class="text-danger">Price</th>
-                  <th class="text-danger">Book Now</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>1</td>
-                  <td>Egypt</td>
-                  <td>France</td>
-                  <td>15/4/2016</td>
-                  <td>2000</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-              </tr>
-              <tr>
-                  <td>2</td>
-                  <td>USA</td>
-                  <td>Germany</td>
-                  <td>20/4/2016</td>
-                  <td>2000</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-              </tr>
-              <tr>
-                  <td>3</td>
-                  <td>Italy</td>
-                  <td>Egypt</td>
-                  <td>16/5/2016</td>
-                  <td>2000</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-              </tr>
-          </tbody>
-          </table>
-          </div>
-          <div class="row p-b">
-                <div id="googleMap" align="center" style="height:400px;width:100%;">{{googleMap}}</div>
-              </div>
+
+
+                          <h2 style="color:white">Going</h2>
+
+                          <table  name="Going" class="table table-hover">
+
+                        <thead>
+                            <tr class="danger">
+                                <th class="text-danger" >From</th>
+                                <th class="text-danger">To</th>
+                                <th class="text-danger">Date</th>
+                                <th class="text-danger">Price</th>
+                                <th class="text-danger">Book Now</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="danger" ng-repeat="flight in flights">
+                          <td>{{flight.departureCity}}</td>
+                          <td>{{flight.destinationCity}}</td>
+                          <td>{{flight.departureDate}}</td>
+                          <td>{{flight.priceClass.economyPrice}}</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                          </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br><br>
+
         </div>
+
+          </div>
+
+
+
+
+
+
+
+      <div  class="col-md-6">
+        <br><br><br>
+        <div class="row p-b">
+              <div id="googleMap" align="center" style="height:400px;width:100%;">{{googleMap}}</div>
+            </div>
+      </div>
+        </div>
+
+
+
+</div>
+
+
+
+      </div>
         <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide()">Hide Results</button>
 
             </div>
