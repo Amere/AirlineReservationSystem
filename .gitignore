@@ -2,7 +2,7 @@
 logs
 *.log
 npm-debug.log
-*
+
 **/.DS_Store
 .DS_Store
 *.DS_Store
@@ -25,6 +25,8 @@ coverage
 # node-waf configuration
 .lock-wscript
 
+.idea/
+.idea/workspace.xml
 .idea
 idea 
 *.idea

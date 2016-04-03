@@ -39,9 +39,15 @@ router.get('/api/data/bookings',function(req,res){
   var pastFlights =  require('../bookings.json');
   res.json( pastFlights );
 });
+
+router.get('/api/data/nations',function(req,res){
+  var nat =  require('../nationalities.json');
+  res.json( nat );
+});
 router.get('/api/data/conf',function(req,res){
   var dummy =  require('../confirm.json');
   res.json( dummy );
 });
+
 
 module.exports = router;

@@ -1,0 +1,123 @@
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_1.jpg);">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover-text">
+        <div class="container">
+            <div class="row">
+                <div class="full-height js-full-height">
+                    <div class="fh5co-cover-intro col-md-12">
+
+                        <br> <br><br><br><br><br><br><br><br><br>
+                        <h1> Step 1 of 3</h1>
+                        <h2> please fill this form to continue :</h2>
+                        <div>
+
+                        <form class="form-horizontal ">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <legend>Your Info</legend>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="fname">First Name</label>
+                                    <div class="col-md-4">
+                                        <input id="fname" name="fname" type="text" placeholder="your first name" class="form-control input-md" required>
+
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="lname">Last Name</label>
+                                    <div class="col-md-4">
+                                        <input id="lname" name="lname" type="text" placeholder="your last name" class="form-control input-md" required>
+
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="email">Email</label>
+                                    <div class="col-md-4">
+                                        <input id="email" name="email" type="text" placeholder="your email" class="form-control input-md" required>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                <label class="col-md-4 control-label" for="nationality"> Your Nationality :</label>
+                                    <div class="col-md-4">
+                                    <input name="Nationality"
+                                       id="Nationality"
+                                       type="text"
+                                       placeholder="Nationality"
+                                       ng-model="selectedDestination"
+                                       uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
+                                       class="form-control"
+                                       typeahead-on-select="SetNation($item.name)">
+                                        </div>
+                                    </div>
+                                <div class="form-group">
+
+                                    <label class="col-md-4 control-label" for="dateOfBirth"> Your date of birth :</label>
+                                    <div class="col-md-4 input-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               uib-datepicker-popup="{{format}}"
+                                               ng-model="dt"
+                                               is-open="popup1.opened"
+                                               ng-required="true"
+                                               close-text="Close"
+                                               alt-input-formats="altInputFormats" required/>
+
+                                                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="open1()">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </span>
+                                    </div>
+
+                                </div>
+
+                                    <div class="form-group">
+
+                                            <label class="col-md-4 control-label" for="expiry"> Your Passport Expiration date :</label>
+                                        <div class="col-md-4 input-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   uib-datepicker-popup="{{format}}"
+                                                   ng-model="dt"
+                                                   is-open="popup2.opened"
+                                                   ng-required="true"
+                                                   close-text="Close"
+                                                   alt-input-formats="altInputFormats" required=""/>
+
+                                                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="open2()">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </span>
+                                        </div>
+
+                                        </div>
+                                <!-- Button -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="procced">submit to procced :</label>
+                                    <div class="col-md-4">
+                                        <button id="procced" name="procced" class="btn btn-primary" ng-click="seats()">submit </button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                 </div>
+
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>

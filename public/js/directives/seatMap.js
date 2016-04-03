@@ -1,4 +1,4 @@
-lufthansa.directive('seat',function(){
+lufthansa.directive('seat',function(lufthansaServ){
   var directive = {};
   directive.restrict = 'E';
   directive.template ="<img src='images/economeySeat.png' ng-click='click()'>";
@@ -12,6 +12,7 @@ lufthansa.directive('seat',function(){
         r= "the seat is available";
       }
       alert('you have chose '+scope.seat.seatCode+' '+scope.seat.class+'\n'+r);
+      lufthansaServ.setSeat(scope.seat.seatCode);
     }
   };
   return directive;
