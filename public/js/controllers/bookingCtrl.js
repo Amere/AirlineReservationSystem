@@ -4,8 +4,9 @@ lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
     $scope.isVisible= false;
 
   $scope.change = function() {
-  $scope.isVisible = $scope.showData;
+  $scope.isVisible = !$scope.isVisible;
  };
+ 
  function pastflights(){
    lufthansaServ.getPastFlights().success(function(data){
      $scope.Pastflights=data;
