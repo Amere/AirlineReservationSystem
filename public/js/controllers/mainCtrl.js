@@ -30,12 +30,12 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
                 $scope.IsVisible = false;
                 $scope.ShowHide = function () {
                     //If DIV is visible it will be hidden and vice versa.
-                    $scope.IsVisible = $scope.IsVisible ? false : true;
+                    $scope.IsVisible = true;
                 };
                 $scope.IsVisible = false;
                 $scope.ShowHide2 = function () {
                     //If DIV is visible it will be hidden and vice versa.
-                    $scope.IsVisible = $scope.IsVisible ? false : true;
+                    $scope.IsVisible = true;
                 };
                 $scope.gotoBottom = function() {
       // set the location.hash to the id of
