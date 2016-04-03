@@ -105,12 +105,9 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     };
     $scope.flip();
 
-<<<<<<< HEAD
 
 
-=======
 
->>>>>>> 04408e53bb053e53e7609cfe38f0fc64d3c8e3ef
 
 
 
