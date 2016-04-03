@@ -44,8 +44,13 @@ lufthansa.factory('lufthansaServ', function ($http) {
             return $http.get('api/data/bookings');
         },
 
+
         getNationss :  function() {
             return $http.get('api/data/nations');
+        },
+        getConfirmDummy : function() {
+            return $http.get('/api/data/conf');
+
         },
         getFlight : function(){
             return $http.get('api/data/flight');
