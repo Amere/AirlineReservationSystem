@@ -36,5 +36,9 @@ lufthansa = angular.module('lufthansa', ['ui.bootstrap','ngRoute','ngAnimate']);
                 templateUrl: 'partials/booking.html',
                 controller:  'bookingCtrl'
             })
+            .when('/confirm', {
+                templateUrl : 'partials/confirmation.html',
+                controller  : 'confirmController'
+            })
             //Add all parials later and your desired crtl ...
     });
