@@ -95,7 +95,6 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
     };
     $scope.flip();
 
-    $scope.flip();
    
 
 
