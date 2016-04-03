@@ -49,7 +49,7 @@
                                                        ng-model="selectedOrigin"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
-                                                       typeahead-on-select="SetOriginAirport($item.iata)">
+                                                       typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
                                                 <br>
                                                 <label>Flying To :</label>
                                                 <input name="destinationAirports"
@@ -59,7 +59,7 @@
                                                        ng-model="selectedDestination"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
-                                                       typeahead-on-select="SetDestinationAirport($item.iata)">
+                                                       typeahead-on-select="SetDestinationAirport($item.iata); putMarkerD($item.lat, $item.lon)">
                                                 <br>
                                                 <label>Please specify the dates  </label>
                                                 <div class="row">
@@ -104,7 +104,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>SearchFlights
+                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>Search Flights
 
 
 
@@ -155,11 +155,11 @@
 
 
 <div class="fh5co-blog-style-1" data-stellar-background-ratio="0.5"  ng-show = "IsVisible" data-next="yes"
-     style="background-image: url(images/ll3.jpg);">
+    style="background-image: url(images/l1.png);">
     <div class="container">
         <div class="row p-b">
           <div class="jumbotron" style="background-color:orange">
-          <h1 style="color:white">Availble Flights</h1>
+          <h1 style="color:white">Available Flights</h1>
 
 
          <div >
@@ -298,7 +298,9 @@
           </tbody>
           </table>
           </div>
-
+          <div class="row p-b">
+                <div id="googleMap" align="center" style="height:400px;width:100%;">{{googleMap}}</div>
+              </div>
         </div>
         <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide()">Hide Results</button>
 
