@@ -1,5 +1,5 @@
-
-<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_1.jpg);">
+<link rel="stylesheet" href="css/payment.css">
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_1.jpg); background:silver;" >
     <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
         <div class="container">
@@ -7,54 +7,43 @@
                 <div class="full-height js-full-height">
                     <div class="fh5co-cover-intro col-md-12">
                       <br> <br><br><br><br><br><br><br>
-                      <div class="container">
-                        <h3>enter your credit card details please</h3>
-                        <div class="row">
-                          <div>
-                            <span class="col-xs-4">credit card number</span>
-                            <input type="text" class="col-xs-4"></input>
+                       <div class="cc">
+
+                          <h2>Enter your credit card details please</h2>
+
+                          <span class="provider mastercard">MasterCard</span>
+                          <span class="provider amex">American Express</span>
+                          <span class="provider visa">Visa</span>
+
+                          <!-- card number -->
+                          <div class="number">
+                            <input type="text" maxlength="4" placeholder="">
+                            <input type="text" maxlength="4">
+                            <input type="text" maxlength="4">
+                            <input type="text" maxlength="4">
+                            <span class="instructions"></span>
                           </div>
+
+                          <!-- valid / ccv -->
+                          <div class="date">
+                            <span class="instructions valid">Valid Thru</span>
+                            <input type="text" maxlength="5" placeholder="00/00">
+
+                            <span class="instructions valid">CCV</span>
+                            <input type="text" maxlength="3" placeholder="123">
+                          </div>
+
+                          <!-- name on card -->
+                          <div class="name">
+                            <input class="full-name" type="text" maxlength="" inputmode='numeric' placeholder="John Doe">
+                            <span class="instructions">Name on Card</span>
+                          </div>
+
+                          <!-- shine -->
+                          <div class="shine"></div>
+                          <div class="shine shine-layer-two"></div>
                         </div>
-                        <br>
-                        <div class="clearfix visible-xs"></div>
 
-                          <div class="row">
-                        <div class="col-xs-4">Expiry date</div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="input-group">
-                                    <input type="text"
-                                           class="form-control"
-                                           uib-datepicker-popup="{{format}}"
-                                           ng-model="dt"
-                                           is-open="popup1.opened"
-                                           ng-required="true"
-                                           close-text="Close"
-                                           alt-input-formats="altInputFormats"/>
-
-                                    <span class="input-group-btn">
-        <button type="button"
-                class="btn btn-default"
-                ng-click="open1()">
-            <i class="glyphicon glyphicon-calendar"></i>
-        </button>
-      </span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="row">
-                          <span class="col-xs-4">cvv</span>
-                          <input class="col-xs-4" type="text"></input>
-                        </div>
-                      </div>
-
-
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      <br>
                     </div>
                 </div>
             </div>

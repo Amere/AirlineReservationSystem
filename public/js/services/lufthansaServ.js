@@ -9,6 +9,9 @@ lufthansa.factory('lufthansaServ', function ($http) {
         setSelectedOriginAirport : function(value) {
             this.selectedOriginAirport = value;
         },
+        setSelectedNation : function(value) {
+            this.selectedNation = value;
+        },
         getSelectedOriginAirport : function() {
             return this.selectedOriginAirport;
         },
@@ -40,8 +43,24 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getBookings : function(){
             return $http.get('api/data/bookings');
         },
+
+
+        getNationss :  function() {
+            return $http.get('api/data/nations');
+        },
+        getConfirmDummy : function() {
+            return $http.get('/api/data/conf');
+
+        },
         getFlight : function(){
             return $http.get('api/data/flight');
+
+        },
+        setSeat : function(value){
+            this.seat="test";
+        },
+        getSeat : function() {
+            return this.seat;
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
