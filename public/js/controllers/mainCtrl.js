@@ -1,7 +1,7 @@
 /**
  * Main Controller
  */
-lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
+lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchorScroll) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -37,6 +37,14 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location) {
                     //If DIV is visible it will be hidden and vice versa.
                     $scope.IsVisible = $scope.IsVisible ? false : true;
                 };
+                $scope.gotoBottom = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      $anchorScroll();
+    };
 
 
     /*----------- Angular Bootstrap Typeahead -----------*/
