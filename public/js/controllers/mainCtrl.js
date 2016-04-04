@@ -34,6 +34,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
                       $scope.IsVisible = false;
                     }else{
                       $scope.IsVisible = true;
+                       google.maps.event.trigger(window,'resize',{})
                     }
                 };
                 $scope.IsVisible = false;
@@ -145,7 +146,6 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
   $scope.directToOutgoingFlights = function() {
     $location.url('/outgoingFlights');
   };
-
   var myCenter = new google.maps.LatLng(30.078114, 31.629798);
 
   function initialize() {
@@ -155,7 +155,8 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
     scrollwheel:true,
     draggable:true,
     mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
+  };
+
 
   $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
@@ -167,7 +168,10 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
   $scope.googleMap = google.maps.event.addDomListener(window, 'load', initialize);
 
   function putMarkerOrigin(lon, lat){
-    console.log($scope.map);
+    if($scope.map === null)
+    $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  //  console.log($scope.map);
     var lonlat = new google.maps.LatLng(lon, lat);
     var marker = new google.maps.Marker({
       position:lonlat,
