@@ -26,15 +26,17 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     $scope.popup2 = {
         opened: false
     };
+
+
                 //This will hide the DIV by default.
                 $scope.IsVisible = false;
                 $scope.ShowHide = function () {
                     //If DIV is visible it will be hidden and vice versa.
+                    google.maps.event.trigger($scope.map,'resize');
                     if($scope.IsVisible==true){
-                      $scope.IsVisible = true;
+                      $scope.IsVisible = false;
                     }else{
                       $scope.IsVisible = true;
-                       google.maps.event.trigger(window,'resize',{});
                        var element = document.getElementById('flightss');
                        var options = {
                       duration: 2000
@@ -194,13 +196,6 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
         });
     };
     $scope.flip();
-
-
-
-
-
-
-
 
 
     /* Get offers on page render  */
