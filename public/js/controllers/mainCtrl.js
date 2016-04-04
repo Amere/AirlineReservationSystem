@@ -26,15 +26,17 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     $scope.popup2 = {
         opened: false
     };
+
+
                 //This will hide the DIV by default.
                 $scope.IsVisible = false;
                 $scope.ShowHide = function () {
                     //If DIV is visible it will be hidden and vice versa.
+                    google.maps.event.trigger($scope.map,'resize');
                     if($scope.IsVisible==true){
-                      $scope.IsVisible = true;
+                      $scope.IsVisible = false;
                     }else{
                       $scope.IsVisible = true;
-                       google.maps.event.trigger(window,'resize',{});
                        var element = document.getElementById('flightss');
                        var options = {
                       duration: 2000
@@ -70,6 +72,57 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                     }
                       smoothScroll(element,options);
                   };
+                  $scope.ShowHide5 = function () {
+                      //If DIV is visible it will be hidden and vice versa.
+                      if($scope.IsVisible==true){
+                        $scope.IsVisible = false;
+                      }else{
+                        $scope.IsVisible = true;
+                      }
+                      var element = document.getElementById('go3');
+                      var options = {
+                     duration: 1300
+                     }
+                       smoothScroll(element,options);
+                   };
+                   $scope.ShowHide6 = function () {
+                       //If DIV is visible it will be hidden and vice versa.
+                       if($scope.IsVisible==true){
+                         $scope.IsVisible = false;
+                       }else{
+                         $scope.IsVisible = true;
+                       }
+                       var element = document.getElementById('offers');
+                       var options = {
+                      duration: 1300
+                      }
+                        smoothScroll(element,options);
+                    };
+                    $scope.ShowHide7 = function () {
+                        //If DIV is visible it will be hidden and vice versa.
+                        if($scope.IsVisible==true){
+                          $scope.IsVisible = false;
+                        }else{
+                          $scope.IsVisible = true;
+                        }
+                        var element = document.getElementById('news');
+                        var options = {
+                       duration: 1300
+                       }
+                         smoothScroll(element,options);
+                     };     $scope.ShowHide8 = function () {
+                              //If DIV is visible it will be hidden and vice versa.
+                              if($scope.IsVisible==true){
+                                $scope.IsVisible = false;
+                              }else{
+                                $scope.IsVisible = true;
+                              }
+                              var element = document.getElementById('contacts');
+                              var options = {
+                             duration: 1300
+                             }
+                               smoothScroll(element,options);
+                           };
 
 
     function directToMain(){
@@ -102,14 +155,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
       });
     };
 
-     function loading() {
-       angular.element(document).ready(function () {
-       $scope.loadingFlag=false;
-       $scope.lazy=true;
-     });
-   };
 
-loading();
     /* Retrieve List of News */
     function news(){
         lufthansaServ.getNews().success(function(News){
@@ -152,13 +198,6 @@ loading();
     $scope.flip();
 
 
-
-
-
-
-
-
-
     /* Get offers on page render  */
     offers();
     /* Get news on page render  */
@@ -188,7 +227,7 @@ loading();
   $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
   var marker = new google.maps.Marker({
-    position:myCenter,
+    position:new google.maps.LatLng(30.078114, 31.629798),
     });
   }
 

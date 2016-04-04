@@ -6,6 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('landing');
 });
 
+router.get('/google7a607af0cf3cce8e.html', function(req, res, next) {
+  res.render('google7a607af0cf3cce8e.html');
+});
 router.get('/api/data/codes',function(req,res){
   var codes =  require('../airports.json');
   res.json( codes );

@@ -1,12 +1,10 @@
-<div ng-hide="lazy">
-<h1>Welcome To Lufthansa Loading..</h1>
-</div>
+
+
 <!--Adding some scroll-->
-<div ng-hide="loadingFlag">
 <uib-carousel active="0" interval="-1" no-wrap="false" xmlns:margin="http://www.w3.org/1999/xhtml" >
     <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" >
         <div class="fh5co-cover fh5co-cover-style-2 item active" data-stellar-background-ratio="0.5" data-next="yes"
-             style="background-image: url({{slide.img}});">
+             style="background-image: url({{slide.img}});" id="go3">
             <div class="fh5co-overlay"></div>
             <div class="fh5co-cover-text">
                 <div class="container">
@@ -213,46 +211,38 @@
                     <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
-                      <tr class="danger">
-                          <th class="text-danger">Row</th>
-                          <th class="text-danger">From</th>
-                          <th class="text-danger">To</th>
-                          <th class="text-danger">Date</th>
-                          <th class="text-danger">Price</th>
-                          <th class="text-danger">Book Now</th>
-                      </tr>
+
                   </thead>
                   <tbody>
-                      <tr class="danger">
-                          <td>1</td>
-                          <td>Egypt</td>
-                          <td>France</td>
-                          <td>15/4/2016</td>
-                          <td>2000</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                          </td>
-                      </tr>
-                      <tr class="danger">
-                          <td>2</td>
-                          <td>USA</td>
-                          <td>Germany</td>
-                          <td>20/4/2016</td>
-                          <td>2000</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                          </td>
-                      </tr>
-                      <tr class="danger">
-                          <td>3</td>
-                          <td>Italy</td>
-                          <td>Egypt</td>
-                          <td>16/5/2016</td>
-                          <td>2000</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                          </td>
-                      </tr>
+                    <tr class="danger" ng-repeat="flight in flights">
+                    <td>{{flight.departureCity}}</td>
+                    <td>{{flight.destinationCity}}</td>
+                    <td>{{flight.departureDate}}</td>
+                    <td>{{flight.priceClass.economyPrice}}</td>
+                    <td>
+                      <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                    </td>
+                  </tr>
+                  <tr class="danger" ng-repeat="flight in flights">
+                  <td>{{flight.departureCity}}</td>
+                  <td>{{flight.destinationCity}}</td>
+                  <td>{{flight.departureDate}}</td>
+                  <td>{{flight.priceClass.economyPrice}}</td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                  </td>
+                </tr>
+                <tr class="danger" ng-repeat="flight in flights">
+                <td>{{flight.departureCity}}</td>
+                <td>{{flight.destinationCity}}</td>
+                <td>{{flight.departureDate}}</td>
+                <td>{{flight.priceClass.economyPrice}}</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                </td>
+              </tr>
+
+
                   </tbody>
                   </table>
 
@@ -315,7 +305,7 @@
 
 
       </div>
-        <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide2()" onclick="scrollTo(0,0)">Hide Results</button>
+        <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide5()" >Hide Results</button>
 
             </div>
 
@@ -332,13 +322,13 @@
 
 
 <div class="fh5co-blog-style-1" data-stellar-background-ratio="0.5" data-next="yes"
-     style="background-image: url(images/l1.jpg);">
+     style="background-image: url(images/l1.jpg);" id="offers">
     <div class="container">
         <div class="row p-b">
             <div class="col-md-6 col-md-offset-3 text-center">
                 <h2 class="fh5co-heading wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Our Offers Just for
                     you</h2>
-                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">check our pecial offers and start
+                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">check our special offers and start
                     exploring the World</p>
 
             </div>
@@ -365,7 +355,7 @@
 </div>
 
 <div class="fh5co-content-style-6" data-stellar-background-ratio="0.5" data-next="yes"
-     style="background-image: url(images/full_2.jpg);">
+     style="background-image: url(images/full_2.jpg);" id="news">
     <div class="container">
         <div class="row p-b text-center">
             <div class="col-md-6 col-md-offset-3">
@@ -390,5 +380,4 @@
             <div class="clearfix visible-sm-block"></div>
         </div>
     </div>
-</div>
 </div>
