@@ -26,15 +26,17 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     $scope.popup2 = {
         opened: false
     };
+
+
                 //This will hide the DIV by default.
                 $scope.IsVisible = false;
                 $scope.ShowHide = function () {
                     //If DIV is visible it will be hidden and vice versa.
+                    google.maps.event.trigger($scope.map,'resize');
                     if($scope.IsVisible==true){
                       $scope.IsVisible = true;
                     }else{
                       $scope.IsVisible = true;
-                       google.maps.event.trigger(window,'resize',{});
                        var element = document.getElementById('flightss');
                        var options = {
                       duration: 2000
@@ -47,6 +49,8 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                 };
                 $scope.IsVisible = false;
                 $scope.ShowHide2 = function () {
+                  google.maps.event.trigger($scope.map,'resize');
+
                     //If DIV is visible it will be hidden and vice versa.
                     if($scope.IsVisible==true){
                       $scope.IsVisible = false;
@@ -102,14 +106,8 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
       });
     };
 
-     function loading() {
-       angular.element(document).ready(function () {
-       $scope.loadingFlag=false;
-       $scope.lazy=true;
-     });
-   };
 
-loading();
+
     /* Retrieve List of News */
     function news(){
         lufthansaServ.getNews().success(function(News){
@@ -150,13 +148,6 @@ loading();
         });
     };
     $scope.flip();
-
-
-
-
-
-
-
 
 
     /* Get offers on page render  */
