@@ -1,0 +1,183 @@
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_1.jpg);">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover-text">
+        <div class="container">
+            <div class="row">
+                <div class="full-height js-full-height">
+                    <div class="fh5co-cover-intro col-md-12">
+
+            <br> <br><br><br><br><br><br><br><br><br>
+             <!--Here is your actual Code-->
+             <!--Enjoy-->
+            <!--Fell Free To contact me if you have any question-->
+
+<div class="container">
+  <div style="background:orange !important"  class="jumbotron">
+    <h1 style="color:twitter;">Return Flights</h1>
+    <p style="color:white;">Please select your departure country,destination country and specific dates to see available flights.</p>
+    <div class="row">
+                      <div class="col-md-3" class="dropdown">
+
+<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Departure
+<span class="caret"></span></button>
+<ul class="dropdown-menu">
+<li><a href="#">Egypt</a></li>
+<li><a href="#">France</a></li>
+<li><a href="#">United States</a></li>
+</ul>
+</div>
+<div class="col-md-3">
+    <p class="input-group">
+        <input type="text"
+               class="form-control"
+               uib-datepicker-popup
+               ng-model="dt"
+               is-open="popup2.opened"
+               ng-required="true"
+               close-text="Close"/>
+<span class="input-group-btn">
+<button type="button"
+class="btn btn-default"
+ng-click="open2()">
+<i class="glyphicon glyphicon-calendar"></i>
+</button>
+</span>
+    </p>
+</div>
+
+<div class="col-md-3" class="dropdown">
+<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Destination
+<span class="caret"></span></button>
+<ul class="dropdown-menu">
+<li><a href="#">Egypt</a></li>
+<li><a href="#">France</a></li>
+<li><a href="#">United States</a></li>
+</ul>
+</div>
+<div class="col-md-3" ng-controller="mainCtrl"  ng-cloak="" class="datepickerdemoBasicUsage" ng-app="lufthansa">
+    <p class="input-group">
+        <input type="text"
+               class="form-control"
+               uib-datepicker-popup="{{format}}"
+               ng-model="dt"
+               is-open="popup1.opened"
+               ng-required="true"
+               close-text="Close"
+               alt-input-formats="altInputFormats"/>
+
+        <span class="input-group-btn">
+<button type="button"
+class="btn btn-default"
+ng-click="open1()">
+<i class="glyphicon glyphicon-calendar"></i>
+</button>
+</span>
+    </p>
+</div>
+
+
+
+</div>
+<br>
+
+</div>
+
+
+      </div>
+<div ng-app="lufthansa" ng-controller="mainCtrl">
+      <button type="button" class="btn btn-danger btn-md" ng-click="ShowHide()">Show Flights</button>
+      <br><br>
+      <div  ng-show = "IsVisible">
+      <h2 style="color:grey;">Going</h2>
+      <table  name="Going" class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>Row</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Book Now</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Egypt</td>
+            <td>France</td>
+            <td>15/4/2016</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">Book</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>USA</td>
+            <td>Germany</td>
+            <td>20/4/2016</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">Book</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Italy</td>
+            <td>Egypt</td>
+            <td>16/5/2016</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">Book</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+  <h2 style="color:grey;">Returning</h2>
+  <table  class="table table-hover">
+<thead>
+    <tr>
+        <th>Row</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Date</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>1</td>
+        <td>Egypt</td>
+        <td>France</td>
+        <td>15/4/2016</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm">Book</button>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>USA</td>
+        <td>Germany</td>
+        <td>20/4/2016</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm">Book</button>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Italy</td>
+        <td>Egypt</td>
+        <td>16/5/2016</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm">Book</button>
+        </td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+  </div>
+</div>
+</div>
+</div>

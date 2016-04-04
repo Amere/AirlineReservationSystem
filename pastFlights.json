@@ -1,0 +1,43 @@
+[
+ {
+  "index": "0",
+  "id": "LH123",
+  "aircraft": "type",
+  "departureDate": "3/5/2016",
+  "arrivalDate": "10/5/2016",
+  "duration": "2h 55min",
+  "date": "Saturday 2/3/2016",
+  "departureCity": "Barcelona",
+  "destinationCity": "Vienna",
+  "comments": "Amazing Service"
+
+ },
+ {
+  "index": "0",
+  "id": "LH123",
+  "aircraft": "type",
+  "departureDate": "3/5/2016",
+  "arrivalDate": "10/5/2016",
+  "duration": "2h 55min",
+  "date": "Saturday 2/3/2016",
+  "departureCity": "Barcelona",
+  "destinationCity": "Vienna",
+  "comments": "Amazing Service"
+ },
+ {
+  "index": "0",
+  "id": "LH123",
+  "aircraft": "type",
+  "departureDate": "3/5/2016",
+  "arrivalDate": "10/5/2016",
+  "duration": "2h 55min",
+  "date": "Saturday 2/3/2016",
+  "departureCity": "Barcelona",
+  "destinationCity": "Vienna",
+  "comments": "Amazing Service"
+ }
+  
+
+]
+
+
