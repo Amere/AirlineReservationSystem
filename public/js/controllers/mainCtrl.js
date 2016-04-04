@@ -232,7 +232,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
   $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
   var marker = new google.maps.Marker({
-    position:myCenter,
+    position:new google.maps.LatLng(30.078114, 31.629798),
     });
   }
 
