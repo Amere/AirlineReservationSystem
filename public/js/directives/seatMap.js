@@ -41,12 +41,14 @@ lufthansa.directive('seat',function(lufthansaServ){
     scope.click= function(){
       var r;
       if(scope.seat.reserved=="true"){
-        r="the seat is reserved";
+        lufthansaServ.setSeat(scope.seat.seatCode);
+        lufthansaServ.setPossible(false);
+        lufthansaServ.setSeatClass(scope.seat.class)
       }else {
-        r= "the seat is available";
+        lufthansaServ.setSeat(scope.seat.seatCode);
+        lufthansaServ.setPossible(true);
+        lufthansaServ.setSeatClass(scope.seat.class);
       }
-      lufthansaServ.setSeat(scope.seat.seatCode);
-      alert('you have chose '+scope.seat.seatCode+' '+scope.seat.class+'\n'+r);
     }
   };
   return directive;
