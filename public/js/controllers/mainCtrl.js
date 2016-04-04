@@ -1,7 +1,7 @@
 /**
  * Main Controller
  */
-lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchorScroll) {
+lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,smoothScroll) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -31,10 +31,18 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
                 $scope.ShowHide = function () {
                     //If DIV is visible it will be hidden and vice versa.
                     if($scope.IsVisible==true){
-                      $scope.IsVisible = false;
+                      $scope.IsVisible = true;
                     }else{
                       $scope.IsVisible = true;
-                       google.maps.event.trigger(window,'resize',{})
+                       google.maps.event.trigger(window,'resize',{});
+                       var element = document.getElementById('flightss');
+                       var options = {
+                      duration: 2000
+
+                      }
+
+                        smoothScroll(element,options);
+
                     }
                 };
                 $scope.IsVisible = false;
@@ -46,14 +54,24 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
                       $scope.IsVisible = true;
                     }
                 };
-                $scope.gotoBottom = function() {
-      // set the location.hash to the id of
-      // the element you wish to scroll to.
-      $location.hash('bottom');
+                $scope.ShowHide3 = function () {
+                    //If DIV is visible it will be hidden and vice versa.
+                    var element = document.getElementById('go');
+                    var options = {
+                   duration: 1300
+                   }
+                     smoothScroll(element,options);
+                 };
+                 $scope.ShowHide4 = function () {
+                     //If DIV is visible it will be hidden and vice versa.
+                     var element = document.getElementById('go2');
+                     var options = {
+                    duration: 1300
+                    }
+                      smoothScroll(element,options);
+                  };
 
-      // call $anchorScroll()
-      $anchorScroll();
-    };
+
     function directToMain(){
       lufthansaServ.toMain();
     }
@@ -83,6 +101,15 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$anchor
          $scope.offers = Offers;
       });
     };
+
+     function loading() {
+       angular.element(document).ready(function () {
+       $scope.loadingFlag=false;
+       $scope.lazy=true;
+     });
+   };
+
+loading();
     /* Retrieve List of News */
     function news(){
         lufthansaServ.getNews().success(function(News){
