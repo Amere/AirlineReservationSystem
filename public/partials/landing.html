@@ -1,10 +1,10 @@
-
-
-
+<div ng-hide="lazy">
+<h1>Welcome To Lufthansa Loading..</h1>
+</div>
 <!--Adding some scroll-->
-
-<uib-carousel active="0" interval="-1" no-wrap="false" xmlns:margin="http://www.w3.org/1999/xhtml">
-    <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+<div ng-hide="loadingFlag">
+<uib-carousel active="0" interval="-1" no-wrap="false" xmlns:margin="http://www.w3.org/1999/xhtml" >
+    <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" >
         <div class="fh5co-cover fh5co-cover-style-2 item active" data-stellar-background-ratio="0.5" data-next="yes"
              style="background-image: url({{slide.img}});">
             <div class="fh5co-overlay"></div>
@@ -104,7 +104,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()' onclick='scrollTo(0,900)'>Search Flights
+                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()' >Search Flights
 
 
 
@@ -136,12 +136,13 @@
                             </div>
                         </div>
 
-                        </div>
+
 
                     </div>
-                </div>
-            </div>
 
+
+
+</div>
 
         </div>
 
@@ -155,7 +156,7 @@
 
 
 <div class="fh5co-blog-style-1" data-stellar-background-ratio="0.5"  ng-show = "IsVisible" data-next="yes"
-    style="background-image: url(images/ll3.jpg);">
+    style="background-image: url(images/ll3.jpg);" id="flightss">
     <div class="container">
         <div class="row p-b">
           <div class="jumbotron" style="background-color:orange">
@@ -166,10 +167,10 @@
   <div class="wrap">
     <form>
       <label class="btn btn-primary" for="first">Round Trip</label>
-      <input id="first" type="radio" name="content" ng-model="content" value="first" onclick="scrollTo(0,1200)">
+      <input id="first" type="radio" name="content" ng-model="content" value="first" ng-click='ShowHide3()'>
 
       <label class="btn btn-primary" for="other">One Way</label>
-      <input id="other" type="radio" name="content" ng-model="content" value="other" onclick="scrollTo(0,1200)">
+      <input id="other" type="radio" name="content" ng-model="content" value="other" ng-click='ShowHide4()'>
     </form>
 
 
@@ -182,7 +183,7 @@
           <div ng-show="content == 'first'">
 
 
-                          <h2 style="color:white">Going</h2>
+                          <h2 style="color:white" id="go">Going</h2>
 
                           <table  name="Going" class="table table-hover">
 
@@ -261,7 +262,7 @@
           <div ng-show="content == 'other'">
 
 
-                          <h2 style="color:white">Going</h2>
+                          <h2 style="color:white" id="go2">Going</h2>
 
                           <table  name="Going" class="table table-hover">
 
@@ -314,11 +315,11 @@
 
 
       </div>
-        <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide()" onclick="scrollTo(0,0)">Hide Results</button>
+        <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide2()" onclick="scrollTo(0,0)">Hide Results</button>
 
             </div>
-            </div>
-            </div>
+
+
 
 
 </div>
@@ -369,9 +370,7 @@
         <div class="row p-b text-center">
             <div class="col-md-6 col-md-offset-3">
                 <h2 class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Our news</h2>
-                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Far far away, behind the word
-                    mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated
-                    they live in Bookmarksgrove right at the coast of the Semantics.</p>
+                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">FDeutsche Lufthansa AG is an airline with operations all over the world. It operates its core business of passenger transport through Lufthansa Passage Airlines (incl. Lufthansa Regional), Austrian Airlines, SWISS, and Germanwings and through affiliates Brussels Airlines and SunExpress. Its other business fields are logistics, engineering, catering and IT services.</p>
             </div>
         </div>
         <div class="row">
@@ -381,7 +380,7 @@
                 <a href="#" class="link-block">
                     <figure><img src={{x.imgUrl}} alt="Image" class="img-responsive img-rounded">
                     </figure>
-                    <h3>{{x.title}}</h3>
+                    <h3 style="color:orange">{{x.title}}</h3>
                     <p>
                         {{x.news}}
                     </p>
@@ -391,4 +390,5 @@
             <div class="clearfix visible-sm-block"></div>
         </div>
     </div>
+</div>
 </div>

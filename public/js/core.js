@@ -1,7 +1,7 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate']);
+lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate','smoothScroll']);
 
 
 /**
