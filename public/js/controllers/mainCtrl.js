@@ -34,7 +34,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                     //If DIV is visible it will be hidden and vice versa.
                     google.maps.event.trigger($scope.map,'resize');
                     if($scope.IsVisible==true){
-                      $scope.IsVisible = true;
+                      $scope.IsVisible = false;
                     }else{
                       $scope.IsVisible = true;
                        var element = document.getElementById('flightss');
@@ -49,8 +49,6 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                 };
                 $scope.IsVisible = false;
                 $scope.ShowHide2 = function () {
-                  google.maps.event.trigger($scope.map,'resize');
-
                     //If DIV is visible it will be hidden and vice versa.
                     if($scope.IsVisible==true){
                       $scope.IsVisible = false;
@@ -74,6 +72,57 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                     }
                       smoothScroll(element,options);
                   };
+                  $scope.ShowHide5 = function () {
+                      //If DIV is visible it will be hidden and vice versa.
+                      if($scope.IsVisible==true){
+                        $scope.IsVisible = false;
+                      }else{
+                        $scope.IsVisible = true;
+                      }
+                      var element = document.getElementById('go3');
+                      var options = {
+                     duration: 1300
+                     }
+                       smoothScroll(element,options);
+                   };
+                   $scope.ShowHide6 = function () {
+                       //If DIV is visible it will be hidden and vice versa.
+                       if($scope.IsVisible==true){
+                         $scope.IsVisible = false;
+                       }else{
+                         $scope.IsVisible = true;
+                       }
+                       var element = document.getElementById('offers');
+                       var options = {
+                      duration: 1300
+                      }
+                        smoothScroll(element,options);
+                    };
+                    $scope.ShowHide7 = function () {
+                        //If DIV is visible it will be hidden and vice versa.
+                        if($scope.IsVisible==true){
+                          $scope.IsVisible = false;
+                        }else{
+                          $scope.IsVisible = true;
+                        }
+                        var element = document.getElementById('news');
+                        var options = {
+                       duration: 1300
+                       }
+                         smoothScroll(element,options);
+                     };     $scope.ShowHide8 = function () {
+                              //If DIV is visible it will be hidden and vice versa.
+                              if($scope.IsVisible==true){
+                                $scope.IsVisible = false;
+                              }else{
+                                $scope.IsVisible = true;
+                              }
+                              var element = document.getElementById('contacts');
+                              var options = {
+                             duration: 1300
+                             }
+                               smoothScroll(element,options);
+                           };
 
 
     function directToMain(){
@@ -105,7 +154,6 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
          $scope.offers = Offers;
       });
     };
-
 
 
     /* Retrieve List of News */
