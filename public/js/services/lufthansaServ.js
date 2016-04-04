@@ -59,6 +59,21 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getSeat : function() {
             return this.seat;
+        },
+        setPossible : function(value){
+          this.possible=value;
+        },
+        getPossible : function(){
+          return this.possible;
+        },
+        setSeatClass : function(value){
+          this.class=value;
+        },
+        getSeatClass_ : function(value){
+          return this.class;
+        },
+        toMain : function(){
+          $http.get('/');
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

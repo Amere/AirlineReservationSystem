@@ -10,557 +10,564 @@
       [
       {
         "class":"economy",
-        "seatCode" : "k1",
+        "seatCode" : "K13",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k2",
+        "seatCode" : "K14",
         "reserved" : "true"
       },{
         "class":"economy",
-        "seatCode" : "k3",
+        "seatCode" : "K15",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k4",
+        "seatCode" : "K16",
         "reserved" : "true"
       },{
         "class":"economy",
-        "seatCode" : "k5",
+        "seatCode" : "K17",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k6",
+        "seatCode" : "K18",
         "reserved" : "true"
       },{
         "class":"economy",
-        "seatCode" : "k7",
+        "seatCode" : "K19",
         "reserved" : "true"
       },{
         "class":"economy",
-        "seatCode" : "k8",
+        "seatCode" : "K20",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k9",
+        "seatCode" : "K21",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k10",
+        "seatCode" : "K22",
         "reserved" : "false"
       },
       {
         "class":"economy",
-        "seatCode" : "k1",
+        "seatCode" : "K23",
         "reserved" : "true"
       },{
         "class":"economy",
-        "seatCode" : "k2",
+        "seatCode" : "K24",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k3",
+        "seatCode" : "K25",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k4",
+        "seatCode" : "K26",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k5",
+        "seatCode" : "K27",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k6",
+        "seatCode" : "K28",
         "reserved" : "true"
       },{
         "class":"economy",
-        "seatCode" : "k7",
+        "seatCode" : "K29",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k8",
+        "seatCode" : "K30",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k9",
+        "seatCode" : "K31",
         "reserved" : "false"
       },{
         "class":"economy",
-        "seatCode" : "k10",
+        "seatCode" : "K32",
         "reserved" : "true"
       }
-      ],[{
-        "class":"economy",
-        "seatCode" : "l1",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l3",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l5",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l8",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l9",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l10",
-        "reserved" : "false"
-      },
-      {
-        "class":"economy",
-        "seatCode" : "k1",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k3",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k5",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k8",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "k9",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "k10",
-        "reserved" : "false"
-      }
-      ],[{
-        "class":"economy",
-        "seatCode" : "l1",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "l2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l3",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l5",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l8",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l9",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l10",
-        "reserved" : "false"
-      },
-      {
-        "class":"economy",
-        "seatCode" : "l1",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "l2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l3",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "l4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l5",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l8",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "l9",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "l10",
-        "reserved" : "false"
-      }],[{
-        "class":"economy",
-        "seatCode" : "m1",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m3",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m5",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "m6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m7",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "m8",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m9",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "m10",
-        "reserved" : "false"
-      },
-      {
-        "class":"economy",
-        "seatCode" : "m1",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m2",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "m3",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m4",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "m5",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m8",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "m9",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "m10",
-        "reserved" : "false"
-      }],[{
-        "class":"economy",
-        "seatCode" : "i1",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "i2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i3",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "i4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i5",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i8",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i9",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i10",
-        "reserved" : "false"
-      },
-      {
-        "class":"economy",
-        "seatCode" : "i1",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i2",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i3",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "i4",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i5",
-        "reserved" : "true"
-      },{
-        "class":"economy",
-        "seatCode" : "i6",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i7",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i8",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i9",
-        "reserved" : "false"
-      },{
-        "class":"economy",
-        "seatCode" : "i10",
-        "reserved" : "false"
-      }]
+      ],[
+        {
+          "class":"economy",
+          "seatCode" : "H13",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H14",
+          "reserved" : "true"
+        },{
+          "class":"economy",
+          "seatCode" : "H15",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H16",
+          "reserved" : "true"
+        },{
+          "class":"economy",
+          "seatCode" : "H17",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H18",
+          "reserved" : "true"
+        },{
+          "class":"economy",
+          "seatCode" : "H19",
+          "reserved" : "true"
+        },{
+          "class":"economy",
+          "seatCode" : "H20",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H21",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H22",
+          "reserved" : "false"
+        },
+        {
+          "class":"economy",
+          "seatCode" : "H23",
+          "reserved" : "true"
+        },{
+          "class":"economy",
+          "seatCode" : "H24",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H25",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H26",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H27",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H28",
+          "reserved" : "true"
+        },{
+          "class":"economy",
+          "seatCode" : "H29",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H30",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H31",
+          "reserved" : "false"
+        },{
+          "class":"economy",
+          "seatCode" : "H32",
+          "reserved" : "true"
+        }
+        ],[
+          {
+            "class":"economy",
+            "seatCode" : "G13",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G14",
+            "reserved" : "true"
+          },{
+            "class":"economy",
+            "seatCode" : "G15",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G16",
+            "reserved" : "true"
+          },{
+            "class":"economy",
+            "seatCode" : "G17",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G18",
+            "reserved" : "true"
+          },{
+            "class":"economy",
+            "seatCode" : "G19",
+            "reserved" : "true"
+          },{
+            "class":"economy",
+            "seatCode" : "G20",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G21",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G22",
+            "reserved" : "false"
+          },
+          {
+            "class":"economy",
+            "seatCode" : "G23",
+            "reserved" : "true"
+          },{
+            "class":"economy",
+            "seatCode" : "G24",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G25",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G26",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G27",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G28",
+            "reserved" : "true"
+          },{
+            "class":"economy",
+            "seatCode" : "G29",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G30",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G31",
+            "reserved" : "false"
+          },{
+            "class":"economy",
+            "seatCode" : "G32",
+            "reserved" : "true"
+          }
+          ],[
+            {
+              "class":"economy",
+              "seatCode" : "C13",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C14",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "C15",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C16",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "C17",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C18",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "C19",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "C20",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C21",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C22",
+              "reserved" : "false"
+            },
+            {
+              "class":"economy",
+              "seatCode" : "C23",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "C24",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C25",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C26",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C27",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C28",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "C29",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C30",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C31",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "C32",
+              "reserved" : "true"
+            }
+          ],[
+            {
+              "class":"economy",
+              "seatCode" : "A13",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A14",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "A15",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A16",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "A17",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A18",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "A19",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "A20",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A21",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A22",
+              "reserved" : "false"
+            },
+            {
+              "class":"economy",
+              "seatCode" : "A23",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "A24",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A25",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A26",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A27",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A28",
+              "reserved" : "true"
+            },{
+              "class":"economy",
+              "seatCode" : "A29",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A30",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A31",
+              "reserved" : "false"
+            },{
+              "class":"economy",
+              "seatCode" : "A32",
+              "reserved" : "true"
+            }
+          ]
     ],
     "premiumEconomySeats" : [
       [
       {
         "class":"premiumEconomy",
-        "seatCode" : "k1",
+        "seatCode" : "K6",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k2",
+        "seatCode" : "K7",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k3",
+        "seatCode" : "K8",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k4",
+        "seatCode" : "K9",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k5",
-        "reserved" : "false"
-      },
-      {
-        "class":"premiumEconomy",
-        "seatCode" : "k1",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "k2",
-        "reserved" : "false"
-      }],[{
-        "class":"premiumEconomy",
-        "seatCode" : "l1",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "l2",
-        "reserved" : "true"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "l3",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "l4",
-        "reserved" : "true"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "l5",
+        "seatCode" : "K10",
         "reserved" : "false"
       },
       {
         "class":"premiumEconomy",
-        "seatCode" : "k1",
-        "reserved" : "true"
+        "seatCode" : "K11",
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k2",
+        "seatCode" : "K12",
         "reserved" : "false"
       }],[{
         "class":"premiumEconomy",
-        "seatCode" : "m1",
-        "reserved" : "true"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "m2",
+        "seatCode" : "H6",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "m3",
+        "seatCode" : "H7",
         "reserved" : "true"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "m4",
+        "seatCode" : "H8",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "m5",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "k1",
+        "seatCode" : "H9",
         "reserved" : "true"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k2",
+        "seatCode" : "H10",
+        "reserved" : "false"
+      },
+      {
+        "class":"premiumEconomy",
+        "seatCode" : "H11",
+        "reserved" : "true"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "H12",
         "reserved" : "false"
       }],[{
         "class":"premiumEconomy",
-        "seatCode" : "i1",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "i2",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "i3",
-        "reserved" : "false"
-      },{
-        "class":"premiumEconomy",
-        "seatCode" : "i4",
+        "seatCode" : "G6",
         "reserved" : "true"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "i5",
+        "seatCode" : "G7",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k1",
+        "seatCode" : "G8",
+        "reserved" : "true"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "G9",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k2",
+        "seatCode" : "G10",
+        "reserved" : "false"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "G11",
+        "reserved" : "true"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "G12",
+        "reserved" : "false"
+      }],[{
+        "class":"premiumEconomy",
+        "seatCode" : "C6",
+        "reserved" : "false"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "C7",
+        "reserved" : "false"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "C8",
+        "reserved" : "false"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "C9",
+        "reserved" : "true"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "C10",
+        "reserved" : "false"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "C11",
+        "reserved" : "false"
+      },{
+        "class":"premiumEconomy",
+        "seatCode" : "C12",
         "reserved" : "false"
       }
       ],[{
         "class":"premiumEconomy",
-        "seatCode" : "j1",
+        "seatCode" : "A6",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "j2",
+        "seatCode" : "A7",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "j3",
+        "seatCode" : "A8",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "j4",
+        "seatCode" : "A9",
         "reserved" : "true"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "j5",
+        "seatCode" : "A10",
         "reserved" : "false"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k1",
+        "seatCode" : "A11",
         "reserved" : "true"
       },{
         "class":"premiumEconomy",
-        "seatCode" : "k2",
+        "seatCode" : "A12",
         "reserved" : "false"
       }
     ]
@@ -569,60 +576,60 @@
       [
       {
         "class":"business",
-        "seatCode" : "k1",
+        "seatCode" : "K3",
         "reserved" : "true"
       },{
         "class":"business",
-        "seatCode" : "k2",
+        "seatCode" : "K4",
         "reserved" : "true"
       },{
         "class":"business",
-        "seatCode" : "k3",
+        "seatCode" : "K5",
         "reserved" : "false"
       }],[
       {
         "class":"business",
-        "seatCode" : "l1",
+        "seatCode" : "H3",
         "reserved" : "false"
       },
       {
         "class":"business",
-        "seatCode" : "l2",
+        "seatCode" : "H4",
         "reserved" : "false"
       },
       {
         "class":"business",
-        "seatCode" : "l3",
+        "seatCode" : "H5",
         "reserved" : "false"
       }],[
       {
         "class":"business",
-        "seatCode" : "m1",
+        "seatCode" : "C3",
         "reserved" : "false"
       },
       {
         "class":"business",
-        "seatCode" : "m2",
+        "seatCode" : "C4",
         "reserved" : "false"
       },
       {
         "class":"business",
-        "seatCode" : "m3",
+        "seatCode" : "C5",
         "reserved" : "false"
       }],[
       {
         "class":"business",
-        "seatCode" : "i1",
+        "seatCode" : "A3",
         "reserved" : "false"
       },
       {
         "class":"business",
-        "seatCode" : "i2",
+        "seatCode" : "A4",
         "reserved" : "false"
       },
       {
         "class":"business",
-        "seatCode" : "i3",
+        "seatCode" : "A5",
         "reserved" : "false"
       }
     ]
@@ -631,42 +638,42 @@
       [
       {
         "class":"firstClass",
-        "seatCode" : "k1",
+        "seatCode" : "K1",
         "reserved" : "false"
       },
       {
         "class":"firstClass",
-        "seatCode" : "k2",
+        "seatCode" : "K2",
         "reserved" : "false"
       }],[
       {
         "class":"firstClass",
-        "seatCode" : "l1",
+        "seatCode" : "H1",
         "reserved" : "false"
       },
       {
         "class":"firstClass",
-        "seatCode" : "l2",
+        "seatCode" : "H2",
         "reserved" : "false"
       }],[
       {
         "class":"firstClass",
-        "seatCode" : "m1",
+        "seatCode" : "C2",
         "reserved" : "false"
       },
       {
         "class":"firstClass",
-        "seatCode" : "m2",
+        "seatCode" : "C2",
         "reserved" : "false"
       }],[
       {
         "class":"firstClass",
-        "seatCode" : "i1",
+        "seatCode" : "A1",
         "reserved" : "false"
       },
       {
         "class":"firstClass",
-        "seatCode" : "i2",
+        "seatCode" : "A2",
         "reserved" : "false"
       }
     ]
