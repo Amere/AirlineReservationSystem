@@ -1,5 +1,4 @@
 
-
 <!--Adding some scroll-->
 <uib-carousel active="0" interval="-1" no-wrap="false" xmlns:margin="http://www.w3.org/1999/xhtml" >
     <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" >
@@ -293,7 +292,7 @@
       <div  class="col-md-6">
         <br><br><br>
         <div class="row p-b">
-              <div id="googleMap" align="center" style="height:400px;width:100%;">{{googleMap}}</div>
+              <div id="map" align="center" style="height:400px;width:100%;">{{googleMap}} {{resizeMap()}}</div>
             </div>
       </div>
         </div>
