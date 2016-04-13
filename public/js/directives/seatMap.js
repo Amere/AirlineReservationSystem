@@ -39,6 +39,7 @@ lufthansa.directive('seat',function(lufthansaServ){
       return imageOfSeat;
     }
     scope.click= function(){
+
       var r;
       if(scope.seat.reserved=="true"){
         lufthansaServ.setSeat(scope.seat.seatCode);
