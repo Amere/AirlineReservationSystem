@@ -5,7 +5,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[2];
+    $scope.format = $scope.formats[3];
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;
@@ -32,6 +32,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                 $scope.IsVisible = false;
                 $scope.ShowHide = function () {
                     //If DIV is visible it will be hidden and vice versa.
+                    google.maps.event.trigger($scope.map,'resize');
                     if($scope.IsVisible==true){
                       $scope.IsVisible = false;
                     }else{
@@ -41,12 +42,10 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                       duration: 2000
 
                       }
-                      smoothScroll(element,options);
+
+                        smoothScroll(element,options);
 
                     }
-                };
-                $scope.resizeMap = function(){
-                  google.maps.event.trigger(map,'resize');
                 };
                 $scope.IsVisible = false;
                 $scope.ShowHide2 = function () {
@@ -111,8 +110,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                        duration: 1300
                        }
                          smoothScroll(element,options);
-                     };
-                          $scope.ShowHide8 = function () {
+                     };     $scope.ShowHide8 = function () {
                               //If DIV is visible it will be hidden and vice versa.
                               if($scope.IsVisible==true){
                                 $scope.IsVisible = false;
@@ -125,6 +123,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                              }
                                smoothScroll(element,options);
                            };
+
 
     function directToMain(){
       lufthansaServ.toMain();
@@ -191,6 +190,19 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     $scope.goToReservation = function() {
         $location.url('/reservation');
     };
+    $scope.flip = function(){
+        $(document).ready(function () {
+            var ratio = 0.5;
+            $('.resized-splitflap')
+                .splitFlap({
+                    charWidth:  50 * ratio,
+                    charHeight: 100 * ratio,
+                    imageSize:  (2500 * ratio) + 'px ' + (100 * ratio) + 'px'
+                });
+        });
+    };
+    $scope.flip();
+
 
     /* Get offers on page render  */
     offers();
@@ -206,11 +218,10 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
   $scope.directToOutgoingFlights = function() {
     $location.url('/outgoingFlights');
   };
-
   var myCenter = new google.maps.LatLng(30.078114, 31.629798);
 
   function initialize() {
-  mapProp = {
+  var mapProp = {
     center:myCenter,
     zoom:5,
     scrollwheel:true,
@@ -219,7 +230,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
   };
 
 
-  $scope.map = new google.maps.Map(document.getElementById("map"),mapProp);
+  $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
   var marker = new google.maps.Marker({
     position:new google.maps.LatLng(30.078114, 31.629798),
@@ -229,8 +240,8 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
   $scope.googleMap = google.maps.event.addDomListener(window, 'load', initialize);
 
   function putMarkerOrigin(lon, lat){
-     if($scope.map == null)
-     $scope.map = new google.maps.Map(document.getElementById("map"),mapProp);
+    if($scope.map === null)
+    $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
   //  console.log($scope.map);
     var lonlat = new google.maps.LatLng(lon, lat);
@@ -248,9 +259,6 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
 
   function putMarkerDest(lon, lat){
     console.log($scope.map);
-    if($scope.map == null)
-    $scope.map = new google.maps.Map(document.getElementById("map"),mapProp);
-
     var lonlat = new google.maps.LatLng(lon, lat);
     var marker = new google.maps.Marker({
       position:lonlat,
