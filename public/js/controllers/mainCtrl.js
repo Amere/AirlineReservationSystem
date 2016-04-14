@@ -192,7 +192,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     $scope.goToReservation = function() {
         $location.url('/reservation');
     };
-    
+
 
 
     /* Get offers on page render  */
