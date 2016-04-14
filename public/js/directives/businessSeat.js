@@ -4,5 +4,4 @@ lufthansa.directive('businessSeat',function(){
   directive.scope={seats:"=seats"};
   directive.templateUrl='js/directives/business.html';
   return directive;
-
 });

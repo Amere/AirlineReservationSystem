@@ -1,4 +1,4 @@
-<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_1.jpg);">
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/ll3.jpg);">
     <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
         <div class="container">
@@ -7,15 +7,171 @@
                     <div class="fh5co-cover-intro col-md-12">
 
                         <br> <br><br><br><br><br><br><br><br><br>
-                        <h1> Step 1 of 3</h1>
-                        <h2> please fill this form to continue :</h2>
-                        <div>
 
+
+
+                        <style>
+                        @darkGreen: #4a6a28;
+                        @lightGreen: #87ba51;
+                        @greyState: #DDD;
+                        @mainBlue: #0070c0;
+                        ol {
+
+                          &.progress-track {
+                            display: table;
+                            list-style-type: none;
+                            margin: 0;
+                            padding: 2em 1em;
+                            table-layout: fixed;
+                            width: 100%;
+
+                            li {
+                              display: table-cell;
+                              line-height: 3em;
+                              position: relative;
+                              text-align: center;
+
+                              .icon-wrap {
+                                border-radius: 50%;
+                                top: -1.5em;
+
+                                color: #fff;
+                                display: block;
+                                height: 2.5em;
+                                margin: 0 auto -2em;
+                                left: 0;
+                                right: 0;
+                                position: absolute;
+                                width: 2.5em;
+                              }
+
+                              .icon-check-mark, .icon-down-arrow {
+                                height: 25px;
+                                width: 15px;
+                                display: inline-block;
+                                fill: currentColor;
+                              }
+
+                              .progress-text {
+                                 position: relative;
+                                 top: 10px;
+                              }
+
+                              &.progress-done {
+                                border-top: 7px solid @lightGreen;
+                                transition: border-color 1s ease-in-out;
+                                -webkit-transition: border-color 1s ease-in-out;
+                                -moz-transition: border-color 1s ease-in-out;
+
+                                .icon-down-arrow {
+                                  display: none;
+                                }
+
+                                  &.progress-current {
+
+                                    .icon-wrap {
+                                      background-color: @mainBlue;
+
+                                      .icon-check-mark {
+                                       display: none;
+                                      }
+
+                                      .icon-down-arrow {
+                                        display: block;
+                                      }
+                                    }
+                                  }
+
+                                .icon-wrap {
+                                  background-color: @darkGreen;
+                                  border: 5px solid @lightGreen;
+                                }
+                              }
+
+                              &.progress-todo {
+                                  border-top: 7px solid @greyState;
+                                  color: black;
+
+                                .icon-wrap {
+                                  background-color: #FFF;
+                                  border: 5px solid @greyState;
+                                  border-radius: 50%;
+                                  bottom: 1.5em;
+                                  color: #fff;
+                                  display: block;
+                                  height: 2.5em;
+                                  margin: 0 auto -2em;
+                                  position: relative;
+                                  width: 2.5em;
+
+                                  .icon-check-mark, .icon-down-arrow {
+                                      display: none;
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                        </style>
+                        <link rel="stylesheet" href="css/normalize.css">
+                        <link rel="stylesheet" href="css/progress.css">
+                        <ol class="progress-track">
+
+                          <li class="progress-done progress-current">
+                            <center>
+                              <div class="icon-wrap">
+                                <svg class="icon-state icon-check-mark">
+                                  <use xlink:href="#icon-check-mark"></use>
+                                </svg>
+
+                                <svg class="icon-state icon-down-arrow">
+                                  <use xlink:href="#icon-down-arrow"></use>
+                                </svg>
+                              </div>
+                              <span class="progress-text">Personal Info</span>
+                            </center>
+                          </li>
+
+                          <li class="progress-todo">
+                            <center>
+                              <div class="icon-wrap">
+                                <svg class="icon-state icon-check-mark">
+                                  <use xlink:href="#icon-check-mark"></use>
+                                </svg>
+
+                                <svg class="icon-state icon-down-arrow">
+                                  <use xlink:href="#icon-down-arrow"></use>
+                                </svg>
+                              </div>
+                              <span class="progress-text">Choosing Seat</span>
+                            </center>
+                          </li>
+
+                          <li class="progress-todo">
+                            <center>
+                              <div class="icon-wrap">
+                                <svg class="icon-state icon-check-mark">
+                                  <use xlink:href="#icon-check-mark"></use>
+                                </svg>
+
+                                <svg class="icon-state icon-down-arrow">
+                                  <use xlink:href="#icon-down-arrow"></use>
+                                </svg>
+                              </div>
+                              <span class="progress-text">Payment</span>
+                            </center>
+                          </li>
+                        </ol>
+
+
+
+
+
+                        <div>
                         <form class="form-horizontal ">
                             <fieldset>
 
                                 <!-- Form Name -->
-                                <legend>Your Info</legend>
 
                                 <!-- Text input-->
                                 <div class="form-group">
@@ -84,7 +240,7 @@
 
                                             <label class="col-md-4 control-label" for="expiry"> Your Passport Expiration date :</label>
                                         <div class="col-md-4 input-group">
-                                            <input type="text"
+                                            <input id="txt1" type="text"
                                                    class="form-control"
                                                    uib-datepicker-popup="{{format}}"
                                                    ng-model="dt"
@@ -100,16 +256,19 @@
                             <i class="glyphicon glyphicon-calendar"></i>
                         </button>
                       </span>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="procced">submit to procced :</label>
+                                            <div class="col-md-4">
+                                              <input type="submit"value="Check" class="btn btn-primary" ng-click="ShowHide()">
+                                                <button id="procced" name="procced" class="btn btn-primary" ng-show="IsVisible" ng-click="seats()">Choose Seat </button>
+                                            </div>
                                         </div>
 
                                         </div>
                                 <!-- Button -->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="procced">submit to procced :</label>
-                                    <div class="col-md-4">
-                                        <button id="procced" name="procced" class="btn btn-primary" ng-click="seats()">submit </button>
-                                    </div>
-                                </div>
+
 
                             </fieldset>
                         </form>

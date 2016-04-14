@@ -1,12 +1,9 @@
 
-
-
 <!--Adding some scroll-->
-
-<uib-carousel active="0" interval="-1" no-wrap="false" xmlns:margin="http://www.w3.org/1999/xhtml">
-    <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+<uib-carousel active="0" interval="-1" no-wrap="false" xmlns:margin="http://www.w3.org/1999/xhtml" >
+    <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" >
         <div class="fh5co-cover fh5co-cover-style-2 item active" data-stellar-background-ratio="0.5" data-next="yes"
-             style="background-image: url({{slide.img}});">
+             style="background-image: url({{slide.img}});" id="go3">
             <div class="fh5co-overlay"></div>
             <div class="fh5co-cover-text">
                 <div class="container">
@@ -49,7 +46,7 @@
                                                        ng-model="selectedOrigin"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
-                                                       typeahead-on-select="SetOriginAirport($item.iata)">
+                                                       typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
                                                 <br>
                                                 <label>Flying To :</label>
                                                 <input name="destinationAirports"
@@ -59,7 +56,7 @@
                                                        ng-model="selectedDestination"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
-                                                       typeahead-on-select="SetDestinationAirport($item.iata)">
+                                                       typeahead-on-select="SetDestinationAirport($item.iata); putMarkerD($item.lat, $item.lon)">
                                                 <br>
                                                 <label>Please specify the dates  </label>
                                                 <div class="row">
@@ -104,7 +101,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>SearchFlights
+                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()' >Search Flights
 
 
 
@@ -136,12 +133,13 @@
                             </div>
                         </div>
 
-                        </div>
+
 
                     </div>
-                </div>
-            </div>
 
+
+
+</div>
 
         </div>
 
@@ -155,21 +153,21 @@
 
 
 <div class="fh5co-blog-style-1" data-stellar-background-ratio="0.5"  ng-show = "IsVisible" data-next="yes"
-     style="background-image: url(images/ll3.jpg);">
+    style="background-image: url(images/ll3.jpg);" id="flightss">
     <div class="container">
         <div class="row p-b">
           <div class="jumbotron" style="background-color:orange">
-          <h1 style="color:white">Availble Flights</h1>
+          <h1 style="color:white">Available Flights</h1>
 
 
          <div >
   <div class="wrap">
     <form>
       <label class="btn btn-primary" for="first">Round Trip</label>
-      <input id="first" type="radio" name="content" ng-model="content" value="first" >
+      <input id="first" type="radio" name="content" ng-model="content" value="first" ng-click='ShowHide3()'>
 
       <label class="btn btn-primary" for="other">One Way</label>
-      <input id="other" type="radio" name="content" ng-model="content" value="other">
+      <input id="other" type="radio" name="content" ng-model="content" value="other" ng-click='ShowHide4()'>
     </form>
 
 
@@ -177,15 +175,18 @@
 </div>
         </div>
         <div class="wrapper">
+          <div class="row">
+            <div  class="col-md-6">
           <div ng-show="content == 'first'">
 
-                          <h2 style="color:white">Going</h2>
+
+                          <h2 style="color:white" id="go">Going</h2>
 
                           <table  name="Going" class="table table-hover">
 
                         <thead>
-                            <tr>
-                                <th class="text-danger">From</th>
+                            <tr class="danger">
+                                <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Date</th>
                                 <th class="text-danger">Price</th>
@@ -193,7 +194,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="flight in flights">
+                          <tr class="danger" ng-repeat="flight in flights">
                           <td>{{flight.departureCity}}</td>
                           <td>{{flight.destinationCity}}</td>
                           <td>{{flight.departureDate}}</td>
@@ -204,107 +205,110 @@
                         </tr>
                         </tbody>
                     </table>
+
                     <br><br>
                     <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
-                      <tr>
-                          <th class="text-danger">Row</th>
-                          <th class="text-danger">From</th>
-                          <th class="text-danger">To</th>
-                          <th class="text-danger">Date</th>
-                          <th class="text-danger">Price</th>
-                          <th class="text-danger">Book Now</th>
-                      </tr>
+
                   </thead>
                   <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>Egypt</td>
-                          <td>France</td>
-                          <td>15/4/2016</td>
-                          <td>2000</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>USA</td>
-                          <td>Germany</td>
-                          <td>20/4/2016</td>
-                          <td>2000</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Italy</td>
-                          <td>Egypt</td>
-                          <td>16/5/2016</td>
-                          <td>2000</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                          </td>
-                      </tr>
+                    <tr class="danger" ng-repeat="flight in flights">
+                    <td>{{flight.departureCity}}</td>
+                    <td>{{flight.destinationCity}}</td>
+                    <td>{{flight.departureDate}}</td>
+                    <td>{{flight.priceClass.economyPrice}}</td>
+                    <td>
+                      <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                    </td>
+                  </tr>
+                  <tr class="danger" ng-repeat="flight in flights">
+                  <td>{{flight.departureCity}}</td>
+                  <td>{{flight.destinationCity}}</td>
+                  <td>{{flight.departureDate}}</td>
+                  <td>{{flight.priceClass.economyPrice}}</td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                  </td>
+                </tr>
+                <tr class="danger" ng-repeat="flight in flights">
+                <td>{{flight.departureCity}}</td>
+                <td>{{flight.destinationCity}}</td>
+                <td>{{flight.departureDate}}</td>
+                <td>{{flight.priceClass.economyPrice}}</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                </td>
+              </tr>
+
+
                   </tbody>
                   </table>
+
+
+
           </div>
           <div ng-show="content == 'other'">
-            <h2 style="color:white">Going</h2>
-            <table class="table table-hover" >
-          <thead>
-              <tr>
-                  <th class="text-danger">Row</th>
-                  <th class="text-danger">From</th>
-                  <th class="text-danger">To</th>
-                  <th class="text-danger">Date</th>
-                  <th class="text-danger">Price</th>
-                  <th class="text-danger">Book Now</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>1</td>
-                  <td>Egypt</td>
-                  <td>France</td>
-                  <td>15/4/2016</td>
-                  <td>2000</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-              </tr>
-              <tr>
-                  <td>2</td>
-                  <td>USA</td>
-                  <td>Germany</td>
-                  <td>20/4/2016</td>
-                  <td>2000</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-              </tr>
-              <tr>
-                  <td>3</td>
-                  <td>Italy</td>
-                  <td>Egypt</td>
-                  <td>16/5/2016</td>
-                  <td>2000</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-              </tr>
-          </tbody>
-          </table>
-          </div>
+
+
+                          <h2 style="color:white" id="go2">Going</h2>
+
+                          <table  name="Going" class="table table-hover">
+
+                        <thead>
+                            <tr class="danger">
+                                <th class="text-danger" >From</th>
+                                <th class="text-danger">To</th>
+                                <th class="text-danger">Date</th>
+                                <th class="text-danger">Price</th>
+                                <th class="text-danger">Book Now</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="danger" ng-repeat="flight in flights">
+                          <td>{{flight.departureCity}}</td>
+                          <td>{{flight.destinationCity}}</td>
+                          <td>{{flight.departureDate}}</td>
+                          <td>{{flight.priceClass.economyPrice}}</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                          </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br><br>
 
         </div>
-        <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide()">Hide Results</button>
+
+          </div>
+
+
+
+
+
+
+
+      <div  class="col-md-6">
+        <br><br><br>
+        <div class="row p-b">
+              <div id="map" align="center" style="height:400px;width:100%;">{{googleMap}} {{resizeMap()}}</div>
+            </div>
+      </div>
+        </div>
+
+
+
+</div>
+
+
+
+      </div>
+        <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide5()" >Hide Results</button>
 
             </div>
-            </div>
-            </div>
+
+
 
 
 </div>
@@ -317,13 +321,13 @@
 
 
 <div class="fh5co-blog-style-1" data-stellar-background-ratio="0.5" data-next="yes"
-     style="background-image: url(images/l1.jpg);">
+     style="background-image: url(images/l1.jpg);" id="offers">
     <div class="container">
         <div class="row p-b">
             <div class="col-md-6 col-md-offset-3 text-center">
                 <h2 class="fh5co-heading wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Our Offers Just for
                     you</h2>
-                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">check our pecial offers and start
+                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">check our special offers and start
                     exploring the World</p>
 
             </div>
@@ -350,14 +354,12 @@
 </div>
 
 <div class="fh5co-content-style-6" data-stellar-background-ratio="0.5" data-next="yes"
-     style="background-image: url(images/full_2.jpg);">
+     style="background-image: url(images/full_2.jpg);" id="news">
     <div class="container">
         <div class="row p-b text-center">
             <div class="col-md-6 col-md-offset-3">
                 <h2 class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Our news</h2>
-                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Far far away, behind the word
-                    mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated
-                    they live in Bookmarksgrove right at the coast of the Semantics.</p>
+                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">FDeutsche Lufthansa AG is an airline with operations all over the world. It operates its core business of passenger transport through Lufthansa Passage Airlines (incl. Lufthansa Regional), Austrian Airlines, SWISS, and Germanwings and through affiliates Brussels Airlines and SunExpress. Its other business fields are logistics, engineering, catering and IT services.</p>
             </div>
         </div>
         <div class="row">
@@ -367,7 +369,7 @@
                 <a href="#" class="link-block">
                     <figure><img src={{x.imgUrl}} alt="Image" class="img-responsive img-rounded">
                     </figure>
-                    <h3>{{x.title}}</h3>
+                    <h3 style="color:orange">{{x.title}}</h3>
                     <p>
                         {{x.news}}
                     </p>

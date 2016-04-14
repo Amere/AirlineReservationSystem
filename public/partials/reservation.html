@@ -1,21 +1,373 @@
-<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/img_same_dimension_4.jpg);">
+<div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/ll3.jpg);">
   <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
         <div class="container">
             <div class="row">
                 <div class="full-height js-full-height">
-                    <div class="fh5co-cover-intro col-md-12">
+                    <div class="fh5co-cover-intro col-md-12" align="center">
+                      <br><br><br><br><br><br>
+
+<style>
+@darkGreen: #4a6a28;
+@lightGreen: #87ba51;
+@greyState: #DDD;
+@mainBlue: #0070c0;
+ol {
+
+  &.progress-track {
+    display: table;
+    list-style-type: none;
+    margin: 0;
+    padding: 2em 1em;
+    table-layout: fixed;
+    width: 100%;
+
+    li {
+      display: table-cell;
+      line-height: 3em;
+      position: relative;
+      text-align: center;
+
+      .icon-wrap {
+        border-radius: 50%;
+        top: -1.5em;
+
+        color: #fff;
+        display: block;
+        height: 2.5em;
+        margin: 0 auto -2em;
+        left: 0;
+        right: 0;
+        position: absolute;
+        width: 2.5em;
+      }
+
+      .icon-check-mark, .icon-down-arrow {
+        height: 25px;
+        width: 15px;
+        display: inline-block;
+        fill: currentColor;
+      }
+
+      .progress-text {
+         position: relative;
+         top: 10px;
+      }
+
+      &.progress-done {
+        border-top: 7px solid @lightGreen;
+        transition: border-color 1s ease-in-out;
+        -webkit-transition: border-color 1s ease-in-out;
+        -moz-transition: border-color 1s ease-in-out;
+
+        .icon-down-arrow {
+          display: none;
+        }
+
+          &.progress-current {
+
+            .icon-wrap {
+              background-color: @mainBlue;
+
+              .icon-check-mark {
+               display: none;
+              }
+
+              .icon-down-arrow {
+                display: block;
+              }
+            }
+          }
+
+        .icon-wrap {
+          background-color: @darkGreen;
+          border: 5px solid @lightGreen;
+        }
+      }
+
+      &.progress-todo {
+          border-top: 7px solid @greyState;
+          color: black;
+
+        .icon-wrap {
+          background-color: #FFF;
+          border: 5px solid @greyState;
+          border-radius: 50%;
+          bottom: 1.5em;
+          color: #fff;
+          display: block;
+          height: 2.5em;
+          margin: 0 auto -2em;
+          position: relative;
+          width: 2.5em;
+
+          .icon-check-mark, .icon-down-arrow {
+              display: none;
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/progress.css">
+<ol class="progress-track">
+  <li class="progress-done">
+    <center>
+      <div class="icon-wrap">
+        <svg class="icon-state icon-check-mark">
+          <use xlink:href="#icon-check-mark"></use>
+        </svg>
+
+        <svg class="icon-state icon-down-arrow">
+          <use xlink:href="#icon-down-arrow"></use>
+        </svg>
+      </div>
+      <span class="progress-text">Personal Info</span>
+    </center>
+  </li>
+  <li class="progress-done progress-current">
+    <center>
+      <div class="icon-wrap">
+        <svg class="icon-state icon-check-mark">
+          <use xlink:href="#icon-check-mark"></use>
+        </svg>
+
+        <svg class="icon-state icon-down-arrow">
+          <use xlink:href="#icon-down-arrow"></use>
+        </svg>
+      </div>
+      <span class="progress-text">Choosing Seat</span>
+    </center>
+  </li>
+
+  <li class="progress-todo">
+    <center>
+      <div class="icon-wrap">
+        <svg class="icon-state icon-check-mark">
+          <use xlink:href="#icon-check-mark"></use>
+        </svg>
+
+        <svg class="icon-state icon-down-arrow">
+          <use xlink:href="#icon-down-arrow"></use>
+        </svg>
+      </div>
+      <span class="progress-text">Payment</span>
+    </center>
+  </li>
+</ol>
+
+
+
+
+
+
+
+
+<style>
+body{
+  background: #303030;
+}
+
+#pricing-table {
+	margin: 100px auto;
+	text-align: center;
+	width: 892px; /* total computed width = 222 x 3 + 226 */
+}
+
+#pricing-table .plan {
+	font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+	text-shadow: 0 1px rgba(255,255,255,.8);
+	background: #fff;
+	border: 1px solid #ddd;
+	color: #333;
+	padding: 20px;
+	width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */
+	float: right;
+	position: relative;
+}
+
+#pricing-table #most-popular {
+	z-index: 2;
+	top: -13px;
+	border-width: 3px;
+	padding: 30px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);
+	-webkit-box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);
+	box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);
+}
+
+#pricing-table .plan:nth-child(1) {
+	-moz-border-radius: 5px 0 0 5px;
+	-webkit-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+
+#pricing-table .plan:nth-child(4) {
+	-moz-border-radius: 0 5px 5px 0;
+	-webkit-border-radius: 0 5px 5px 0;
+	border-radius: 0 5px 5px 0;
+}
+
+/* --------------- */
+
+#pricing-table h3 {
+	font-size: 20px;
+	font-weight: normal;
+	padding: 20px;
+	margin: -20px -20px 50px -20px;
+	background-color: #eee;
+	background-image: -moz-linear-gradient(#fff,#eee);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+	background-image: -webkit-linear-gradient(#fff, #eee);
+	background-image: -o-linear-gradient(#fff, #eee);
+	background-image: -ms-linear-gradient(#fff, #eee);
+	background-image: linear-gradient(#fff, #eee);
+}
+
+#pricing-table #most-popular h3 {
+	background-color: #ddd;
+	background-image: -moz-linear-gradient(#eee,#ddd);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+	background-image: -webkit-linear-gradient(#eee, #ddd);
+	background-image: -o-linear-gradient(#eee, #ddd);
+	background-image: -ms-linear-gradient(#eee, #ddd);
+	background-image: linear-gradient(#eee, #ddd);
+	margin-top: -30px;
+	padding-top: 30px;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+}
+
+#pricing-table .plan:nth-child(1) h3 {
+	-moz-border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	border-radius: 5px 0 0 0;
+}
+
+#pricing-table .plan:nth-child(4) h3 {
+	-moz-border-radius: 0 5px 0 0;
+	-webkit-border-radius: 0 5px 0 0;
+	border-radius: 0 5px 0 0;
+}
+
+#pricing-table h3 span {
+	display: block;
+	font: bold 25px/100px Georgia, Serif;
+	color: #777;
+	background: #fff;
+	border: 5px solid #fff;
+	height: 100px;
+	width: 100px;
+	margin: 10px auto -65px;
+	-moz-border-radius: 100px;
+	-webkit-border-radius: 100px;
+	border-radius: 100px;
+	-moz-box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
+	-webkit-box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
+	box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
+}
+
+/* --------------- */
+
+#pricing-table ul {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+#pricing-table li {
+	border-top: 1px solid #ddd;
+	padding: 10px 0;
+}
+
+/* --------------- */
+
+#pricing-table .signup {
+	position: relative;
+	padding: 8px 20px;
+	margin: 20px 0 0 0;
+	color: #fff;
+	font: bold 14px Arial, Helvetica;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-block;
+	background-color: #72ce3f;
+	background-image: -moz-linear-gradient(#72ce3f, #62bc30);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#72ce3f), to(#62bc30));
+	background-image: -webkit-linear-gradient(#72ce3f, #62bc30);
+	background-image: -o-linear-gradient(#72ce3f, #62bc30);
+	background-image: -ms-linear-gradient(#72ce3f, #62bc30);
+	background-image: linear-gradient(#72ce3f, #62bc30);
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.3);
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
+}
+
+#pricing-table .signup:hover {
+	background-color: #62bc30;
+	background-image: -moz-linear-gradient(#62bc30, #72ce3f);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#62bc30), to(#72ce3f));
+	background-image: -webkit-linear-gradient(#62bc30, #72ce3f);
+	background-image: -o-linear-gradient(#62bc30, #72ce3f);
+	background-image: -ms-linear-gradient(#62bc30, #72ce3f);
+	background-image: linear-gradient(#62bc30, #72ce3f);
+}
+
+#pricing-table .signup:active, #pricing-table .signup:focus {
+	background: #62bc30;
+	top: 2px;
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
+	box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
+}
+
+/* --------------- */
+
+.clear:before, .clear:after {
+  content:"";
+  display:table
+}
+
+.clear:after {
+  clear:both
+}
+
+.clear {
+  zoom:1
+}
+</style>
+
+<!--
+  Try adding the active class to another 'step'
+  to see what's going on :)
+-->
+
+
+              <!--Adding some scroll          <div>
                       <br> <br><br><br><br><br><br><br>
                         <h1> Step 2 of 3</h1>
+
                         <h2> please select a seat to continue :</h2>
                         <div>
+
                             <h3>Your flight Information :</h3>
+
                             <h4>You are traveling from : {{flight.departureCity}}</h4>
                             <h4>To: {{flight.destinationCity}}</h4>
                             <h4>In : {{flight.departureDate}}</h4>
-                            <h4>Your seat: {{seat}}</h4>
+                            <h4>Your seat: {{getSeatID()}}</h4>
                             <div>
-                                <h4>price : {{seat}}</h4>
+                                <h4>price : {{getSeatID()}}</h4>
                                 <div class="input-group " style="float: right;
     width: 300px;
 
@@ -33,8 +385,16 @@
                         <br>
                         <br>
                         <br>
-                    <div style="background-image: url(images/SeatMapNew.png);">
+
+-->
+
+
+
+
+
+                    <div style="background-image: url(images/SeatMapNew.png);" class="col-mid-8">
                       <br><br><br><br><br>
+
 
                       <table align="center" >
 
@@ -60,10 +420,9 @@
                       <td><div class="col-sm-1">
 
                       </div></td>
-                      <td ><first-seat seats="firstClassSeats"></firstclass-seat> </td>
-                        <td><div class="col-sm-1">
 
-                        </div></td>
+                      <td ><first-seat seats="firstClassSeats"></firstclass-seat> </td>
+
                       <td ><business-seat seats="businessSeats"><business-seat></td>
                         <td><div class="col-sm-1">
 
@@ -72,6 +431,11 @@
                       <td><div class="col-sm-1">
 
                       </div></td>
+
+                      <td><div class="col-sm-1">
+
+                      </div></td>
+
                       <td ><economy-seat seats="economySeats"></economy-seat></td>
                       <td><div class="col-sm-1">
 
@@ -83,9 +447,107 @@
 
 
                   </div>
+                  <span class = "table-responsive" ng-if="getSeatID() != undefined" id="seatInfo">
+
+
+                    <table class = "table" ng-if="getSeatID() != undefined">
+                      <thead>
+                        </tr>
+                      <tr class="success" ng-if="isPossible()==true">
+                        <th class="success">
+                          info
+                        </th>
+                        <th class="success" ng-if="isPossible()==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Selected Seat</th>
+                      </tr>
+                      <tr class="danger" ng-if="isPossible()==false">
+                        <th class="danger">
+                          info
+                        </th>
+                        <th class="danger" ng-if="isPossible()==false"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Selected Seat</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                        <tr class="warning">
+                          <td class="warning">
+                            Class
+                          </td>
+                          <td class="warning">
+                            {{getSeatClass()}}
+                          </td>
+                        </tr>
+
+                        <tr class="warning">
+                          <td class="warning">
+                            Seat ID
+                          </td>
+                          <td class="warning">
+                            {{getSeatID()}}
+                          </td>
+                        </tr>
+
+                        <tr class="success" ng-if="isPossible()==true">
+                          <td class="success">
+                            Status
+                          </td>
+                          <td class="success">
+                            Available
+                          </td>
+                        </tr>
+
+                        <tr class="danger" ng-if="isPossible()==false">
+                          <td class="danger">
+                            Status
+                          </td>
+                          <td class="danger">
+                            Reserved
+                          </td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                    <div class="alert alert-danger" role="alert" ng-if="isPossible()==false">Oh snap! You have choosed a reserved seat, choose again</div>
+                    <span class="alert alert-success" role="alert" ng-if="isPossible()==true">You have choosed an available seat!, you may proceed or choose another seat</span>
+                    <span ng-if="isPossible()==true">
+                      <button id="procced" name="procced" class="btn btn-primary" ng-click="payment()" on-click="scrollTo(0,0)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Proceed to payment</button>
+                    </span>
+
+                    <div id="pricing-table" class="clear">
+                    <div class="plan">
+                      <h3>Economy<span>1000LE</span></h3>
+                      <ul>
+                          <li>Food and beverages</li>
+                          <li><b>Internet</b> access</li>
+                      </ul>
+                    </div>
+                    <div class="plan" id="most-popular">
+                      <h3>Premium Economy<span>1100LE</span></h3>
+                      <a class="signup">Special Offer</a>
+                      <ul>
+                          <li><b>Upgrade</b> presents</li>
+                          <li><b>Internet</b> Access</li>
+                      </ul>
+                    </div>
+                    <div class="plan">
+                      <h3>Bussiness Class<span>1500LE</span></h3>
+                      <ul>
+                          <li><b>2-metre-long</b></li>
+                          <li><b>Fully</b> flat bed</li>
+                          <li><b>Natural</b> shades</li>
+                      </ul>
+                    </div>
+                    <div class="plan">
+                      <h3>First Class<span>2500LE</span></h3>
+                      <ul>
+                          <li><b>Proper</b> lie-flat bed</li>
+                          <li><b>Airport</b> Pick-up</li>
+                          <li><b>Chauffeur</b> alongside the trip</li>
+                      </ul>
+                    </div>
+                    </div>
+
+
+
                         <br>
-
-
                   </div>
                 </div>
               </div>

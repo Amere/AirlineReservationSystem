@@ -1,7 +1,7 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate']);
+lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate','smoothScroll']);
 
 
 /**
@@ -15,12 +15,11 @@ lufthansa.config(function ($routeProvider) {
 
 // route for the home page
     $routeProvider
-.
-when('/', {
+.when('/', {
     templateUrl: 'partials/landing.html',
     controller: 'mainCtrl'
 })
-    .when('/reservation', {
+    .when('/reservation/', {
         templateUrl: 'partials/reservation.html',
         controller: 'reservCtrl'
     })
