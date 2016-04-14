@@ -44,6 +44,7 @@
                                                        type="text"
                                                        placeholder="Flying From"
                                                        ng-model="selectedOrigin"
+                                                       required
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
                                                        typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
@@ -53,6 +54,7 @@
                                                        id="destinationAirports"
                                                        type="text"
                                                        placeholder="Flying To"
+                                                       required
                                                        ng-model="selectedDestination"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
@@ -64,6 +66,7 @@
                                                         <p class="input-group">
                                                             <input type="text"
                                                                    class="form-control"
+                                                                   required
                                                                    uib-datepicker-popup="{{format}}"
                                                                    ng-model="dt"
                                                                    is-open="popup1.opened"
@@ -86,7 +89,8 @@
                                                             <input type="text"
                                                                    class="form-control"
                                                                    uib-datepicker-popup
-                                                                   ng-model="dt"
+                                                                   required
+                                                                   ng-model="dt2"
                                                                    is-open="popup2.opened"
                                                                    ng-required="true"
                                                                    close-text="Close"/>

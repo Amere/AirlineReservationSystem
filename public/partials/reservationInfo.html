@@ -177,7 +177,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="fname">First Name</label>
                                     <div class="col-md-4">
-                                        <input id="fname" name="fname" type="text" placeholder="your first name" class="form-control input-md" required>
+                                        <input id="fname"  ng-model="fname" name="fname" type="text" placeholder="your first name" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="lname">Last Name</label>
                                     <div class="col-md-4">
-                                        <input id="lname" name="lname" type="text" placeholder="your last name" class="form-control input-md" required>
+                                        <input id="lname" ng-model="lname" name="lname" type="text" placeholder="your last name" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="email">Email</label>
                                     <div class="col-md-4">
-                                        <input id="email" name="email" type="text" placeholder="your email" class="form-control input-md" required>
+                                        <input id="email" ng-model="email" name="email" type="text" placeholder="your email" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -205,8 +205,9 @@
                                     <input name="Nationality"
                                        id="Nationality"
                                        type="text"
+                                           required
                                        placeholder="Nationality"
-                                       ng-model="selectedDestination"
+                                       ng-model="nat"
                                        uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
                                        class="form-control"
                                        typeahead-on-select="SetNation($item.name)">
@@ -222,6 +223,7 @@
                                                ng-model="dt"
                                                is-open="popup1.opened"
                                                ng-required="true"
+
                                                close-text="Close"
                                                alt-input-formats="altInputFormats" required/>
 
@@ -243,7 +245,7 @@
                                             <input id="txt1" type="text"
                                                    class="form-control"
                                                    uib-datepicker-popup="{{format}}"
-                                                   ng-model="dt"
+                                                   ng-model="dt2"
                                                    is-open="popup2.opened"
                                                    ng-required="true"
                                                    close-text="Close"
@@ -261,8 +263,8 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="procced">submit to procced :</label>
                                             <div class="col-md-4">
-                                              <input type="submit"value="Check" class="btn btn-primary" ng-click="ShowHide()">
-                                                <button id="procced" name="procced" class="btn btn-primary" ng-show="IsVisible" ng-click="seats()">Choose Seat </button>
+
+                                                <button id="procced" name="procced" class="btn btn-primary"  ng-click="seats()">Choose Seat </button>
                                             </div>
                                         </div>
 
