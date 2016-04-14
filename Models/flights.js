@@ -24,17 +24,7 @@ function getAllFlightsFromDB(cb) {
 
 
 //Search Round Trip for app.get Here
-function getRoundTrip(db, callback) {
-  var cursor =db.collection('flight').find( { "address.zipcode": "10075" } );
-  cursor.each(function(err, doc) {
-     assert.equal(err, null);
-     if (doc != null) {
-        console.dir(doc);
-     } else {
-        callback();
-     }
-  });
-
+function getRoundTrip() {
 
 };
 
