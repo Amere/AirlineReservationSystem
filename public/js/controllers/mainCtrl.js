@@ -12,7 +12,8 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     };
 
     $scope.open2 = function() {
-        $scope.popup2.opened = true;
+            $scope.popup2.opened = true;
+
     };
 
     $scope.setDate = function(year, month, day) {
@@ -36,14 +37,15 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
                     if($scope.IsVisible==true){
                       $scope.IsVisible = false;
                     }else{
-                      $scope.IsVisible = true;
-                       var element = document.getElementById('flightss');
-                       var options = {
-                      duration: 2000
+                        if(($scope.selectedOrigin && $scope.selectedDestination && $scope.dt && $scope.dt2)) {
+                            $scope.IsVisible = true;
+                            var element = document.getElementById('flightss');
+                            var options = {
+                                duration: 2000
+                            };
+                            smoothScroll(element,options);
+                        }
 
-                      }
-
-                        smoothScroll(element,options);
 
                     }
                 };
@@ -190,18 +192,7 @@ lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$docume
     $scope.goToReservation = function() {
         $location.url('/reservation');
     };
-    $scope.flip = function(){
-        $(document).ready(function () {
-            var ratio = 0.5;
-            $('.resized-splitflap')
-                .splitFlap({
-                    charWidth:  50 * ratio,
-                    charHeight: 100 * ratio,
-                    imageSize:  (2500 * ratio) + 'px ' + (100 * ratio) + 'px'
-                });
-        });
-    };
-    $scope.flip();
+    
 
 
     /* Get offers on page render  */
