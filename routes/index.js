@@ -66,15 +66,13 @@ router.use(function(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['token'];
 
   var jwtSecret = process.env.JWTSECRET;
-  var decoded = jwt.decode(token, {complete: true});
-  console.log(decoded.header);
-  console.log(decoded.payload);
   console.log(jwtSecret);
   // Get JWT contents:
   jwt.verify(token,jwtSecret, function(err, decoded) {
-    if(err){ console.log(err);
+    if(err){
+      console.log(err);
     }else {
-      console.log(decoded);
+     console.log('verified');
       next();
     }
   });
