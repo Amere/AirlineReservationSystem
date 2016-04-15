@@ -46,12 +46,13 @@ $scope.ShowHide2 = function () {
 if($scope.IsVisible==true){
 $scope.IsVisible = false;
 }else{
+
 $scope.IsVisible = true;
 }
 };
 $scope.ShowHide3 = function () {
 //If DIV is visible it will be hidden and vice versa.
-round();
+
 var element = document.getElementById('go');
 var options = {
 duration: 1300
@@ -147,7 +148,7 @@ $scope.offers = Offers;
     var destination=$scope.selectedDestination;
     var departingDate=$scope.dt;
     var returningDate=$scope.dt2;
-    lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(Flight){
+    lufthansaServ.getRound($scope.selectedOrigin,$scope.selectedDestination,departingDate,returningDate).success(function(Flight){
     $scope.flights = Flight;
     });
 };
@@ -181,7 +182,7 @@ $location.url('/reservation');
 //    });
 //  };
 //   flight();
-  round();
+
 /* Get offers on page render */
 offers();
 /* Get news on page render */
