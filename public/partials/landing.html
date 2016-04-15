@@ -38,8 +38,9 @@
                                         <div class="fh5co-post wow fadeInLeft" data-wow-duration=".5s" data-wow-delay=".5s">
                                             <div class="fh5co-post-text">
                                                 <!--TO Place the form group here -->
+                                                <form action="/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class" method="get">
                                                 <label>Flying from :</label>
-                                                <input name="originAirports"
+                                                <input name='originAirports'
                                                        id="originAirports"
                                                        type="text"
                                                        placeholder="Flying From"
@@ -65,6 +66,7 @@
                                                     <div class="col-md-6">
                                                         <p class="input-group">
                                                             <input type="text"
+                                                                   name="date1"
                                                                    class="form-control"
                                                                    required
                                                                    uib-datepicker-popup="{{format}}"
@@ -87,9 +89,10 @@
                                                     <div class="col-md-6">
                                                         <p class="input-group">
                                                             <input type="text"
+                                                            name="date2"
                                                                    class="form-control"
-                                                                   uib-datepicker-popup
                                                                    required
+                                                                   uib-datepicker-popup
                                                                    ng-model="dt2"
                                                                    is-open="popup2.opened"
                                                                    ng-required="true"
@@ -105,7 +108,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()' >Search Flights
+                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>Search Flights
 
 
 
@@ -117,6 +120,7 @@
 
 
                                                 </button>
+                                              </form>
 
                                                 <br>
 
@@ -199,10 +203,10 @@
                         </thead>
                         <tbody>
                           <tr class="danger" ng-repeat="flight in flights">
-                          <td>{{flight.departureCity}}</td>
-                          <td>{{flight.destinationCity}}</td>
-                          <td>{{flight.departureDate}}</td>
-                          <td>{{flight.priceClass.economyPrice}}</td>
+                          <td>{{flight.origin}}</td>
+                          <td>{{flight.destination}}</td>
+                          <td>{{flight.departingDate}}</td>
+                          <td>{{flight.returningDate}}</td>
                           <td>
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
                           </td>
@@ -214,6 +218,13 @@
                     <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
+                    <tr class="danger">
+                        <th class="text-danger" >From</th>
+                        <th class="text-danger">To</th>
+                        <th class="text-danger">Date</th>
+                        <th class="text-danger">Price</th>
+                        <th class="text-danger">Book Now</th>
+                    </tr>
 
                   </thead>
                   <tbody>
