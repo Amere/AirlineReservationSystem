@@ -31,8 +31,8 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getOffers : function(){
             return $http.get('/api/data/offers');
         },
-        getRound : function (origin,destination,departingDate,returningDate) {
-          return  $http.get('/api/flights/search/',{params:{"origin": origin, "destination": destination,"departingDate":departingDate,"returningDate":returningDate}});
+        getRound : function () {
+          return  $http.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate');
         },
 
         getNews : function(){

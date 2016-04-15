@@ -30,6 +30,7 @@ if($scope.IsVisible==true){
 $scope.IsVisible = false;
 }else{
 $scope.IsVisible = true;
+round();
 var element = document.getElementById('flightss');
 var options = {
 duration: 2000
@@ -142,15 +143,7 @@ lufthansaServ.getOffers().success(function(Offers){
 $scope.offers = Offers;
 });
 };
- function round() {
-    var origin=document.getElementById("originAirports");
-    var destination=$scope.selectedDestination;
-    var departingDate=$scope.dt;
-    var returningDate=$scope.dt2;
-    lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(Flight){
-    $scope.flights = Flight;
-    });
-};
+
 /* Retrieve List of News */
 function news(){
 lufthansaServ.getNews().success(function(News){
@@ -174,6 +167,15 @@ $location.url('/return');
 };
 $scope.goToReservation = function() {
 $location.url('/reservation');
+};
+function round() {
+   var origin=angular.element('#date1').val();
+   var destination=$scope.selectedDestination;
+   var departingDate=$scope.dt;
+   var returningDate=$scope.dt2;
+   lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(Flight){
+   $scope.flights = Flight;
+   });
 };
 // function flight() {
 //    lufthansaServ.getFlight().success(function(Flight){

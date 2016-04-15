@@ -92,7 +92,7 @@ router.get('/api/data/conf',function(req,res){
   res.json( dummy );
 });
 router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function(req, res) {
-  var origin = req.params.origin;
+  var origin =req.params.origin;
   var destination=req.params.destination;
   var departingDate=req.params.departingDate;
   var returningDate=req.params.returningDate;
