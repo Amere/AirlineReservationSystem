@@ -29,7 +29,6 @@ $scope.ShowHide = function () {
 if($scope.IsVisible==true){
 $scope.IsVisible = false;
 }else{
-  round();
 $scope.IsVisible = true;
 var element = document.getElementById('flightss');
 var options = {
@@ -52,6 +51,7 @@ $scope.IsVisible = true;
 };
 $scope.ShowHide3 = function () {
 //If DIV is visible it will be hidden and vice versa.
+round();
 var element = document.getElementById('go');
 var options = {
 duration: 1300
