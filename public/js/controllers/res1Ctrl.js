@@ -36,7 +36,11 @@ lufthansa.controller('res1Ctrl', function($scope,lufthansaServ,$location) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-        $location.url('/reservation');
+        console.log('tesst');
+        if($scope.fname!=null && $scope.lname!=null && $scope.dt!=null && $scope.email!=null && $scope.nat!=null && $scope.dt2!=null) {
+            console.log('after cond')
+            $location.url('/reservation');
+        }
     }
 
     /*----------- Angular Bootstrap Typeahead -----------*/
