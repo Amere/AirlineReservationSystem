@@ -1,12 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var jwt     = require('jsonwebtoken');
+var flights=require('../public/Models/flights.js');
+var db=require('../db.js');
+var moment = require('moment');
+db.connect (function(err,db){
+  flights.seed(function(err,seeded){
+    if(err) throw err;
+    if(!seeded){
+      console.log('data already inserted before');
+    }else{
+      console.log('data  inserted ');
 
+    }
+  })
+});
 
 // Export environment vars first thing
-
-
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -60,30 +70,44 @@ router.get('/api/data/nations',function(req,res){
   res.json( nat );
 });
 
-router.use(function(req, res, next) {
-
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['token'];
-
-  var jwtSecret = process.env.JWTSECRET;
-  var decoded = jwt.decode(token, {complete: true});
-  console.log(decoded.header);
-  console.log(decoded.payload);
-  console.log(jwtSecret);
-  // Get JWT contents:
-  jwt.verify(token,jwtSecret, function(err, decoded) {
-    if(err){ console.log(err);
-    }else {
-      console.log(decoded);
-      next();
-    }
-  });
-
-});
+// router.use(function(req, res, next) {
+//
+//   // check header or url parameters or post parameters for token
+//   var token = req.body.token || req.query.token || req.headers['token'];
+//
+//   var jwtSecret = process.env.JWTSECRET;
+//   console.log(jwtSecret);
+//   // Get JWT contents:
+//   jwt.verify(token,jwtSecret, function(err, decoded) {
+//     if(err){
+//       console.log(err);
+//     }else {
+//      console.log('verified');
+//       next();
+//     }
+//   });
+//
+// });
 router.get('/api/data/conf',function(req,res){
   var dummy =  require('../confirm.json');
   res.json( dummy );
 });
-
+router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var returningDate=req.params.returningDate;
+  var x=moment(departingDate).toDate().getTime();
+  var y=moment(returningDate).toDate().getTime();
+  //var clas=req.params.class;
+  flights.getRoundTrip(origin,destination,x,y,db,function(err,result) {
+     res.json(result);
+   });
+});
+router.get('/api/all',function (req,res) {
+  flights.getAllFlightsFromDB(function (err,result) {
+    res.json(result);
+  });
+});
 
 module.exports = router;

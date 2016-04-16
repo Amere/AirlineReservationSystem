@@ -38,12 +38,14 @@
                                         <div class="fh5co-post wow fadeInLeft" data-wow-duration=".5s" data-wow-delay=".5s">
                                             <div class="fh5co-post-text">
                                                 <!--TO Place the form group here -->
+                                                <form action="/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class" method="get">
                                                 <label>Flying from :</label>
-                                                <input name="originAirports"
+                                                <input name='originAirports'
                                                        id="originAirports"
                                                        type="text"
                                                        placeholder="Flying From"
                                                        ng-model="selectedOrigin"
+                                                       required
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
                                                        typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
@@ -53,6 +55,7 @@
                                                        id="destinationAirports"
                                                        type="text"
                                                        placeholder="Flying To"
+                                                       required
                                                        ng-model="selectedDestination"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
@@ -63,8 +66,11 @@
                                                     <div class="col-md-6">
                                                         <p class="input-group">
                                                             <input type="text"
+                                                                   id="date1"
+                                                                   name="date1"
                                                                    class="form-control"
-                                                                   uib-datepicker-popup="{{format}}"
+                                                                   required
+                                                                   uib-datepicker-popup
                                                                    ng-model="dt"
                                                                    is-open="popup1.opened"
                                                                    ng-required="true"
@@ -84,9 +90,12 @@
                                                     <div class="col-md-6">
                                                         <p class="input-group">
                                                             <input type="text"
+                                                            name="date2"
+                                                            id="date2"
                                                                    class="form-control"
+                                                                   required
                                                                    uib-datepicker-popup
-                                                                   ng-model="dt"
+                                                                   ng-model="dt2"
                                                                    is-open="popup2.opened"
                                                                    ng-required="true"
                                                                    close-text="Close"/>
@@ -101,7 +110,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()' >Search Flights
+                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>Search Flights
 
 
 
@@ -113,6 +122,7 @@
 
 
                                                 </button>
+                                              </form>
 
                                                 <br>
 
@@ -195,10 +205,11 @@
                         </thead>
                         <tbody>
                           <tr class="danger" ng-repeat="flight in flights">
-                          <td>{{flight.departureCity}}</td>
-                          <td>{{flight.destinationCity}}</td>
-                          <td>{{flight.departureDate}}</td>
-                          <td>{{flight.priceClass.economyPrice}}</td>
+                          <td>{{flight.origin}}</td>
+                          <td>{{flight.destination}}</td>
+                          <td>{{flight.departingDate}}</td>
+                          <td>3000</td>
+                          <td>{{flight.returningDate}}</td>
                           <td>
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
                           </td>
@@ -210,6 +221,13 @@
                     <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
+                    <tr class="danger">
+                        <th class="text-danger" >From</th>
+                        <th class="text-danger">To</th>
+                        <th class="text-danger">Date</th>
+                        <th class="text-danger">Price</th>
+                        <th class="text-danger">Book Now</th>
+                    </tr>
 
                   </thead>
                   <tbody>
