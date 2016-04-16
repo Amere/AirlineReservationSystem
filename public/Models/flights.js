@@ -81,6 +81,5 @@ function getOneWayTrip(origin,destination,departingDate,db,cb) {
 
 exports.getAllFlightsFromDB=getAllFlightsFromDB;
 exports.getRoundTrip=getRoundTrip;
-exports.postRoundTrip=postRoundTrip;
-exports.getOneWay=getOneWay;
-exports.PostOneWay=PostOneWay;
+exports.getOneWayTrip=getOneWayTrip;
+

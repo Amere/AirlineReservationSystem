@@ -1,7 +1,7 @@
 /**
 * Main Controller
 */
-lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,smoothScroll) {
+lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,$log,smoothScroll) {
 /*----------- Angular Bootstrap Datepicker -----------*/
 $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 $scope.format = $scope.formats[1];
@@ -16,6 +16,26 @@ $scope.dt = new Date(year, month, day);
 $scope.dt2 = new Date(year, month, day);
 
 };
+   $scope.pick ='seat class';
+   $scope.classes = [
+      'First class',
+      'economy'
+   ];
+   $scope.status = {
+      isopen: false
+   };
+   $scope.toggled = function(open) {
+      $log.log('Dropdown is now: ', open);
+   };
+   $scope.toggleDropdown = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status.isopen = !$scope.status.isopen;
+   };
+   $scope.selectClass =function(item){
+      $scope.pick = item;
+   };
+   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 $scope.popup1 = {
 opened: false
 };
@@ -28,14 +48,15 @@ $scope.ShowHide = function () {
 //If DIV is visible it will be hidden and vice versa.
 if($scope.IsVisible==true){
 $scope.IsVisible = false;
-}else{
-$scope.IsVisible = true;
-round();
-var element = document.getElementById('flightss');
-var options = {
-duration: 2000
-}
-smoothScroll(element,options);
+}else {
+      $scope.IsVisible = true;
+      round();
+      var element = document.getElementById('flightss');
+      var options = {
+         duration: 2000
+      }
+      smoothScroll(element, options);
+
 }
 };
 $scope.resizeMap = function(){
