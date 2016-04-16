@@ -43,9 +43,13 @@ lufthansa.controller('res1Ctrl', function($scope,lufthansaServ,$location) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-        
-        $location.url('/reservation');
+
+      if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate && $scope.dob) {
+          $location.url('/reservation');
+      }
     };
+
+
     $scope.setUserInfo = function(){
       lufthansaServ.setFirstName($scope.firstName);
       lufthansaServ.setLastName($scope.lastName);
@@ -54,6 +58,7 @@ lufthansa.controller('res1Ctrl', function($scope,lufthansaServ,$location) {
       lufthansaServ.setDOB($scope.dob);
       lufthansaServ.setExpDate($scope.expDate);
     }
+
 
     /*----------- Angular Bootstrap Typeahead -----------*/
 

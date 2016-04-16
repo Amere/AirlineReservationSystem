@@ -108,6 +108,7 @@ router.get('/api/data/aircraft/:name',function(req,res){
   }
   });
 });
+
 // router.use(function(req, res, next) {
 //
 //   // check header or url parameters or post parameters for token
@@ -127,10 +128,12 @@ router.get('/api/data/aircraft/:name',function(req,res){
 //
 // });
 
+
 router.get('/api/data/conf',function(req,res){
   var dummy =  require('../confirm.json');
   res.json( dummy );
 });
+
 /**
  * ROUND-TRIP SEARCH REST ENDPOINT
  * @param origin - Flight Origin Location - Airport Code
@@ -140,6 +143,7 @@ router.get('/api/data/conf',function(req,res){
  * @param class - economy or business only
  * @returns {Array}
  */
+
 router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function(req, res) {
   var origin =req.params.origin;
   var destination=req.params.destination;
@@ -160,7 +164,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
  * @param class - economy or business only
  * @returns {Array}
  */
-app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
   var origin =req.params.origin;
   var destination=req.params.destination;
   var departingDate=req.params.departingDate;
