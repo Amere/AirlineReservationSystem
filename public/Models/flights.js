@@ -1,6 +1,12 @@
 var con = require('../../db');
 
 exports.seed=function(cb) {
+  con.db().collection('aircrafts').find({}).toArray(function(err,docs){
+    if(docs.length==0){
+      con.db().collection('aircrafts').insert(require('../../aircrafts.json'));
+      console.log('aircrafts seeded');
+    }
+  });
   con.db().collection('flights').find({}).toArray(function (err,docs) {
     if (docs.length==0) {
     con.db().collection('flights').insert(require('../../flight.json'));

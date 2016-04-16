@@ -4,7 +4,7 @@
 lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,smoothScroll) {
 /*----------- Angular Bootstrap Datepicker -----------*/
 $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-$scope.format = $scope.formats[2];
+$scope.format = $scope.formats[1];
 $scope.open1 = function() {
 $scope.popup1.opened = true;
 };
@@ -30,6 +30,7 @@ if($scope.IsVisible==true){
 $scope.IsVisible = false;
 }else{
 $scope.IsVisible = true;
+round();
 var element = document.getElementById('flightss');
 var options = {
 duration: 2000
@@ -46,13 +47,12 @@ $scope.ShowHide2 = function () {
 if($scope.IsVisible==true){
 $scope.IsVisible = false;
 }else{
-
 $scope.IsVisible = true;
 }
 };
 $scope.ShowHide3 = function () {
 //If DIV is visible it will be hidden and vice versa.
-
+round();
 var element = document.getElementById('go');
 var options = {
 duration: 1300
@@ -143,15 +143,7 @@ lufthansaServ.getOffers().success(function(Offers){
 $scope.offers = Offers;
 });
 };
- function round() {
-    var origin=document.getElementById("originAirports");
-    var destination=$scope.selectedDestination;
-    var departingDate=$scope.dt;
-    var returningDate=$scope.dt2;
-    lufthansaServ.getRound($scope.selectedOrigin,$scope.selectedDestination,departingDate,returningDate).success(function(Flight){
-    $scope.flights = Flight;
-    });
-};
+
 /* Retrieve List of News */
 function news(){
 lufthansaServ.getNews().success(function(News){
@@ -176,13 +168,22 @@ $location.url('/return');
 $scope.goToReservation = function() {
 $location.url('/reservation');
 };
+function round() {
+   var origin=angular.element('#originAirports').val();
+   var destination=angular.element('#destinationAirports').val();
+   var departingDate=angular.element('#date1').val();
+   var returningDate=angular.element('#date2').val();
+   lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(result){
+   $scope.flights = result;
+   });
+};
 // function flight() {
 //    lufthansaServ.getFlight().success(function(Flight){
 //        $scope.flights = Flight;
 //    });
 //  };
 //   flight();
-
+round();
 /* Get offers on page render */
 offers();
 /* Get news on page render */

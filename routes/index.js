@@ -3,6 +3,7 @@ var router = express.Router();
 var jwt     = require('jsonwebtoken');
 var flights=require('../public/Models/flights.js');
 var db=require('../db.js');
+var moment = require('moment');
 db.connect (function(err,db){
   flights.seed(function(err,seeded){
     if(err) throw err;
@@ -68,7 +69,15 @@ router.get('/api/data/nations',function(req,res){
   var nat =  require('../nationalities.json');
   res.json( nat );
 });
-
+router.get('/api/data/aircraft/:name',function(req,res){
+  db.db().collection('aircrafts').findOne({name:req.params.name},function(err,data){
+    if(err){
+      console.log('error in retrieving aircraft');
+    }else{
+    res.json(data);
+  }
+  });
+});
 // router.use(function(req, res, next) {
 //
 //   // check header or url parameters or post parameters for token
@@ -92,13 +101,14 @@ router.get('/api/data/conf',function(req,res){
   res.json( dummy );
 });
 router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function(req, res) {
-  var origin = req.params.origin;
+  var origin =req.params.origin;
   var destination=req.params.destination;
   var departingDate=req.params.departingDate;
   var returningDate=req.params.returningDate;
-  console.log("here");
+  var x=moment(departingDate).toDate().getTime();
+  var y=moment(returningDate).toDate().getTime();
   //var clas=req.params.class;
-  flights.getRoundTrip(origin,destination,departingDate,returningDate,db,function(err,result) {
+  flights.getRoundTrip(origin,destination,x,y,db,function(err,result) {
      res.json(result);
    });
 });

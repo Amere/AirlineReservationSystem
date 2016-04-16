@@ -6,6 +6,18 @@ lufthansa.controller('res1Ctrl', function($scope,lufthansaServ,$location) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[2];
+    /*variables set to be sent to database*/
+    $scope.firstName = "";
+    $scope.lastName = "";
+    $scope.email = "";
+    $scope.nationality = "";
+    $scope.dob = "";
+    $scope.expDate = "";
+
+    console.log($scope.firstName);
+    console.log($scope.lastName);
+    console.log($scope.email);
+    console.log($scope.dob);
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;
@@ -29,18 +41,15 @@ lufthansa.controller('res1Ctrl', function($scope,lufthansaServ,$location) {
     //This will hide the DIV by default.
     $scope.IsVisible = false;
     $scope.ShowHide = function () {
-        //If DIV is visible it will be hidden and vice versa.
+            //If DIV is visible it will be hidden and vice versa.
         $scope.IsVisible = $scope.IsVisible ? false : true;
     };
     $scope.SetNation = function(item) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-        console.log('tesst');
-        if($scope.fname!=null && $scope.lname!=null && $scope.dt!=null && $scope.email!=null && $scope.nat!=null && $scope.dt2!=null) {
-            console.log('after cond')
-            $location.url('/reservation');
-        }
+      console.log($scope.firstName);
+        $location.url('/reservation');
     }
 
     /*----------- Angular Bootstrap Typeahead -----------*/

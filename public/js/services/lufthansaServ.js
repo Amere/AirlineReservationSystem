@@ -32,16 +32,14 @@ lufthansa.factory('lufthansaServ', function ($http) {
             return $http.get('/api/data/offers');
         },
         getRound : function (origin,destination,departingDate,returningDate) {
-            console.log(this.getSelectedOriginAirport());
-            console.log(this.selectedDestinationAirport);
-          return  $http.get('/api/flights/search/',{params:{"origin": this.getSelectedOriginAirport(), "destination": this.selectedDestinationAirport,"departingDate":'as',"returningDate":returningDate}});
+          return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate);//,{params:{"origin": origin, "destination": destination,"departingDate":departingDate,"returningDate":returningDate}});
         },
 
         getNews : function(){
             return $http.get('/api/data/news');
         },
-        getReservDummy : function() {
-            return $http.get('/api/data/flight');
+        getAircraft : function() {
+            return $http.get('/api/data/aircraft/AirbusA330-300');
             //return $http.get('/api/data/dummy');
         },
         getSlides :function(){
