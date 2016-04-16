@@ -42,10 +42,10 @@
                                                 <label>Flying from :</label>
                                                 <input name='originAirports'
                                                        id="originAirports"
+                                                       required
                                                        type="text"
                                                        placeholder="Flying From"
                                                        ng-model="selectedOrigin"
-                                                       required
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
                                                        typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
@@ -53,9 +53,9 @@
                                                 <label>Flying To :</label>
                                                 <input name="destinationAirports"
                                                        id="destinationAirports"
+                                                       required
                                                        type="text"
                                                        placeholder="Flying To"
-                                                       required
                                                        ng-model="selectedDestination"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
