@@ -1,7 +1,19 @@
+/**
+ * mongodb default adaptor
+ */
 var mongo = require('mongodb');
+/**
+ * our DB object that will be initialized after establishing connection
+ **/
 var DB = null;
+/**
+ * db URL that our db in
+ */
 var dbURL = 'mongodb://localhost:27017/temp';
 
+/**
+ * connects to the DB that is in dbUrl initialized above
+ */
 exports.connect = function(cb) {
   mongo.MongoClient.connect(dbURL,function(err, db) {
   if (err) {
