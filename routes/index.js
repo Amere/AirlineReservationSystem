@@ -160,7 +160,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
  * @param class - economy or business only
  * @returns {Array}
  */
-app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
   var origin =req.params.origin;
   var destination=req.params.destination;
   var departingDate=req.params.departingDate;
