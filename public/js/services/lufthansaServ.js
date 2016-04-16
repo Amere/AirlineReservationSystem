@@ -38,8 +38,8 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getNews : function(){
             return $http.get('/api/data/news');
         },
-        getReservDummy : function() {
-            return $http.get('/api/data/flight');
+        getAircraft : function() {
+            return $http.get('/api/data/aircraft/AirbusA330-300');
             //return $http.get('/api/data/dummy');
         },
         getSlides :function(){

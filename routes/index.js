@@ -69,7 +69,15 @@ router.get('/api/data/nations',function(req,res){
   var nat =  require('../nationalities.json');
   res.json( nat );
 });
-
+router.get('/api/data/aircraft/:name',function(req,res){
+  db.db().collection('aircrafts').findOne({name:req.params.name},function(err,data){
+    if(err){
+      console.log('error in retrieving aircraft');
+    }else{
+    res.json(data);
+  }
+  });
+});
 // router.use(function(req, res, next) {
 //
 //   // check header or url parameters or post parameters for token
