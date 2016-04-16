@@ -186,6 +186,42 @@ lufthansa.factory('lufthansaServ', function ($http) {
          */
         toMain : function(){
           $http.get('/');
+        },
+        setFirstName : function(fn){
+          this.firstName = fn ;
+        },
+        getFirstName : function(){
+          return this.firstName;
+        },
+        setLastName : function(ln){
+          this.lastName = ln;
+        },
+        getLastName : function(){
+          return this.lastName;
+        },
+        setEmail : function(e){
+          this.email = e;
+        },
+        getEmail : function(){
+          return this.email;
+        },
+        setNationality : function(n){
+          this.nationality = n;
+        },
+        getNationality : function(){
+          return this.nationality;
+        },
+        setDOB : function(dateOfBirth){
+          this.dob = dateOfBirth;
+        },
+        getDOB : function(){
+          return this.dob;
+        },
+        setExpDate : function(ed){
+          this.expDate = ed;
+        },
+        getExpDate : function(){
+          return this.expDate;
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
