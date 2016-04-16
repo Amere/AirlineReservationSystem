@@ -48,14 +48,15 @@ $scope.ShowHide = function () {
 //If DIV is visible it will be hidden and vice versa.
 if($scope.IsVisible==true){
 $scope.IsVisible = false;
-}else{
-$scope.IsVisible = true;
-round();
-var element = document.getElementById('flightss');
-var options = {
-duration: 2000
-}
-smoothScroll(element,options);
+}else {
+      $scope.IsVisible = true;
+      round();
+      var element = document.getElementById('flightss');
+      var options = {
+         duration: 2000
+      }
+      smoothScroll(element, options);
+
 }
 };
 $scope.resizeMap = function(){
