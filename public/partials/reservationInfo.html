@@ -177,7 +177,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="fname">First Name</label>
                                     <div class="col-md-4">
-                                        <input id="fname" name="fname" type="text" placeholder="your first name" class="form-control input-md" required>
+                                        <input id="fname" name="fname" type="text" placeholder="your first name" ng-model="firstName" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="lname">Last Name</label>
                                     <div class="col-md-4">
-                                        <input id="lname" name="lname" type="text" placeholder="your last name" class="form-control input-md" required>
+                                        <input id="lname" name="lname" type="text" ng-model="lastName" placeholder="your last name" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="email">Email</label>
                                     <div class="col-md-4">
-                                        <input id="email" name="email" type="text" placeholder="your email" class="form-control input-md" required>
+                                        <input id="email" name="email" type="text"ng-model="email"  placeholder="your email" class="form-control input-md" required>
 
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                                        id="Nationality"
                                        type="text"
                                        placeholder="Nationality"
-                                       ng-model="selectedDestination"
+                                       ng-model="nationality"
                                        uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
                                        class="form-control"
                                        typeahead-on-select="SetNation($item.name)">
@@ -219,13 +219,13 @@
                                         <input type="text"
                                                class="form-control"
                                                uib-datepicker-popup="{{format}}"
-                                               ng-model="dt"
+                                               ng-model="dob"
                                                is-open="popup1.opened"
                                                ng-required="true"
                                                close-text="Close"
                                                alt-input-formats="altInputFormats" required/>
 
-                                                    <span class="input-group-btn">
+                      <span class="input-group-btn">
                         <button type="button"
                                 class="btn btn-default"
                                 ng-click="open1()">
@@ -243,7 +243,7 @@
                                             <input id="txt1" type="text"
                                                    class="form-control"
                                                    uib-datepicker-popup="{{format}}"
-                                                   ng-model="dt"
+                                                   ng-model="expDate"
                                                    is-open="popup2.opened"
                                                    ng-required="true"
                                                    close-text="Close"
