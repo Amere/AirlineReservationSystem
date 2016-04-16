@@ -4,7 +4,7 @@
 lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,smoothScroll) {
 /*----------- Angular Bootstrap Datepicker -----------*/
 $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-$scope.format = $scope.formats[2];
+$scope.format = $scope.formats[1];
 $scope.open1 = function() {
 $scope.popup1.opened = true;
 };
@@ -169,12 +169,12 @@ $scope.goToReservation = function() {
 $location.url('/reservation');
 };
 function round() {
-   var origin=angular.element('#date1').val();
-   var destination=$scope.selectedDestination;
-   var departingDate=$scope.dt;
-   var returningDate=$scope.dt2;
-   lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(Flight){
-   $scope.flights = Flight;
+   var origin=angular.element('#originAirports').val();
+   var destination=angular.element('#destinationAirports').val();
+   var departingDate=angular.element('#date1').val();
+   var returningDate=angular.element('#date2').val();
+   lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(result){
+   $scope.flights = result;
    });
 };
 // function flight() {
@@ -183,7 +183,7 @@ function round() {
 //    });
 //  };
 //   flight();
-  round();
+round();
 /* Get offers on page render */
 offers();
 /* Get news on page render */

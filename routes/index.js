@@ -3,6 +3,7 @@ var router = express.Router();
 var jwt     = require('jsonwebtoken');
 var flights=require('../public/Models/flights.js');
 var db=require('../db.js');
+var moment = require('moment');
 db.connect (function(err,db){
   flights.seed(function(err,seeded){
     if(err) throw err;
@@ -96,9 +97,10 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
   var destination=req.params.destination;
   var departingDate=req.params.departingDate;
   var returningDate=req.params.returningDate;
-  console.log("here");
+  var x=moment(departingDate).toDate().getTime();
+  var y=moment(returningDate).toDate().getTime();
   //var clas=req.params.class;
-  flights.getRoundTrip(origin,destination,departingDate,returningDate,db,function(err,result) {
+  flights.getRoundTrip(origin,destination,x,y,db,function(err,result) {
      res.json(result);
    });
 });

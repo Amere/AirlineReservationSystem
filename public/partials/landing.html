@@ -70,7 +70,7 @@
                                                                    name="date1"
                                                                    class="form-control"
                                                                    required
-                                                                   uib-datepicker-popup="{{format}}"
+                                                                   uib-datepicker-popup
                                                                    ng-model="dt"
                                                                    is-open="popup1.opened"
                                                                    ng-required="true"
@@ -91,6 +91,7 @@
                                                         <p class="input-group">
                                                             <input type="text"
                                                             name="date2"
+                                                            id="date2"
                                                                    class="form-control"
                                                                    required
                                                                    uib-datepicker-popup
@@ -207,6 +208,7 @@
                           <td>{{flight.origin}}</td>
                           <td>{{flight.destination}}</td>
                           <td>{{flight.departingDate}}</td>
+                          <td>3000</td>
                           <td>{{flight.returningDate}}</td>
                           <td>
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
