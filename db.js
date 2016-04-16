@@ -1,6 +1,6 @@
 var mongo = require('mongodb');
 var DB = null;
-var dbURL = 'mongodb://localhost:27017/lufthansa';
+var dbURL = 'mongodb://localhost:27017/temp';
 
 exports.connect = function(cb) {
   mongo.MongoClient.connect(dbURL,function(err, db) {
