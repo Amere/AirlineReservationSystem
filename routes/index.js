@@ -78,28 +78,29 @@ router.get('/api/data/aircraft/:name',function(req,res){
   }
   });
 });
-// router.use(function(req, res, next) {
-//
-//   // check header or url parameters or post parameters for token
-//   var token = req.body.token || req.query.token || req.headers['token'];
-//
-//   var jwtSecret = process.env.JWTSECRET;
-//   console.log(jwtSecret);
-//   // Get JWT contents:
-//   jwt.verify(token,jwtSecret, function(err, decoded) {
-//     if(err){
-//       console.log(err);
-//     }else {
-//      console.log('verified');
-//       next();
-//     }
-//   });
-//
-// });
 router.get('/api/data/conf',function(req,res){
   var dummy =  require('../confirm.json');
   res.json( dummy );
 });
+ router.use(function(req, res, next) {
+
+   // check header or url parameters or post parameters for token
+   var token = req.body.token || req.query.token || req.headers['token'];
+
+   var jwtSecret = process.env.JWTSECRET;
+   console.log(jwtSecret);
+   // Get JWT contents:
+   jwt.verify(token,jwtSecret, function(err, decoded) {
+     if(err){
+       console.log(err);
+     }else {
+      console.log('verified');
+       next();
+     }
+   });
+
+ });
+
 router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function(req, res) {
   var origin =req.params.origin;
   var destination=req.params.destination;
