@@ -9,7 +9,7 @@ var router = express.Router();
 /**
  * Jwt package for json web token
  */
-var jwt     = require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 var flights=require('../public/Models/flights.js');
 /**
  * Our DB connection
@@ -43,22 +43,16 @@ router.get('/', function(req, res, next) {
 router.get('/google7a607af0cf3cce8e.html', function(req, res, next) {
   res.render('google7a607af0cf3cce8e.html');
 });
-
-
-
-
 /* GET airports codes */
 router.get('/api/data/codes',function(req,res){
   var codes =  require('../airports.json');
   res.json( codes );
 });
-
 /* GET offers */
 router.get('/api/data/offers',function(req,res){
   var offers =  require('../offers.json');
   res.json( offers );
 });
-
 /* GET news */
 router.get('/api/data/news',function(req,res){
   var news =  require('../news.json');
@@ -68,7 +62,6 @@ router.get('/api/data/flight',function(req,res){
   var dummy =  require('../flight.json');
   res.json( dummy );
 });
-
 /* GET slides */
 router.get('/api/data/slides',function(req,res){
   var slides =  require('../slides.json');
