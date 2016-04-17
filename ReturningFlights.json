@@ -6609,7 +6609,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//7pm tp 9pm Delhi to Mumbai
 {"flightNumber":"SE3000",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -7210,7 +7209,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//8am to 10:50am cairo to jeddah
 {"flightNumber":"SE3050",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -7811,7 +7809,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//7pm to 9:50 pm jeddah to cairo
 {"flightNumber":"SE3100",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -8412,7 +8409,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//9 am to 1pm hongkong to taiwan
 {"flightNumber":"SE3150",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -9013,7 +9009,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//2:am to 6:am from tiwan to hong kong
 {"flightNumber":"SE3200",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -9614,7 +9609,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//4:00 am to 3:11 am Cape Town to Johannesburg 
 {"flightNumber":"SE3300",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -10215,7 +10209,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//9am to 8:11pm Johannesburg to Cape 
 {"flightNumber":"SE3250",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -10816,7 +10809,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//10 am to 1:11 pm Riyadh to Jeddah
 {"flightNumber":"SE3350",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -11417,7 +11409,6 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
-//11:30pm to 2:41 am jeddah to riyadh
 {"flightNumber":"SE3400",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -12018,3 +12009,4 @@
 "class":"business",
 "Airline":"Lufthansa"
 }
+]
