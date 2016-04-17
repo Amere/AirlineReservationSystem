@@ -131,6 +131,11 @@ router.get('/api/data/conf', function (req, res) {
     var dummy = require('../confirm.json');
     res.json(dummy);
 });
+router.get('api/data/ips', function (req, res) {
+    var ips = require('../ips.json');
+    res.json(ips);
+});
+
 
 /**
  * ROUND-TRIP SEARCH REST ENDPOINT
@@ -154,6 +159,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
         res.json(result);
     });
 });
+
 
 /**
  * ONE-WAY SEARCH REST ENDPOINT
