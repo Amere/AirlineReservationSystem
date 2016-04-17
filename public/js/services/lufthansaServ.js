@@ -242,9 +242,22 @@ lufthansa.factory('lufthansaServ', function ($http) {
              }else{
                return true;
              }
+        },
+        // this method to clear all variables on canceling trip
+        clearVariables : function(){
+          this.selectedOriginAirport = "";
+          this.selectedDestinationAirport = "";
+          this.firstName = "";
+          this.lastName = "";
+          this.email = "";
+          this.nationality = "";
+          this.dob = "";
+          this.expDate = "";
+          this.seat = undefined;
+          this.possible = undefined;
+          this.class = undefined;
         }
 
-      
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
     };

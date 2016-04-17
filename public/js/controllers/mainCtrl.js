@@ -19,6 +19,10 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         $scope.dt2Flag = true;
     };
 
+    $scope.clearVars = function(){
+      lufthansaServ.clearVariables();
+    }
+
     $scope.open2 = function () {
         $scope.popup2.opened = true;
     };
