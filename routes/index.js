@@ -33,7 +33,11 @@ db.connect(function (err, db) {
         }
     })
 });
-
+router.all('*',function(req,res,next){
+   res.header('Access-Control-Allow-Origin', '*');
+   res.header('Access-Control-Allow-Headers','X-Requested-With');
+    next();
+});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -131,7 +135,7 @@ router.get('/api/data/conf', function (req, res) {
     var dummy = require('../confirm.json');
     res.json(dummy);
 });
-router.get('api/data/ips', function (req, res) {
+router.get('/api/data/ips', function (req, res) {
     var ips = require('../ips.json');
     res.json(ips);
 });

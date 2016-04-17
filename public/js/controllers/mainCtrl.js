@@ -32,6 +32,31 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         'First class',
         'economy'
     ];
+
+    function oneWayExternal() {
+        var origin=angular.element('#originAirports').val();
+        var destination=angular.element('#destinationAirports').val();
+        var departingDate=angular.element('#date1').val();
+        var returningDate=angular.element('#date2').val();
+        var clas=$scope.pick;
+        //  var x=moment(departingDate).toDate().getTime();
+        //  var y=moment(returningDate).toDate().getTime();
+        lufthansaServ.getExternalFlightsOneWay('JFK','CAI','1460478300000','economy');
+    };
+    function roundTripExternal() {
+        var origin=angular.element('#originAirports').val();
+        var destination=angular.element('#destinationAirports').val();
+        var departingDate=angular.element('#date1').val();
+        var returningDate=angular.element('#date2').val();
+        var clas=$scope.pick;
+        //  var x=moment(departingDate).toDate().getTime();
+        //  var y=moment(returningDate).toDate().getTime();
+        lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
+    };
+    roundTripExternal();
+    oneWayExternal();
+
+
     $scope.status = {
         isopen: false
     };
