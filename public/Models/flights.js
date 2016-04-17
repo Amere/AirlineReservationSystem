@@ -25,14 +25,19 @@ function getAllFlightsFromDB(cb) {
 
 //Search Round Trip for app.get Here
 
+
 function getRoundTrip(origin,destination,departingDate,returningDate,db,cb) {
-  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : departingDate,"returningDate" : returningDate}).toArray(function (err,fli) {
+ var ret=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
+ console.log(ret+"hiiiiiiiiiiiiiiiiiiiiiiii");
+var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : departingDate}).toArray(function (err,fli){
   if (fli.length==0) {
     cb(err,fli);
   }  else {
-    cb(null,fli);
+    cb(null,{'outgoingFlights' : fli,"returningFlights" : ret});
   }
   });
+  //
+  //var data2=con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : returningDate}).toArray(function (err,fli)
 
 };
 

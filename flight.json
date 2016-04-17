@@ -17,10 +17,10 @@
   "departureCity" : "Egypt",
   "destinationCity" : "Netherlands",
   "duration" : "4H",
-  "origin" : "CAB",
+  "origin" : "CAI",
   "destination" : "CAI",
-  "departingDate" : "1230",
-  "returningDate" : "12",
+  "departingDate" : "12",
+  "returningDate" : "5",
   "class" : "economy"
 }
 

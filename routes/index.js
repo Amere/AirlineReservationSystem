@@ -100,7 +100,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
   var x=moment(departingDate).toDate().getTime();
   var y=moment(returningDate).toDate().getTime();
   //var clas=req.params.class;
-  flights.getRoundTrip(origin,destination,x,y,db,function(err,result) {
+  flights.getRoundTrip(origin,destination,departingDate,returningDate,db,function(err,result) {
      res.json(result);
    });
 });
