@@ -4,7 +4,7 @@
 lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log, smoothScroll) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.dt1Flag=true;
+    $scope.dt1Flag = true;
     $scope.dt2Flag = false;
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
