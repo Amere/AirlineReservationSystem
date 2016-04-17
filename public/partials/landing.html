@@ -38,14 +38,14 @@
                                         <div class="fh5co-post wow fadeInLeft" data-wow-duration=".5s" data-wow-delay=".5s">
                                             <div class="fh5co-post-text">
                                                 <!--TO Place the form group here -->
-                                                <form action="/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class" method="get">
+                                                <form>
                                                 <label>Flying from :</label>
                                                 <input name='originAirports'
                                                        id="originAirports"
+                                                       required
                                                        type="text"
                                                        placeholder="Flying From"
                                                        ng-model="selectedOrigin"
-                                                       required
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
                                                        typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
@@ -53,17 +53,24 @@
                                                 <label>Flying To :</label>
                                                 <input name="destinationAirports"
                                                        id="destinationAirports"
+                                                       required
                                                        type="text"
                                                        placeholder="Flying To"
-                                                       required
                                                        ng-model="selectedDestination"
                                                        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
                                                        class="form-control"
                                                        typeahead-on-select="SetDestinationAirport($item.iata); putMarkerD($item.lat, $item.lon)">
                                                 <br>
+
                                                 <label>Please specify the dates  </label>
+                                                    <br>
+                                                    <label class="radio-inline"><input type="radio" checked="{{dt1Flag}}" ng-click="OneWayFlags()" name="optradio">One Way</label>
+                                                    <label class="radio-inline"><input type="radio"  ng-click="RoundtripFlags()" name="optradio">Round trip</label>
+                                                    <br><br>
+
                                                 <div class="row">
-                                                    <div class="col-md-6">
+
+                                                    <div class="col-md-6" ng-show="dt1Flag">
                                                         <p class="input-group">
                                                             <input type="text"
                                                                    id="date1"
@@ -87,7 +94,7 @@
                                                         </p>
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6"  ng-show="dt2Flag">
                                                         <p class="input-group">
                                                             <input type="text"
                                                             name="date2"
@@ -96,6 +103,7 @@
                                                                    required
                                                                    uib-datepicker-popup
                                                                    ng-model="dt2"
+
                                                                    is-open="popup2.opened"
                                                                    ng-required="true"
                                                                    close-text="Close"/>
@@ -110,26 +118,24 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>Search Flights
+                                                    <div class="btn-group" uib-dropdown on-toggle="toggled(open)" >
+                                                        <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                                                            {{pick}} <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu"  aria-labelledby="single-button">
+                                                            <li role="menuitem" ng-repeat="item in classes" ng-click="selectClass(item)"><a href="#/">{{item}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <br>
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" value="false"> Search for flights in another companies</label>
+                                                    </div>
+                                                    <br>
+                                                    <button id="procced" name="procced" class="btn btn-primary"  ng-click="ShowHide()">Search Flights </button>
 
-
-
-                                                <!-- MAIN BANNER -->
-
-                                                <!-- PROMOTIONAL OFFERS -->
-
-
-
-
-                                                </button>
-                                              </form>
+                                                </form>
 
                                                 <br>
-
-                                                <!-- MAIN BANNER -->
-
-                                                <!-- PROMOTIONAL OFFERS -->
-
 
 
                                             </div>
