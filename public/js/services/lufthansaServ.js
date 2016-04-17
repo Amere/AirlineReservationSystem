@@ -189,6 +189,9 @@ lufthansa.factory('lufthansaServ', function ($http) {
         toMain : function(){
           $http.get('/');
         },
+        /**
+        * Getters and Setters for user information
+        */
         setFirstName : function(fn){
           this.firstName = fn ;
         },
@@ -224,7 +227,24 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getExpDate : function(){
           return this.expDate;
+        },
+        /**
+        * Flag for incomplete info
+        */
+        checkCompleteUserInfo : function(){
+          if(this.firstName.length === 0 ||
+             this.lastName.length === 0 ||
+             this.email.length === 0 ||
+             this.nationality.length === 0 ||
+             this.dob.length === 0 ||
+             this.expDate.length === 0){
+               return false;
+             }else{
+               return true;
+             }
         }
+
+      
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
     };
