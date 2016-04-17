@@ -4,10 +4,21 @@
 lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log, smoothScroll) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.dt1Flag=true;
+    $scope.dt2Flag = false;
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
         $scope.popup1.opened = true;
     };
+    $scope.OneWayFlags = function () {
+        $scope.dt1Flag = true;
+        $scope.dt2Flag = false;
+    };
+    $scope.RoundtripFlags = function () {
+        $scope.dt1Flag = true;
+        $scope.dt2Flag = true;
+    };
+
     $scope.open2 = function () {
         $scope.popup2.opened = true;
     };
@@ -50,7 +61,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             $scope.IsVisible = false;
         } else {
 
-            if (lufthansaServ.getSelectedDestinationAirport() != undefined && lufthansaServ.getSelectedOriginAirport() != undefined ) {
+            if (lufthansaServ.getSelectedDestinationAirport() != undefined && lufthansaServ.getSelectedOriginAirport() != undefined) {
                 $scope.IsVisible = true;
                 round();
                 var element = document.getElementById('flightss');

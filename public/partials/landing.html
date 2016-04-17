@@ -61,9 +61,14 @@
                                                        class="form-control"
                                                        typeahead-on-select="SetDestinationAirport($item.iata); putMarkerD($item.lat, $item.lon)">
                                                 <br>
+
                                                 <label>Please specify the dates  </label>
+                                                    <br>
+                                                    <label class="radio-inline"><input type="radio" checked="{{dt1Flag}}" ng-click="OneWayFlags()" name="optradio">One Way</label>
+                                                    <label class="radio-inline"><input type="radio"  ng-click="RoundtripFlags()" name="optradio">Round trip</label>
+                                                    <br><br>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6" ng-show="dt1Flag">
                                                         <p class="input-group">
                                                             <input type="text"
                                                                    id="date1"
@@ -87,7 +92,7 @@
                                                         </p>
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6"  ng-show="dt2Flag">
                                                         <p class="input-group">
                                                             <input type="text"
                                                             name="date2"
@@ -96,6 +101,7 @@
                                                                    required
                                                                    uib-datepicker-popup
                                                                    ng-model="dt2"
+
                                                                    is-open="popup2.opened"
                                                                    ng-required="true"
                                                                    close-text="Close"/>
