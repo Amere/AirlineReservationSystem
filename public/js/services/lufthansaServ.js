@@ -190,6 +190,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
           $http.get('/');
         },
         setFirstName : function(fn){
+          console.log(fn);
           this.firstName = fn ;
         },
         getFirstName : function(){
@@ -224,6 +225,20 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getExpDate : function(){
           return this.expDate;
+        },
+        getCurrentUser:function(cb){
+          var user={};
+          user.fname=this.firstName;
+          user.lname= this.lastName;
+          user.email=this.email;
+          user.dob=this.dob;
+          user.nationality=this.nationality;
+          user.expDate=this.expDate;
+          cb(user);
+
+        },
+        addUser:function(user1){
+          return $http.post('api/adduser',{user:user1});
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

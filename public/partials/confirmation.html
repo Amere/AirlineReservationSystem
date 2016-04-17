@@ -29,7 +29,7 @@
 
 <div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"
 
-style="background-image: url(images/solo.jpg); 
+style="background-image: url(images/solo.jpg);
    opacity: 1;">
 <!--your background image , add any image in the images folder and replace "full_1.jpg" with yours-->
   <div class="fh5co-overlay"></div>
@@ -42,35 +42,38 @@ style="background-image: url(images/solo.jpg);
                      <h2 class="fh5co-heading wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s" id="changerificwordspanid"> Thank you  </h2>
 
                 </div>
-                
+
                 <br><br><br><br><br><br>
-                  
+
                <div class="resized-splitflap">
             <div class="col-md-8 col-sm-6 col-xs-6 col-xxs-12">
-            
+
                 <div class="fh5co-post wow fadeInRight"  data-wow-duration=".5s" data-wow-delay=".5s">
-                    
+
                     <div class="fh5co-post-text" >
 
                     	<div style="background:orange !important" class="jumbotron" >
                           <h3>Reservation cofirmation</h3>
                         <p>
-                           <FONT COLOR ="000000">Your ticket:      </FONT><FONT COLOR ="ffffff">{{Confirm[0].ticket}}</FONT>
+                           <FONT COLOR ="000000">Your Name:      </FONT><FONT COLOR ="ffffff">{{Confirm.fname + ' ' + Confirm.lname}}</FONT>
                            </p>
+                        <p>
+                              <FONT COLOR ="000000">Your email:      </FONT><FONT COLOR ="ffffff">{{Confirm.email}}</FONT>
+                        </p>
                         <p>
                            <FONT COLOR ="000000">Seat number:       </FONT><FONT COLOR ="ffffff">{{Confirm[0].seat}}</FONT>
                            </p>
-                        <p>   
+                        <p>
                            <FONT COLOR ="000000">Receipt number:     </FONT><FONT COLOR ="ffffff">{{Confirm[0].receipt}}</FONT>
                            </p>
-                        <p>  
+                        <p>
                            <FONT COLOR ="000000">Departure date/time:</FONT><FONT COLOR ="ffffff">{{Confirm[0].departure}}</FONT>
                           </p>
-                        <p>   
+                        <p>
                            <FONT COLOR ="000000">Arrival date/time:  </FONT><FONT COLOR ="ffffff">{{Confirm[0].arrival}}</FONT>
                         </p>
                         </div>
-                       
+
                     </div>
 
                 </div>
@@ -80,6 +83,3 @@ style="background-image: url(images/solo.jpg);
 </div>
   </div>
 </div>
-
-
-

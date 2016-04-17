@@ -175,5 +175,13 @@ router.get('/api/all',function (req,res) {
     res.json(result);
   });
 });
-
+router.post('/api/adduser',function(req,res){
+  var user= req.body.user;
+  db.db().collection('users').insert(user,function(err,docs){
+    if (err) throw err;
+  });
+});
+// router.get('api/getSeat',function(req,res){
+//   db.db().collection('').findOne({},function());
+// });
 module.exports = router;
