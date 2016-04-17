@@ -38,7 +38,7 @@
                                         <div class="fh5co-post wow fadeInLeft" data-wow-duration=".5s" data-wow-delay=".5s">
                                             <div class="fh5co-post-text">
                                                 <!--TO Place the form group here -->
-                                                <form action="/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class" method="get">
+                                                <form>
                                                 <label>Flying from :</label>
                                                 <input name='originAirports'
                                                        id="originAirports"
@@ -123,11 +123,9 @@
                                                         <label><input type="checkbox" value="false"> Search for flights in another companies</label>
                                                     </div>
                                                     <br>
-                                                <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>Search Flights
+                                                    <button id="procced" name="procced" class="btn btn-primary"  ng-click="ShowHide()">Search Flights </button>
 
-
-                                                </button>
-                                              </form>
+                                                </form>
 
                                                 <br>
 
