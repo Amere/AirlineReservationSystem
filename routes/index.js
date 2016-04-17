@@ -92,13 +92,13 @@ router.get('/api/data/nations',function(req,res){
  * @param name - Aircraft name
  * @returns {Array}
  */
-router.get('/api/data/aircraft/:name',function(req,res){
-  db.db().collection('aircrafts').findOne({name:req.params.name},function(err,data){
+router.get('/api/data/aircraft/:flightNum',function(req,res){
+  db.db().collection('flightsXaircrafts').findOne({flightNumber:req.params.flightNum},function(err,data){
     if(err){
       console.log('error in retrieving aircraft');
     }else{
-    res.json(data);
-  }
+      res.json(data);
+    }
   });
 });
 
