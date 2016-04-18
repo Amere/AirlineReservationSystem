@@ -21,6 +21,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
          */
         setSelectedOriginAirport : function(value) {
             this.selectedOriginAirport = value;
+            console.log(this.selectedOriginAirport+"ohhhhhhhhhhhhhhhhhhhhh");
         },
         /**
          * Set Nationality
@@ -46,6 +47,16 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getSelectedDestinationAirport : function() {
             return this.selectedDestinationAirport;
         },
+        setFlightNumber : function(value) {
+            this.flightNumber = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getFlightNumber : function() {
+            return this.flightNumber;
+        },
         /**
          * get Offers
          */
@@ -61,9 +72,9 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * @param class - economy or business only
          * @returns {Array}
          */
-        getRound : function (origin,destination,departingDate,returningDate) {
+        getRound : function (origin,destination,departingDate,returningDate,clas) {
 
-          return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate,{
+          return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate+'/'+clas+'/',{
               "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
               }
           });
@@ -76,8 +87,8 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * @param class - economy or business only
          * @returns {Array}
          */
-        getOneWay : function (origin,destination,departingDate) {
-            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/',{
+        getOneWay : function (origin,destination,departingDate,clas) {
+            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+clas+'/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -323,8 +334,8 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         // this method to clear all variables on canceling trip
         clearVariables : function(){
-          this.selectedOriginAirport = "";
-          this.selectedDestinationAirport = "";
+          this.selectedOriginAirport = "intial";
+          this.selectedDestinationAirport = "intial";
           this.firstName = "";
           this.lastName = "";
           this.email = "";

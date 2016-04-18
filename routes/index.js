@@ -151,17 +151,19 @@ router.get('/api/data/ips', function (req, res) {
  * @returns {Array}
  */
 
-router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function (req, res) {
-    var origin = req.params.origin;
-    var destination = req.params.destination;
-    var departingDate = req.params.departingDate;
-    var returningDate = req.params.returningDate;
-    var x = moment(departingDate).toDate().getTime();
-    var y = moment(returningDate).toDate().getTime();
-    //var clas=req.params.class;
-    flights.getRoundTrip(origin, destination, x, y, db, function (err, result) {
-        res.json(result);
-    });
+router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var returningDate=req.params.returningDate;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+  var y=moment(returningDate).add(11, 'hours').toDate().getTime();
+  var clas=req.params.class;
+  //var clas=req.params.class;
+  flights.getRoundTrip(origin,destination,x,y,clas,db,function(err,result) {
+     res.json(result);
+   });
+
 });
 
 
@@ -172,14 +174,23 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
  * @param class - economy or business only
  * @returns {Array}
  */
-router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function (req, res) {
-    var origin = req.params.origin;
-    var destination = req.params.destination;
-    var departingDate = req.params.departingDate;
-    var x = moment(departingDate).toDate().getTime();
-    flights.getOneWayTrip(origin, destination, x, db, function (err, result) {
-        res.json(result);
-    });
+router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var clas=req.params.class;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+// console.log(departingDate);
+   console.log(moment(1460451600000).format('YYYY-MM-DD hh:mm A'));
+    console.log(x+"*********");
+//     console.log(y);
+     console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+
+//  var x=moment(departingDate).toDate().getTime();
+  flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
+    res.json(result);
+  });
+
 });
 /**
  * All Flights ENDPOINT
