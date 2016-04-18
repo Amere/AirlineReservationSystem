@@ -64,12 +64,11 @@
 
                                                 <label>Please specify the dates  </label>
                                                     <br>
-                                                    <label class="radio-inline"><input type="radio" checked="{{dt1Flag}}" ng-click="OneWayFlags()" name="optradio">One Way</label>
-                                                    <label class="radio-inline"><input type="radio"  ng-click="RoundtripFlags()" name="optradio">Round trip</label>
+                                                    <label class="radio-inline"><input type="radio" checked="{{dt1Flag}}" ng-click="OneWayFlags(); OneWayTable()" name="optradio">One Way</label>
+                                                    <label class="radio-inline"><input type="radio"  ng-click="RoundtripFlags(); RoundtripTable()" name="optradio">Round trip</label>
                                                     <br><br>
 
                                                 <div class="row">
-
                                                     <div class="col-md-6" ng-show="dt1Flag">
                                                         <p class="input-group">
                                                             <input type="text"
@@ -178,13 +177,7 @@
 
          <div >
   <div class="wrap">
-    <form>
-      <label class="btn btn-primary" for="first">Round Trip</label>
-      <input id="first" type="radio" name="content" ng-model="content" value="first" ng-click='ShowHide3()'>
 
-      <label class="btn btn-primary" for="other">One Way</label>
-      <input id="other" type="radio" name="content" ng-model="content" value="other" ng-click='ShowHide4()'>
-    </form>
 
 
   </div>
@@ -193,7 +186,7 @@
         <div class="wrapper">
           <div class="row">
             <div  class="col-md-6">
-          <div ng-show="content == 'first'">
+          <div ng-show="round">
 
 
                           <h2 style="color:white" id="go">Going</h2>
@@ -272,7 +265,7 @@
 
 
           </div>
-          <div ng-show="content == 'other'">
+          <div ng-show="one">
 
 
                           <h2 style="color:white" id="go2">Going</h2>

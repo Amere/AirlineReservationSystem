@@ -127,6 +127,83 @@ lufthansa.factory('lufthansaServ', function ($http) {
             });
         },
         /**
+         * ROUND-TRIP SEARCH From Other Airline API
+         * @param origin - Flight Origin Location - Airport Code
+         * @param destination - Flight Destination Location - Airport Code
+         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param returningDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param Class - economy or business only
+         * @returns {Array}
+         */
+        getExternalFlightsRound : function(origin,destination,departingDate,returningDate,Class){
+            var res =[];
+            var ips = [];
+            $http.get('/api/data/ips').success(function(result){
+                ips= result;
+            });
+            console.log(ips[0]);
+            var i = 0;                     //  set your counter to 1
+            function myLoop () {           //  create a loop function
+                setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+                    var object = ips[i];
+                    console.log(object);
+                    var ip = object.ip;
+                    var company = object.company;
+                    res.push($http.get(ip+'/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate+'/'+Class,{
+                        "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                        }
+                    }));
+                    i++;                     //  increment the counter
+                    if (i < ips.length) {            //  if the counter < 10, call the loop function
+                        myLoop();             //  ..  again which will trigger another
+                    }                        //  ..  setTimeout()
+                }, 300)
+            }
+          try {
+              myLoop();
+          }catch (err){
+              console.log('error will requesting API ');
+          }
+            //  start the loop
+            return res ;
+        },
+        /**
+         * One way SEARCH From Other Airline API
+         * @param origin - Flight Origin Location - Airport Code
+         * @param destination - Flight Destination Location - Airport Code
+         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param class - economy or business only
+         * @returns {Array}
+         */
+        getExternalFlightsOneWay : function(origin,destination,departingDate,Class){
+            var res =[];
+            var ips = [];
+            $http.get('/api/data/ips').success(function(result){
+            ips= result;
+            });
+            console.log(ips[0]);
+            var i = 0;                     //  set your counter to 1
+            function myLoop () {           //  create a loop function
+                setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+                    var object = ips[i];
+                    console.log(object);
+                    var ip = object.ip;
+                    var company = object.company;
+                    res.push($http.get(ip+'/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+Class,{
+                        "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                        }
+                    }));
+                    i++;                     //  increment the counter
+                    if (i < ips.length) {            //  if the counter < 10, call the loop function
+                        myLoop();             //  ..  again which will trigger another
+                    }                        //  ..  setTimeout()
+                }, 300)
+            }
+
+            myLoop();                      //  start the loop
+            return res ;
+        },
+        /**
          * Get Nationalities flights End point API
          */
         getNationss :  function() {
