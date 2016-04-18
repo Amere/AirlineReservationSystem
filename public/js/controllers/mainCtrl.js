@@ -18,13 +18,15 @@ $scope.dt2 = new Date(year, month, day);
 $scope.dt1Flag = true;
 $scope.dt2Flag = false;
 $scope.chekboxFlag=false;
- function flipCheck(){
-   $scope.chekboxFlag = !$scope.chekboxFlag;
- }
+  $scope.flipCheck=function(){
+   $scope.chekboxFlag = ! $scope.chekboxFlag;
+     console.log($scope.chekboxFlag+'testsss');
+ };
 
- function setOtherCompaniesFlag(){
+ $scope.setOtherCompaniesFlag = function() {
+     console.log($scope.chekboxFlag+'$scope.chekboxFlag$scope.chekboxFlag$scope.chekboxFlag');
    lufthansaServ.setOtherCompanies($scope.chekboxFlag);
- }
+ };
 
 
     $scope.one = true;

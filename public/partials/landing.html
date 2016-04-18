@@ -118,7 +118,7 @@
                                                 </div>
 
                                                     <div class="checkbox">
-                                                        <label><input type="checkbox" ng-model="chekboxFlag" ng-click="flipCheck()"> Search for flights in another companies</label>
+                                                        <label><input type="checkbox" ng-model="chekboxFlag" ng-change=" flipCheck(); setOtherCompaniesFlag()"> Search for flights in another companies</label>
                                                     </div>
                                                     <div ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)" >
                                                         <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
