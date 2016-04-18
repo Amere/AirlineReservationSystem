@@ -1,4 +1,4 @@
-[,{
+[{
 "flightNumber":"SE1000","aircraftType":"Airbus","aircraftModel":"A300-600","departureDateTime":1460480400000,"arrivalDateTime":1460481860480,"origin":"MXP","destination":"FCO","cost":"500","currency":"USD","class":"economy","Airline":"Lufthansa"}
 ,{
 "flightNumber":"SE1001","aircraftType":"Airbus","aircraftModel":"A300-600","departureDateTime":1460480400000,"arrivalDateTime":1460481860480,"origin":"MXP","destination":"FCO","cost":"1000","currency":"USD","class":"business","Airline":"Lufthansa"}
