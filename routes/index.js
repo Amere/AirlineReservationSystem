@@ -67,18 +67,21 @@ router.get('/api/data/slides',function(req,res){
   var slides =  require('../slides.json');
   res.json( slides );
 });
-router.get('/api/data/bookings',function(req,res){
-  var bookings =  require('../bookings.json');
-  res.json( bookings );
-});
 router.get('/api/data/pastFlights',function(req,res){
-  var pastFlights =  require('../pastFlights.json');
-  res.json( pastFlights );
+  flights.getPastFlights(function(err,json){
+    if(!err){
+      res.send(json);
+    }
+  });
 });
 router.get('/api/data/bookings',function(req,res){
-  var pastFlights =  require('../bookings.json');
-  res.json( pastFlights );
+  //req.query.bookref
+  flights.getMyBookings(function(err,json){
+    if(!err){
+      res.send(json);
+    }
 });
+  });
 /**
  * Nationality REST ENDPOINT
  * @returns {Array}

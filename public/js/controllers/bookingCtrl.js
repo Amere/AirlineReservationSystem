@@ -13,12 +13,18 @@ lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
    });
  };
  function getBookings(){
+  //$scope.bookref
    lufthansaServ.getBookings().success(function(data){
      $scope.bookings=data;
+     console.log(data, 'success');
+        console.log("in booking", data);
+   }).error(function(response) {
+    console.log(response, 'error');
    });
  };
  pastflights();
- getBookings();
+ //getBookings();
+ $scope.getBookings = getBookings();
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
 
