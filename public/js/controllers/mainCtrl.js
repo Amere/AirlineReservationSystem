@@ -70,7 +70,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
     };
    // roundTripExternal();
-    oneWayExternal();
+   // oneWayExternal();
 
 
     $scope.status = {

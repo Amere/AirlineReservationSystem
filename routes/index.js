@@ -98,6 +98,7 @@ router.use(function(req, res, next) {
     jwt.verify(token,jwtSecret, function(err, decoded) {
         if(err){
             console.log(err);
+            res.send('unauthorised access');
         }else {
             console.log('verified');
             next();
