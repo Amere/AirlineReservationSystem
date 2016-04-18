@@ -6,6 +6,16 @@ var aircraft = require('../../aircrafts.json');
  * @returns void
  */
 exports.seed=function(cb) {
+  con.db().collection('users').find({},function(err,docs){
+    if(docs.length==0){
+    con.db().createCollection("users", function(err, collection){
+  	   if (err) throw err;
+
+  	   	console.log("Created userCollection");
+
+  	});
+  }
+  });
   con.db().collection('aircrafts').find({}).toArray(function(err,docs){
     if(docs.length==0){
       con.db().collection('aircrafts').insert(aircraft);

@@ -270,6 +270,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
         * Getters and Setters for user information
         */
         setFirstName : function(fn){
+          console.log(fn);
           this.firstName = fn ;
         },
         getFirstName : function(){
@@ -333,6 +334,23 @@ lufthansa.factory('lufthansaServ', function ($http) {
           this.seat = undefined;
           this.possible = undefined;
           this.class = undefined;
+        },
+        getCurrentUser:function(cb){
+          var user={};
+          user.fname=this.firstName;
+          user.lname= this.lastName;
+          user.email=this.email;
+          user.dob=this.dob;
+          user.nationality=this.nationality;
+          user.expDate=this.expDate;
+          cb(user);
+
+        },
+        addUser:function(user1){
+          return $http.post('/api/adduser',{user:user1});
+        },
+        reserveSeat:function(fn1,seat1){
+          return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
         }
 
         // You can add here http get to you dummyData and get the result at the mainCtrl
