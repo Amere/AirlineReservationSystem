@@ -194,6 +194,7 @@ router.post('/api/adduser',function(req,res){
   var user= req.body.user;
   db.db().collection('users').insert(user,function(err,docs){
     if (err) throw err;
+    res.json(docs);
   });
 });
 router.post('/api/updateSeat',function(req,res){

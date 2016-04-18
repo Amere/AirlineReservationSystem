@@ -6,9 +6,11 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ) {
     $scope.Confirm=user;
     $scope.Confirm.seatCode= lufthansaServ.getSeat();
     $scope.Confirm.seatClass= lufthansaServ.getSeatClass_();
-    lufthansaServ.addUser(user);
+    lufthansaServ.addUser(user,function(res){
+      $scope.receipt=res;
+    });
     lufthansaServ.reserveSeat("SE1002",$scope.Confirm.seatCode);
-
+    
   });
 
 });
