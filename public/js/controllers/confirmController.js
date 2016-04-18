@@ -6,6 +6,8 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ) {
     $scope.Confirm=user;
     $scope.Confirm.seatCode= lufthansaServ.getSeat();
     $scope.Confirm.seatClass= lufthansaServ.getSeatClass_();
+    $scope.Confirm.flight=lufthansaServ.getFlightNumberOutGoing();
+    user.flight=lufthansaServ.getFlightNumberOutGoing();
     user.seatCode=lufthansaServ.getSeat();
     user.seatClass= lufthansaServ.getSeatClass_();
     lufthansaServ.addUser(user,function(res){

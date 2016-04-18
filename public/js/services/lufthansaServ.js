@@ -388,6 +388,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
           this.possible = undefined;
           this.class = undefined;
         },
+        //return all the details of the user in a single option for confirnation page
         getCurrentUser:function(cb){
           var user={};
           user.fname=this.firstName;
@@ -399,15 +400,18 @@ lufthansa.factory('lufthansaServ', function ($http) {
           cb(user);
 
         },
+        // method responsible for adding a user record in the database
         addUser:function(user1,cb){
            $http.post('/api/adduser',{user:user1}).success(function(res){
              //console.log(res["ops"][0]["_id"]);
             cb( res["ops"][0]["_id"]);
           });
         },
+        //responsible for updating the seatmap and reserving a seat
         reserveSeat:function(fn1,seat1){
           return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
         },
+        // return the reference number for this reservation
         getReceipt:function(){
           return this.receipt;
         }
