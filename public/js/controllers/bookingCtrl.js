@@ -1,3 +1,4 @@
+
 lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
 
     $scope.collapse= true;
@@ -6,7 +7,7 @@ lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
   $scope.change = function() {
   $scope.isVisible = !$scope.isVisible;
  };
- 
+
  function pastflights(){
    lufthansaServ.getPastFlights().success(function(data){
      $scope.Pastflights=data;
@@ -47,3 +48,4 @@ lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
   };
 
 });
+

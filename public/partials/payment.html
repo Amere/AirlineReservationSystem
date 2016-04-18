@@ -168,25 +168,31 @@
 
                           <!-- card number -->
                           <div class="number">
-                            <input type="text" maxlength="4" placeholder="">
-                            <input type="text" maxlength="4">
-                            <input type="text" maxlength="4">
-                            <input type="text" maxlength="4">
+                            <input type="text" ng-model="v1" maxlength="4" placeholder="" ng-required="true">
+                            <input type="text" ng-model="v2" maxlength="4" required>
+                            <input type="text" ng-model="v3" maxlength="4" required>
+                            <input type="text" ng-model="v4" maxlength="4" required>
+                          <!-- </label>
+                            <div role="alert">
+                              <span class="error" ng-show="myForm.userName.$error.required">
+                               Required!</span>
+                            </div>
+                            <label> -->
                             <span class="instructions"></span>
                           </div>
 
                           <!-- valid / ccv -->
                           <div class="date">
                             <span class="instructions valid">Valid Thru</span>
-                            <input type="text" maxlength="5" placeholder="00/00">
+                            <input type="text" ng-model="validThru" maxlength="5" placeholder="00/00" required>
 
                             <span class="instructions valid">CCV</span>
-                            <input type="text" maxlength="3" placeholder="123">
+                            <input type="text" ng-model="ccv" maxlength="3" placeholder="123" required>
                           </div>
 
                           <!-- name on card -->
                           <div class="name">
-                            <input class="full-name" type="text" maxlength="" inputmode='numeric' placeholder="John Doe">
+                            <input class="full-name" type="text" ng-model="fullName" maxlength="" inputmode='numeric' placeholder="John Doe" required>
                             <span class="instructions">Name on Card</span>
                           </div>
 
@@ -202,7 +208,7 @@
                             <a id="cancel" href="#/" class="btn btn-info" role="button">cancel</a>
                           </div>
                           <div class="col-xs-2">
-                            <a id="pay" href="#/confirm" class="btn btn-info" role="button">make payment</a>
+                            <a id="pay" ng-click="confirm()" class="btn btn-info" role="button">make payment</a>
                           </div>
 
                         </div>
