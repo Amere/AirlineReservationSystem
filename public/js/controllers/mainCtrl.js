@@ -6,6 +6,22 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.dt1Flag = true;
     $scope.dt2Flag = false;
+
+
+    $scope.one = true;
+    $scope.round = false;
+
+    $scope.OneWayTable = function () {
+        $scope.one = true;
+        $scope.dt2Flag = false;
+    };
+    $scope.RoundtripTable = function () {
+        $scope.one = false;
+        $scope.round = true;
+    };
+
+
+
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
         $scope.popup1.opened = true;
@@ -53,8 +69,8 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         //  var y=moment(returningDate).toDate().getTime();
         lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
     };
-    roundTripExternal();
-    oneWayExternal();
+   // roundTripExternal();
+    //oneWayExternal();
 
 
     $scope.status = {
@@ -62,6 +78,22 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     };
     $scope.toggled = function (open) {
         $log.log('Dropdown is now: ', open);
+    };
+    $scope.oneWayTable=false;
+    $scope.roundTripTable=false;
+    $scope.showOneWay = function(){
+        if($scope.oneWayTable==true){
+            $scope.oneWayTable=true;
+        }else {
+            $scope.oneWayTable = true;
+        }
+    };
+    $scope.showRoundTrip = function(){
+        if($scope.roundTripTable==true){
+            $scope.roundTripTable=true;
+        }else {
+            $scope.roundTripTable = true;
+        }
     };
     $scope.toggleDropdown = function ($event) {
         $event.preventDefault();
@@ -117,7 +149,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             duration: 1300
         }
         smoothScroll(element, options);
-        round();
+
     };
     $scope.ShowHide4 = function () {
 //If DIV is visible it will be hidden and vice versa.

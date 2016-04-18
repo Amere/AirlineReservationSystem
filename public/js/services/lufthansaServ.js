@@ -159,8 +159,12 @@ lufthansa.factory('lufthansaServ', function ($http) {
                     }                        //  ..  setTimeout()
                 }, 300)
             }
-
-            myLoop();                      //  start the loop
+          try {
+              myLoop();
+          }catch (err){
+              console.log('error will requesting API ');
+          }
+            //  start the loop
             return res ;
         },
         /**
