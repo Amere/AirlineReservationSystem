@@ -1,6 +1,14 @@
-lufthansa.controller('paymentCtrl',function($scope){
+lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[3];
+
+  $scope.v1 = "";
+  $scope.v2 = "";
+  $scope.v3 = "";
+  $scope.v4 = "";
+  $scope.validThru = "";
+  $scope.ccv = "";
+  $scope.fullName = "";
 
   $scope.open1 = function() {
       $scope.popup1.opened = true;
@@ -21,4 +29,10 @@ lufthansa.controller('paymentCtrl',function($scope){
   $scope.popup2 = {
       opened: false
   };
+  $scope.confirm = function(){
+    if($scope.v1!="" && $scope.v2!="" && $scope.v3!="" && $scope.v4!="" && $scope.validThru!="" && $scope.ccv!="" && $scope.fullName!="")
+          $location.url('/confirm');
+};
+
+
 });
