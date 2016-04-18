@@ -51,29 +51,12 @@ router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
 });
 
 /* GET airports codes */
-router.get('/api/data/codes', function (req, res) {
-    var codes = require('../airports.json');
-    res.json(codes);
-});
-/* GET offers */
-router.get('/api/data/offers', function (req, res) {
-    var offers = require('../offers.json');
-    res.json(offers);
-});
-/* GET news */
-router.get('/api/data/news', function (req, res) {
-    var news = require('../news.json');
-    res.json(news);
-});
+;
 router.get('/api/data/flight', function (req, res) {
     var dummy = require('../flight.json');
     res.json(dummy);
 });
-/* GET slides */
-router.get('/api/data/slides', function (req, res) {
-    var slides = require('../slides.json');
-    res.json(slides);
-});
+
 router.get('/api/data/bookings', function (req, res) {
     var bookings = require('../bookings.json');
     res.json(bookings);
@@ -86,14 +69,7 @@ router.get('/api/data/bookings', function (req, res) {
     var pastFlights = require('../bookings.json');
     res.json(pastFlights);
 });
-/**
- * Nationalities REST ENDPOINT
- * @returns {Array}
- */
-router.get('/api/data/nations', function (req, res) {
-    var nat = require('../nationalities.json');
-    res.json(nat);
-});
+
 /**
  * Aircraft REST ENDPOINT
  * @param name - Aircraft name
@@ -111,24 +87,24 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
 
 });
 
-// router.use(function(req, res, next) {
-//
-//   // check header or url parameters or post parameters for token
-//   var token = req.body.token || req.query.token || req.headers['token'];
-//
-//   var jwtSecret = process.env.JWTSECRET;
-//   console.log(jwtSecret);
-//   // Get JWT contents:
-//   jwt.verify(token,jwtSecret, function(err, decoded) {
-//     if(err){
-//       console.log(err);
-//     }else {
-//      console.log('verified');
-//       next();
-//     }
-//   });
-//
-// });
+router.use(function(req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['token'];
+
+    var jwtSecret = process.env.JWTSECRET;
+    console.log(jwtSecret);
+    // Get JWT contents:
+    jwt.verify(token,jwtSecret, function(err, decoded) {
+        if(err){
+            console.log(err);
+        }else {
+            console.log('verified');
+            next();
+        }
+    });
+
+});
 
 
 router.get('/api/data/conf', function (req, res) {
@@ -189,6 +165,35 @@ router.get('/api/all', function (req, res) {
     flights.getAllFlightsFromDB(function (err, result) {
         res.json(result);
     });
+});
+
+router.get('/api/data/codes', function (req, res) {
+    var codes = require('../airports.json');
+    res.json(codes);
+});
+/* GET offers */
+router.get('/api/data/offers', function (req, res) {
+    var offers = require('../offers.json');
+    res.json(offers);
+});
+/* GET news */
+router.get('/api/data/news', function (req, res) {
+    var news = require('../news.json');
+    res.json(news);
+});
+/* GET slides */
+router.get('/api/data/slides', function (req, res) {
+    var slides = require('../slides.json');
+    res.json(slides);
+});
+
+/**
+ * Nationalities REST ENDPOINT
+ * @returns {Array}
+ */
+router.get('/api/data/nations', function (req, res) {
+    var nat = require('../nationalities.json');
+    res.json(nat);
 });
 
 module.exports = router;

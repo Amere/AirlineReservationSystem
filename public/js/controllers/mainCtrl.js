@@ -70,7 +70,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
     };
    // roundTripExternal();
-    //oneWayExternal();
+    oneWayExternal();
 
 
     $scope.status = {
@@ -120,6 +120,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
 
             if (lufthansaServ.getSelectedDestinationAirport() != undefined && lufthansaServ.getSelectedOriginAirport() != undefined) {
                 $scope.IsVisible = true;
+                if($scope.check)
                 round();
                 var element = document.getElementById('flightss');
                 var options = {
@@ -242,6 +243,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             $scope.news = News;
         });
     };
+
+
+
     /* Record User's Selected Origin Airport */
     $scope.SetOriginAirport = function (originAirport) {
         lufthansaServ.setSelectedOriginAirport(originAirport);
