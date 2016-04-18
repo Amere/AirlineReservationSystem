@@ -35,6 +35,9 @@ db.connect(function (err, db) {
         }
     })
 });
+/**
+ * middelware to add Access-Control-Allow-Origin header to res
+ */
 router.all('*',function(req,res,next){
    res.header('Access-Control-Allow-Origin', '*');
    res.header('Access-Control-Allow-Headers','X-Requested-With');
@@ -86,7 +89,10 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
   });
 
 });
-
+/**
+ * middelware to add guarantee that the request is coming from our server not from
+ * an unauthorised person
+ */
 router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
@@ -112,6 +118,9 @@ router.get('/api/data/conf', function (req, res) {
     var dummy = require('../confirm.json');
     res.json(dummy);
 });
+/**
+ * End Point to retrieve a list of ips of te other companies
+ */
 router.get('/api/data/ips', function (req, res) {
     var ips = require('../ips.json');
     res.json(ips);
