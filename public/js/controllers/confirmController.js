@@ -7,6 +7,8 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ) {
     $scope.Confirm.seatCode= lufthansaServ.getSeat();
     $scope.Confirm.seatClass= lufthansaServ.getSeatClass_();
     $scope.Confirm.flight=lufthansaServ.getFlightNumberOutGoing();
+    $scope.Confirm.odate= lufthansaServ.getDateOutGoing();
+    user.Odate=lufthansaServ.getDateOutGoing();
     user.flight=lufthansaServ.getFlightNumberOutGoing();
     user.seatCode=lufthansaServ.getSeat();
     user.seatClass= lufthansaServ.getSeatClass_();

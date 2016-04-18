@@ -92,7 +92,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         setReturning_Or_Outgoing : function(value) {
             this.ret = value;
-            console.log(value+" "+"ana el flightNumber");
+          //  console.log(value+" "+"ana el flightNumber");
         },
         /**
          * get Offers
@@ -143,8 +143,8 @@ lufthansa.factory('lufthansaServ', function ($http) {
         /**
          * Get Aircraft End point API
          */
-        getAircraft : function() {
-            return $http.get('/api/data/aircraft/SE1002/',{
+        getAircraft : function(fn) {
+            return $http.get('/api/data/aircraft/'+fn+'/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
