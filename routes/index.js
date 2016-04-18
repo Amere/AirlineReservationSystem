@@ -53,6 +53,28 @@ router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
     res.render('google7a607af0cf3cce8e.html');
 });
 
+router.post('/api/updateSeat',function(req,res){
+     var fn=req.body.fn;
+      var sn= req.body.sn;
+      console.log(fn);
+      console.log(sn);
+      db.db().collection('flightsXaircrafts').findOne({flightNumber:fn},function(err,data){
+            var cc= data.plane;
+            for(var i=0;i<cc.economeySeats.length;i++){
+                  for(var j=0;j<cc.economeySeats[i].length;j++){
+                        if(cc.economeySeats[i][j].seatCode==sn){
+                              cc.economeySeats[i][j].reserved="true";
+                            }
+                      }
+                }
+            db.db().collection('flightsXaircrafts').update({flightNumber:fn},{$set:{plane:cc}},function(err,data){
+                  if(err) throw err;
+                });
+          });
+
+
+            });
+
 /* GET airports codes */
 ;
 router.get('/api/data/flight', function (req, res) {
@@ -96,7 +118,7 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
 router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['token'];
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     var jwtSecret = process.env.JWTSECRET;
     console.log(jwtSecret);
@@ -122,7 +144,7 @@ router.get('/api/data/conf', function (req, res) {
  * End Point to retrieve a list of ips of te other companies
  */
 router.get('/api/data/ips', function (req, res) {
-    var ips = require('../ips.json');
+    var ips = require('../testIp.json');
     res.json(ips);
 });
 
