@@ -1,5 +1,5 @@
 [
-  [
+  
   {
   "departureDate" : "28/12/2018 7:00",
   "arrivalDate" : "28/12/2016 11:00",
@@ -24,6 +24,5 @@
   "returningDate" : "1230",
   "class" : "economy"
 }
-]
 
 ]

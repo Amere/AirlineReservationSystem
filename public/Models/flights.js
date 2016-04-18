@@ -1,14 +1,38 @@
 var con = require('../../db');
 var moment = require('moment');
+var flights = require('../../ReturningFlights.json');
+var aircraft = require('../../aircrafts.json');
 /**
  * Seeding the DB from JSON files
  * @returns void
  */
 exports.seed=function(cb) {
+  con.db().collection('users').find({},function(err,docs){
+    if(docs.length==0){
+    con.db().createCollection("users", function(err, collection){
+  	   if (err) throw err;
+
+  	   	console.log("Created userCollection");
+
+  	});
+  }
+  });
   con.db().collection('aircrafts').find({}).toArray(function(err,docs){
     if(docs.length==0){
-      con.db().collection('aircrafts').insert(require('../../aircrafts.json'));
+      con.db().collection('aircrafts').insert(aircraft);
       console.log('aircrafts seeded');
+    }else{
+      console.log('aircrafts already seeded before');
+    }
+  });
+  con.db().collection('flightsXaircrafts').find({}).toArray(function(err,docs){
+    if(docs.length==0){
+      for(var i=0;i<flights.length;i++){
+        con.db().collection('flightsXaircrafts').insert({flightNumber:flights[i].flightNumber,plane:aircraft[0]});
+      }
+      console.log('aircrafts and associated flights seeded');
+    }else{
+      console.log('aircrafts and associated fflightsa already inserted before');
     }
   });
   con.db().collection('flights').find({}).toArray(function (err,docs) {
@@ -32,9 +56,7 @@ function getAllFlightsFromDB(cb) {
     cb(null,flights);
   }
   });
-
 };
-
 
 
 //Search Round Trip for app.get Here
@@ -52,6 +74,7 @@ getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
 });
 
 var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString(),"class":clas}).toArray(function (err,fli){
+
   if (fli.length==0) {
     cb(err,fli);
   }  else {

@@ -11,8 +11,6 @@ lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate',
 lufthansa.config(function ($routeProvider) {
 
     //Add all parials later and your desired crtl ...
-
-
 // route for the home page
     $routeProvider
 .when('/', {
@@ -22,6 +20,8 @@ lufthansa.config(function ($routeProvider) {
     .when('/reservation/', {
         templateUrl: 'partials/reservation.html',
         controller: 'reservCtrl'
+
+
     })
     .when('/outgoingFlights', {
         templateUrl: 'partials/outgoingFlights.html',

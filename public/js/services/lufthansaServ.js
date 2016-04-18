@@ -107,7 +107,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * Get Aircraft End point API
          */
         getAircraft : function() {
-            return $http.get('/api/data/aircraft/AirbusA330-300',{
+            return $http.get('/api/data/aircraft/SE1002/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -136,6 +136,83 @@ lufthansa.factory('lufthansaServ', function ($http) {
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
+        },
+        /**
+         * ROUND-TRIP SEARCH From Other Airline API
+         * @param origin - Flight Origin Location - Airport Code
+         * @param destination - Flight Destination Location - Airport Code
+         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param returningDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param Class - economy or business only
+         * @returns {Array}
+         */
+        getExternalFlightsRound : function(origin,destination,departingDate,returningDate,Class){
+            var res =[];
+            var ips = [];
+            $http.get('/api/data/ips').success(function(result){
+                ips= result;
+            });
+            console.log(ips[0]);
+            var i = 0;                     //  set your counter to 1
+            function myLoop () {           //  create a loop function
+                setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+                    var object = ips[i];
+                    console.log(object);
+                    var ip = object.ip;
+                    var company = object.company;
+                    res.push($http.get(ip+'/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate+'/'+Class,{
+                        "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                        }
+                    }));
+                    i++;                     //  increment the counter
+                    if (i < ips.length) {            //  if the counter < 10, call the loop function
+                        myLoop();             //  ..  again which will trigger another
+                    }                        //  ..  setTimeout()
+                }, 300)
+            }
+          try {
+              myLoop();
+          }catch (err){
+              console.log('error will requesting API ');
+          }
+            //  start the loop
+            return res ;
+        },
+        /**
+         * One way SEARCH From Other Airline API
+         * @param origin - Flight Origin Location - Airport Code
+         * @param destination - Flight Destination Location - Airport Code
+         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param class - economy or business only
+         * @returns {Array}
+         */
+        getExternalFlightsOneWay : function(origin,destination,departingDate,Class){
+            var res =[];
+            var ips = [];
+            $http.get('/api/data/ips').success(function(result){
+            ips= result;
+            });
+            console.log(ips[0]);
+            var i = 0;                     //  set your counter to 1
+            function myLoop () {           //  create a loop function
+                setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+                    var object = ips[i];
+                    console.log(object);
+                    var ip = object.ip;
+                    var company = object.company;
+                    res.push($http.get(ip+'/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+Class,{
+                        "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                        }
+                    }));
+                    i++;                     //  increment the counter
+                    if (i < ips.length) {            //  if the counter < 10, call the loop function
+                        myLoop();             //  ..  again which will trigger another
+                    }                        //  ..  setTimeout()
+                }, 300)
+            }
+
+            myLoop();                      //  start the loop
+            return res ;
         },
         /**
          * Get Nationalities flights End point API
@@ -200,7 +277,11 @@ lufthansa.factory('lufthansaServ', function ($http) {
         toMain : function(){
           $http.get('/');
         },
+        /**
+        * Getters and Setters for user information
+        */
         setFirstName : function(fn){
+          console.log(fn);
           this.firstName = fn ;
         },
         getFirstName : function(){
@@ -235,7 +316,54 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getExpDate : function(){
           return this.expDate;
+        },
+        /**
+        * Flag for incomplete info
+        */
+        checkCompleteUserInfo : function(){
+          if(this.firstName.length === 0 ||
+             this.lastName.length === 0 ||
+             this.email.length === 0 ||
+             this.nationality.length === 0 ||
+             this.dob.length === 0 ||
+             this.expDate.length === 0){
+               return false;
+             }else{
+               return true;
+             }
+        },
+        // this method to clear all variables on canceling trip
+        clearVariables : function(){
+          this.selectedOriginAirport = "intial";
+          this.selectedDestinationAirport = "intial";
+          this.firstName = "";
+          this.lastName = "";
+          this.email = "";
+          this.nationality = "";
+          this.dob = "";
+          this.expDate = "";
+          this.seat = undefined;
+          this.possible = undefined;
+          this.class = undefined;
+        },
+        getCurrentUser:function(cb){
+          var user={};
+          user.fname=this.firstName;
+          user.lname= this.lastName;
+          user.email=this.email;
+          user.dob=this.dob;
+          user.nationality=this.nationality;
+          user.expDate=this.expDate;
+          cb(user);
+
+        },
+        addUser:function(user1){
+          return $http.post('/api/adduser',{user:user1});
+        },
+        reserveSeat:function(fn1,seat1){
+          return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
         }
+
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
     };
