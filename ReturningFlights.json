@@ -6609,6 +6609,7 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
+
 {"flightNumber":"SE3000",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -8409,6 +8410,7 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
+
 {"flightNumber":"SE3150",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
@@ -10209,6 +10211,7 @@
 "class":"business",
 "Airline":"Lufthansa"
 },
+
 {"flightNumber":"SE3250",
 "aircraftType":"Airbus",
 "aircraftModel":"A300-600",
