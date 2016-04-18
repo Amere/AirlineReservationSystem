@@ -24,6 +24,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
          */
         setSelectedOriginAirport : function(value) {
             this.selectedOriginAirport = value;
+            console.log(this.selectedOriginAirport+"ohhhhhhhhhhhhhhhhhhhhh");
         },
         /**
          * Set Nationality
@@ -49,6 +50,53 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getSelectedDestinationAirport : function() {
             return this.selectedDestinationAirport;
         },
+        setFlightNumberOutGoing : function(value) {
+            this.flightNumber = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getFlightNumberOutGoing : function() {
+            return this.flightNumber;
+        },
+        setDateOutGoing : function(value) {
+            this.departureDateTime = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getDateOutGoing : function() {
+            return this.departureDateTime;
+        },
+        setFlightNumberReturning : function(value) {
+            this.flightNumber2 = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getFlightNumberReturning : function() {
+            return this.flightNumber2;
+        },
+        setDateReturning : function(value) {
+            this.departureDateTime2 = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getDateReturning : function() {
+            return this.departureDateTime2;
+        },
+        getReturning_Or_Outgoing : function() {
+            return this.flightNumber2;
+        },
+        setReturning_Or_Outgoing : function(value) {
+            this.ret = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
         /**
          * get Offers
          */
@@ -67,9 +115,9 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * @param class - economy or business only
          * @returns {Array}
          */
-        getRound : function (origin,destination,departingDate,returningDate) {
+        getRound : function (origin,destination,departingDate,returningDate,clas) {
 
-          return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate,{
+          return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate+'/'+clas+'/',{
               "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
               }
           });
@@ -82,8 +130,8 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * @param class - economy or business only
          * @returns {Array}
          */
-        getOneWay : function (origin,destination,departingDate) {
-            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/',{
+        getOneWay : function (origin,destination,departingDate,clas) {
+            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+clas+'/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -270,6 +318,12 @@ lufthansa.factory('lufthansaServ', function ($http) {
         setSeatClass : function(value){
           this.class=value;
         },
+        setOtherCompanies : function(flag){
+          this.OtherCompaniesFlag=flag;
+        },
+        getOtherCompanies : function(){
+          return this.OtherCompaniesFlag;
+        },
         /**
          * Set Seat Class
          */
@@ -282,7 +336,11 @@ lufthansa.factory('lufthansaServ', function ($http) {
         toMain : function(){
           $http.get('/');
         },
+        /**
+        * Getters and Setters for user information
+        */
         setFirstName : function(fn){
+          console.log(fn);
           this.firstName = fn ;
         },
         getFirstName : function(){
@@ -317,7 +375,54 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         getExpDate : function(){
           return this.expDate;
+        },
+        /**
+        * Flag for incomplete info
+        */
+        checkCompleteUserInfo : function(){
+          if(this.firstName.length === 0 ||
+             this.lastName.length === 0 ||
+             this.email.length === 0 ||
+             this.nationality.length === 0 ||
+             this.dob.length === 0 ||
+             this.expDate.length === 0){
+               return false;
+             }else{
+               return true;
+             }
+        },
+        // this method to clear all variables on canceling trip
+        clearVariables : function(){
+          this.selectedOriginAirport = "intial";
+          this.selectedDestinationAirport = "intial";
+          this.firstName = "";
+          this.lastName = "";
+          this.email = "";
+          this.nationality = "";
+          this.dob = "";
+          this.expDate = "";
+          this.seat = undefined;
+          this.possible = undefined;
+          this.class = undefined;
+        },
+        getCurrentUser:function(cb){
+          var user={};
+          user.fname=this.firstName;
+          user.lname= this.lastName;
+          user.email=this.email;
+          user.dob=this.dob;
+          user.nationality=this.nationality;
+          user.expDate=this.expDate;
+          cb(user);
+
+        },
+        addUser:function(user1){
+          return $http.post('/api/adduser',{user:user1});
+        },
+        reserveSeat:function(fn1,seat1){
+          return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
         }
+
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here
     };

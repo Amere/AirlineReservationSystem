@@ -137,17 +137,19 @@ router.get('/api/data/ips', function (req, res) {
  * @returns {Array}
  */
 
-router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function (req, res) {
-    var origin = req.params.origin;
-    var destination = req.params.destination;
-    var departingDate = req.params.departingDate;
-    var returningDate = req.params.returningDate;
-    var x = moment(departingDate).toDate().getTime();
-    var y = moment(returningDate).toDate().getTime();
-    //var clas=req.params.class;
-    flights.getRoundTrip(origin, destination, x, y, db, function (err, result) {
-        res.json(result);
-    });
+router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var returningDate=req.params.returningDate;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+  var y=moment(returningDate).add(11, 'hours').toDate().getTime();
+  var clas=req.params.class;
+  //var clas=req.params.class;
+  flights.getRoundTrip(origin,destination,x,y,clas,db,function(err,result) {
+     res.json(result);
+   });
+
 });
 
 
@@ -158,14 +160,23 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
  * @param class - economy or business only
  * @returns {Array}
  */
-router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function (req, res) {
-    var origin = req.params.origin;
-    var destination = req.params.destination;
-    var departingDate = req.params.departingDate;
-    var x = moment(departingDate).toDate().getTime();
-    flights.getOneWayTrip(origin, destination, x, db, function (err, result) {
-        res.json(result);
-    });
+router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var clas=req.params.class;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+// console.log(departingDate);
+   console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
+    console.log(x+"*********");
+//     console.log(y);
+     console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+
+//  var x=moment(departingDate).toDate().getTime();
+  flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
+    res.json(result);
+  });
+
 });
 /**
  * All Flights ENDPOINT
@@ -176,6 +187,31 @@ router.get('/api/all', function (req, res) {
         res.json(result);
     });
 });
+router.post('/api/adduser',function(req,res){
+  var user= req.body.user;
+  db.db().collection('users').insert(user,function(err,docs){
+    if (err) throw err;
+  });
+});
+router.post('/api/updateSeat',function(req,res) {
+    var fn = req.body.fn;
+    var sn = req.body.sn;
+    db.db().collection('flightsXaircrafts').findOne({flightNumber: fn}, function (err, data) {
+        var cc = data.plane;
+        for (var i = 0; i < cc.economeySeats.length; i++) {
+            for (var j = 0; j < cc.economeySeats[i].length; j++) {
+                if (cc.economeySeats[i][j].seatCode == sn) {
+                    cc.economeySeats[i][j].reserved = "true";
+                }
+            }
+        }
+        db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
+            if (err) throw err;
+        });
+    });
+});
+
+
 
 router.get('/api/data/codes', function (req, res) {
     var codes = require('../airports.json');
@@ -205,5 +241,6 @@ router.get('/api/data/nations', function (req, res) {
     var nat = require('../nationalities.json');
     res.json(nat);
 });
+
 
 module.exports = router;

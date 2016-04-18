@@ -1,4 +1,5 @@
 var con = require('../../db');
+var moment = require('moment');
 var flights = require('../../ReturningFlights.json');
 var aircraft = require('../../aircrafts.json');
 /**
@@ -6,6 +7,16 @@ var aircraft = require('../../aircrafts.json');
  * @returns void
  */
 exports.seed=function(cb) {
+  con.db().collection('users').find({},function(err,docs){
+    if(docs.length==0){
+    con.db().createCollection("users", function(err, collection){
+  	   if (err) throw err;
+
+  	   	console.log("Created userCollection");
+
+  	});
+  }
+  });
   con.db().collection('aircrafts').find({}).toArray(function(err,docs){
     if(docs.length==0){
       con.db().collection('aircrafts').insert(aircraft);
@@ -26,7 +37,7 @@ exports.seed=function(cb) {
   });
   con.db().collection('flights').find({}).toArray(function (err,docs) {
     if (docs.length==0) {
-    con.db().collection('flights').insert(require('../../flight.json'));
+    con.db().collection('flights').insert(require('../../ReturningFlights.json'));
     cb(err,true);
   }else {
     cb(err,false);
@@ -47,23 +58,31 @@ function getAllFlightsFromDB(cb) {
   });
 };
 
-/**
- * ROUND-TRIP SEARCH From DB
- * @param origin - Flight Origin Location - Airport Code
- * @param destination - Flight Destination Location - Airport Code
- * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
- * @param returningDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
- * @param class - economy or business only
- * @returns {Array}
- */
-function getRoundTrip(origin,destination,departingDate,returningDate,db,cb) {
-  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : departingDate,"returningDate" : returningDate}).toArray(function (err,fli) {
+
+//Search Round Trip for app.get Here
+
+
+
+function getRoundTrip(origin,destination,departingDate,returningDate,clas,db,cb) {
+var ret;
+ //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
+getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
+  if (err1) {
+  }else {
+    ret=result;
+  }
+});
+
+var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString(),"class":clas}).toArray(function (err,fli){
+
   if (fli.length==0) {
     cb(err,fli);
   }  else {
-    cb(null,fli);
+    cb(null,{ "outgoingFlights" : fli,"returningFlights" : ret});
   }
   });
+  //
+  //var data2=con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : returningDate}).toArray(function (err,fli)
 
 };
 /**
@@ -73,8 +92,10 @@ function getRoundTrip(origin,destination,departingDate,returningDate,db,cb) {
  * @param class - economy or business only
  * @returns {Array}
  */
-function getOneWayTrip(origin,destination,departingDate,db,cb) {
-  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : departingDate}).toArray(function (err,fli) {
+function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
+  console.log(departingDate+" "+origin+" "+destination+" "+clas);
+  console.log(typeof(DepartingDate));
+  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString(),"class":clas}).toArray(function (err,fli) {
     if (fli.length==0) {
       cb(err,fli);
     }  else {
@@ -83,6 +104,7 @@ function getOneWayTrip(origin,destination,departingDate,db,cb) {
   });
 
 };
+
 exports.getAllFlightsFromDB=getAllFlightsFromDB;
 exports.getRoundTrip=getRoundTrip;
 exports.getOneWayTrip=getOneWayTrip;
