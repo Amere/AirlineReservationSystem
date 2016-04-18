@@ -13,7 +13,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
 
     $scope.OneWayTable = function () {
         $scope.one = true;
-        $scope.dt2Flag = false;
+        $scope.round = false;
     };
     $scope.RoundtripTable = function () {
         $scope.one = false;
