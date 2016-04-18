@@ -10,4 +10,5 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ) {
     lufthansaServ.reserveSeat("SE1002",$scope.Confirm.seatCode);
 
   });
+
 });

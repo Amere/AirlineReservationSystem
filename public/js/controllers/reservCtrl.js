@@ -1,5 +1,5 @@
+lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
 
-lufthansa.controller('reservCtrl', function($scope, $location,lufthansaServ) {
 
   lufthansaServ.getAircraft().success(function(flight) {
 
@@ -14,17 +14,18 @@ lufthansa.controller('reservCtrl', function($scope, $location,lufthansaServ) {
    $scope.seatClass = lufthansaServ.getSeatClass_();
     $scope.payment = function(){
     $location.url('/payment');
+
     }
-    $scope.getSeatID = function(){
-       $scope.seatID=lufthansaServ.getSeat();
-      return lufthansaServ.getSeat();
+    $scope.getSeatID = function () {
+        $scope.seatID = lufthansaServ.getSeat();
+        return lufthansaServ.getSeat();
     }
-    $scope.isPossible = function(){
-      $scope.possible=lufthansaServ.getPossible();
-      return lufthansaServ.getPossible();
+    $scope.isPossible = function () {
+        $scope.possible = lufthansaServ.getPossible();
+        return lufthansaServ.getPossible();
     }
-    $scope.getSeatClass = function(){
-      $scope.seatClass=lufthansaServ.getSeatClass_();
-      return lufthansaServ.getSeatClass_();
+    $scope.getSeatClass = function () {
+        $scope.seatClass = lufthansaServ.getSeatClass_();
+        return lufthansaServ.getSeatClass_();
     }
 });
