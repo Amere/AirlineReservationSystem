@@ -14,7 +14,7 @@
       },{
         "class":"economy",
         "seatCode" : "K14",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"economy",
         "seatCode" : "K15",
@@ -22,7 +22,7 @@
       },{
         "class":"economy",
         "seatCode" : "K16",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"economy",
         "seatCode" : "K17",
@@ -30,11 +30,11 @@
       },{
         "class":"economy",
         "seatCode" : "K18",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"economy",
         "seatCode" : "K19",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"economy",
         "seatCode" : "K20",
@@ -51,7 +51,7 @@
       {
         "class":"economy",
         "seatCode" : "K23",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"economy",
         "seatCode" : "K24",
@@ -71,7 +71,7 @@
       },{
         "class":"economy",
         "seatCode" : "K28",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"economy",
         "seatCode" : "K29",
@@ -87,7 +87,7 @@
       },{
         "class":"economy",
         "seatCode" : "K32",
-        "reserved" : "true"
+        "reserved" : "false"
       }
       ],[
         {
@@ -97,7 +97,7 @@
         },{
           "class":"economy",
           "seatCode" : "H14",
-          "reserved" : "true"
+          "reserved" : "false"
         },{
           "class":"economy",
           "seatCode" : "H15",
@@ -105,7 +105,7 @@
         },{
           "class":"economy",
           "seatCode" : "H16",
-          "reserved" : "true"
+          "reserved" : "false"
         },{
           "class":"economy",
           "seatCode" : "H17",
@@ -113,11 +113,11 @@
         },{
           "class":"economy",
           "seatCode" : "H18",
-          "reserved" : "true"
+          "reserved" : "false"
         },{
           "class":"economy",
           "seatCode" : "H19",
-          "reserved" : "true"
+          "reserved" : "false"
         },{
           "class":"economy",
           "seatCode" : "H20",
@@ -134,7 +134,7 @@
         {
           "class":"economy",
           "seatCode" : "H23",
-          "reserved" : "true"
+          "reserved" : "false"
         },{
           "class":"economy",
           "seatCode" : "H24",
@@ -154,7 +154,7 @@
         },{
           "class":"economy",
           "seatCode" : "H28",
-          "reserved" : "true"
+          "reserved" : "false"
         },{
           "class":"economy",
           "seatCode" : "H29",
@@ -170,7 +170,7 @@
         },{
           "class":"economy",
           "seatCode" : "H32",
-          "reserved" : "true"
+          "reserved" : "false"
         }
         ],[
           {
@@ -180,7 +180,7 @@
           },{
             "class":"economy",
             "seatCode" : "G14",
-            "reserved" : "true"
+            "reserved" : "false"
           },{
             "class":"economy",
             "seatCode" : "G15",
@@ -188,7 +188,7 @@
           },{
             "class":"economy",
             "seatCode" : "G16",
-            "reserved" : "true"
+            "reserved" : "false"
           },{
             "class":"economy",
             "seatCode" : "G17",
@@ -196,11 +196,11 @@
           },{
             "class":"economy",
             "seatCode" : "G18",
-            "reserved" : "true"
+            "reserved" : "false"
           },{
             "class":"economy",
             "seatCode" : "G19",
-            "reserved" : "true"
+            "reserved" : "false"
           },{
             "class":"economy",
             "seatCode" : "G20",
@@ -217,7 +217,7 @@
           {
             "class":"economy",
             "seatCode" : "G23",
-            "reserved" : "true"
+            "reserved" : "false"
           },{
             "class":"economy",
             "seatCode" : "G24",
@@ -237,7 +237,7 @@
           },{
             "class":"economy",
             "seatCode" : "G28",
-            "reserved" : "true"
+            "reserved" : "false"
           },{
             "class":"economy",
             "seatCode" : "G29",
@@ -253,7 +253,7 @@
           },{
             "class":"economy",
             "seatCode" : "G32",
-            "reserved" : "true"
+            "reserved" : "false"
           }
           ],[
             {
@@ -263,7 +263,7 @@
             },{
               "class":"economy",
               "seatCode" : "C14",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "C15",
@@ -271,7 +271,7 @@
             },{
               "class":"economy",
               "seatCode" : "C16",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "C17",
@@ -279,11 +279,11 @@
             },{
               "class":"economy",
               "seatCode" : "C18",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "C19",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "C20",
@@ -300,7 +300,7 @@
             {
               "class":"economy",
               "seatCode" : "C23",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "C24",
@@ -320,7 +320,7 @@
             },{
               "class":"economy",
               "seatCode" : "C28",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "C29",
@@ -336,7 +336,7 @@
             },{
               "class":"economy",
               "seatCode" : "C32",
-              "reserved" : "true"
+              "reserved" : "false"
             }
           ],[
             {
@@ -346,7 +346,7 @@
             },{
               "class":"economy",
               "seatCode" : "A14",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "A15",
@@ -354,7 +354,7 @@
             },{
               "class":"economy",
               "seatCode" : "A16",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "A17",
@@ -362,11 +362,11 @@
             },{
               "class":"economy",
               "seatCode" : "A18",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "A19",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "A20",
@@ -383,7 +383,7 @@
             {
               "class":"economy",
               "seatCode" : "A23",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "A24",
@@ -403,7 +403,7 @@
             },{
               "class":"economy",
               "seatCode" : "A28",
-              "reserved" : "true"
+              "reserved" : "false"
             },{
               "class":"economy",
               "seatCode" : "A29",
@@ -419,7 +419,7 @@
             },{
               "class":"economy",
               "seatCode" : "A32",
-              "reserved" : "true"
+              "reserved" : "false"
             }
           ]
     ],
@@ -461,7 +461,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "H7",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "H8",
@@ -469,7 +469,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "H9",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "H10",
@@ -478,7 +478,7 @@
       {
         "class":"premiumEconomy",
         "seatCode" : "H11",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "H12",
@@ -486,7 +486,7 @@
       }],[{
         "class":"premiumEconomy",
         "seatCode" : "G6",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "G7",
@@ -494,7 +494,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "G8",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "G9",
@@ -506,7 +506,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "G11",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "G12",
@@ -526,7 +526,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "C9",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "C10",
@@ -555,7 +555,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "A9",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "A10",
@@ -563,7 +563,7 @@
       },{
         "class":"premiumEconomy",
         "seatCode" : "A11",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"premiumEconomy",
         "seatCode" : "A12",
@@ -576,11 +576,11 @@
       {
         "class":"business",
         "seatCode" : "K3",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"business",
         "seatCode" : "K4",
-        "reserved" : "true"
+        "reserved" : "false"
       },{
         "class":"business",
         "seatCode" : "K5",

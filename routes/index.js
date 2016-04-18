@@ -10,7 +10,11 @@ var router = express.Router();
  * Jwt package for json web token
  */
 var jwt = require('jsonwebtoken');
+<<<<<<< HEAD
 var flights = require('../public/Models/flights.js');
+=======
+var flights=require('../public/Models/flights.js');
+>>>>>>> 9c8fe886fc73e55f4953bf387c350c160a8cd027
 /**
  * Our DB connection
  */
@@ -47,20 +51,21 @@ router.get('/', function (req, res, next) {
 router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
     res.render('google7a607af0cf3cce8e.html');
 });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9c8fe886fc73e55f4953bf387c350c160a8cd027
 /* GET airports codes */
 router.get('/api/data/codes', function (req, res) {
     var codes = require('../airports.json');
     res.json(codes);
 });
-
 /* GET offers */
 router.get('/api/data/offers', function (req, res) {
     var offers = require('../offers.json');
     res.json(offers);
 });
-
 /* GET news */
 router.get('/api/data/news', function (req, res) {
     var news = require('../news.json');
@@ -70,7 +75,6 @@ router.get('/api/data/flight', function (req, res) {
     var dummy = require('../flight.json');
     res.json(dummy);
 });
-
 /* GET slides */
 router.get('/api/data/slides', function (req, res) {
     var slides = require('../slides.json');
@@ -101,6 +105,7 @@ router.get('/api/data/nations', function (req, res) {
  * @param name - Aircraft name
  * @returns {Array}
  */
+<<<<<<< HEAD
 router.get('/api/data/aircraft/:name', function (req, res) {
     db.db().collection('aircrafts').findOne({name: req.params.name}, function (err, data) {
         if (err) {
@@ -109,6 +114,16 @@ router.get('/api/data/aircraft/:name', function (req, res) {
             res.json(data);
         }
     });
+=======
+router.get('/api/data/aircraft/:flightNum',function(req,res){
+  db.db().collection('flightsXaircrafts').findOne({flightNumber:req.params.flightNum},function(err,data){
+    if(err){
+      console.log('error in retrieving aircraft');
+    }else{
+      res.json(data);
+    }
+  });
+>>>>>>> 9c8fe886fc73e55f4953bf387c350c160a8cd027
 });
 
 // router.use(function(req, res, next) {
