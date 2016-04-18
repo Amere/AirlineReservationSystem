@@ -64,23 +64,50 @@ function getAllFlightsFromDB(cb) {
 
 
 function getRoundTrip(origin,destination,departingDate,returningDate,clas,db,cb) {
-var ret;
+
  //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
-getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
-  if (err1) {
-  }else {
-    ret=result;
-  }
-});
+
 
 var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString(),"class":clas}).toArray(function (err,fli){
 
   if (fli.length==0) {
-    cb(err,fli);
+
   }  else {
-    cb(null,{ "outgoingFlights" : fli,"returningFlights" : ret});
+    getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
+      if (err1) {
+      }else {
+        cb(null,{ "outgoingFlights" : fli,"returningFlights" : result});
+      }
+    });
+
   }
   });
+  //
+  //var data2=con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : returningDate}).toArray(function (err,fli)
+
+};
+function getRoundTrip2(origin,destination,departingDate,returningDate,db,cb) {
+ //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
+if(origin!='initial' && destination!='initial' && departingDate!=undefined && returningDate != undefined){
+var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString()}).toArray(function (err,fli){
+
+  if (fli.length==0) {
+
+    throw err;
+    }  else {
+    getOneWayTrip2(destination,origin,returningDate,db,function (err1,result) {
+      if (err1) {
+        throw err1;
+      }else {
+      cb(null,{ "outgoingFlights" : fli,"returningFlights" : result});
+      }
+    });
+
+
+  }
+  });
+}
+cb(null,[]);
   //
   //var data2=con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departingDate" : returningDate}).toArray(function (err,fli)
 
@@ -104,7 +131,18 @@ function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
   });
 
 };
+function getOneWayTrip2(origin,destination,departingDate,db,cb) {
+  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString()}).toArray(function (err,fli) {
+    if (fli.length==0) {
+      cb(err,fli);
+    }  else {
+      cb(null,fli);
+    }
+  });
 
+};
 exports.getAllFlightsFromDB=getAllFlightsFromDB;
 exports.getRoundTrip=getRoundTrip;
 exports.getOneWayTrip=getOneWayTrip;
+exports.getOneWayTrip2=getOneWayTrip2;
+exports.getRoundTrip2=getRoundTrip2;

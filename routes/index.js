@@ -165,6 +165,19 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
    });
 
 });
+router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var returningDate=req.params.returningDate;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+  var y=moment(returningDate).add(11, 'hours').toDate().getTime();
+  //var clas=req.params.class;
+  flights.getRoundTrip2(origin,destination,x,y,db,function(err,result) {
+     res.json(result);
+   });
+
+});
 
 
 /**
@@ -181,13 +194,31 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class', fun
   var clas=req.params.class;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
 // console.log(departingDate);
-   console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
-    console.log(x+"*********");
+   console.log(moment(1460480400000+86400000).format('YYYY-MM-DD hh:mm A'));
+    console.log(moment('2016-04-12 07:00 PM', 'YYYY-MM-DD hh:mm A'));
 //     console.log(y);
      console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
 
 //  var x=moment(departingDate).toDate().getTime();
   flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
+    res.json(result);
+  });
+
+});
+router.get('/api/flights/search/:origin/:destination/:departingDate', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+// console.log(departingDate);
+   console.log(moment(1460480400000+86400000).format('YYYY-MM-DD hh:mm A'));
+    console.log(moment('2016-04-12 07:00 PM', 'YYYY-MM-DD hh:mm A'));
+//     console.log(y);
+     console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+
+//  var x=moment(departingDate).toDate().getTime();
+  flights.getOneWayTrip2(origin,destination,x,db,function(err,result) {
+    
     res.json(result);
   });
 
