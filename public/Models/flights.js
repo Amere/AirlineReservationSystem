@@ -7,6 +7,7 @@ var aircraft = require('../../aircrafts.json');
  * @returns void
  */
 exports.seed=function(cb) {
+  con.deleteDB();
   con.db().collection('users').find({},function(err,docs){
     if(docs.length==0){
     con.db().createCollection("users", function(err, collection){
@@ -88,9 +89,10 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
 /**
  * ONE-WAY SEARCH From DB
  * @param origin - Flight Origin Location - Airport Code
- * @param DepartingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
- * @param class - economy or business only
- * @returns {Array}
+ * @param destination - Flight Origin Location - Airport Code
+ * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+ * @param clas - economy or business only
+ * @returns call back function with the result
  */
 function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
   console.log(departingDate+" "+origin+" "+destination+" "+clas);
