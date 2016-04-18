@@ -238,7 +238,10 @@ lufthansa.factory('lufthansaServ', function ($http) {
 
         },
         addUser:function(user1){
-          return $http.post('api/adduser',{user:user1});
+          return $http.post('/api/adduser',{user:user1});
+        },
+        reserveSeat:function(fn1,seat1){
+          return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
         }
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

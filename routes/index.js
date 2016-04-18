@@ -11,6 +11,7 @@ var router = express.Router();
  */
 var jwt = require('jsonwebtoken');
 var flights=require('../public/Models/flights.js');
+
 /**
  * Our DB connection
  */
@@ -181,7 +182,25 @@ router.post('/api/adduser',function(req,res){
     if (err) throw err;
   });
 });
-// router.get('api/getSeat',function(req,res){
-//   db.db().collection('').findOne({},function());
-// });
+router.post('/api/updateSeat',function(req,res){
+  var fn=req.body.fn;
+  var sn= req.body.sn;
+  console.log(fn);
+  console.log(sn);
+  db.db().collection('flightsXaircrafts').findOne({flightNumber:fn},function(err,data){
+    var cc= data.plane;
+    for(var i=0;i<cc.economeySeats.length;i++){
+      for(var j=0;j<cc.economeySeats[i].length;j++){
+        if(cc.economeySeats[i][j].seatCode==sn){
+          cc.economeySeats[i][j].reserved="true";
+        }
+      }
+    }
+    db.db().collection('flightsXaircrafts').update({flightNumber:fn},{$set:{plane:cc}},function(err,data){
+      if(err) throw err;
+    });
+  });
+
+
+});
 module.exports = router;
