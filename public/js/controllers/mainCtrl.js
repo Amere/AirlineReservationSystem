@@ -18,13 +18,15 @@ $scope.dt2 = new Date(year, month, day);
 $scope.dt1Flag = true;
 $scope.dt2Flag = false;
 $scope.chekboxFlag=false;
- function flipCheck(){
-   $scope.chekboxFlag = !$scope.chekboxFlag;
- }
+  $scope.flipCheck=function(){
+   $scope.chekboxFlag = ! $scope.chekboxFlag;
+     console.log($scope.chekboxFlag+'testsss');
+ };
 
- function setOtherCompaniesFlag(){
+ $scope.setOtherCompaniesFlag = function() {
+     console.log($scope.chekboxFlag+'$scope.chekboxFlag$scope.chekboxFlag$scope.chekboxFlag');
    lufthansaServ.setOtherCompanies($scope.chekboxFlag);
- }
+ };
 
 
     $scope.one = true;
@@ -95,7 +97,7 @@ $scope.chekboxFlag=false;
         lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
     };
    // roundTripExternal();
-    //oneWayExternal();
+   // oneWayExternal();
 
 
     $scope.status = {
@@ -147,7 +149,9 @@ $scope.chekboxFlag=false;
 
             if (lufthansaServ.getSelectedDestinationAirport() != "intial" && lufthansaServ.getSelectedOriginAirport() != "intial") {
                 $scope.IsVisible = true;
+
                 console.log(lufthansaServ.getSelectedDestinationAirport()+"     ****");
+
                 round();
                 var element = document.getElementById('flightss');
                 var options = {

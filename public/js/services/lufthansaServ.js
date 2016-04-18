@@ -7,7 +7,10 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * Get Airports codes
          */
         getAirportCodes : function() {
-            return $http.get('/api/data/codes');
+            return $http.get('/api/data/codes',{
+                "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                }
+            });
         },
         //example for secured endpoint
         getAirportCodesSecured : function() {
@@ -98,7 +101,10 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * get Offers
          */
         getOffers : function(){
-            return $http.get('/api/data/offers');
+            return $http.get('/api/data/offers',{
+                "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                }
+            });
         },
         /**
          * ROUND-TRIP SEARCH From DB
@@ -154,7 +160,10 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * Get Slides End point API
          */
         getSlides :function(){
-            return $http.get('/api/data/slides');
+            return $http.get('/api/data/slides',{
+                "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                }
+            });
         },
         /**
          * Get Bookings End point API
@@ -226,7 +235,10 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getExternalFlightsOneWay : function(origin,destination,departingDate,Class){
             var res =[];
             var ips = [];
-            $http.get('/api/data/ips').success(function(result){
+            $http.get('/api/data/ips',{"headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                }}
+
+            ).success(function(result){
             ips= result;
             });
             console.log(ips[0]);
@@ -237,10 +249,14 @@ lufthansa.factory('lufthansaServ', function ($http) {
                     console.log(object);
                     var ip = object.ip;
                     var company = object.company;
-                    res.push($http.get(ip+'/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+Class,{
+                    $http.get(ip+'api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+Class,{
                         "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                         }
-                    }));
+                    }).success(function(data){
+                        res.push(data);
+                    }).error(function(){
+                        console.log('error will requesting '+ip);
+                    });
                     i++;                     //  increment the counter
                     if (i < ips.length) {            //  if the counter < 10, call the loop function
                         myLoop();             //  ..  again which will trigger another
