@@ -95,4 +95,5 @@ function getOneWayTrip(origin,destination,departingDate,db,cb) {
 };
 exports.getAllFlightsFromDB=getAllFlightsFromDB;
 exports.getRoundTrip=getRoundTrip;
+
 exports.getOneWayTrip=getOneWayTrip;

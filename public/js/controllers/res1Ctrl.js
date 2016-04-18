@@ -42,21 +42,23 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
     $scope.SetNation = function (item) {
         lufthansaServ.setSelectedNation(item);
     };
-    $scope.seats = function () {
-
-        if ($scope.firstName != null && $scope.lastName != null && $scope.email && $scope.nationality != null && $scope.expDate!=null && $scope.dob!=null) {
-            $location.url('/reservation');
-        }
+    $scope.seats = function(){
+      console.log(lufthansaServ.checkCompleteUserInfo());
+      if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
+          $location.url('/reservation');
+      }
     };
 
 
-    $scope.setUserInfo = function () {
-        lufthansaServ.setFirstName($scope.firstName);
-        lufthansaServ.setLastName($scope.lastName);
-        lufthansaServ.setEmail($scope.email);
-        lufthansaServ.setNationality($scope.nationality);
-        lufthansaServ.setDOB($scope.dob);
-        lufthansaServ.setExpDate($scope.expDate);
+    $scope.setUserInfo = function(){
+      lufthansaServ.setFirstName($scope.firstName);
+      lufthansaServ.setLastName($scope.lastName);
+      lufthansaServ.setEmail($scope.email);
+      lufthansaServ.setNationality($scope.nationality);
+      lufthansaServ.setDOB($scope.dob);
+      lufthansaServ.setExpDate($scope.expDate);
+  //      lufthansaServ.getCurrentUser();
+
     }
 
 
