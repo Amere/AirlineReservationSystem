@@ -17,7 +17,14 @@ $scope.dt2 = new Date(year, month, day);
 }
 $scope.dt1Flag = true;
 $scope.dt2Flag = false;
+$scope.chekboxFlag=false;
+ function flipCheck(){
+   $scope.chekboxFlag = !$scope.chekboxFlag;
+ }
 
+ function setOtherCompaniesFlag(){
+   lufthansaServ.setOtherCompanies($scope.chekboxFlag);
+ }
 
 
     $scope.one = true;
@@ -41,10 +48,12 @@ $scope.dt2Flag = false;
     $scope.OneWayFlags = function () {
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
+        lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
     };
     $scope.RoundtripFlags = function () {
         $scope.dt1Flag = true;
         $scope.dt2Flag = true;
+        lufthansaServ.setReturning_Or_Outgoing("Returning");
     };
 
     $scope.clearVars = function(){
@@ -61,7 +70,7 @@ $scope.dt2Flag = false;
     };
     $scope.pick = 'seat class';
     $scope.classes = [
-        'First class',
+        'business',
         'economy'
     ];
 
@@ -118,6 +127,7 @@ $scope.dt2Flag = false;
     };
     $scope.selectClass = function (item) {
         $scope.pick = item;
+        lufthansaServ.setSeatClass(item);
     };
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
     $scope.popup1 = {
@@ -255,8 +265,11 @@ lufthansaServ.setSelectedDestinationAirport(destAirport);
 $scope.SearchFlights = function() {
 $location.url('/return');
 };
-$scope.goToReservation = function(flight) {
-  lufthansaServ.setFlightNumber(flight);
+$scope.goToReservation = function(out,ret,dateOut,dateRet) {
+  lufthansaServ.setFlightNumberOutGoing(out);
+  lufthansaServ.setFlightNumberReturning(ret);
+  lufthansaServ.setDateOutGoing(dateOut);
+  lufthansaServ.setDateReturning(dateRet);
 $location.url('/reservation');
 };
 function setIata() {
@@ -329,9 +342,13 @@ oneWay();
 offers();
 /* Get news on page render */
 news();
-$scope.goToReservation = function(flightNumber) {
-  lufthansaServ.setFlightNumber(flightNumber);
-$location.url('/reserv1');
+$scope.goToReservation = function(out,ret,dateOut,dateRet) {
+  lufthansaServ.setFlightNumberOutGoing(out);
+  lufthansaServ.setFlightNumberReturning(ret);
+  lufthansaServ.setDateOutGoing(dateOut);
+  lufthansaServ.setDateReturning(dateRet);
+  $location.url('/reserv1');
+
 };
 $scope.directToOutgoingFlights = function() {
 $location.url('/outgoingFlights');

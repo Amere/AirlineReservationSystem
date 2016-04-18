@@ -47,15 +47,52 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getSelectedDestinationAirport : function() {
             return this.selectedDestinationAirport;
         },
-        setFlightNumber : function(value) {
+        setFlightNumberOutGoing : function(value) {
             this.flightNumber = value;
             console.log(value+" "+"ana el flightNumber");
         },
         /**
          * get Destination Airport
          */
-        getFlightNumber : function() {
+        getFlightNumberOutGoing : function() {
             return this.flightNumber;
+        },
+        setDateOutGoing : function(value) {
+            this.departureDateTime = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getDateOutGoing : function() {
+            return this.departureDateTime;
+        },
+        setFlightNumberReturning : function(value) {
+            this.flightNumber2 = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getFlightNumberReturning : function() {
+            return this.flightNumber2;
+        },
+        setDateReturning : function(value) {
+            this.departureDateTime2 = value;
+            console.log(value+" "+"ana el flightNumber");
+        },
+        /**
+         * get Destination Airport
+         */
+        getDateReturning : function() {
+            return this.departureDateTime2;
+        },
+        getReturning_Or_Outgoing : function() {
+            return this.flightNumber2;
+        },
+        setReturning_Or_Outgoing : function(value) {
+            this.ret = value;
+            console.log(value+" "+"ana el flightNumber");
         },
         /**
          * get Offers
@@ -264,6 +301,12 @@ lufthansa.factory('lufthansaServ', function ($http) {
          */
         setSeatClass : function(value){
           this.class=value;
+        },
+        setOtherCompanies : function(flag){
+          this.OtherCompaniesFlag=flag;
+        },
+        getOtherCompanies : function(){
+          return this.OtherCompaniesFlag;
         },
         /**
          * Set Seat Class

@@ -181,7 +181,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class', fun
   var clas=req.params.class;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
 // console.log(departingDate);
-   console.log(moment(1460451600000).format('YYYY-MM-DD hh:mm A'));
+   console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
     console.log(x+"*********");
 //     console.log(y);
      console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");

@@ -45,7 +45,12 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
     $scope.seats = function(){
       console.log(lufthansaServ.checkCompleteUserInfo());
       if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
+        var flag = lufthansaServ.getOtherCompaniesgetOtherCompanies();
+        if(flag==true){
+          $location.url('/payment');
+        }else{
           $location.url('/reservation');
+        }
       }
     };
 
