@@ -1,7 +1,7 @@
 /**
 * Main Controller
 */
-lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,smoothScroll) {
+lufthansa.controller('mainCtrl', function($scope,lufthansaServ,$location,$document,$log,smoothScroll,moment) {
 /*----------- Angular Bootstrap Datepicker -----------*/
 $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 $scope.format = $scope.formats[1];
@@ -16,6 +16,26 @@ $scope.dt = new Date(year, month, day);
 $scope.dt2 = new Date(year, month, day);
 
 };
+   $scope.pick ='seat class';
+   $scope.classes = [
+      'First class',
+      'economy'
+   ];
+   $scope.status = {
+      isopen: false
+   };
+   $scope.toggled = function(open) {
+      $log.log('Dropdown is now: ', open);
+   };
+   $scope.toggleDropdown = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status.isopen = !$scope.status.isopen;
+   };
+   $scope.selectClass =function(item){
+      $scope.pick = item;
+   };
+   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 $scope.popup1 = {
 opened: false
 };
@@ -28,14 +48,16 @@ $scope.ShowHide = function () {
 //If DIV is visible it will be hidden and vice versa.
 if($scope.IsVisible==true){
 $scope.IsVisible = false;
-}else{
-$scope.IsVisible = true;
-round();
-var element = document.getElementById('flightss');
-var options = {
-duration: 2000
-}
-smoothScroll(element,options);
+}else {
+  round();
+      $scope.IsVisible = true;
+    //  round();
+      var element = document.getElementById('flightss');
+      var options = {
+         duration: 2000
+      }
+      smoothScroll(element, options);
+
 }
 };
 $scope.resizeMap = function(){
@@ -61,6 +83,7 @@ smoothScroll(element,options);
 round();
 };
 $scope.ShowHide4 = function () {
+  oneWay();
 //If DIV is visible it will be hidden and vice versa.
 var element = document.getElementById('go2');
 var options = {
@@ -165,15 +188,37 @@ lufthansaServ.setSelectedDestinationAirport(destAirport);
 $scope.SearchFlights = function() {
 $location.url('/return');
 };
-$scope.goToReservation = function() {
+$scope.goToReservation = function(flight) {
+  lufthansaServ.setFlightNumber(flight);
 $location.url('/reservation');
 };
+function setIata() {
+  lufthansaServ.setSelectedOriginAirport("CAI");
+  lufthansaServ.setSelectedDestinationAirport("CAI");
+};
 function round() {
-   var origin=angular.element('#originAirports').val();
-   var destination=angular.element('#destinationAirports').val();
+
+
+    var origin=lufthansaServ.getSelectedOriginAirport();
+   var destination=lufthansaServ.getSelectedDestinationAirport();
    var departingDate=angular.element('#date1').val();
    var returningDate=angular.element('#date2').val();
-   lufthansaServ.getRound(origin,destination,departingDate,returningDate).success(function(result){
+  //  var x=moment(departingDate).toDate().getTime();
+  //  var y=moment(returningDate).toDate().getTime();
+  var clas=$scope.pick;
+   lufthansaServ.getRound(origin,destination,departingDate,returningDate,clas).success(function(result){
+   $scope.flights = result;
+   });
+};
+function oneWay() {
+   var origin=lufthansaServ.getSelectedOriginAirport();
+   var destination=lufthansaServ.getSelectedDestinationAirport();
+   var departingDate=angular.element('#date1').val();
+   var returningDate=angular.element('#date2').val();
+   var clas=$scope.pick;
+  //  var x=moment(departingDate).toDate().getTime();
+  //  var y=moment(returningDate).toDate().getTime();
+   lufthansaServ.getOneWay(origin,destination,departingDate,returningDate,clas).success(function(result){
    $scope.flights = result;
    });
 };
@@ -183,12 +228,19 @@ function round() {
 //    });
 //  };
 //   flight();
+function convert(mom) {
+  console.log(moment(mom).format('YYYY-MM-DD'));
+  return moment(mom).format('YYYY-MM-DD');
+}
+setIata();
 round();
+oneWay();
 /* Get offers on page render */
 offers();
 /* Get news on page render */
 news();
-$scope.goToReservation = function() {
+$scope.goToReservation = function(flightNumber) {
+  lufthansaServ.setFlightNumber(flightNumber);
 $location.url('/reserv1');
 };
 $scope.directToOutgoingFlights = function() {

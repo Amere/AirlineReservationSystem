@@ -110,26 +110,26 @@
                                                     </div>
                                                 </div>
                                                 <br>
+                                                    <div class="btn-group" uib-dropdown on-toggle="toggled(open)" >
+                                                        <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                                                            {{pick}} <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" id="cl"  aria-labelledby="single-button">
+                                                            <li role="menuitem" ng-repeat="item in classes" ng-click="selectClass(item)"><a href="#/">{{item}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <br>
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" value="false"> Search for flights in another companies</label>
+                                                    </div>
+                                                    <br>
                                                 <button type="button" class="btn btn-primary" id='btnSearch'  ng-click='ShowHide()'>Search Flights
-
-
-
-                                                <!-- MAIN BANNER -->
-
-                                                <!-- PROMOTIONAL OFFERS -->
-
-
 
 
                                                 </button>
                                               </form>
 
                                                 <br>
-
-                                                <!-- MAIN BANNER -->
-
-                                                <!-- PROMOTIONAL OFFERS -->
-
 
 
                                             </div>
@@ -204,13 +204,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr class="danger" ng-repeat="flight in flights">
+                          <tr class="danger" ng-repeat="flight in flights.outgoingFlights">
                           <td>{{flight.origin}}</td>
                           <td>{{flight.destination}}</td>
-                          <td>{{flight.departingDate}}</td>
-                          <td>3000</td>
+                          <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber)">Book</button>
                           </td>
                         </tr>
                         </tbody>
@@ -230,33 +230,17 @@
 
                   </thead>
                   <tbody>
-                    <tr class="danger" ng-repeat="flight in flights">
-                    <td>{{flight.departureCity}}</td>
-                    <td>{{flight.destinationCity}}</td>
-                    <td>{{flight.departureDate}}</td>
-                    <td>{{flight.priceClass.economyPrice}}</td>
+                    <tr class="danger" ng-repeat="flight in flights.returningFlights">
+                    <td>{{flight.origin}}</td>
+                    <td>{{flight.destination}}</td>
+                    <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                    <td>{{flight.cost}}</td>
                     <td>
-                      <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                      <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber)">Book</button>
                     </td>
                   </tr>
-                  <tr class="danger" ng-repeat="flight in flights">
-                  <td>{{flight.departureCity}}</td>
-                  <td>{{flight.destinationCity}}</td>
-                  <td>{{flight.departureDate}}</td>
-                  <td>{{flight.priceClass.economyPrice}}</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-                </tr>
-                <tr class="danger" ng-repeat="flight in flights">
-                <td>{{flight.departureCity}}</td>
-                <td>{{flight.destinationCity}}</td>
-                <td>{{flight.departureDate}}</td>
-                <td>{{flight.priceClass.economyPrice}}</td>
-                <td>
-                  <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                </td>
-              </tr>
+
+
 
 
                   </tbody>
@@ -282,13 +266,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr class="danger" ng-repeat="flight in flights">
-                          <td>{{flight.departureCity}}</td>
-                          <td>{{flight.destinationCity}}</td>
-                          <td>{{flight.departureDate}}</td>
-                          <td>{{flight.priceClass.economyPrice}}</td>
+                          <tr class="danger" ng-repeat="flight in flights.outgoingFlights">
+                          <td>{{flight.origin}}</td>
+                          <td>{{flight.destination}}</td>
+                          <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber)">Book</button>
                           </td>
                         </tr>
                         </tbody>
