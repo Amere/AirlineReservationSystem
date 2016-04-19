@@ -86,8 +86,9 @@ router.get('/api/data/flight', function (req, res) {
     res.json(dummy);
 });
 
-router.get('/api/data/pastFlights',function(req,res){
-  flights.getPastFlights(function(err,json){
+router.get('/api/data/pastFlights/:ref',function(req,res){
+  var book=req.params.ref;
+  flights.getPastFlights(book,function(err,json){
     if(!err){
       res.send(json);
     }
@@ -120,6 +121,12 @@ router.post('/api/adduser',function(req,res){
   db.db().collection('users').insert(user,function(err,docs){
     if (err) throw err;
     res.json(docs);
+  });
+});
+router.post('/api/addreservation',function(req,res){
+  var reserv= req.body.reserv;
+  db.db().collection('reservation').insert(reserv,function(err,docs){
+    if (err) throw err;
   });
 });
 router.post('/api/updateSeat',function(req,res) {
