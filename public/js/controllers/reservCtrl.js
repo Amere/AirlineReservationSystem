@@ -6,29 +6,36 @@ lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
        $scope.businessSeats = flight.plane.businessSeats;
        $scope.firstClassSeats = flight.plane.firstClassSeats;
-       console.log($scope.impFlg+"*******888888888888888********");
+       console.log($scope.flg+"*******888888888888888********");
    });
  }
+  if($scope.flg==1){
+    lufthansaServ.getAircraftRet().success(function(flight) {
+         $scope.economySeats = flight.plane.economeySeats;
+         $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
+         $scope.businessSeats = flight.plane.businessSeats;
+         $scope.firstClassSeats = flight.plane.firstClassSeats;
+     });
+  }
    $scope.setToReturn = function(){
-    console.log($scope.impFlg+"*******888888888888888********");
      lufthansaServ.getAircraftRet().success(function(flight) {
           $scope.economySeats = flight.plane.economeySeats;
           $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
           $scope.businessSeats = flight.plane.businessSeats;
           $scope.firstClassSeats = flight.plane.firstClassSeats;
       });
-   }
+   };
 
    $scope.seatID = lufthansaServ.getSeat();
    $scope.possible = lufthansaServ.getPossible();
    $scope.seatClass = lufthansaServ.getSeatClass_();
-   $scope.flgOutgoing = 'Returning';
+   $scope.flgOutgoing = lufthansaServ.getReturning_Or_Outgoing();
    $scope.flightRetNum = lufthansaServ.getFlightNumberReturning();
    $scope.flightOutNum = lufthansaServ.getFlightNumberOutGoing();
 
 
    $scope.proceed = function(){
-     if($scope.flgOutgoing =='Returning'  && $scope.flg==0) {$scope.setToReturn();lufthansaServ.setImpFlg(1);
+     if($scope.flgOutgoing =='Returning'  && $scope.flg==0) {$scope.setToReturn();lufthansaServ.setImpFlg(1); lufthansaServ.setSeat(undefined);
        $scope.ret();
      }
       else $scope.payment();

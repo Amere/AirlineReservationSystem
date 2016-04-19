@@ -396,6 +396,8 @@ You have choosed outgoing flight
 Your flight num {{flightOutNum}}
 </div>
 <div ng-if="flgOutgoing=='Returning' && flg==0">
+  You have choosed a returning flight
+  <br>
   Your outgoing flight number {{flightOutNum}}
   <br>
   Choose here your seat for your outgoing
@@ -524,7 +526,7 @@ Choose here your seat for your returning
                     <span class="alert alert-success" role="alert" ng-if="isPossible()==true">You have choosed an available seat!, you may proceed or choose another seat</span>
                     <span ng-if="isPossible()==true">
                       <button id="procced" name="procced" class="btn btn-primary" ng-click="proceed()" on-click="scrollTo(0,0)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        <div ng-if="flgOutgoing=='Returning'">
+                        <div ng-if="flgOutgoing=='Returning' && flg==0">
                         Choose you returning seat
                       </div>
                       <div ng-if="flgOutgoing!='Returning' || flg==1">

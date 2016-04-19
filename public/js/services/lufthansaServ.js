@@ -103,10 +103,11 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         //Outgoing Only or Returning
         getReturning_Or_Outgoing : function() {
-            return this.flightNumber2;
+            return this.RetFlg;
         },
         setReturning_Or_Outgoing : function(value) {
-            this.ret = value;
+            this.RetFlg = value;
+            console.log(value+" "+"ana flg");
         },
         /**
          * get Offers
@@ -133,6 +134,13 @@ lufthansa.factory('lufthansaServ', function ($http) {
               }
           });
         },
+        getRound2 : function (origin,destination,departingDate,returningDate) {
+
+          return  $http.get('/api/flights/searchSecure/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate+'/',{
+              "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+              }
+          });
+        },
         /**
          * One way SEARCH From DB
          * @param origin - Flight Origin Location - Airport Code
@@ -142,7 +150,13 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * @returns {Array}
          */
         getOneWay : function (origin,destination,departingDate,clas) {
-            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+clas+'/',{
+            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/'+clas,{
+                "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                }
+            });
+        },
+        getOneWay2 : function (origin,destination,departingDate) {
+            return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -195,7 +209,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * Get Past flights End point API
          */
         getPastFlights : function(){
-            return $http.get('api/data/pastFlights',{
+            return $http.get('/api/data/pastFlights',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -412,6 +426,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
         clearVariables : function(){
           this.selectedOriginAirport = "intial";
           this.selectedDestinationAirport = "intial";
+        //  this.
           this.firstName = "";
           this.lastName = "";
           this.email = "";
