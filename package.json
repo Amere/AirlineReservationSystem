@@ -29,6 +29,8 @@
     "moment"      : "*",
     "chai" : "*",
     "supertest" : "*",
-    "mocha" : "*"
+    "mocha" : "*",
+    "async" : "*",
+    "request" : "*"
   }
 }

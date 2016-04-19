@@ -17,6 +17,7 @@ if(lufthansaServ.paymentFlag === true){
 
     $scope.flg = lufthansaServ.getReturning_Or_Outgoing();
     if($scope.flg=="Returning"){
+
       $scope.rr=true;
       var reserv2={};
       $scope.rSeat=lufthansaServ.getSeat();
@@ -67,6 +68,7 @@ if(lufthansaServ.paymentFlag === true){
         reserv.bookingRefNum=res;
         lufthansaServ.addReservation(reserv);
       });
+
     }
 
 

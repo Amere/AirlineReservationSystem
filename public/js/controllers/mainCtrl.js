@@ -318,6 +318,7 @@ function round() {
   //  var y=moment(returningDate).toDate().getTime();
   var clas=$scope.pick;
     lufthansaServ.getRound(origin,destination,departingDate,returningDate,clas).success(function(result){
+        console.log(result);
         $scope.flights = result;
     });
 
@@ -347,7 +348,7 @@ function oneWay() {
     //  var x=moment(departingDate).toDate().getTime();
     //  var y=moment(returningDate).toDate().getTime();
     lufthansaServ.getOneWay(origin,destination,departingDate,clas).success(function(result){
-        console.log(result[0]);
+        console.log(result);
         $scope.flights = result;
     });
 
