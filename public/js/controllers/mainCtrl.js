@@ -101,9 +101,9 @@ function setImp(){
         var clas=$scope.pick;
         //  var x=moment(departingDate).toDate().getTime();
         //  var y=moment(returningDate).toDate().getTime();
-        lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
+        lufthansaServ.getExternalFlightsRound('CAI','JED','1460478300000','1460478300000','economy');
     };
-   // roundTripExternal();
+    roundTripExternal();
    // oneWayExternal();
 
 

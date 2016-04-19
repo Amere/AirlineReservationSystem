@@ -40,7 +40,7 @@ db.connect(function (err, db) {
  */
 router.all('*',function(req,res,next){
    res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Headers','X-Requested-With');
+   res.header('Access-Control-Allow-Headers','x-access-token');
     next();
 });
 
@@ -114,25 +114,25 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
  * an unauthorised person
  */
 
-// router.use(function(req, res, next) {
-//
-//     // check header or url parameters or post parameters for token
-//     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
-//
-//     var jwtSecret = process.env.JWTSECRET;
-//     //console.log(jwtSecret);
-//     // Get JWT contents:
-//     jwt.verify(token,jwtSecret, function(err, decoded) {
-//         if(err){
-//             //console.log(err);
-//             res.send('unauthorised access');
-//         }else {
-//             //console.log('verified');
-//             next();
-//         }
-//     });
-//
-// });
+ router.use(function(req, res, next) {
+
+     // check header or url parameters or post parameters for token
+     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
+
+     var jwtSecret = process.env.JWTSECRET;
+     //console.log(jwtSecret);
+     // Get JWT contents:
+     jwt.verify(token,jwtSecret, function(err, decoded) {
+         if(err){
+             //console.log(err);
+             res.send('unauthorised access');
+         }else {
+             //console.log('verified');
+             next();
+         }
+     });
+
+ });
 
 
 router.get('/api/data/conf', function (req, res) {
