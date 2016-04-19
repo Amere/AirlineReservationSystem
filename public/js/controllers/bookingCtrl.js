@@ -22,7 +22,6 @@ $scope.getMyBookings = function (book){
    console.log("bookref"+ $scope.book);
    lufthansaServ.getMyBookings($scope.book).success(function(data){
       $scope.bookings=data;
-
       console.log("in booking", data);
    }).error(function(response) {
      console.log(response, 'error');
