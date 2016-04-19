@@ -1,17 +1,10 @@
 lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
-<<<<<<< HEAD
 
-
-  lufthansaServ.getAircraft().success(function(flight) {
-
-
-      $scope.economySeats = flight.plane.economeySeats;
-=======
   $scope.flg = lufthansaServ.getImpFlg();
   if ($scope.flg==0) {
   lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;
->>>>>>> 77e37cef8a7e63d20c9ac2791d350b0cd1eed551
+
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
        $scope.businessSeats = flight.plane.businessSeats;
        $scope.firstClassSeats = flight.plane.firstClassSeats;
