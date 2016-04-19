@@ -52,17 +52,26 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         setFlightNumberOutGoing : function(value) {
             this.flightNumber = value;
-            console.log(value+" "+"ana el flightNumber");
+            console.log(this.flightNumber+"**************************");
+
         },
         /**
          * get Destination Airport
          */
         getFlightNumberOutGoing : function() {
+          console.log(this.flightNumber+"**************************");
             return this.flightNumber;
+
+        },
+        getImpFlg : function(){
+          return this.ImpFlg;
+        },
+        setImpFlg : function(val){
+          this.ImpFlg = val;
         },
         setDateOutGoing : function(value) {
             this.departureDateTime = value;
-            console.log(value+" "+"ana el flightNumber");
+
         },
         /**
          * get Destination Airport
@@ -72,17 +81,19 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         setFlightNumberReturning : function(value) {
             this.flightNumber2 = value;
-            console.log(value+" "+"ana el flightNumber");
+            console.log(this.flightNumber2+"**************************");
+
         },
         /**
          * get Destination Airport
          */
         getFlightNumberReturning : function() {
+          console.log(this.flightNumber2+"**************************");
+
             return this.flightNumber2;
         },
         setDateReturning : function(value) {
             this.departureDateTime2 = value;
-            console.log(value+" "+"ana el flightNumber");
         },
         /**
          * get Destination Airport
@@ -90,12 +101,12 @@ lufthansa.factory('lufthansaServ', function ($http) {
         getDateReturning : function() {
             return this.departureDateTime2;
         },
+        //Outgoing Only or Returning
         getReturning_Or_Outgoing : function() {
             return this.flightNumber2;
         },
         setReturning_Or_Outgoing : function(value) {
             this.ret = value;
-            console.log(value+" "+"ana el flightNumber");
         },
         /**
          * get Offers
@@ -149,8 +160,14 @@ lufthansa.factory('lufthansaServ', function ($http) {
         /**
          * Get Aircraft End point API
          */
-        getAircraft : function() {
-            return $http.get('/api/data/aircraft/SE1002/',{
+        getAircraftOut : function() {
+            return $http.get('/api/data/aircraft/'+this.flightNumber+'/',{
+                "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+                }
+            });
+            //return $http.get('/api/data/dummy');
+        },getAircraftRet : function() {
+            return $http.get('/api/data/aircraft/'+this.flightNumber2+'/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });

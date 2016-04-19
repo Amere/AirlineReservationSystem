@@ -93,7 +93,7 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
  */
-router.use(function(req, res, next) {
+/*router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['token'];
@@ -113,7 +113,7 @@ router.use(function(req, res, next) {
 
 });
 
-
+*/
 router.get('/api/data/conf', function (req, res) {
     var dummy = require('../confirm.json');
     res.json(dummy);
@@ -143,7 +143,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
   var departingDate=req.params.departingDate;
   var returningDate=req.params.returningDate;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
-  var y=moment(returningDate).add(11, 'hours').toDate().getTime();
+  var y=moment(returningDate).add(19, 'hours').toDate().getTime();
   var clas=req.params.class;
   //var clas=req.params.class;
   flights.getRoundTrip(origin,destination,x,y,clas,db,function(err,result) {
@@ -166,13 +166,6 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class', fun
   var departingDate=req.params.departingDate;
   var clas=req.params.class;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
-// console.log(departingDate);
-   console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
-    console.log(x+"*********");
-//     console.log(y);
-     console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
-
-//  var x=moment(departingDate).toDate().getTime();
   flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
     res.json(result);
   });
