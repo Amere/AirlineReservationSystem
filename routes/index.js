@@ -143,7 +143,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
   var departingDate=req.params.departingDate;
   var returningDate=req.params.returningDate;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
-  var y=moment(returningDate).add(11, 'hours').toDate().getTime();
+  var y=moment(returningDate).add(19, 'hours').toDate().getTime();
   var clas=req.params.class;
   //var clas=req.params.class;
   flights.getRoundTrip(origin,destination,x,y,clas,db,function(err,result) {
@@ -167,10 +167,10 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class', fun
   var clas=req.params.class;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
 // console.log(departingDate);
-   console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
-    console.log(x+"*********");
+  //  console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
+  //   console.log(x+"*********");
 //     console.log(y);
-     console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+  //   console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
 
 //  var x=moment(departingDate).toDate().getTime();
   flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
@@ -203,6 +203,13 @@ router.post('/api/updateSeat',function(req,res) {
             for (var j = 0; j < cc.economeySeats[i].length; j++) {
                 if (cc.economeySeats[i][j].seatCode == sn) {
                     cc.economeySeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.businessSeats.length; i++) {
+            for (var j = 0; j < cc.businessSeats[i].length; j++) {
+                if (cc.businessSeats[i][j].seatCode == sn) {
+                    cc.businessSeats[i][j].reserved = "true";
                 }
             }
         }

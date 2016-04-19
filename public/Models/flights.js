@@ -73,7 +73,7 @@ getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
   }
 });
 
-var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString(),"class":clas}).toArray(function (err,fli){
+var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate,"class":clas}).toArray(function (err,fli){
 
   if (fli.length==0) {
     cb(err,fli);
@@ -95,7 +95,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
 function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
   console.log(departingDate+" "+origin+" "+destination+" "+clas);
   console.log(typeof(DepartingDate));
-  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate.toString(),"class":clas}).toArray(function (err,fli) {
+  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate,"class":clas}).toArray(function (err,fli) {
     if (fli.length==0) {
       cb(err,fli);
     }  else {
