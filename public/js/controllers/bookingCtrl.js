@@ -11,9 +11,11 @@ lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
  };
 
  function pastflights(bookref){
-$scope.
-   lufthansaServ.getPastFlights().success(function(data){
+$scope.bookref=bookref;
+   lufthansaServ.getPastFlights(bookref).success(function(data){
      $scope.Pastflights=data;
+   }).error(function(response) {
+     console.log(response, 'error');
    });
  };
 

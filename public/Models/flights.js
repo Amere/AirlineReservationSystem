@@ -200,7 +200,7 @@ function getMyBookings(book,cb) {
         } else {
           for (i = 0; i < fli.length; i++) {
             console.log("in theloooooooooooooooooooooooooooooooooooooooooooooooooooop");
-            if (fli[i].departureDateTime < Date.now()) {
+            if (fli[i].departureDateTime > Date.now()) {
               r = fli.map(function(el) {
                 //console.log(el);
                 return el;
@@ -216,21 +216,23 @@ function getMyBookings(book,cb) {
 }
 
 
-function getPastFlights(cb) {
-  var returned;
-  var r;
-
-
-  con.db().collection('reservation').find({}, {
-    "flight": 'SE2800'
+function getPastFlights(book,cb) {
+    var returned;
+    var r;
+  //console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
+   console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee:",book);
+   con.db().collection('reservation').find({
+     bookingRefNum : book
   }).toArray(function(err, fl) {
     if (fl.length == 0) {
       console.log("Err1:" + err);
     } else {
+        console.log("asdasfgdghfgjdhgkghlhijluyutyrterweqwertyuio324354456");
       returned = fl.map(function(el) {
+        console.log(el.flight);
         return el.flight;
       });
-      con.db().collection('flights').find({
+      con.db().collection('ReturningFlights').find({
         "flightNumber": {
           $in: returned
         }
@@ -239,13 +241,16 @@ function getPastFlights(cb) {
           console.log("Err2:" + err);
         } else {
           for (i = 0; i < fli.length; i++) {
+            console.log("in theloooooooooooooooooooooooooooooooooooooooooooooooooooop");
             if (fli[i].departureDateTime < Date.now()) {
               r = fli.map(function(el) {
+                //console.log(el);
                 return el;
               });
             }
           }
         }
+        console.log(r);
         cb(null, r);
       });
     }
