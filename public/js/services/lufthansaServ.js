@@ -1,8 +1,38 @@
 /**
  * Flights Service
  */
-lufthansa.factory('lufthansaServ', function ($http) {
+lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
+   var externalOne = function(origin,destination,departingDate,Class){
+       var res =[];
+       var ips = [];
+       $http.get('/api/data/ips',{"headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+           }}
 
+       ).success(function(result){
+           ips= result;
+           var i = 0;
+           var deferred = $q.defer();//  set your counter to 1
+           function myLoop () {           //  create a loop function
+               $timeout(function () {    //  call a 3s setTimeout when the loop is called
+                   $http.get(ips[i].ip + 'api/flights/search/' + origin + '/' + destination + '/' + departingDate + '/' + Class + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE').success(function (dataOut) {
+                       // console.log(dataOut.outgoingFlights[0]);
+                       res=res.concat(dataOut);
+                       if(i==ips.length){
+                           console.log(res.length);
+                           deferred.resolve(res);
+                           return deferred.promise;
+
+                       }
+                   });
+                   i++;                     //  increment the counter
+                   if (i < ips.length) {            //  if the counter < 10, call the loop function
+                       myLoop();             //  ..  again which will trigger another
+                   }                        //  ..  setTimeout()
+               }, 2000)
+           }
+           myLoop();
+       });
+   }
 
     return {
         /**
@@ -257,28 +287,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
          * @param class - economy or business only
          * @returns {Array}
          */
-        getExternalFlightsOneWay : function(origin,destination,departingDate,Class){
-            var res =[];
-            var ips = [];
-            $http.get('/api/data/ips',{"headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
-                }}
-
-            ).success(function(result){
-                ips= result;
-                var i = 0;
-                for( i = 0 ;i<ips.length;i++) {
-                    $http.get(ips[i].ip + 'api/flights/search/' + origin + '/' + destination + '/' + departingDate + '/' + Class + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE').success(function (dataOut) {
-                        // console.log(dataOut.outgoingFlights[0]);
-                        res=res.concat(dataOut);
-                        if(i==ips.length){
-                            // console.log(res[1].outgoingFlights[0]);
-                            return res;
-                        }
-                    });
-                }
-            });
-
-        },
+        getExternalFlightsOneWay : externalOne ,
         /**
          * Get Nationalities flights End point API
          */
