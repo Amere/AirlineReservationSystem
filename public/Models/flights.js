@@ -156,7 +156,7 @@ function getOneWayTrip2(origin,destination,departingDate,db,cb) {
       console.log('Tessssssssssssst');
       cb(err,fli);
     }  else {
-      cb(null,fli);
+      cb(null,{"outgoingFlights" : fli});
     }
   });
 };
