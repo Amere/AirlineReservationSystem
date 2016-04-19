@@ -1,6 +1,11 @@
 lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
 
   $scope.flg = lufthansaServ.getImpFlg();
+  console.log(lufthansaServ.reservInfoFlag);
+  if(lufthansaServ.reservInfoFlag != true){
+    $location.url('/');
+  }
+
   if ($scope.flg==0) {
   lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;

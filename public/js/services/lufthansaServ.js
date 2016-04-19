@@ -442,6 +442,12 @@ lufthansa.factory('lufthansaServ', function ($http) {
           this.seat = undefined;
           this.possible = undefined;
           this.class = undefined;
+          this.landingFlag = false;
+          this.reservInfoFlag = false;
+          this.paymentFlag = false;
+          this.confirmFlag = false;
+          this.OtherCompaniesFlag = false;
+          console.log(this.OtherCompaniesFlag);
         },
         //return all the details of the user in a single option for confirnation page
         getCurrentUser:function(cb){
@@ -465,6 +471,18 @@ lufthansa.factory('lufthansaServ', function ($http) {
         //responsible for updating the seatmap and reserving a seat
         reserveSeat:function(fn1,seat1){
           return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
+        },
+        setLandingFlag : function(){
+          this.landingFlag = true;
+        },
+        setReservInfoFlag : function(){
+          this.reservInfoFlag = true;
+        },
+        setPaymentFlag : function(){
+          this.paymentFlag = true;
+        },
+        setConfirmFlag : function(){
+          this.confirmFlag = true;
         },
         // return the reference number for this reservation
         getReceipt:function(){

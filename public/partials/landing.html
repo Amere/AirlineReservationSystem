@@ -217,7 +217,7 @@
                           <td ng-repeat="returning in flights.returningFlights"><span>{{returning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td ng-repeat="returning in flights.returningFlights">{{returning.cost}}</td>
                           <td ng-repeat="outgoing in flights.outgoingFlights">
-                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="setLandingFlag(); goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
                           </td>
 
                           <!-- <td>
@@ -280,7 +280,7 @@
                           <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber)">Book</button>
                           </td>
                         </tr>
                         </tbody>

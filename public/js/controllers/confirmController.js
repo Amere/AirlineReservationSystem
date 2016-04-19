@@ -1,7 +1,16 @@
-lufthansa.controller('confirmController', function($scope, lufthansaServ) {
+lufthansa.controller('confirmController', function($scope, lufthansaServ, $location) {
   // lufthansaServ.getConfirmDummy().success(function(dummy) {
   //      $scope.Confirm = dummy;
   //  });
+
+  if(lufthansaServ.paymentFlag != true){
+    $location.url('/');
+  }
+
+  $scope.setConfirmFlag = function(){
+    lufthansaServ.confirmFlag();
+  };
+if(lufthansaServ.paymentFlag === true){
   lufthansaServ.getCurrentUser(function(user){
     $scope.Confirm=user;
 
@@ -36,9 +45,11 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ) {
       lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(),$scope.Confirm.seatCode);
 
     }
+
     lufthansaServ.addUser(user,function(res){
       $scope.receipt=res;
     });
   });
+}
 
 });
