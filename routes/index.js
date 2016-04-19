@@ -91,25 +91,25 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
  */
-// router.use(function(req, res, next) {
-//
-//     // check header or url parameters or post parameters for token
-//     var token = req.body.token || req.query.token || req.headers['token'];
-//
-//     var jwtSecret = process.env.JWTSECRET;
-//     console.log(jwtSecret);
-//     // Get JWT contents:
-//     jwt.verify(token,jwtSecret, function(err, decoded) {
-//         if(err){
-//             console.log(err);
-//             res.send('unauthorised access');
-//         }else {
-//             console.log('verified');
-//             next();
-//         }
-//     });
-//
-// });
+router.use(function(req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['token'];
+
+    var jwtSecret = process.env.JWTSECRET;
+    console.log(jwtSecret);
+    // Get JWT contents:
+    jwt.verify(token,jwtSecret, function(err, decoded) {
+        if(err){
+            console.log(err);
+            res.send('unauthorised access');
+        }else {
+            console.log('verified');
+            next();
+        }
+    });
+
+});
 
 
 router.get('/api/data/conf', function (req, res) {
