@@ -1,4 +1,3 @@
-
 <div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/a3.jpg);" >
     <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
@@ -7,39 +6,43 @@
                 <div class="full-height js-full-height">
                     <div class="fh5co-cover-intro col-md-12">
 
-            <br> <br><br><br><br><br><br><br><br><br>
+            <br> <br><br><br><br>
 
 <uib-tabset active="active">
-	</uib-tab>
+</uib-tab>
     <uib-tab index="0" heading="My Bookings">
     <br>
     <div class="container">
-	<div class="col-md-1">
-						<img src="images/images (1).png" alt="HTML5 Icon" height="50px" width="50px">
-					</div>
-					<div class="col-md-4">
-						<h2>Your Flights</h2>
-					</div>
-					</div>
+<div class="col-md-1">
+<img src="images/images (1).png" alt="HTML5 Icon" height="50px" width="50px">
+</div>
+<div class="col-md-4">
+
+<h2>Your Flights</h2>
+</div>
+</div>
     <div>
-    <div class="container-fluid">
-	<button type="button" class="btn btn-info" ng-click="collapse = !collapse">Flight Schedule
-	</button>
-	</div>
-	<div uib-collapse="collapse">
-  <div class="container">
-		<div class="well well-lg"  ng-repeat="flights in bookings">
-       <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
+    <div>
+    <font color="120F0F"><b>
+     Booking Reference Number:
+     </b></font> <input type="text" ng-model="book"/><br>
+    <br>
+    <button type="button" class="btn btn-info" ng-click="getMyBookings(book)">Check Your Flight Schedule
+    </button>
+    </div>
+    <br>
+    <h4>NB: If nothing is displayed, then there are no bookings</h4>
+    <br>
+    <div class="container">
+    <div class="well well-lg"  ng-repeat="flights in bookings" ng-hide="flights.hidden">
+        <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
+
   <font color="#8C001A">
   <i>
-   <div class="col-md-1">
-   {{ flights.class }}
-   </div>
-    <div class="col-md-1">
-
+   <div class="col-md-2">
    {{ flights.flightNumber }}
    </div>
-   <div class="col-md-2">
+    <div class="col-md-1">
 
    {{ flights.aircraftType }}
    </div>
@@ -47,32 +50,39 @@
 
    {{ flights.aircraftModel }}
    </div>
+   <div class="col-md-1">
+
+   {{ flights.class }}
+   </div>
     <div class="col-md-2">
 
+   {{ flights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+   </div>
+    <div class="col-md-2">
+   {{ flights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+   </div>
+   <div class="col-md-2">
    {{ flights.cost }}
    </div>
-    <div class="col-md-2">
-   {{ flights.arrivalDateTime }}
-   </div>
-    <div class="col-md-2">
-   {{ flights.departureDateTime }}
-   </div>
-
-
    </i>
+   <br>
+   <br>
+    <button class="btn-warning" ng-click="hideMe(flights)">Cancel Booking</button>
+    </div>
    </font>
    <div>
-        <label>
+        <!-- <label>
             <br>
-            
+
+
             <input type="checkbox" ng-model="showData" ng-change="change()" />
            <font color="#25383C"> Rebook Flight </font>
         </label>
         <hr />
-       
+
     </div>
    </div>
-    <div class="container" ng-show='isVisible'>
+   <div class="container" ng-show='isVisible'>
 
                    <font color="#25383C"><h4>Please Pick Your New Flight Date</h4></font>
                    <div class="row">
@@ -98,42 +108,54 @@
 
                   </div>
 
+        </div> -->
         </div>
-   </div>
-   </div>
+</div>
    </div>
     </uib-tab>
     <uib-tab index="1" heading="My Past Flights">
     <div class="container">
+     <br>
+     <div>
+    <font color="120F0F"><b>
+     Booking Reference Number:
+     </b></font> <input type="text" ng-model="bookref"/><br>
+    <br>
+    <button type="button" class="btn btn-info" ng-click="pastflights(bookref)">Check Your Flight Schedule
+    </button>
+    </div>
+    <br>
+     <h4>NB: If nothing is displayed, then there are no past flights</h4>
+     <br>
     <div class="well well-lg" ng-repeat="pastflights in Pastflights">
-        <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
+     <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
      <font color=" #8C001A">
     <i>
     <div class= "col-md-1">
-    {{ pastflights.class }}
+    {{ pastflights.origin }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.aircraft }}
+    {{ pastflights.destination }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.departureDateTime }}
+    {{ pastflights.flightNumber }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.arrivalDate }}
-    </div>
-    <div class= "col-md-1">
-    {{ pastflights.departureCity }}
-    </div>
-    <div class= "col-md-1">
-    {{ pastflights.destinationCity }}
+    {{ pastflights.aircraftType }}
     </div>
     <div class= "col-md-2">
-    {{ pastflights.duration }}
+    {{ pastflights.aircraftModel }}
+    </div>
+    <div class= "col-md-2">
+    {{ pastflights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+    </div>
+    <div class= "col-md-2">
+    {{ pastflights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
     </div>
    </i>
     </font>
     <div>
-    
+
     </div>
     <div>
     <br><br><br>
@@ -142,22 +164,45 @@
     <span class="label" ng-show="overStar"></span>
     <pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>
    </div>
+
+
+
+ </div>
+ <script type="text/javascript">
+  var inputArray = [];
+var input = document.getElementById('inputbox');
+var screen = document.getElementById('screen');
+
+document.getElementById('display').onclick = function () {
+  inputArray.push(input.value);
+    screen.innerHTML = inputArray;
+};
+
+
+   </script>
+
+
+
    <form>
    <div class="form-group">
-        <font color="#25383C"><label><b>Recommendations</b></label></font>
-        <input type="text" name="name" class="form-control" ng-model="recommend">
-        <br>
-        <button type="submit" class="btn btn-primary">Add</button>
-        
-    <font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font>
-    <font color=" #8C001A">
-  <i><div>{{ pastflights.comments }}</div></i></font>
-    </div>
-</form>
+       <font color="#25383C"><label><b>Recommendations</b></label></font>
+        <input type="text" id="inputbox" class="form-control">
+        <br/>
+        <button type="button" id="display" class="btn btn-primary" ng-model="showData">Add</button>
+        <br/>
+
+        <div class="wrapper">
+         <font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font></p>
+         <div id="screen"></div>
+         </div></div>
+   </div>
+
+    </form>
  </div>
- </div>
+
   </uib-tabset>
   </uib-tab>
+
 
   <hr />
 

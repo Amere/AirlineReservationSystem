@@ -5,12 +5,14 @@ var flights = require('../../ReturningFlights.json');
 var aircraft = require('../../aircrafts.json');
 
 exports.seed=function(cb) {
- // con.deleteDB();
-  con.db().collection('users').find({},function(err,docs){
+ //con.deleteDB();
+  con.db().collection('users').find({}).toArray(function(err,docs){
     if(docs.length==0){
+      //console.log("HEREEE");
     con.db().createCollection("users", function(err, collection){
          if (err) throw err;
-             console.log("Created userCollection");
+         //console.log("HEREEE1");
+         console.log("Created userCollection");
       });
   }
   });
@@ -42,9 +44,14 @@ exports.seed=function(cb) {
     if (length > 0) {
       console.log("insertions occured");
     } else {
-      con.db().collection('reservation').insert(require('../../reservation'), function(err, response) {
-        console.log("initially empty");
-      });
+      con.db().createCollection("reservation", function(err, collection){
+           if (err) throw err;
+           //console.log("HEREEE1");
+           console.log("Created reservationCollection");
+        });
+      // con.db().collection('reservation').insert(require('../../reservation'), function(err, response) {
+      //   console.log("initially empty");
+      // });
     }
 
   });
@@ -94,7 +101,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
     getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
       if (err1) {
       }else {
-        cb(null,{ "outgoingFlights" : fli,"returningFlights" : result});
+        cb(null,{ "outgoingFlights" : fli,"returnFlights" : result});
       }
     });
 
@@ -117,7 +124,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
       if (err1) {
         throw err1;
       }else {
-      cb(null,{ "outgoingFlights" : fli,"returningFlights" : result});
+      cb(null,{ "outgoingFlights" : fli,"returnFlights" : result});
       }
     });
 
@@ -154,8 +161,6 @@ function getOneWayTrip2(origin,destination,departingDate,db,cb) {
   var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}]}).toArray(function (err,fli) {
 
     if (fli.length==0) {
-      console.log('Class');
-      console.log('Tessssssssssssst');
       cb(err,fli);
     }  else {
       cb(null,{"outgoingFlights" : fli});
@@ -173,30 +178,42 @@ function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
        }
      });
 };
-function getMyBookings(cb) {
+
+
+function getMyBookings(book,cb) {
     var returned;
-   var r
-   console.log("hreree");
-   con.db().collection('reservation').find({}, {
-    "flight": 'SE2800'
+    var returned1;
+    var r;
+  //console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
+   con.db().collection('reservation').find({
+     bookingRefNum : book
   }).toArray(function(err, fl) {
     if (fl.length == 0) {
-      console.log("Err1:" + err);
     } else {
       returned = fl.map(function(el) {
-        return el.flight;
+        return el.customer;
       });
-      con.db().collection('flights').find({
-        "flightNumber": {
+      con.db().collection('reservation').find({
+        "customer": {
           $in: returned
         }
       }).toArray(function(err, fli) {
         if (fli.length == 0) {
-          console.log("Err2:" + err);
+        } else {
+         returned1 = fl.map(function(el) {
+        return el.flight;
+      });
+           con.db().collection('flights').find({
+        "flightNumber": {
+          $in: returned1
+        }
+      }).toArray(function(err, fli) {
+        if (fli.length == 0) {
         } else {
           for (i = 0; i < fli.length; i++) {
-            if (fli[i].departureDateTime < Date.now()) {
+            if (fli[i].departureDateTime > Date.now()) {
               r = fli.map(function(el) {
+                //console.log(el);
                 return el;
               });
             }
@@ -204,41 +221,62 @@ function getMyBookings(cb) {
         }
         cb(null, r);
       });
+        }
+
+      });
+
     }
   });
-  }
+}
 
-function getPastFlights(cb) {
+
+function getPastFlights(bookref,cb) {
   var returned;
   var r;
 
-  con.db().collection('reservation').find({}, {
-    "flight": 'SE2800'
+
+  con.db().collection('reservation').find({
+     bookingRefNum : bookref
   }).toArray(function(err, fl) {
     if (fl.length == 0) {
-      console.log("Err1:" + err);
     } else {
       returned = fl.map(function(el) {
+        return el.customer;
+      });
+      con.db().collection('reservation').find({
+        "customer": {
+          $in: returned
+        }
+      }).toArray(function(err, fli) {
+        if (fli.length == 0) {
+        } else {
+         returned1 = fl.map(function(el) {
         return el.flight;
       });
-      con.db().collection('flights').find({
+           con.db().collection('flights').find({
         "flightNumber": {
-          $in: returned
+          $in: returned1
         }
       }).toArray(function(err, fli) {
         if (fli.length == 0) {
           console.log("Err2:" + err);
         } else {
           for (i = 0; i < fli.length; i++) {
-            if (fli[i].departureDateTime < Date.now()) {
+            if (fli[i].departureDateTime > Date.now()) {
               r = fli.map(function(el) {
+                //console.log(el);
                 return el;
               });
             }
           }
         }
+        console.log(r);
         cb(null, r);
       });
+        }
+
+      });
+
     }
   });
 }

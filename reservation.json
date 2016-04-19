@@ -12,6 +12,26 @@
    "flight" : "SE2805",
    "seatCode" : "K14",
    "bookingRefNum" : "B13"
+  },
+  {
+   " _id" : "52",
+   "customer" : "A",
+   "flight" : "SE2804",
+   "seatCode" : "K14",
+   "bookingRefNum" : "B13"
+  },
+    {
+   " _id" : "52",
+   "customer" : "A",
+   "flight" : "SE2804",
+   "seatCode" : "K14",
+   "bookingRefNum" : "B12"
+  },
+    {
+   " _id" : "52",
+   "customer" : "A",
+   "flight" : "SE2802",
+   "seatCode" : "K14",
+   "bookingRefNum" : "B11"
   }
-
 ]
