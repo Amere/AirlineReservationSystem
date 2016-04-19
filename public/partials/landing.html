@@ -206,7 +206,6 @@
                             </tr>
                         </thead>
                         <tbody class="danger" ng-repeat="outgoing in flights.outgoingFlights">
-                          <div ng-repeat="returning in flights.returningFlights">
                           <tr class="danger">
                           <td>{{outgoing.origin}}</td>
                           <td>{{outgoing.destination}}</td>
@@ -218,17 +217,13 @@
                           <td ng-repeat="returning in flights.returningFlights"><span>{{returning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td ng-repeat="returning in flights.returningFlights">{{returning.cost}}</td>
                           <td ng-repeat="outgoing in flights.outgoingFlights">
-                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="goToReservation(outgoing.flightNumber,returning.flightNumber,outgoing.departureDateTime,returning.departureDateTime)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
                           </td>
-                          <div>
+
                           <!-- <td>
                             <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber,fli)">Book</button>
                           </td> -->
                         </tr>
-                        <tr class="danger" ng-repeat="returning in flights.returningFlights">
-
-
-                      </tr>
 
                         </tbody>
                     </table>
