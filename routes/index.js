@@ -246,6 +246,20 @@ router.post('/api/updateSeat',function(req,res) {
                 }
             }
         }
+        for (var i = 0; i < cc.firstClassSeats.length; i++) {
+            for (var j = 0; j < cc.firstClassSeats[i].length; j++) {
+                if (cc.firstClassSeats[i][j].seatCode == sn) {
+                    cc.firstClassSeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.premiumEconomySeats.length; i++) {
+            for (var j = 0; j < cc.premiumEconomySeats[i].length; j++) {
+                if (cc.premiumEconomySeats[i][j].seatCode == sn) {
+                    cc.premiumEconomySeats[i][j].reserved = "true";
+                }
+            }
+        }
         db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
             if (err) throw err;
         });

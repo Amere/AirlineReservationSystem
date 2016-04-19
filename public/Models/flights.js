@@ -134,12 +134,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
  * @param class - economy or business only
  * @returns {Array}
  */
-<<<<<<< HEAD
-function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
-  console.log(departingDate+" "+origin+" "+destination+" "+clas);
-  console.log(typeof(DepartingDate));
-  var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,"departureDateTime" : departingDate,"class":clas}).toArray(function (err,fli) {
-=======
+
 
  function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
 var after = departingDate+84600000;
@@ -154,7 +149,7 @@ var after = departingDate+84600000;
 function getOneWayTrip2(origin,destination,departingDate,db,cb) {
   var after = departingDate+84600000;
   var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}]}).toArray(function (err,fli) {
->>>>>>> 77e37cef8a7e63d20c9ac2791d350b0cd1eed551
+
     if (fli.length==0) {
       console.log('Class');
       console.log('Tessssssssssssst');
