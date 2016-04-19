@@ -285,7 +285,7 @@
                           <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber)">Book</button>
                           </td>
                         </tr>
                         </tbody>

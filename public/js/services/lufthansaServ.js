@@ -436,6 +436,10 @@ lufthansa.factory('lufthansaServ', function ($http) {
           this.seat = undefined;
           this.possible = undefined;
           this.class = undefined;
+          this.landingFlag = false;
+          this.reservInfoFlag = false;
+          this.paymentFlag = false;
+          this.confirmFlag = false;
         },
         getCurrentUser:function(cb){
           var user={};
@@ -453,6 +457,18 @@ lufthansa.factory('lufthansaServ', function ($http) {
         },
         reserveSeat:function(fn1,seat1){
           return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
+        },
+        setLandingFlag : function(){
+          this.landingFlag = true;
+        },
+        setReservInfoFlag : function(){
+          this.reservInfoFlag = true;
+        },
+        setPaymentFlag : function(){
+          this.paymentFlag = true;
+        },
+        setConfirmFlag : function(){
+          this.confirmFlag = true;
         }
 
         // You can add here http get to you dummyData and get the result at the mainCtrl
