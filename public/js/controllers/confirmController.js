@@ -32,7 +32,9 @@ if(lufthansaServ.paymentFlag === true){
       user.seatClass= lufthansaServ.getSeatClass_();
       lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(),$scope.Confirm.seatCode);
       lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberReturning(),$scope.Confirm.seatCode);
-
+      lufthansaServ.addUser(user,function(res){
+        $scope.receipt=res;
+      });
     }else{
       $scope.Confirm.seatCodeOut= lufthansaServ.getSeat();
       $scope.Confirm.seatClass= lufthansaServ.getSeatClass_();
@@ -43,12 +45,12 @@ if(lufthansaServ.paymentFlag === true){
       user.seatCode=lufthansaServ.getSeat();
       user.seatClass= lufthansaServ.getSeatClass_();
       lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(),$scope.Confirm.seatCode);
-
+      lufthansaServ.addUser(user,function(res){
+        $scope.receipt=res;
+      });
     }
 
-    lufthansaServ.addUser(user,function(res){
-      $scope.receipt=res;
-    });
+
   });
 }
 
