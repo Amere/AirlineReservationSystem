@@ -1,4 +1,5 @@
 [
+  
   {
   "departureDate" : "28/12/2018 7:00",
   "arrivalDate" : "28/12/2016 11:00",
@@ -12,15 +13,16 @@
   "class" : "economy"
 },
 {
-  "departureDate" : "28/12/2016 7:00",
+  "departureDate" : "28/12/2018 7:00",
   "arrivalDate" : "28/12/2016 11:00",
   "departureCity" : "Egypt",
   "destinationCity" : "Netherlands",
   "duration" : "4H",
-  "origin" : "CAB",
+  "origin" : "CAI",
   "destination" : "CAI",
-  "departingDate" : "1230",
-  "returningDate" : "12",
+  "departingDate" : "12",
+  "returningDate" : "1230",
   "class" : "economy"
 }
+
 ]

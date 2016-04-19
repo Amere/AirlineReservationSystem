@@ -40,7 +40,7 @@
                                                 <!--TO Place the form group here -->
                                                 <form>
                                                 <label>Flying from :</label>
-                                                <input name='originAirports'
+                                                <input autocomplete="off" name='originAirports'
                                                        id="originAirports"
                                                        required
                                                        type="text"
@@ -51,7 +51,7 @@
                                                        typeahead-on-select="SetOriginAirport($item.iata); putMarkerO($item.lat, $item.lon)">
                                                 <br>
                                                 <label>Flying To :</label>
-                                                <input name="destinationAirports"
+                                                <input autocomplete="off" name="destinationAirports"
                                                        id="destinationAirports"
                                                        required
                                                        type="text"
@@ -64,12 +64,11 @@
 
                                                 <label>Please specify the dates  </label>
                                                     <br>
-                                                    <label class="radio-inline"><input type="radio" checked="{{dt1Flag}}" ng-click="OneWayFlags()" name="optradio">One Way</label>
-                                                    <label class="radio-inline"><input type="radio"  ng-click="RoundtripFlags()" name="optradio">Round trip</label>
+                                                    <label class="radio-inline"><input type="radio" checked="{{dt1Flag}}" ng-click="OneWayFlags(); OneWayTable()" name="optradio">One Way</label>
+                                                    <label class="radio-inline"><input type="radio"  ng-click="RoundtripFlags(); RoundtripTable()" name="optradio">Round trip</label>
                                                     <br><br>
 
                                                 <div class="row">
-
                                                     <div class="col-md-6" ng-show="dt1Flag">
                                                         <p class="input-group">
                                                             <input type="text"
@@ -117,20 +116,20 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <br>
-                                                    <div class="btn-group" uib-dropdown on-toggle="toggled(open)" >
+
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" ng-model="chekboxFlag" ng-change=" flipCheck(); setOtherCompaniesFlag()"> Search for flights in another companies</label>
+                                                    </div>
+                                                    <div ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)" >
                                                         <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
                                                             {{pick}} <span class="caret"></span>
                                                         </button>
-                                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu"  aria-labelledby="single-button">
+                                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" id="cl"  aria-labelledby="single-button">
                                                             <li role="menuitem" ng-repeat="item in classes" ng-click="selectClass(item)"><a href="#/">{{item}}</a></li>
                                                         </ul>
                                                     </div>
-                                                    <br>
-                                                    <div class="checkbox">
-                                                        <label><input type="checkbox" value="false"> Search for flights in another companies</label>
-                                                    </div>
-                                                    <br>
+
+                                                    <br><br>
                                                     <button id="procced" name="procced" class="btn btn-primary"  ng-click="ShowHide()">Search Flights </button>
 
                                                 </form>
@@ -178,25 +177,17 @@
 
          <div >
   <div class="wrap">
-    <form>
-      <label class="btn btn-primary" for="first">Round Trip</label>
-      <input id="first" type="radio" name="content" ng-model="content" value="first" ng-click='ShowHide3()'>
 
-      <label class="btn btn-primary" for="other">One Way</label>
-      <input id="other" type="radio" name="content" ng-model="content" value="other" ng-click='ShowHide4()'>
-    </form>
 
 
   </div>
 </div>
         </div>
         <div class="wrapper">
-          <div class="row">
-            <div  class="col-md-6">
-          <div ng-show="content == 'first'">
+          <div ng-show="round">
 
 
-                          <h2 style="color:white" id="go">Going</h2>
+            <h2 ng-repeat="outgoing in flights.outgoingFlights" style="color:white" id="go">  {{outgoing.origin}}    {{outgoing.destination}}</h2>
 
                           <table  name="Going" class="table table-hover">
 
@@ -204,27 +195,41 @@
                             <tr class="danger">
                                 <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
-                                <th class="text-danger">Date</th>
+                                <th class="text-danger">Departure Date Time</th>
+                                <th class="text-danger">Price</th>
+                                <th class="text-danger"> | </th>
+                                <th class="text-danger">From</th>
+                                <th class="text-danger">To</th>
+                                <th class="text-danger">Departure Date Time</th>
                                 <th class="text-danger">Price</th>
                                 <th class="text-danger">Book Now</th>
                             </tr>
                         </thead>
-                        <tbody>
-                          <tr class="danger" ng-repeat="flight in flights">
-                          <td>{{flight.origin}}</td>
-                          <td>{{flight.destination}}</td>
-                          <td>{{flight.departingDate}}</td>
-                          <td>3000</td>
-                          <td>{{flight.returningDate}}</td>
-                          <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                        <tbody class="danger" ng-repeat="outgoing in flights.outgoingFlights">
+                          <tr class="danger">
+                          <td>{{outgoing.origin}}</td>
+                          <td>{{outgoing.destination}}</td>
+                          <td><span>{{outgoing.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td>{{outgoing.cost}}</td>
+                          <td> </td>
+                          <td ng-repeat="returning in flights.returningFlights">{{returning.origin}}</td>
+                          <td ng-repeat="returning in flights.returningFlights">{{returning.destination}}</td>
+                          <td ng-repeat="returning in flights.returningFlights"><span>{{returning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td ng-repeat="returning in flights.returningFlights">{{returning.cost}}</td>
+                          <td ng-repeat="outgoing in flights.outgoingFlights">
+                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="setLandingFlag(); goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
                           </td>
+
+                          <!-- <td>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber,fli)">Book</button>
+                          </td> -->
                         </tr>
+
                         </tbody>
                     </table>
 
                     <br><br>
-                    <h2 style="color:white">Returning</h2>
+                    <!-- <h2 style="color:white">Returning</h2>
                     <table class="table table-hover" >
                   <thead>
                     <tr class="danger">
@@ -237,42 +242,22 @@
 
                   </thead>
                   <tbody>
-                    <tr class="danger" ng-repeat="flight in flights">
-                    <td>{{flight.departureCity}}</td>
-                    <td>{{flight.destinationCity}}</td>
-                    <td>{{flight.departureDate}}</td>
-                    <td>{{flight.priceClass.economyPrice}}</td>
+                    <tr class="danger" ng-repeat="flight in flights.returningFlights">
+                    <td>{{flight.origin}}</td>
+                    <td>{{flight.destination}}</td>
+                    <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                    <td>{{flight.cost}}</td>
                     <td>
-                      <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                      <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation(flight.flightNumber)">Book</button>
                     </td>
                   </tr>
-                  <tr class="danger" ng-repeat="flight in flights">
-                  <td>{{flight.departureCity}}</td>
-                  <td>{{flight.destinationCity}}</td>
-                  <td>{{flight.departureDate}}</td>
-                  <td>{{flight.priceClass.economyPrice}}</td>
-                  <td>
-                    <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                  </td>
-                </tr>
-                <tr class="danger" ng-repeat="flight in flights">
-                <td>{{flight.departureCity}}</td>
-                <td>{{flight.destinationCity}}</td>
-                <td>{{flight.departureDate}}</td>
-                <td>{{flight.priceClass.economyPrice}}</td>
-                <td>
-                  <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
-                </td>
-              </tr>
-
-
                   </tbody>
-                  </table>
+                  </table> -->
 
 
 
           </div>
-          <div ng-show="content == 'other'">
+          <div ng-show="one">
 
 
                           <h2 style="color:white" id="go2">Going</h2>
@@ -289,13 +274,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr class="danger" ng-repeat="flight in flights">
-                          <td>{{flight.departureCity}}</td>
-                          <td>{{flight.destinationCity}}</td>
-                          <td>{{flight.departureDate}}</td>
-                          <td>{{flight.priceClass.economyPrice}}</td>
+                          <tr class="danger" ng-repeat="flight in flights.outgoingFlights">
+                          <td>{{flight.origin}}</td>
+                          <td>{{flight.destination}}</td>
+                          <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="goToReservation()">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber)">Book</button>
                           </td>
                         </tr>
                         </tbody>
@@ -313,21 +298,18 @@
 
 
 
-      <div  class="col-md-6">
         <br><br><br>
         <div class="row p-b">
               <div id="map" align="center" style="height:400px;width:100%;">{{googleMap}} {{resizeMap()}}</div>
             </div>
-      </div>
         </div>
 
 
 
-</div>
 
 
 
-      </div>
+
         <button type="button" class="btn btn-danger btn-sm" ng-click="ShowHide5()" >Hide Results</button>
 
             </div>

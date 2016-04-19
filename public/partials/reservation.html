@@ -390,9 +390,26 @@ body{
 
 
 
-
-
+<div ng-if="flgOutgoing!='Returning'">
+You have choosed outgoing flight
+<br>
+Your flight num {{flightOutNum}}
+</div>
+<div ng-if="flgOutgoing=='Returning' && flg==0">
+  You have choosed a returning flight
+  <br>
+  Your outgoing flight number {{flightOutNum}}
+  <br>
+  Choose here your seat for your outgoing
+</div>
+<div ng-if="flgOutgoing=='Returning' && flg==1">
+You Returning flight number {{flightRetNum}}
+<br>
+Choose here your seat for your returning
+</div>
                     <div style="background-image: url(images/SeatMapNew.png);" class="col-mid-8">
+
+
                       <br><br><br><br><br>
 
 
@@ -427,7 +444,7 @@ body{
                         <td><div class="col-sm-1">
 
                         </div></td>
-                      <td ><premium-seat seats="premiumEconomySeats"></premium-seat></td>
+                     <td ><premium-seat seats="premiumEconomySeats"></premium-seat></td>
                       <td><div class="col-sm-1">
 
                       </div></td>
@@ -508,7 +525,14 @@ body{
                     <div class="alert alert-danger" role="alert" ng-if="isPossible()==false">Oh snap! You have choosed a reserved seat, choose again</div>
                     <span class="alert alert-success" role="alert" ng-if="isPossible()==true">You have choosed an available seat!, you may proceed or choose another seat</span>
                     <span ng-if="isPossible()==true">
-                      <button id="procced" name="procced" class="btn btn-primary" ng-click="payment()" on-click="scrollTo(0,0)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Proceed to payment</button>
+                      <button id="procced" name="procced" class="btn btn-primary" ng-click="proceed()" on-click="scrollTo(0,0)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <div ng-if="flgOutgoing=='Returning' && flg==0">
+                        Choose you returning seat
+                      </div>
+                      <div ng-if="flgOutgoing!='Returning' || flg==1">
+                      Proceed to payment
+                    </div>
+                      </button>
                     </span>
 
                     <div id="pricing-table" class="clear">
