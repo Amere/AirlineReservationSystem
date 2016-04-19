@@ -1,8 +1,3 @@
-
-
-module.exports = router;
-
-
 /**
  * express package
  */
@@ -189,7 +184,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class1', fu
 //      console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
 
 //  var x=moment(departingDate).toDate().getTime();
-  flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
+  flights.oneWayOtherCompanies(origin,destination,x,clas,db,function(err,result) {
     res.json(result);
   });
 
@@ -209,7 +204,6 @@ router.get('/api/flights/search/:origin/:destination/:departingDate', function(r
 
 //  var x=moment(departingDate).toDate().getTime();
   flights.getOneWayTrip2(origin,destination,x,db,function(err,result) {
-
     res.json(result);
   });
 

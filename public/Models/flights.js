@@ -47,6 +47,7 @@ exports.seed=function(cb) {
     }
 
   });
+
   con.db().collection('flights').find({}).toArray(function (err,docs) {
     if (docs.length==0) {
     con.db().collection('flights').insert(require('../../ReturningFlights.json'));
@@ -104,12 +105,12 @@ function getRoundTrip2(origin,destination,departingDate,returningDate,db,cb) {
  //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
  var after = departingDate+84600000;
 if(origin!='initial' && destination!='initial' && departingDate!=undefined && returningDate != undefined){
-var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}]}).toArray(function (err,fli){
+var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class" : "economy"}).toArray(function (err,fli){
 
   if (fli.length==0) {
 
     }  else {
-    getOneWayTrip2(destination,origin,returningDate,db,function (err1,result) {
+    getOneWayTrip(destination,origin,returningDate,"economy",db,function (err1,result) {
       if (err1) {
         throw err1;
       }else {
@@ -154,6 +155,17 @@ function getOneWayTrip2(origin,destination,departingDate,db,cb) {
       cb(null,fli);
     }
   });
+};
+function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
+  var after = departingDate+84600000;
+     var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class" : clas}).toArray(function (err,fli) {
+       if (fli.length==0) {
+         cb(err,fli);
+       }  else {
+         //console.log('heeeeeeeeeeeeeeeeeeeeeeere');
+         cb(null,{"outgoingFlights":fli});
+       }
+     });
 };
 function getMyBookings(cb) {
     var returned;
@@ -231,3 +243,4 @@ exports.getPastFlights = getPastFlights;
 exports.getOneWayTrip=getOneWayTrip;
 exports.getOneWayTrip2=getOneWayTrip2;
 exports.getRoundTrip2=getRoundTrip2;
+exports.oneWayOtherCompanies=oneWayOtherCompanies;
