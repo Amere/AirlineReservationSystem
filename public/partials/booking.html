@@ -29,31 +29,36 @@
 	<div uib-collapse="collapse">
   <div class="container">
 		<div class="well well-lg"  ng-repeat="flights in bookings">
-        <font color="#25383C"><p><b> Flight From {{ flights.from }} To {{ flights.to }} </b></p></font>
+       <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
   <font color="#8C001A">
   <i>
-   <div class="col-md-2">
-   {{ flights.a1 }}
-   </div>
-    <div class="col-md-2">
-
-   {{ flights.a2 }}
-   </div>
-   <div class="col-md-2">
-
+   <div class="col-md-1">
    {{ flights.class }}
    </div>
+    <div class="col-md-1">
+
+   {{ flights.flightNumber }}
+   </div>
    <div class="col-md-2">
 
-   {{ flights.duration }}
+   {{ flights.aircraftType }}
+   </div>
+   <div class="col-md-2">
+
+   {{ flights.aircraftModel }}
    </div>
     <div class="col-md-2">
 
-   {{ flights.date }}
+   {{ flights.cost }}
    </div>
     <div class="col-md-2">
-   {{ flights.id }}
+   {{ flights.arrivalDateTime }}
    </div>
+    <div class="col-md-2">
+   {{ flights.departureDateTime }}
+   </div>
+
+
    </i>
    </font>
    <div>
@@ -101,17 +106,17 @@
     <uib-tab index="1" heading="My Past Flights">
     <div class="container">
     <div class="well well-lg" ng-repeat="pastflights in Pastflights">
-     <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
+        <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
      <font color=" #8C001A">
     <i>
     <div class= "col-md-1">
-    {{ pastflights.id }}
+    {{ pastflights.class }}
     </div>
     <div class= "col-md-1">
     {{ pastflights.aircraft }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.departureDate }}
+    {{ pastflights.departureDateTime }}
     </div>
     <div class= "col-md-1">
     {{ pastflights.arrivalDate }}

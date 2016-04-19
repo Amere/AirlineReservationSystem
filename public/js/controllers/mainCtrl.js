@@ -22,6 +22,10 @@ $scope.chekboxFlag=false;
    $scope.chekboxFlag = ! $scope.chekboxFlag;
      console.log($scope.chekboxFlag+'testsss');
  };
+function setImp(){
+ lufthansaServ.setImpFlg(0);
+ }
+ setImp();
 
  $scope.setOtherCompaniesFlag = function() {
      console.log($scope.chekboxFlag+'$scope.chekboxFlag$scope.chekboxFlag$scope.chekboxFlag');
@@ -42,7 +46,10 @@ $scope.chekboxFlag=false;
     };
 
 
-
+   function outgoingFlagSetter(){
+     lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
+   }
+   outgoingFlagSetter();
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
         $scope.popup1.opened = true;
@@ -60,7 +67,7 @@ $scope.chekboxFlag=false;
 
     $scope.clearVars = function(){
       lufthansaServ.clearVariables();
-    }
+    };
 
     $scope.open2 = function () {
         $scope.popup2.opened = true;
@@ -146,13 +153,22 @@ $scope.chekboxFlag=false;
         if ($scope.IsVisible == true) {
             $scope.IsVisible = false;
         } else {
-
+                    console.log(lufthansaServ.getSelectedDestinationAirport()+' destAir');
+                    console.log(lufthansaServ.getReturning_Or_Outgoing() +' flag');
             if (lufthansaServ.getSelectedDestinationAirport() != "intial" && lufthansaServ.getSelectedOriginAirport() != "intial") {
                 $scope.IsVisible = true;
 
                 console.log(lufthansaServ.getSelectedDestinationAirport()+"     ****");
+                if(lufthansaServ.getReturning_Or_Outgoing() == "Returning" && $scope.pick!="economy" && $scope.pick!="business"){
+                round2();
+              }else if (lufthansaServ.getReturning_Or_Outgoing()=="Returning" &&  ($scope.pick=="economy" || $scope.pick=="business")) {
 
                 round();
+              }else if (lufthansaServ.getReturning_Or_Outgoing() != "Returning" && $scope.pick!="economy" && $scope.pick!="business") {
+                oneWay2();
+              }else {
+                oneWay();
+              }
                 var element = document.getElementById('flightss');
                 var options = {
                     duration: 2000
@@ -294,15 +310,40 @@ function round() {
    $scope.flights = result;
    });
 };
+function round2() {
+
+
+    var origin=lufthansaServ.getSelectedOriginAirport();
+   var destination=lufthansaServ.getSelectedDestinationAirport();
+   var departingDate=angular.element('#date1').val();
+   var returningDate=angular.element('#date2').val();
+  //  var x=moment(departingDate).toDate().getTime();
+  //  var y=moment(returningDate).toDate().getTime();
+   lufthansaServ.getRound2(origin,destination,departingDate,returningDate).success(function(result){
+   $scope.flights = result;
+   });
+};
 function oneWay() {
    var origin=lufthansaServ.getSelectedOriginAirport();
    var destination=lufthansaServ.getSelectedDestinationAirport();
    var departingDate=angular.element('#date1').val();
-   var returningDate=angular.element('#date2').val();
+  // var returningDate=angular.element('#date2').val();
    var clas=$scope.pick;
   //  var x=moment(departingDate).toDate().getTime();
   //  var y=moment(returningDate).toDate().getTime();
-   lufthansaServ.getOneWay(origin,destination,departingDate,returningDate,clas).success(function(result){
+   lufthansaServ.getOneWay(origin,destination,departingDate,clas).success(function(result){
+   $scope.flights = result;
+   });
+};
+function oneWay2() {
+   var origin=lufthansaServ.getSelectedOriginAirport();
+   var destination=lufthansaServ.getSelectedDestinationAirport();
+   var departingDate=angular.element('#date1').val();
+  // var returningDate=angular.element('#date2').val();
+  //  var x=moment(departingDate).toDate().getTime();
+  //  var y=moment(returningDate).toDate().getTime();
+   lufthansaServ.getOneWay2(origin,destination,departingDate).success(function(result){
+     console.log(result[0]);
    $scope.flights = result;
    });
 };
@@ -340,8 +381,10 @@ function convert(mom) {
   return moment(mom).format('YYYY-MM-DD');
 };
 setIata();
-round();
-oneWay();
+//round();
+//round2();
+//oneWay();
+//oneWay2();
 /* Get offers on page render */
 offers();
 /* Get news on page render */

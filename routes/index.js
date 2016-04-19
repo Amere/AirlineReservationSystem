@@ -1,3 +1,8 @@
+
+
+module.exports = router;
+
+
 /**
  * express package
  */
@@ -60,24 +65,22 @@ router.get('/api/data/flight', function (req, res) {
     res.json(dummy);
 });
 
-router.get('/api/data/bookings', function (req, res) {
-    var bookings = require('../bookings.json');
-    res.json(bookings);
+router.get('/api/data/pastFlights',function(req,res){
+  flights.getPastFlights(function(err,json){
+    if(!err){
+      res.send(json);
+    }
+  });
 });
-router.get('/api/data/pastFlights', function (req, res) {
-    var pastFlights = require('../pastFlights.json');
-    res.json(pastFlights);
+router.get('/api/data/bookings',function(req,res){
+  //req.query.bookref
+  flights.getMyBookings(function(err,json){
+    if(!err){
+      res.send(json);
+    }
 });
-router.get('/api/data/bookings', function (req, res) {
-    var pastFlights = require('../bookings.json');
-    res.json(pastFlights);
-});
+  });
 
-/**
- * Aircraft REST ENDPOINT
- * @param name - Aircraft name
- * @returns {Array}
- */
 
 router.get('/api/data/aircraft/:flightNum',function(req,res){
   db.db().collection('flightsXaircrafts').findOne({flightNumber:req.params.flightNum},function(err,data){
@@ -93,25 +96,25 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
  */
-router.use(function(req, res, next) {
-
-    // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['token'];
-
-    var jwtSecret = process.env.JWTSECRET;
-    console.log(jwtSecret);
-    // Get JWT contents:
-    jwt.verify(token,jwtSecret, function(err, decoded) {
-        if(err){
-            console.log(err);
-            res.send('unauthorised access');
-        }else {
-            console.log('verified');
-            next();
-        }
-    });
-
-});
+// router.use(function(req, res, next) {
+//
+//     // check header or url parameters or post parameters for token
+//     var token = req.body.token || req.query.token || req.headers['token'];
+//
+//     var jwtSecret = process.env.JWTSECRET;
+//     console.log(jwtSecret);
+//     // Get JWT contents:
+//     jwt.verify(token,jwtSecret, function(err, decoded) {
+//         if(err){
+//             console.log(err);
+//             res.send('unauthorised access');
+//         }else {
+//             console.log('verified');
+//             next();
+//         }
+//     });
+//
+// });
 
 
 router.get('/api/data/conf', function (req, res) {
@@ -151,6 +154,19 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
    });
 
 });
+router.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:returningDate', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var returningDate=req.params.returningDate;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+  var y=moment(returningDate).add(19, 'hours').toDate().getTime();
+  //var clas=req.params.class;
+  flights.getRoundTrip2(origin,destination,x,y,db,function(err,result) {
+     res.json(result);
+   });
+
+});
 
 
 /**
@@ -160,20 +176,37 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
  * @param class - economy or business only
  * @returns {Array}
  */
-router.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+router.get('/api/flights/search/:origin/:destination/:departingDate/:class1', function(req, res) {
   var origin =req.params.origin;
   var destination=req.params.destination;
   var departingDate=req.params.departingDate;
-  var clas=req.params.class;
+  var clas=req.params.class1;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
 // console.log(departingDate);
-  //  console.log(moment(1460962629893).format('YYYY-MM-DD hh:mm A'));
-  //   console.log(x+"*********");
-//     console.log(y);
-  //   console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+
 
 //  var x=moment(departingDate).toDate().getTime();
   flights.getOneWayTrip(origin,destination,x,clas,db,function(err,result) {
+    res.json(result);
+  });
+
+});
+router.get('/api/flights/search/:origin/:destination/:departingDate', function(req, res) {
+  var origin =req.params.origin;
+  var destination=req.params.destination;
+  var departingDate=req.params.departingDate;
+  var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+
+// console.log(departingDate);
+   console.log(moment(1464563999952).format('YYYY-MM-DD hh:mm A')+"fffffffffffffffffff");
+    console.log(moment('2016-04-29 07:00 PM', 'YYYY-MM-DD hh:mm A')+"************************");
+    console.log(1460498400000-1460412000000);
+  // console.log(x);
+  //  console.log(moment(1460480400000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+
+//  var x=moment(departingDate).toDate().getTime();
+  flights.getOneWayTrip2(origin,destination,x,db,function(err,result) {
+
     res.json(result);
   });
 
