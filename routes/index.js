@@ -40,7 +40,7 @@ db.connect(function (err, db) {
  */
 router.all('*',function(req,res,next){
    res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Headers','X-Requested-With');
+   res.header('Access-Control-Allow-Headers','x-access-token');
     next();
 });
 
@@ -52,6 +52,28 @@ router.get('/', function (req, res, next) {
 router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
     res.render('google7a607af0cf3cce8e.html');
 });
+
+router.post('/api/updateSeat',function(req,res){
+     var fn=req.body.fn;
+      var sn= req.body.sn;
+      console.log(fn);
+      console.log(sn);
+      db.db().collection('flightsXaircrafts').findOne({flightNumber:fn},function(err,data){
+            var cc= data.plane;
+            for(var i=0;i<cc.economeySeats.length;i++){
+                  for(var j=0;j<cc.economeySeats[i].length;j++){
+                        if(cc.economeySeats[i][j].seatCode==sn){
+                              cc.economeySeats[i][j].reserved="true";
+                            }
+                      }
+                }
+            db.db().collection('flightsXaircrafts').update({flightNumber:fn},{$set:{plane:cc}},function(err,data){
+                  if(err) throw err;
+                });
+          });
+
+
+            });
 
 /* GET airports codes */
 ;
@@ -136,26 +158,26 @@ router.post('/api/updateSeat',function(req,res) {
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
  */
-router.use(function(req, res, next) {
 
-    // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['token'];
+ router.use(function(req, res, next) {
 
-    var jwtSecret = process.env.JWTSECRET;
-    console.log(jwtSecret);
-    // Get JWT contents:
-    jwt.verify(token,jwtSecret, function(err, decoded) {
-        if(err){
-            console.log(err);
-            res.send('unauthorised access');
-        }else {
-            console.log('verified');
-            next();
-        }
-    });
+     // check header or url parameters or post parameters for token
+     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
 
-});
+     var jwtSecret = process.env.JWTSECRET;
+     //console.log(jwtSecret);
+     // Get JWT contents:
+     jwt.verify(token,jwtSecret, function(err, decoded) {
+         if(err){
+             //console.log(err);
+             res.send('unauthorised access');
+         }else {
+             //console.log('verified');
+             next();
+         }
+     });
 
+ });
 
 router.get('/api/data/conf', function (req, res) {
     var dummy = require('../confirm.json');
@@ -165,7 +187,7 @@ router.get('/api/data/conf', function (req, res) {
  * End Point to retrieve a list of ips of te other companies
  */
 router.get('/api/data/ips', function (req, res) {
-    var ips = require('../ips.json');
+    var ips = require('../testIp.json');
     res.json(ips);
 });
 
