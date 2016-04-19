@@ -193,6 +193,7 @@
 
                         <thead>
                             <tr class="danger">
+                                <th class="text-danger">Airline</th>
                                 <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Departure Date Time</th>
@@ -212,12 +213,13 @@
                           <td><span>{{outgoing.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td>{{outgoing.cost}}</td>
                           <td> </td>
-                          <td ng-repeat="returning in flights.returningFlights">{{returning.origin}}</td>
-                          <td ng-repeat="returning in flights.returningFlights">{{returning.destination}}</td>
-                          <td ng-repeat="returning in flights.returningFlights"><span>{{returning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
-                          <td ng-repeat="returning in flights.returningFlights">{{returning.cost}}</td>
+                          <td ng-repeat="returning in flights.returnFlights">{{returning.origin}}</td>
+                          <td ng-repeat="returning in flights.returnFlights">{{returning.destination}}</td>
+                              <td ng-repeat="returning in flights.returnFlights">{{returning.Airline}}</td>
+                              <td ng-repeat="returning in flights.returnFlights"><span>{{returning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td ng-repeat="returning in flights.returnFlights">{{returning.cost}}</td>
                           <td ng-repeat="outgoing in flights.outgoingFlights">
-                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="setLandingFlag(); goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returnFlights" ng-click="setLandingFlag(); goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
                           </td>
 
                           <!-- <td>
@@ -266,6 +268,7 @@
 
                         <thead>
                             <tr class="danger">
+                                <th class="text-danger">Airline</th>
                                 <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Date</th>
@@ -275,8 +278,10 @@
                         </thead>
                         <tbody>
                           <tr class="danger" ng-repeat="flight in flights.outgoingFlights">
-                          <td>{{flight.origin}}</td>
+                              <td>{{flight.Airline}}</td>
+                              <td>{{flight.origin}}</td>
                           <td>{{flight.destination}}</td>
+
                           <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td>{{flight.cost}}</td>
                           <td>
