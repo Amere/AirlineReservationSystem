@@ -87,6 +87,51 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
   });
 
 });
+router.post('/api/adduser',function(req,res){
+  var user= req.body.user;
+  db.db().collection('users').insert(user,function(err,docs){
+    if (err) throw err;
+    res.json(docs);
+  });
+});
+router.post('/api/updateSeat',function(req,res) {
+    var fn = req.body.fn;
+    var sn = req.body.sn;
+    db.db().collection('flightsXaircrafts').findOne({flightNumber: fn}, function (err, data) {
+        var cc = data.plane;
+        for (var i = 0; i < cc.economeySeats.length; i++) {
+            for (var j = 0; j < cc.economeySeats[i].length; j++) {
+                if (cc.economeySeats[i][j].seatCode == sn) {
+                    cc.economeySeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.businessSeats.length; i++) {
+            for (var j = 0; j < cc.businessSeats[i].length; j++) {
+                if (cc.businessSeats[i][j].seatCode == sn) {
+                    cc.businessSeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.firstClassSeats.length; i++) {
+            for (var j = 0; j < cc.firstClassSeats[i].length; j++) {
+                if (cc.firstClassSeats[i][j].seatCode == sn) {
+                    cc.firstClassSeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.premiumEconomySeats.length; i++) {
+            for (var j = 0; j < cc.premiumEconomySeats[i].length; j++) {
+                if (cc.premiumEconomySeats[i][j].seatCode == sn) {
+                    cc.premiumEconomySeats[i][j].reserved = "true";
+                }
+            }
+        }
+        db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
+            if (err) throw err;
+        });
+    });
+});
 /**
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
@@ -214,51 +259,7 @@ router.get('/api/all', function (req, res) {
         res.json(result);
     });
 });
-router.post('/api/adduser',function(req,res){
-  var user= req.body.user;
-  db.db().collection('users').insert(user,function(err,docs){
-    if (err) throw err;
-    res.json(docs);
-  });
-});
-router.post('/api/updateSeat',function(req,res) {
-    var fn = req.body.fn;
-    var sn = req.body.sn;
-    db.db().collection('flightsXaircrafts').findOne({flightNumber: fn}, function (err, data) {
-        var cc = data.plane;
-        for (var i = 0; i < cc.economeySeats.length; i++) {
-            for (var j = 0; j < cc.economeySeats[i].length; j++) {
-                if (cc.economeySeats[i][j].seatCode == sn) {
-                    cc.economeySeats[i][j].reserved = "true";
-                }
-            }
-        }
-        for (var i = 0; i < cc.businessSeats.length; i++) {
-            for (var j = 0; j < cc.businessSeats[i].length; j++) {
-                if (cc.businessSeats[i][j].seatCode == sn) {
-                    cc.businessSeats[i][j].reserved = "true";
-                }
-            }
-        }
-        for (var i = 0; i < cc.firstClassSeats.length; i++) {
-            for (var j = 0; j < cc.firstClassSeats[i].length; j++) {
-                if (cc.firstClassSeats[i][j].seatCode == sn) {
-                    cc.firstClassSeats[i][j].reserved = "true";
-                }
-            }
-        }
-        for (var i = 0; i < cc.premiumEconomySeats.length; i++) {
-            for (var j = 0; j < cc.premiumEconomySeats[i].length; j++) {
-                if (cc.premiumEconomySeats[i][j].seatCode == sn) {
-                    cc.premiumEconomySeats[i][j].reserved = "true";
-                }
-            }
-        }
-        db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
-            if (err) throw err;
-        });
-    });
-});
+
 
 
 
