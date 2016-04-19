@@ -43,9 +43,9 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-      console.log(lufthansaServ.checkCompleteUserInfo());
       if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
         var flag = lufthansaServ.getOtherCompanies();
+        console.log(flag);
         if(flag==true){
           $location.url('/payment');
         }else{
@@ -53,7 +53,9 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         }
       }
     };
-
+    $scope.setReservInfoFlag = function(){
+      lufthansaServ.setReservInfoFlag();
+    };
 
     $scope.setUserInfo = function(){
       lufthansaServ.setFirstName($scope.firstName);
@@ -64,9 +66,10 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
       lufthansaServ.setExpDate($scope.expDate);
   //      lufthansaServ.getCurrentUser();
 
-    }
-
-
+    };
+    if(lufthansaServ.landingFlag != true){
+      $location.url('/');
+    };
     /*----------- Angular Bootstrap Typeahead -----------*/
 
     /* Retrieve List of Nationalities  */

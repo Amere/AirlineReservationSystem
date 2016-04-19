@@ -10,10 +10,17 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
   $scope.ccv = "";
   $scope.fullName = "";
 
+  if(lufthansaServ.reservInfoFlag != true){
+    $location.url('/');
+  }
+
   $scope.open1 = function() {
       $scope.popup1.opened = true;
   };
 
+  $scope.setPaymentFlag = function(){
+    lufthansaServ.setPaymentFlag();
+  };
 
     $scope.open2 = function () {
         $scope.popup2.opened = true;

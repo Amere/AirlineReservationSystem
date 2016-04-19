@@ -151,6 +151,11 @@ function setImp(){
     $scope.popup2 = {
         opened: false
     };
+
+    $scope.setLandingFlag = function(){
+      lufthansaServ.setLandingFlag();
+    };
+
 //This will hide the DIV by default.
     $scope.IsVisible = false;
     $scope.ShowHide = function () {
