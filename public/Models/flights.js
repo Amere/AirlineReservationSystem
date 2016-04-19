@@ -82,8 +82,10 @@ function getRoundTrip(origin,destination,departingDate,returningDate,clas,db,cb)
  //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
 
 
+
  var after = departingDate+84600000;
 var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class":clas}).toArray(function (err,fli){
+
 
   if (fli.length==0) {
 
@@ -134,6 +136,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
  * @returns {Array}
  */
 
+
  function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
 var after = departingDate+84600000;
    var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class" : clas}).toArray(function (err,fli) {
@@ -147,6 +150,7 @@ var after = departingDate+84600000;
 function getOneWayTrip2(origin,destination,departingDate,db,cb) {
   var after = departingDate+84600000;
   var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}]}).toArray(function (err,fli) {
+
     if (fli.length==0) {
       console.log('Class');
       console.log('Tessssssssssssst');

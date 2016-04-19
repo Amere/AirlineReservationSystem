@@ -1,8 +1,10 @@
 lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
+
   $scope.flg = lufthansaServ.getImpFlg();
   if ($scope.flg==0) {
   lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;
+
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
        $scope.businessSeats = flight.plane.businessSeats;
        $scope.firstClassSeats = flight.plane.firstClassSeats;
@@ -35,7 +37,7 @@ lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
 
 
    $scope.proceed = function(){
-     if($scope.flgOutgoing =='Returning'  && $scope.flg==0) {$scope.setToReturn();lufthansaServ.setImpFlg(1); lufthansaServ.setSeat(undefined);
+     if($scope.flgOutgoing =='Returning'  && $scope.flg==0) {$scope.setToReturn();lufthansaServ.setImpFlg(1);lufthansaServ.setSeatR(lufthansaServ.getSeat()) ;lufthansaServ.setSeat(undefined);
        $scope.ret();
      }
       else $scope.payment();

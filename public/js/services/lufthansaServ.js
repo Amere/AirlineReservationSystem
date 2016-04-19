@@ -104,6 +104,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
             return this.RetFlg;
         },
         setReturning_Or_Outgoing : function(value) {
+
             this.RetFlg = value;
             console.log(value+" "+"ana flg");
         },
@@ -172,6 +173,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
         /**
          * Get Aircraft End point API
          */
+
         getAircraftOut : function() {
             return $http.get('/api/data/aircraft/'+this.flightNumber+'/',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
@@ -180,6 +182,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
             //return $http.get('/api/data/dummy');
         },getAircraftRet : function() {
             return $http.get('/api/data/aircraft/'+this.flightNumber2+'/',{
+
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -323,11 +326,17 @@ lufthansa.factory('lufthansaServ', function ($http) {
         setSeat : function(value){
             this.seat=value;
         },
+        setSeatR : function(value){
+            this.seatR=value;
+        },
         /**
          * Get Seat
          */
         getSeat : function() {
             return this.seat;
+        },
+        getSeatR : function() {
+            return this.seatR;
         },
         /**
          * Set Possible seats
@@ -369,7 +378,6 @@ lufthansa.factory('lufthansaServ', function ($http) {
         * Getters and Setters for user information
         */
         setFirstName : function(fn){
-          console.log(fn);
           this.firstName = fn ;
         },
         getFirstName : function(){
@@ -435,6 +443,7 @@ lufthansa.factory('lufthansaServ', function ($http) {
           this.possible = undefined;
           this.class = undefined;
         },
+        //return all the details of the user in a single option for confirnation page
         getCurrentUser:function(cb){
           var user={};
           user.fname=this.firstName;
@@ -446,12 +455,22 @@ lufthansa.factory('lufthansaServ', function ($http) {
           cb(user);
 
         },
-        addUser:function(user1){
-          return $http.post('/api/adduser',{user:user1});
+        // method responsible for adding a user record in the database
+        addUser:function(user1,cb){
+           $http.post('/api/adduser',{user:user1}).success(function(res){
+             //console.log(res["ops"][0]["_id"]);
+            cb( res["ops"][0]["_id"]);
+          });
         },
+        //responsible for updating the seatmap and reserving a seat
         reserveSeat:function(fn1,seat1){
           return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
+        },
+        // return the reference number for this reservation
+        getReceipt:function(){
+          return this.receipt;
         }
+
 
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

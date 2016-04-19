@@ -178,10 +178,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class1', fu
   var clas=req.params.class1;
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
 // console.log(departingDate);
-//    console.log(moment(1460480400000+86400000).format('YYYY-MM-DD hh:mm A'));
-//     console.log(moment('2016-04-12 07:00 PM', 'YYYY-MM-DD hh:mm A'));
-// //     console.log(y);
-//      console.log(moment(1462291200000).format('YYYY-MM-DD hh:mm A')+" "+"here");
+
 
 //  var x=moment(departingDate).toDate().getTime();
   flights.oneWayOtherCompanies(origin,destination,x,clas,db,function(err,result) {
@@ -221,6 +218,7 @@ router.post('/api/adduser',function(req,res){
   var user= req.body.user;
   db.db().collection('users').insert(user,function(err,docs){
     if (err) throw err;
+    res.json(docs);
   });
 });
 router.post('/api/updateSeat',function(req,res) {
@@ -232,6 +230,27 @@ router.post('/api/updateSeat',function(req,res) {
             for (var j = 0; j < cc.economeySeats[i].length; j++) {
                 if (cc.economeySeats[i][j].seatCode == sn) {
                     cc.economeySeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.businessSeats.length; i++) {
+            for (var j = 0; j < cc.businessSeats[i].length; j++) {
+                if (cc.businessSeats[i][j].seatCode == sn) {
+                    cc.businessSeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.firstClassSeats.length; i++) {
+            for (var j = 0; j < cc.firstClassSeats[i].length; j++) {
+                if (cc.firstClassSeats[i][j].seatCode == sn) {
+                    cc.firstClassSeats[i][j].reserved = "true";
+                }
+            }
+        }
+        for (var i = 0; i < cc.premiumEconomySeats.length; i++) {
+            for (var j = 0; j < cc.premiumEconomySeats[i].length; j++) {
+                if (cc.premiumEconomySeats[i][j].seatCode == sn) {
+                    cc.premiumEconomySeats[i][j].reserved = "true";
                 }
             }
         }
