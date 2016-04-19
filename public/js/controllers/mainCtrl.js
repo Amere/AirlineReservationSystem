@@ -290,11 +290,11 @@ lufthansaServ.setSelectedDestinationAirport(destAirport);
 $scope.SearchFlights = function() {
 $location.url('/return');
 };
-$scope.goToReservation = function(out,ret,dateOut,dateRet) {
+$scope.goToReservation = function(out,ret) {
   lufthansaServ.setFlightNumberOutGoing(out);
   lufthansaServ.setFlightNumberReturning(ret);
-  lufthansaServ.setDateOutGoing(dateOut);
-  lufthansaServ.setDateReturning(dateRet);
+  lufthansaServ.setDateOutGoing(angular.element('#date1').val()+" "+"07:00 PM");
+  lufthansaServ.setDateReturning(angular.element('#date2').val()+" "+"07:00 PM");
 $location.url('/reservation');
 };
 function setIata() {
@@ -394,11 +394,11 @@ setIata();
 offers();
 /* Get news on page render */
 news();
-$scope.goToReservation = function(out,ret,dateOut,dateRet) {
+$scope.goToReservation = function(out,ret) {
   lufthansaServ.setFlightNumberOutGoing(out);
   lufthansaServ.setFlightNumberReturning(ret);
-  lufthansaServ.setDateOutGoing(dateOut);
-  lufthansaServ.setDateReturning(dateRet);
+  lufthansaServ.setDateOutGoing(angular.element('#date1').val()+" "+"07:00 PM");
+  lufthansaServ.setDateReturning(angular.element('#date2').val()+" "+"07:00 PM");
   $location.url('/reserv1');
 
 };
