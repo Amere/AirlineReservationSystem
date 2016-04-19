@@ -82,16 +82,19 @@ router.get('/api/data/flight', function (req, res) {
     res.json(dummy);
 });
 
-router.get('/api/data/pastFlights',function(req,res){
-  flights.getPastFlights(function(err,json){
+router.get('/api/data/pastFlights/:ref',function(req,res){
+  var book=req.params.ref;
+  flights.getPastFlights(book,function(err,json){
     if(!err){
       res.send(json);
     }
   });
 });
-router.get('/api/data/bookings',function(req,res){
-  //req.query.bookref
-  flights.getMyBookings(function(err,json){
+router.get('/api/data/bookings/:ref',function(req,res){
+  var book=req.params.ref;
+  console.log(book+'yayayayaay');
+  flights.getMyBookings(book,function(err,json){
+    if (err) throw err;
     if(!err){
       res.send(json);
     }
