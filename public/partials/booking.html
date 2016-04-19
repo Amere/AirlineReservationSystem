@@ -33,17 +33,12 @@
     </button>
     </div>
     <br>
-    <div class="container-fluid">
-<button type="button" class="btn btn-info" ng-click="collapse = !collapse">Flight Schedule
-</button>
-</div>
-<div uib-collapse="collapse">
-  <div class="container">
-<div class="well well-lg"  ng-repeat="flights in bookings">
+    <h4>NB: If nothing is displayed, then there are no bookings</h4>
+    <br>
+    <div class="container">
+    <div class="well well-lg"  ng-repeat="flights in bookings">
         <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
-    <!--     <p id="bookingsDataHere">
-        {{bookings}}
-        </p> -->
+   
   <font color="#8C001A">
   <i>
    <div class="col-md-2">
@@ -63,10 +58,10 @@
    </div>
     <div class="col-md-2">
 
-   {{ flights.departureDateTime }}
+   {{ flights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
    </div>
     <div class="col-md-2">
-   {{ flights.arrivalDateTime }}
+   {{ flights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
    </div>
    <div class="col-md-2">
    {{ flights.cost }}
@@ -77,6 +72,7 @@
         <label>
             <br>
             
+
             <input type="checkbox" ng-model="showData" ng-change="change()" />
            <font color="#25383C"> Rebook Flight </font>
         </label>
@@ -84,7 +80,7 @@
        
     </div>
    </div>
-    <div class="container" ng-show='isVisible'>
+   <div class="container" ng-show='isVisible'>
 
                    <font color="#25383C"><h4>Please Pick Your New Flight Date</h4></font>
                    <div class="row">
@@ -111,12 +107,23 @@
                   </div>
 
         </div>
-   </div>
-   </div>
+</div>
    </div>
     </uib-tab>
     <uib-tab index="1" heading="My Past Flights">
     <div class="container">
+     <br>
+     <div>
+    <font color="120F0F"><b>
+     Booking Reference Number:
+     </b></font> <input type="text" ng-model="bookref"/><br>
+    <br>
+    <button type="button" class="btn btn-info" ng-click="pastflights(bookref)">Check Your Flight Schedule
+    </button>
+    </div>
+    <br>
+     <h4>NB: If nothing is displayed, then there are no past flights</h4>
+     <br>
     <div class="well well-lg" ng-repeat="pastflights in Pastflights">
      <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
      <font color=" #8C001A">
@@ -137,10 +144,10 @@
     {{ pastflights.aircraftModel }}
     </div>
     <div class= "col-md-2">
-    {{ pastflights.departureDateTime }}
+    {{ pastflights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
     </div>
     <div class= "col-md-2">
-    {{ pastflights.arrivalDateTime }}
+    {{ pastflights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
     </div>
    </i>
     </font>
@@ -154,23 +161,49 @@
     <span class="label" ng-show="overStar"></span>
     <pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>
    </div>
+
+  
+
+ </div>
+ <script type="text/javascript">
+  var inputArray = [];
+var input = document.getElementById('inputbox');
+var screen = document.getElementById('screen');
+
+document.getElementById('display').onclick = function () {
+  inputArray.push(input.value);
+    screen.innerHTML = inputArray;
+};
+function showDiv() {
+   document.getElementById('ShowDiv').style.display = "block";
+
+
+}
+   </script>
+
+
+
    <form>
    <div class="form-group">
-        <font color="#25383C"><label><b>Recommendations</b></label></font>
-        <input type="text" name="name" class="form-control" ng-model="recommend">
-        <br>
-        <button type="submit" class="btn btn-primary">Add</button>
+       <font color="#25383C"><label><b>Recommendations</b></label></font>
+        <input type="text" id="inputbox" class="form-control">
+        <br/>
+        <button type="button" id="display" class="btn btn-primary" ng-model="showData">Add</button>
+        <br/>
         
-    <font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font>
-    <font color=" #8C001A">
-  <i><div>{{ pastflights.comments }}</div></i></font>
-    </div>
-</form>
+        <div class="wrapper">
+         <font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font></p>
+         <div id="screen"></div>
+         </div></div>
+   </div>
+   
+    </form>
  </div>
- </div>
+
   </uib-tabset>
   </uib-tab>
 
+  
   <hr />
 
             </div>
