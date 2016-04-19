@@ -122,17 +122,17 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
 // router.use(function(req, res, next) {
 //
 //     // check header or url parameters or post parameters for token
-//     var token = req.body.token || req.query.token || req.headers['token'];
+//     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
 //
 //     var jwtSecret = process.env.JWTSECRET;
-//     console.log(jwtSecret);
+//     //console.log(jwtSecret);
 //     // Get JWT contents:
 //     jwt.verify(token,jwtSecret, function(err, decoded) {
 //         if(err){
-//             console.log(err);
+//             //console.log(err);
 //             res.send('unauthorised access');
 //         }else {
-//             console.log('verified');
+//             //console.log('verified');
 //             next();
 //         }
 //     });
