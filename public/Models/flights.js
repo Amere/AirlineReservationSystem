@@ -3,19 +3,13 @@ var con = require('../../db');
 var moment = require('moment');
 var flights = require('../../ReturningFlights.json');
 var aircraft = require('../../aircrafts.json');
-/**
- * Seeding the DB from JSON files
- * @returns void
- */
+
 exports.seed=function(cb) {
   con.db().collection('users').find({},function(err,docs){
     if(docs.length==0){
     con.db().createCollection("users", function(err, collection){
-
          if (err) throw err;
-
              console.log("Created userCollection");
-
       });
   }
   });
@@ -53,26 +47,6 @@ exports.seed=function(cb) {
     }
 
   });
-  con.db().collection('ReturningFlights').count(function(err, length) {
-    if (err) return cb(err);
-    if (length > 0) {
-      console.log("insertions occured");
-    } else {
-      con.db().collection('ReturningFlights').insert(require('../../ReturningFlights'), function(err, response) {
-        console.log("initially empty");
-      });
-    }
-
-  });
-  con.db().collection('flights').find({}).toArray(function(err, docs) {
-    if (docs.length == 0) {
-      con.db().collection('flights').insert(require('../../flight.json'));
-      cb(err, true);
-    } else {
-      cb(err, false);
-    }
-  });
-
   con.db().collection('flights').find({}).toArray(function (err,docs) {
     if (docs.length==0) {
     con.db().collection('flights').insert(require('../../ReturningFlights.json'));
@@ -106,6 +80,7 @@ function getRoundTrip(origin,destination,departingDate,returningDate,clas,db,cb)
 
  //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
 
+
  var after = departingDate+84600000;
 var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class":clas}).toArray(function (err,fli){
 
@@ -133,7 +108,6 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
 
   if (fli.length==0) {
 
-    throw err;
     }  else {
     getOneWayTrip2(destination,origin,returningDate,db,function (err1,result) {
       if (err1) {
@@ -158,17 +132,16 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
  * @param class - economy or business only
  * @returns {Array}
  */
+
  function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
 var after = departingDate+84600000;
    var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class" : clas}).toArray(function (err,fli) {
      if (fli.length==0) {
        cb(err,fli);
      }  else {
-       //console.log('heeeeeeeeeeeeeeeeeeeeeeere');
        cb(null,fli);
      }
    });
-
  };
 function getOneWayTrip2(origin,destination,departingDate,db,cb) {
   var after = departingDate+84600000;
@@ -181,7 +154,6 @@ function getOneWayTrip2(origin,destination,departingDate,db,cb) {
       cb(null,fli);
     }
   });
-
 };
 function getMyBookings(cb) {
     var returned;
@@ -196,7 +168,7 @@ function getMyBookings(cb) {
       returned = fl.map(function(el) {
         return el.flight;
       });
-      con.db().collection('ReturningFlights').find({
+      con.db().collection('flights').find({
         "flightNumber": {
           $in: returned
         }
@@ -209,11 +181,7 @@ function getMyBookings(cb) {
               r = fli.map(function(el) {
                 return el;
               });
-
             }
-
-
-
           }
         }
         cb(null, r);
@@ -235,7 +203,7 @@ function getPastFlights(cb) {
       returned = fl.map(function(el) {
         return el.flight;
       });
-      con.db().collection('ReturningFlights').find({
+      con.db().collection('flights').find({
         "flightNumber": {
           $in: returned
         }
@@ -248,11 +216,7 @@ function getPastFlights(cb) {
               r = fli.map(function(el) {
                 return el;
               });
-
             }
-
-
-
           }
         }
         cb(null, r);

@@ -22,6 +22,10 @@ $scope.chekboxFlag=false;
    $scope.chekboxFlag = ! $scope.chekboxFlag;
      console.log($scope.chekboxFlag+'testsss');
  };
+function setImp(){
+ lufthansaServ.setImpFlg(0);
+ }
+ setImp();
 
  $scope.setOtherCompaniesFlag = function() {
      console.log($scope.chekboxFlag+'$scope.chekboxFlag$scope.chekboxFlag$scope.chekboxFlag');
@@ -63,7 +67,7 @@ $scope.chekboxFlag=false;
 
     $scope.clearVars = function(){
       lufthansaServ.clearVariables();
-    }
+    };
 
     $scope.open2 = function () {
         $scope.popup2.opened = true;
