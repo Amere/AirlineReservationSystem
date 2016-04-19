@@ -174,13 +174,15 @@ function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
      });
 };
 
+
 function getMyBookings(book,cb) {
     var returned;
+    var returned1;
     var r;
   //console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
    console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee:",book);
    con.db().collection('reservation').find({
-     bookingRefNum : book
+     bookingRefNum : book 
   }).toArray(function(err, fl) {
     if (fl.length == 0) {
       console.log("Err1:" + err);
@@ -188,11 +190,26 @@ function getMyBookings(book,cb) {
         console.log("asdasfgdghfgjdhgkghlhijluyutyrterweqwertyuio324354456");
       returned = fl.map(function(el) {
         console.log(el.flight);
+        return el.customer;
+      });
+      console.log("returned:"+returned);
+      con.db().collection('reservation').find({
+        "customer": {
+          $in: returned
+        }
+      }).toArray(function(err, fli) {
+       console.log("cus"+fli[0]);
+        if (fli.length == 0) {
+          console.log("Err2:" + err);
+        } else {
+         returned1 = fl.map(function(el) {
+        console.log(el.customer);
         return el.flight;
       });
-      con.db().collection('ReturningFlights').find({
+         console.log("returned1"+returned1);
+           con.db().collection('ReturningFlights').find({
         "flightNumber": {
-          $in: returned
+          $in: returned1
         }
       }).toArray(function(err, fli) {
         if (fli.length == 0) {
@@ -211,18 +228,22 @@ function getMyBookings(book,cb) {
         console.log(r);
         cb(null, r);
       });
+        }
+       
+      });
+    
     }
   });
 }
 
 
-function getPastFlights(book,cb) {
-    var returned;
-    var r;
-  //console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
-   console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee:",book);
-   con.db().collection('reservation').find({
-     bookingRefNum : book
+function getPastFlights(bookref,cb) {
+  var returned;
+  var r;
+
+
+  con.db().collection('reservation').find({
+     bookingRefNum : bookref 
   }).toArray(function(err, fl) {
     if (fl.length == 0) {
       console.log("Err1:" + err);
@@ -230,11 +251,26 @@ function getPastFlights(book,cb) {
         console.log("asdasfgdghfgjdhgkghlhijluyutyrterweqwertyuio324354456");
       returned = fl.map(function(el) {
         console.log(el.flight);
+        return el.customer;
+      });
+      console.log("returned:"+returned);
+      con.db().collection('reservation').find({
+        "customer": {
+          $in: returned
+        }
+      }).toArray(function(err, fli) {
+       console.log("cus"+fli[0]);
+        if (fli.length == 0) {
+          console.log("Err2:" + err);
+        } else {
+         returned1 = fl.map(function(el) {
+        console.log(el.customer);
         return el.flight;
       });
-      con.db().collection('ReturningFlights').find({
+         console.log("returned1"+returned1);
+           con.db().collection('ReturningFlights').find({
         "flightNumber": {
-          $in: returned
+          $in: returned1
         }
       }).toArray(function(err, fli) {
         if (fli.length == 0) {
@@ -253,6 +289,10 @@ function getPastFlights(book,cb) {
         console.log(r);
         cb(null, r);
       });
+        }
+       
+      });
+    
     }
   });
 }
