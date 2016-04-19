@@ -173,23 +173,50 @@ function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
 };
 function getMyBookings(book,cb) {
     var returned;
-  //  var r
+    var r;
   //console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
    console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee:",book);
-  //  con.db().collection('reservation').find({}, {
-  //   flight: 'SE2800'
-  // }).toArray(function(err, fl) {
-  //   if (fl.length == 0) {
-  //     console.log("Err1:" + err);
-  //   } else {
-  //     returned = fl.map(function(el) {
-  //       return el.flight;
-  //     });
-  //     con.db().collection('flights').find({
-  //       "flightNumber": {
-  //         $in: returned
-  //       }
-  //     }).toArray(function(err, fli) {
+   con.db().collection('reservation').find({}, {
+    flight: 'SE2800'
+  }).toArray(function(err, fl) {
+    if (fl.length == 0) {
+      console.log("Err1:" + err);
+    } else {
+      returned = fl.map(function(el) {
+        console.log(el.flight);
+        return el.flight;
+      });
+      con.db().collection('ReturningFlights').find({
+        "flightNumber": {
+          $in: returned
+        }
+      }).toArray(function(err, fli) {
+        if (fli.length == 0) {
+          console.log("Err2:" + err);
+        } else {
+          for (i = 0; i < fli.length; i++) {
+            if (fli[i].departureDateTime < Date.now()) {
+              r = fli.map(function(el) {
+                //console.log(el);
+                return el;
+              });
+            }
+          }
+        }
+        //console.log(r);
+        cb(null, r);
+      });
+    }
+  });
+  // con.db().collection('user').findOne({_id:book}).toArray(function(err,data){
+  //   console.log(data);
+  //   var obj;
+  //   if(!err){
+  //     //cb(null,data);
+  //     obj=data.map(function(el){
+  //       return el.email;
+  //     }) ;
+  //     con.db().collection('user').find({"email":{$inkey: "value",  obj}}).toArray(function(err, fli){
   //       if (fli.length == 0) {
   //         console.log("Err2:" + err);
   //       } else {
@@ -203,12 +230,8 @@ function getMyBookings(book,cb) {
   //       }
   //       cb(null, r);
   //     });
-  //   }
+  //   }  
   // });
-  con.db().collection('user').findOne({_id:book},function(err,data){
-    console.log(data);
-    if(!err)  cb(null,data);
-  });
   }
 
 function getPastFlights(cb) {
