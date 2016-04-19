@@ -21,6 +21,10 @@ var db = require('../db.js');
  * moment package timing manipulation
  */
 var moment = require('moment');
+
+const async = require('async');
+const request = require('request');
+
 /**
  * Seeding our database
  */
@@ -154,6 +158,105 @@ router.post('/api/updateSeat',function(req,res) {
         });
     });
 });
+
+function httpGet(url, callback) {
+    const options = {
+        url :  url,
+        json : true
+    };
+    request(options,
+        function(err, res, body) {
+            callback(err, body);
+        }
+    );
+}
+
+
+function generateUrlsOne(origin,destination,x,clas){
+    var ips = require('../testIp.json');
+    var generated = [];
+    for(var i = 0 ;i<ips.length;i++){
+        var element = ips[i];
+        var url = element.ip + 'api/flights/search/' + origin + '/' + destination + '/' + x + '/' + clas + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+        console.log(url);
+        generated.push(url);
+    }
+    return generated;
+};
+function generateUrlsRound(origin,destination,x,y,clas){
+    var ips = require('../testIp.json');
+    var generated = [];
+    for(var i = 0 ;i<ips.length;i++){
+        var element = ips[i];
+        var url = element.ip + 'api/flights/search/' + origin + '/' + destination + '/' + x +'/' +y+'/' + clas + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+        console.log(url);
+        generated.push(url);
+    }
+    return generated;
+};
+
+router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:class1', function(req, res) {
+var ret= [];
+    var origin =req.params.origin;
+    var destination=req.params.destination;
+    var departingDate=req.params.departingDate;
+    var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+    var clas = req.params.class1;
+    console.log(generateUrlsOne(origin,destination,x,clas));
+    const urls= generateUrlsOne(origin,destination,x,clas);
+
+    async.map(urls, httpGet, function (err, resultOneMap){
+        if (err) return console.log(err);
+        console.log(resultOneMap);
+        res.json(resultOneMap);
+        ret.push(resultOneMap);
+    });
+
+
+
+//// console.log(departingDate);
+//
+//
+////  var x=moment(departingDate).toDate().getTime();
+//    flights.oneWayOtherCompanies1(origin,destination,x,clas,db,function(err,result) {
+//        res.json(result);
+//    });
+
+});
+
+router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:returningDate/:class1', function(req, res) {
+    var ret= [];
+    var origin =req.params.origin;
+    var destination=req.params.destination;
+    var departingDate=req.params.departingDate;
+    var returningDate=req.params.returningDate;
+    var x=moment(departingDate).add(19, 'hours').toDate().getTime();
+    var y=moment(returningDate).add(19, 'hours').toDate().getTime();
+    var clas = req.params.class1;
+    console.log(generateUrlsRound(origin,destination,x,y,clas));
+    const urls= generateUrlsRound(origin,destination,x,y,clas);
+
+    async.map(urls, httpGet, function (err, resultOneMap){
+        if (err) return console.log(err);
+        console.log(resultOneMap);
+        res.json(resultOneMap);
+        ret.push(resultOneMap);
+    });
+
+
+
+//// console.log(departingDate);
+//
+//
+////  var x=moment(departingDate).toDate().getTime();
+//    flights.oneWayOtherCompanies1(origin,destination,x,clas,db,function(err,result) {
+//        res.json(result);
+//    });
+
+});
+
+
+
 /**
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
@@ -253,6 +356,11 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class1', fu
   });
 
 });
+
+
+
+
+
 router.get('/api/flights/search/:origin/:destination/:departingDate', function(req, res) {
   var origin =req.params.origin;
   var destination=req.params.destination;
