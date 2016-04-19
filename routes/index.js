@@ -119,6 +119,12 @@ router.post('/api/adduser',function(req,res){
     res.json(docs);
   });
 });
+router.post('/api/addreservation',function(req,res){
+  var reserv= req.body.reserv;
+  db.db().collection('reservation').insert(reserv,function(err,docs){
+    if (err) throw err;
+  });
+});
 router.post('/api/updateSeat',function(req,res) {
     var fn = req.body.fn;
     var sn = req.body.sn;

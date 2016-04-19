@@ -20,16 +20,19 @@ $scope.pastflights = function (bookref){
      console.log(response, 'error');
    });
  };
-$scope.getMyBookings = function (book){
-  $scope.book=book;
-   console.log("bookref"+ $scope.book);
-   lufthansaServ.getMyBookings($scope.book).success(function(data){
-      $scope.bookings=data;
-      console.log("in booking", data);
-   }).error(function(response) {
-     console.log(response, 'error');
-   });
- };
+ $scope.getMyBookings = function (book){
+   $scope.book=book;
+    console.log("bookref"+ $scope.book);
+    lufthansaServ.getMyBookings($scope.book).success(function(data){
+       $scope.bookings=data;
+        $scope.hideMe = function (data) {
+     data.hidden=true;
+     };
+       console.log("in booking", data);
+    }).error(function(response) {
+      console.log(response, 'error');
+    });
+  };
  //pastflights();
  //getBookings();
 
