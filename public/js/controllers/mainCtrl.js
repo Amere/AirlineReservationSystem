@@ -89,9 +89,15 @@ function setImp(){
         var departingDate=angular.element('#date1').val();
         var returningDate=angular.element('#date2').val();
         var clas=$scope.pick;
+        console.log('tessssssst');
         //  var x=moment(departingDate).toDate().getTime();
         //  var y=moment(returningDate).toDate().getTime();
-        lufthansaServ.getExternalFlightsOneWay('JFK','CAI','1460478300000','economy');
+        lufthansaServ.getExternalFlightsOneWay('JFK','CAI','1460478300000','economy').then(function(messages) {
+            console.log(message[0]);
+
+            $scope.flights = messages;
+        });
+
     };
     function roundTripExternal() {
         var origin=angular.element('#originAirports').val();
@@ -101,9 +107,9 @@ function setImp(){
         var clas=$scope.pick;
         //  var x=moment(departingDate).toDate().getTime();
         //  var y=moment(returningDate).toDate().getTime();
-        lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
+        lufthansaServ.getExternalFlightsRound('CAI','JED','1460478300000','1460478300000','economy');
     };
-   // roundTripExternal();
+    //roundTripExternal();
    // oneWayExternal();
 
 
@@ -145,6 +151,11 @@ function setImp(){
     $scope.popup2 = {
         opened: false
     };
+
+    $scope.setLandingFlag = function(){
+      lufthansaServ.setLandingFlag();
+    };
+
 //This will hide the DIV by default.
     $scope.IsVisible = false;
     $scope.ShowHide = function () {
@@ -306,9 +317,10 @@ function round() {
   //  var x=moment(departingDate).toDate().getTime();
   //  var y=moment(returningDate).toDate().getTime();
   var clas=$scope.pick;
-   lufthansaServ.getRound(origin,destination,departingDate,returningDate,clas).success(function(result){
-   $scope.flights = result;
-   });
+    lufthansaServ.getRound(origin,destination,departingDate,returningDate,clas).success(function(result){
+        $scope.flights = result;
+    });
+
 };
 function round2() {
 
@@ -331,9 +343,15 @@ function oneWay() {
    var clas=$scope.pick;
   //  var x=moment(departingDate).toDate().getTime();
   //  var y=moment(returningDate).toDate().getTime();
-   lufthansaServ.getOneWay(origin,destination,departingDate,clas).success(function(result){
-   $scope.flights = result;
-   });
+    console.log('tessssssst');
+    //  var x=moment(departingDate).toDate().getTime();
+    //  var y=moment(returningDate).toDate().getTime();
+    lufthansaServ.getOneWay(origin,destination,departingDate,clas).success(function(result){
+        console.log(result[0]);
+        $scope.flights = result;
+    });
+
+
 };
 function oneWay2() {
    var origin=lufthansaServ.getSelectedOriginAirport();
