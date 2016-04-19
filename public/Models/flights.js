@@ -3,19 +3,13 @@ var con = require('../../db');
 var moment = require('moment');
 var flights = require('../../ReturningFlights.json');
 var aircraft = require('../../aircrafts.json');
-/**
- * Seeding the DB from JSON files
- * @returns void
- */
+
 exports.seed=function(cb) {
   con.db().collection('users').find({},function(err,docs){
     if(docs.length==0){
     con.db().createCollection("users", function(err, collection){
-
          if (err) throw err;
-
              console.log("Created userCollection");
-
       });
   }
   });
@@ -54,7 +48,6 @@ exports.seed=function(cb) {
 
   });
 
-
   con.db().collection('flights').find({}).toArray(function (err,docs) {
     if (docs.length==0) {
     con.db().collection('flights').insert(require('../../ReturningFlights.json'));
@@ -88,6 +81,7 @@ function getRoundTrip(origin,destination,departingDate,returningDate,clas,db,cb)
 
  //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
 
+
  var after = departingDate+84600000;
 var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class":clas}).toArray(function (err,fli){
 
@@ -115,7 +109,6 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
 
   if (fli.length==0) {
 
-    throw err;
     }  else {
     getOneWayTrip(destination,origin,returningDate,"economy",db,function (err1,result) {
       if (err1) {
@@ -140,17 +133,16 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
  * @param class - economy or business only
  * @returns {Array}
  */
+
  function getOneWayTrip(origin,destination,departingDate,clas,db,cb) {
 var after = departingDate+84600000;
    var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class" : clas}).toArray(function (err,fli) {
      if (fli.length==0) {
        cb(err,fli);
      }  else {
-       //console.log('heeeeeeeeeeeeeeeeeeeeeeere');
        cb(null,fli);
      }
    });
-
  };
 function getOneWayTrip2(origin,destination,departingDate,db,cb) {
   var after = departingDate+84600000;
@@ -163,7 +155,6 @@ function getOneWayTrip2(origin,destination,departingDate,db,cb) {
       cb(null,fli);
     }
   });
-
 };
 function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
   var after = departingDate+84600000;
@@ -202,11 +193,7 @@ function getMyBookings(cb) {
               r = fli.map(function(el) {
                 return el;
               });
-
             }
-
-
-
           }
         }
         cb(null, r);
@@ -241,11 +228,7 @@ function getPastFlights(cb) {
               r = fli.map(function(el) {
                 return el;
               });
-
             }
-
-
-
           }
         }
         cb(null, r);

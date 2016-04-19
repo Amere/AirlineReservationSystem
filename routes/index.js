@@ -1,6 +1,3 @@
-
-
-
 /**
  * express package
  */
@@ -63,7 +60,6 @@ router.get('/api/data/flight', function (req, res) {
     res.json(dummy);
 });
 
-
 router.get('/api/data/pastFlights',function(req,res){
   flights.getPastFlights(function(err,json){
     if(!err){
@@ -79,19 +75,7 @@ router.get('/api/data/bookings',function(req,res){
     }
 });
   });
-/**
- * Nationality REST ENDPOINT
- * @returns {Array}
- */
 
-
-
-
-/**
- * Aircraft REST ENDPOINT
- * @param name - Aircraft name
- * @returns {Array}
- */
 
 router.get('/api/data/aircraft/:flightNum',function(req,res){
   db.db().collection('flightsXaircrafts').findOne({flightNumber:req.params.flightNum},function(err,data){
