@@ -326,11 +326,17 @@ lufthansa.factory('lufthansaServ', function ($http) {
         setSeat : function(value){
             this.seat=value;
         },
+        setSeatR : function(value){
+            this.seatR=value;
+        },
         /**
          * Get Seat
          */
         getSeat : function() {
             return this.seat;
+        },
+        getSeatR : function() {
+            return this.seatR;
         },
         /**
          * Set Possible seats

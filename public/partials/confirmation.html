@@ -63,6 +63,9 @@ style="background-image: url(images/solo.jpg);
                         <p>
                            <FONT COLOR ="000000">Seat number:       </FONT><FONT COLOR ="ffffff">{{Confirm.seatCode}}</FONT>
                            </p>
+                           <p ng-if="rr">
+                              <FONT COLOR ="000000">Returning Seat number:       </FONT><FONT COLOR ="ffffff">{{rSeat}}</FONT>
+                              </p>
                            <p>
                               <FONT COLOR ="000000">class:     </FONT><FONT COLOR ="ffffff">{{Confirm.seatClass}}</FONT>
                               </p>
@@ -70,8 +73,11 @@ style="background-image: url(images/solo.jpg);
                            <FONT COLOR ="000000">Receipt number:     </FONT><FONT COLOR ="ffffff">{{receipt}}</FONT>
                            </p>
                         <p>
-                           <FONT COLOR ="000000">flight number</FONT><FONT COLOR ="ffffff">{{Confirm.flight}}</FONT>
+                           <FONT COLOR ="000000">Outgoing flight number</FONT><FONT COLOR ="ffffff">{{Confirm.flight}}</FONT>
                           </p>
+                          <p ng-if="rr">
+                             <FONT COLOR ="000000">returning flight number</FONT><FONT COLOR ="ffffff">{{rFlight}}</FONT>
+                            </p>
                         <p>
                            <FONT COLOR ="000000">Departure date/time: </FONT><FONT COLOR ="ffffff">{{Confirm.odate}}</FONT>
                         </p>
