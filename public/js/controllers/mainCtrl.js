@@ -18,13 +18,15 @@ $scope.dt2 = new Date(year, month, day);
 $scope.dt1Flag = true;
 $scope.dt2Flag = false;
 $scope.chekboxFlag=false;
- function flipCheck(){
-   $scope.chekboxFlag = !$scope.chekboxFlag;
- }
+  $scope.flipCheck=function(){
+   $scope.chekboxFlag = ! $scope.chekboxFlag;
+     console.log($scope.chekboxFlag+'testsss');
+ };
 
- function setOtherCompaniesFlag(){
+ $scope.setOtherCompaniesFlag = function() {
+     console.log($scope.chekboxFlag+'$scope.chekboxFlag$scope.chekboxFlag$scope.chekboxFlag');
    lufthansaServ.setOtherCompanies($scope.chekboxFlag);
- }
+ };
 
 
     $scope.one = true;
@@ -98,7 +100,7 @@ $scope.chekboxFlag=false;
         lufthansaServ.getExternalFlightsRound('JFK','CAI','1460478300000','1460478300000','economy');
     };
    // roundTripExternal();
-    //oneWayExternal();
+   // oneWayExternal();
 
 
     $scope.status = {
@@ -151,10 +153,12 @@ $scope.chekboxFlag=false;
                     console.log(lufthansaServ.getReturning_Or_Outgoing() +' flag');
             if (lufthansaServ.getSelectedDestinationAirport() != "intial" && lufthansaServ.getSelectedOriginAirport() != "intial") {
                 $scope.IsVisible = true;
+
                 console.log(lufthansaServ.getSelectedDestinationAirport()+"     ****");
                 if(lufthansaServ.getReturning_Or_Outgoing() == "Returning" && $scope.pick!="economy" && $scope.pick!="business"){
                 round2();
               }else if (lufthansaServ.getReturning_Or_Outgoing()=="Returning" &&  ($scope.pick=="economy" || $scope.pick=="business")) {
+
                 round();
               }else if (lufthansaServ.getReturning_Or_Outgoing() != "Returning" && $scope.pick!="economy" && $scope.pick!="business") {
                 oneWay2();
@@ -324,7 +328,6 @@ function oneWay() {
   //  var x=moment(departingDate).toDate().getTime();
   //  var y=moment(returningDate).toDate().getTime();
    lufthansaServ.getOneWay(origin,destination,departingDate,clas).success(function(result){
-     console.log(result[0]);
    $scope.flights = result;
    });
 };
