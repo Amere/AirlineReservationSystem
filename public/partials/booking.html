@@ -1,4 +1,5 @@
 
+
 <div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(images/a3.jpg);" >
     <div class="fh5co-overlay"></div>
     <div class="fh5co-cover-text">
@@ -7,39 +8,45 @@
                 <div class="full-height js-full-height">
                     <div class="fh5co-cover-intro col-md-12">
 
-            <br> <br><br><br><br><br><br><br><br><br>
+            <br> <br><br><br><br>
 
 <uib-tabset active="active">
-	</uib-tab>
+</uib-tab>
     <uib-tab index="0" heading="My Bookings">
     <br>
     <div class="container">
-	<div class="col-md-1">
-						<img src="images/images (1).png" alt="HTML5 Icon" height="50px" width="50px">
-					</div>
-					<div class="col-md-4">
-						<h2>Your Flights</h2>
-					</div>
-					</div>
+<div class="col-md-1">
+<img src="images/images (1).png" alt="HTML5 Icon" height="50px" width="50px">
+</div>
+<div class="col-md-4">
+          
+<h2>Your Flights</h2>
+</div>
+</div>
     <div>
+    <div>
+    <font color="120F0F"><b>
+     Booking Reference Number:
+     </b></font> <input type="text" ng-model="book"/><br>
+    <br>
+    <button type="button" class="btn btn-info" ng-click="getMyBookings(book)">Check Your Flight Schedule
+    </button>
+    </div>
+    <br>
     <div class="container-fluid">
-	<button type="button" class="btn btn-info" ng-click="collapse = !collapse">Flight Schedule
-	</button>
-	</div>
-	<div uib-collapse="collapse">
+<button type="button" class="btn btn-info" ng-click="collapse = !collapse">Flight Schedule
+</button>
+</div>
+<div uib-collapse="collapse">
   <div class="container">
-		<div class="well well-lg"  ng-repeat="flights in bookings">
-       <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
+<div class="well well-lg"  ng-repeat="flights in bookings">
+        <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
   <font color="#8C001A">
   <i>
-   <div class="col-md-1">
-   {{ flights.class }}
-   </div>
-    <div class="col-md-1">
-
+   <div class="col-md-2">
    {{ flights.flightNumber }}
    </div>
-   <div class="col-md-2">
+    <div class="col-md-1">
 
    {{ flights.aircraftType }}
    </div>
@@ -47,18 +54,20 @@
 
    {{ flights.aircraftModel }}
    </div>
+   <div class="col-md-1">
+
+   {{ flights.class }}
+   </div>
     <div class="col-md-2">
 
-   {{ flights.cost }}
+   {{ flights.departureDateTime }}
    </div>
     <div class="col-md-2">
    {{ flights.arrivalDateTime }}
    </div>
-    <div class="col-md-2">
-   {{ flights.departureDateTime }}
+   <div class="col-md-2">
+   {{ flights.cost }}
    </div>
-
-
    </i>
    </font>
    <div>
@@ -106,29 +115,29 @@
     <uib-tab index="1" heading="My Past Flights">
     <div class="container">
     <div class="well well-lg" ng-repeat="pastflights in Pastflights">
-        <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
+     <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
      <font color=" #8C001A">
     <i>
     <div class= "col-md-1">
-    {{ pastflights.class }}
+    {{ pastflights.origin }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.aircraft }}
+    {{ pastflights.destination }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.departureDateTime }}
+    {{ pastflights.flightNumber }}
     </div>
     <div class= "col-md-1">
-    {{ pastflights.arrivalDate }}
-    </div>
-    <div class= "col-md-1">
-    {{ pastflights.departureCity }}
-    </div>
-    <div class= "col-md-1">
-    {{ pastflights.destinationCity }}
+    {{ pastflights.aircraftType }}
     </div>
     <div class= "col-md-2">
-    {{ pastflights.duration }}
+    {{ pastflights.aircraftModel }}
+    </div>
+    <div class= "col-md-2">
+    {{ pastflights.departureDateTime }}
+    </div>
+    <div class= "col-md-2">
+    {{ pastflights.arrivalDateTime }}
     </div>
    </i>
     </font>
@@ -167,3 +176,4 @@
             </div>
             </div>
             </div>
+
