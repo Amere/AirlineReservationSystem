@@ -173,37 +173,41 @@ function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
 };
 function getMyBookings(book,cb) {
     var returned;
-   var r
-   console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
+  //  var r
+  //console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
    console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee:",book);
-   con.db().collection('reservation').find({}, {
-    "flight": 'SE2800'
-  }).toArray(function(err, fl) {
-    if (fl.length == 0) {
-      console.log("Err1:" + err);
-    } else {
-      returned = fl.map(function(el) {
-        return el.flight;
-      });
-      con.db().collection('flights').find({
-        "flightNumber": {
-          $in: returned
-        }
-      }).toArray(function(err, fli) {
-        if (fli.length == 0) {
-          console.log("Err2:" + err);
-        } else {
-          for (i = 0; i < fli.length; i++) {
-            if (fli[i].departureDateTime < Date.now()) {
-              r = fli.map(function(el) {
-                return el;
-              });
-            }
-          }
-        }
-        cb(null, r);
-      });
-    }
+  //  con.db().collection('reservation').find({}, {
+  //   flight: 'SE2800'
+  // }).toArray(function(err, fl) {
+  //   if (fl.length == 0) {
+  //     console.log("Err1:" + err);
+  //   } else {
+  //     returned = fl.map(function(el) {
+  //       return el.flight;
+  //     });
+  //     con.db().collection('flights').find({
+  //       "flightNumber": {
+  //         $in: returned
+  //       }
+  //     }).toArray(function(err, fli) {
+  //       if (fli.length == 0) {
+  //         console.log("Err2:" + err);
+  //       } else {
+  //         for (i = 0; i < fli.length; i++) {
+  //           if (fli[i].departureDateTime < Date.now()) {
+  //             r = fli.map(function(el) {
+  //               return el;
+  //             });
+  //           }
+  //         }
+  //       }
+  //       cb(null, r);
+  //     });
+  //   }
+  // });
+  con.db().collection('user').findOne({_id:book},function(err,data){
+    console.log(data);
+    if(!err)  cb(null,data);
   });
   }
 
