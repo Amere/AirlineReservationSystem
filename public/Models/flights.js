@@ -171,10 +171,11 @@ function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
        }
      });
 };
-function getMyBookings(cb) {
+function getMyBookings(book,cb) {
     var returned;
    var r
-   console.log("hreree");
+   console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee12:",res.body.bookref);
+   console.log("we are hereeeeeeeeeeeeeeeeeeeeeeeee:",book);
    con.db().collection('reservation').find({}, {
     "flight": 'SE2800'
   }).toArray(function(err, fl) {
@@ -209,6 +210,7 @@ function getMyBookings(cb) {
 function getPastFlights(cb) {
   var returned;
   var r;
+
 
   con.db().collection('reservation').find({}, {
     "flight": 'SE2800'

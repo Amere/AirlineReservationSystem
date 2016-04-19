@@ -67,9 +67,9 @@ router.get('/api/data/pastFlights',function(req,res){
     }
   });
 });
-router.get('/api/data/bookings',function(req,res){
-  //req.query.bookref
-  flights.getMyBookings(function(err,json){
+router.post('/api/data/bookings',function(req,res){
+  var book=req.body.bookref;
+  flights.getMyBookings(book,function(err,json){
     if(!err){
       res.send(json);
     }

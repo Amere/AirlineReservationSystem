@@ -200,10 +200,11 @@ lufthansa.factory('lufthansaServ', function ($http) {
         /**
          * Get Bookings End point API
          */
-        getBookings : function(){
+         getMyBookings : function(bookref){
+            console.log("hereeeeeeeeeeeeee is the bookref"+bookref);
             return $http.get('/api/data/bookings',{
                 "headers" :{'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
-                }
+                },{ bookref : bookref}
             });
         },
         /**
