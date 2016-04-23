@@ -11,6 +11,7 @@ exports.seed=function(cb) {
       //console.log("HEREEE");
     con.db().createCollection("users", function(err, collection){
 
+
          //console.log("HEREEE1");
          console.log("Created userCollection");
       });
@@ -45,6 +46,7 @@ exports.seed=function(cb) {
       console.log("insertions occured");
     } else {
       con.db().createCollection("reservation", function(err, collection){
+
 
            //console.log("HEREEE1");
            console.log("Created reservationCollection");
@@ -122,6 +124,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
     }  else {
     getOneWayTrip(destination,origin,returningDate,"economy",db,function (err1,result) {
       if (err1) {
+
 
       }else {
       cb(null,{ "outgoingFlights" : fli,"returnFlights" : result});

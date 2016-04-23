@@ -30,7 +30,7 @@ const request = require('request');
  */
 db.connect(function (err, db) {
     flights.seed(function (err, seeded) {
-        if (err) throw err;
+
         if (!seeded) {
             console.log('data already inserted before');
         } else {
@@ -72,7 +72,6 @@ router.post('/api/updateSeat',function(req,res){
                       }
                 }
             db.db().collection('flightsXaircrafts').update({flightNumber:fn},{$set:{plane:cc}},function(err,data){
-                  if(err) throw err;
                 });
           });
 
@@ -98,7 +97,6 @@ router.get('/api/data/bookings/:ref',function(req,res){
   var book=req.params.ref;
   console.log(book+'yayayayaay');
   flights.getMyBookings(book,function(err,json){
-    if (err) throw err;
     if(!err){
       res.send(json);
     }
@@ -119,14 +117,12 @@ router.get('/api/data/aircraft/:flightNum',function(req,res){
 router.post('/api/adduser',function(req,res){
   var user= req.body.user;
   db.db().collection('users').insert(user,function(err,docs){
-    if (err) throw err;
     res.json(docs);
   });
 });
 router.post('/api/addreservation',function(req,res){
   var reserv= req.body.reserv;
   db.db().collection('reservation').insert(reserv,function(err,docs){
-    if (err) throw err;
   });
 });
 router.post('/api/updateSeat',function(req,res) {
@@ -163,7 +159,6 @@ router.post('/api/updateSeat',function(req,res) {
             }
         }
         db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
-            if (err) throw err;
         });
     });
 });
@@ -211,6 +206,7 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
    // var y = moment(returningDate).add(19, 'hours').toDate().getTime();
     var clas = req.params.class1;
+
     //console.log(generateUrlsRound(origin,destination,x,y,clas));
     const urls = generateUrlsOne(origin, destination, x, clas);
 
@@ -250,15 +246,16 @@ function manipulateOne(arrayReturn,cb){
         var tempOut = JSON.stringify(item.outgoingFlights[0]);
         //var tempRet = JSON.stringify(item.returnFlights[0]);
         if(i==arrayReturn.length-1) {
-            if(tempOut!=undefined){
-                out +=tempOut;
-            }
 
+          if(tempOut!=undefined){
+            out +=tempOut;
+          }
            // returnString +=tempRet;
         }else{
-            if(tempOut!=undefined) {
-                out += tempOut + ',';
-            }
+          if(tempOut!=undefined) {
+            out+=tempOut+',';
+          }
+
            // returnString+=tempRet+',';
         }
         //console.log(tempOut);
@@ -288,9 +285,6 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
        // var temp = resultOneMap;
       //  var obj = JSON.parse(returnFinal);
         //console.log(resultOneMap.outgoingFlights);
-
-
-
         // console.log(JSON.stringify(returnFinal));
        // returnFinal+=JSON.stringify(resultOneMap);
         //console.log(JSON.stringify(returnFinal));
@@ -328,6 +322,22 @@ function manipulate(arrayReturn,cb){
         //console.log(template);
 
        // console.log(obj);
+
+        var tempOut = JSON.stringify(item.outgoingFlights[0]);
+        var tempRet = JSON.stringify(item.returnFlights[0]);
+        if(i==arrayReturn.length-1) {
+          if (tempOut != undefined && tempRet!=undefined){
+            out +=tempOut;
+            returnString +=tempRet;
+          }
+        }else{
+          if (tempOut != undefined && tempRet!=undefined){
+            out+=tempOut+',';
+            returnString+=tempRet+',';
+          }
+        }
+        //console.log(tempOut);
+
 
             var tempOut = JSON.stringify(item.outgoingFlights[0]);
             var tempRet = JSON.stringify(item.returnFlights[0]);
