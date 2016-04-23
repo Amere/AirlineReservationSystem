@@ -5,7 +5,7 @@ var flights = require('../../ReturningFlights.json');
 var aircraft = require('../../aircrafts.json');
 
 exports.seed=function(cb) {
- con.deleteDB();
+ //con.deleteDB();
   con.db().collection('users').find({}).toArray(function(err,docs){
     if(docs.length==0){
       //console.log("HEREEE");

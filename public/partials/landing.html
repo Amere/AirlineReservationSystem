@@ -187,7 +187,8 @@
           <div ng-show="round">
 
 
-            <h2 ng-repeat="outgoing in flights.outgoingFlights" style="color:white" id="go">  {{outgoing.origin}}    {{outgoing.destination}}</h2>
+            <h2 style="color:white" id="go"> Going flight : From {{flights.outgoingFlights[0].origin}} To {{flights.outgoingFlights[0].destination}}</h2>
+              <h2 style="color:white" id="go"> Returning flight : From {{flights.outgoingFlights[0].destination}} To {{flights.outgoingFlights[0].origin}}</h2>
 
                           <table  name="Going" class="table table-hover">
 
