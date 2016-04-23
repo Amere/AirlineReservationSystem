@@ -4,9 +4,7 @@
 lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
 
     return {
-        /**
-         * Get Airports codes
-         */
+        /*Add user */
          addUser:function(user1,cb){
             $http.post('/api/adduser',{user:user1}).success(function(res){
               //console.log(res["ops"][0]["_id"]);
@@ -17,9 +15,11 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          reserveSeat:function(fn1,seat1){
            return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
          },
+        /* Add reservation */
          addReservation:function(reservation){
            return $http.post('/api/addreservation',{reserv:reservation});
          },
+        /* Get airports codes */
         getAirportCodes : function() {
             return $http.get('/api/data/codes',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
@@ -38,7 +38,6 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          */
         setSelectedOriginAirport : function(value) {
             this.selectedOriginAirport = value;
-            console.log(this.selectedOriginAirport+"ohhhhhhhhhhhhhhhhhhhhh");
         },
         /**
          * Set Nationality
@@ -64,63 +63,80 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getSelectedDestinationAirport : function() {
             return this.selectedDestinationAirport;
         },
+        /**
+         * set flight number for out going flights
+         */
         setFlightNumberOutGoing : function(value) {
             this.flightNumber = value;
-            console.log(this.flightNumber+"**************************");
-
         },
         /**
-         * get Destination Airport
+         * get flight number for out going flights
          */
         getFlightNumberOutGoing : function() {
           console.log(this.flightNumber+"**************************");
             return this.flightNumber;
 
         },
+        /**
+         * get Imp flag
+         */
         getImpFlg : function(){
           return this.ImpFlg;
         },
+        /**
+         * set Imp flag
+         */
         setImpFlg : function(val){
           this.ImpFlg = val;
         },
+        /**
+         * set outgoing date
+         */
         setDateOutGoing : function(value) {
             this.departureDateTime = value;
         },
         /**
-         * get Destination Airport
+         * get outgoing date
          */
         getDateOutGoing : function() {
             return this.departureDateTime;
         },
+        /**
+         * set flight number for returning flights
+         */
         setFlightNumberReturning : function(value) {
             this.flightNumber2 = value;
 
         },
         /**
-         * get Destination Airport
+         * get flight number for returning flights
          */
         getFlightNumberReturning : function() {
-          console.log(this.flightNumber2+"**************************");
-
             return this.flightNumber2;
         },
+        /**
+         * set Returning flight date
+         */
         setDateReturning : function(value) {
             this.departureDateTime2 = value;
         },
         /**
-         * get Destination Airport
+         * get Returning flight date
          */
         getDateReturning : function() {
             return this.departureDateTime2;
         },
-        //Outgoing Only or Returning
+        /**
+         * get Returning_Or_Outgoing flag
+         */
         getReturning_Or_Outgoing : function() {
             return this.RetFlg;
         },
+        /**
+         * set Returning_Or_Outgoing flag
+         */
         setReturning_Or_Outgoing : function(value) {
-
             this.RetFlg = value;
-            console.log(value+" "+"ana flg");
         },
         /**
          * get Offers
@@ -132,7 +148,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             });
         },
         /**
-         * ROUND-TRIP SEARCH From DB
+         * ROUND-TRIP SEARCH From Other companies
          * @param origin - Flight Origin Location - Airport Code
          * @param destination - Flight Destination Location - Airport Code
          * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
@@ -147,8 +163,14 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
               }
           });
         },
-
-
+        /**
+         * ROUND-TRIP SEARCH From DB
+         * @param origin - Flight Origin Location - Airport Code
+         * @param destination - Flight Destination Location - Airport Code
+         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @param returningDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @returns {Array}
+         */
         getRound2 : function (origin,destination,departingDate,returningDate) {
 
           return  $http.get('/api/flights/searchSecure/'+origin+'/'+destination+'/'+departingDate+'/'+returningDate+'/',{
@@ -157,7 +179,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
           });
         },
         /**
-         * One way SEARCH From DB
+         * One way SEARCH From Other companies
          * @param origin - Flight Origin Location - Airport Code
          * @param destination - Flight Destination Location - Airport Code
          * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
@@ -171,6 +193,13 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
                 }
             });
         },
+        /**
+         * One way SEARCH From DB
+         * @param origin - Flight Origin Location - Airport Code
+         * @param destination - Flight Destination Location - Airport Code
+         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
+         * @returns {Array}
+         */
         getOneWay2 : function (origin,destination,departingDate) {
             return  $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingDate+'/',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
@@ -190,7 +219,6 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         /**
          * Get Aircraft End point API
          */
-
         getAircraftOut : function() {
             return $http.get('/api/data/aircraft/'+this.flightNumber+'/',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
@@ -198,6 +226,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             });
             //return $http.get('/api/data/dummy');
         },
+        /**
+         * Get Aircraft End point API
+         */
             getAircraftRet : function() {
             return $http.get('/api/data/aircraft/'+this.flightNumber2+'/',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
@@ -267,15 +298,6 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
 
         },
         /**
-         * One way SEARCH From Other Airline API
-         * @param origin - Flight Origin Location - Airport Code
-         * @param destination - Flight Destination Location - Airport Code
-         * @param departingDate - JavaScript Date.GetTime() numerical value corresponding to format `YYYY-MM-DD`
-         * @param class - economy or business only
-         * @returns {Array}
-         */
-
-        /**
          * Get Nationalities flights End point API
          */
         getNationss :  function() {
@@ -302,6 +324,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         setSeat : function(value){
             this.seat=value;
         },
+        /**
+         * Set Seat Returning flights
+         */
         setSeatR : function(value){
             this.seatR=value;
         },
@@ -311,6 +336,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getSeat : function() {
             return this.seat;
         },
+        /**
+         * get Seat Returning flights
+         */
         getSeatR : function() {
             return this.seatR;
         },
@@ -332,10 +360,15 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         setSeatClass : function(value){
           this.class=value;
         },
-
+        /**
+         * Set other companies flag
+         */
         setOtherCompanies : function(flag){
           this.OtherCompaniesFlag=flag;
         },
+        /**
+         * get other companies flag
+         */
         getOtherCompanies : function(){
           return this.OtherCompaniesFlag;
         },

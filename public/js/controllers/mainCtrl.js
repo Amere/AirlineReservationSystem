@@ -411,7 +411,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         putMarkerOrigin(lon, lat);
     }
     function putMarkerDest(lon, lat) {
-        console.log($scope.map);
         if ($scope.map == null)
             $scope.map = new google.maps.Map(document.getElementById("map"), mapProp);
         var lonlat = new google.maps.LatLng(lon, lat);

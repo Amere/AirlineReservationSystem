@@ -60,8 +60,6 @@ router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
 router.post('/api/updateSeat',function(req,res){
      var fn=req.body.fn;
       var sn= req.body.sn;
-      console.log(fn);
-      console.log(sn);
       db.db().collection('flightsXaircrafts').findOne({flightNumber:fn},function(err,data){
             var cc= data.plane;
             for(var i=0;i<cc.economeySeats.length;i++){
@@ -92,7 +90,6 @@ router.get('/api/data/pastFlights/:ref',function(req,res){
 /* GET Bookings given that booking reference */
 router.get('/api/data/bookings/:ref',function(req,res){
   var book=req.params.ref;
-  console.log(book+'yayayayaay');
   flights.getMyBookings(book,function(err,json){
     if(!err){
       res.send(json);
@@ -290,14 +287,11 @@ function manipulate(arrayReturn,cb){
      var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
 
      var jwtSecret = process.env.JWTSECRET;
-     //console.log(jwtSecret);
-     // Get JWT contents:
+
      jwt.verify(token,jwtSecret, function(err, decoded) {
          if(err){
-             //console.log(err);
              res.send('unauthorised access');
          }else {
-             //console.log('verified');
              next();
          }
      });
@@ -329,11 +323,9 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
   var destination=req.params.destination;
   var departingDate=(++req.params.departingDate)+68400000;
   var returningDate=(++req.params.returningDate)+68400000;
-    console.log(departingDate);
   var x=moment(departingDate).add(19, 'hours').toDate().getTime();
   var y=moment(returningDate).add(19, 'hours').toDate().getTime();
   var clas=req.params.class;
-  //var clas=req.params.class;
   flights.getOneWayTrip(origin,destination,departingDate,clas,db,function(err,result) {
      res.json(result);
    });
