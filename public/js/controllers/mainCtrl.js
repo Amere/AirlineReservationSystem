@@ -316,7 +316,7 @@ function round() {
    var returningDate=angular.element('#date2').val();
   //  var x=moment(departingDate).toDate().getTime();
   //  var y=moment(returningDate).toDate().getTime();
-  var clas=$scope.pick;
+    var clas=$scope.pick;
     lufthansaServ.getRound(origin,destination,departingDate,returningDate,clas).success(function(result){
         console.log(result);
         $scope.flights = result;

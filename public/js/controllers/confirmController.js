@@ -59,7 +59,7 @@ if(lufthansaServ.paymentFlag === true){
       $scope.rFlight = user.returnFlight;
     }
     }else{
-      if(lufthansaServ.getSeat) {
+      if(lufthansaServ.getSeat()) {
         $scope.Confirm.seatCodeOut = lufthansaServ.getSeat();
         $scope.Confirm.seatClass = lufthansaServ.getSeatClass_();
         $scope.Confirm.flight = lufthansaServ.getFlightNumberOutGoing();

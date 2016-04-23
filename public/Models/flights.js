@@ -122,7 +122,7 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
     }  else {
     getOneWayTrip(destination,origin,returningDate,"economy",db,function (err1,result) {
       if (err1) {
-        
+
       }else {
       cb(null,{ "outgoingFlights" : fli,"returnFlights" : result});
       }

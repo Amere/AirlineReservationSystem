@@ -250,10 +250,15 @@ function manipulateOne(arrayReturn,cb){
         var tempOut = JSON.stringify(item.outgoingFlights[0]);
         //var tempRet = JSON.stringify(item.returnFlights[0]);
         if(i==arrayReturn.length-1) {
-            out +=tempOut;
+            if(tempOut!=undefined){
+                out +=tempOut;
+            }
+
            // returnString +=tempRet;
         }else{
-            out+=tempOut+',';
+            if(tempOut!=undefined) {
+                out += tempOut + ',';
+            }
            // returnString+=tempRet+',';
         }
         //console.log(tempOut);
@@ -323,22 +328,27 @@ function manipulate(arrayReturn,cb){
         //console.log(template);
 
        // console.log(obj);
-        var tempOut = JSON.stringify(item.outgoingFlights[0]);
-        var tempRet = JSON.stringify(item.returnFlights[0]);
-        if(i==arrayReturn.length-1) {
-            out +=tempOut;
-            returnString +=tempRet;
-        }else{
-            out+=tempOut+',';
-            returnString+=tempRet+',';
+
+            var tempOut = JSON.stringify(item.outgoingFlights[0]);
+            var tempRet = JSON.stringify(item.returnFlights[0]);
+            if (i == arrayReturn.length - 1) {
+                if (tempOut != undefined && tempRet!=undefined) {
+                    out += tempOut;
+                    returnString += tempRet;
+                }
+            } else {
+                if (tempOut != undefined && tempRet!=undefined) {
+                    out += tempOut + ',';
+                    returnString += tempRet + ',';
+                }
+
+            //console.log(tempOut);
         }
-        //console.log(tempOut);
-
-
     }
+   console.log(out);
     var template = '{"outgoingFlights":['+out+'],'+'"returnFlights":['+returnString+']}';
    console.log(template.length);
-    console.log(JSON.parse(template));
+    //console.log(JSON.parse(template));
 
 
    // console.log(JSON.parse(template));
