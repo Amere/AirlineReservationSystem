@@ -69,6 +69,10 @@ function setImp(){
       lufthansaServ.clearVariables();
     };
 
+    function flushVars(){
+        lufthansaServ.clearVariables();
+    }
+    flushVars();
     $scope.open2 = function () {
         $scope.popup2.opened = true;
     };

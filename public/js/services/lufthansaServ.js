@@ -424,7 +424,6 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
           this.paymentFlag = false;
           this.confirmFlag = false;
           this.OtherCompaniesFlag = false;
-          console.log(this.OtherCompaniesFlag);
         },
         //return all the details of the user in a single option for confirnation page
         getCurrentUser:function(cb){
