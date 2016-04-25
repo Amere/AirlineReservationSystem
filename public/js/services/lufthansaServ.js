@@ -487,6 +487,40 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         // return the reference number for this reservation
         getReceipt:function(){
           return this.receipt;
+        },
+        setPassNum :function(value){
+          this.passNum = value ;
+        },
+        getPassNum :function(){
+          return this.passNum;
+        },
+        sendStripeToken : function(token,isOut){
+            var flightId="";
+            if(isOut===true){
+                flightId=this.getFlightNumberOutGoing();
+            }else{
+                flightId=this.getFlightNumberReturning();
+            }
+            var fname = this.getFirstName();
+            var lname = this.getLastName();
+            var passNumber = this.getPassNum();
+            var passExp = this.getExpDate();
+            var dateOfBir = this.getDOB();
+            var nationality = this.getNationality();
+            var email = this.getEmail();
+            return $http.post('/booking',{
+                "paymentToken" : token,
+                "flightId": this.getFlightNumberOutGoing(),
+                "passengerDetails":[{
+                    "firstName": fname, // (required)
+                    "lastName": lname,  // (required)
+                    "passportNum": passNumber, // (required)
+                    "passportExpiryDate": passExp, // (optional)
+                    "dateOfBirth": dateOfBir,  // (required)
+                    "nationality": nationality, // (optional)
+                    "email": email // (optional)
+                }]
+            });
         }
 
 
