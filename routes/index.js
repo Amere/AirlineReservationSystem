@@ -313,6 +313,7 @@ router.post('/booking', function (req, res) {
  * middelware to add guarantee that the request is coming from our server not from
  * an unauthorised person
  */
+
 router.use(function (req, res, next) {
 
     // check header or url parameters or post parameters for token
