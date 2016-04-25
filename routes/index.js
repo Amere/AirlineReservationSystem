@@ -284,17 +284,17 @@ router.post('/booking', function (req, res) {
 
     // retrieve the token
     var stripeToken = req.body.paymentToken;
-
+    console.log(req.body.flightId);
     // attempt to create a charge using token
     console.log(stripeToken);
     stripe.charges.create({
-        amount: 70000000,
+        amount: 40,
         currency: "usd",
         source: stripeToken,
         description: "test"
     }, function (err, data) {
         if (err) {
-            console.log(err);
+            //console.log(err);
             res.send({refNum: null, errorMessage: err});
         }
         else {

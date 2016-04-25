@@ -52,7 +52,7 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
       exp_year: exp.substring(3)
     }, stripeResponseHandler);
   };
-
+var flagForRetPayment = 0;
   function stripeResponseHandler(status, response) {
 
     if (response.error) { // Problem!
@@ -61,13 +61,34 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
 
       // Get the token ID:
       var token = response.id;
-      lufthansaServ.sendStripeToken(token).success(function(err,data){
-        if(data.errorMessage==null){
-          $location.url('/confirm');
-        }else{
-          alert(err);
-        }
-      });
+      var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
+      if(retOrOut==="Outgoing Only"){//out only
+        lufthansaServ.sendStripeToken(token,true).success(function(err,data){
+          if(!err){
+            console.log(data);
+            $location.url('/confirm');
+          }else{
+            //console.log(err);
+            alert(err.errorMessage.message);
+          }
+        });
+      }else{//out and ret
+        lufthansaServ.sendStripeToken(token,true).success(function(err,data){
+          if(data.errorMessage==null){
+            //$location.url('/confirm');
+            if(flagForRetPayment==0){
+              createTokeenStripe();
+              flagForRetPayment++;
+            }else{
+              flagForRetPayment=0;
+              $location.url('/confirm');
+            }
+          }else{
+            alert(err);
+          }
+        });
+      }
+
     }
   }
   $scope.confirm = function(){

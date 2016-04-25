@@ -494,7 +494,13 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getPassNum :function(){
           return this.passNum;
         },
-        sendStripeToken : function(token){
+        sendStripeToken : function(token,isOut){
+            var flightId="";
+            if(isOut===true){
+                flightId=this.getFlightNumberOutGoing();
+            }else{
+                flightId=this.getFlightNumberReturning();
+            }
             var fname = this.getFirstName();
             var lname = this.getLastName();
             var passNumber = this.getPassNum();
@@ -504,7 +510,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             var email = this.getEmail();
             return $http.post('/booking',{
                 "paymentToken" : token,
-                "flightId": this.getFlight(),
+                "flightId": this.getFlightNumberOutGoing(),
                 "passengerDetails":[{
                     "firstName": fname, // (required)
                     "lastName": lname,  // (required)
