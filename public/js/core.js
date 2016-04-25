@@ -1,7 +1,7 @@
 /* Create Angular App Instance */
 
 
-lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate','smoothScroll','angularMoment']);
+lufthansa = angular.module('lufthansa', ['ui.bootstrap', 'ngRoute', 'ngAnimate','smoothScroll','angularMoment','angular-stripe']);
 
 
 /**
@@ -48,6 +48,9 @@ lufthansa.config(function ($routeProvider) {
         templateUrl: 'partials/reservationInfo.html',
         controller: 'res1Ctrl'
 
-    })
+    });
 //Add all parials later and your desired crtl ...
-})
+});
+    lufthansa.config(function (stripeProvider) {
+    stripeProvider.setPublishableKey('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
+});
