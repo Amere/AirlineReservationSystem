@@ -64,16 +64,16 @@ var flagForRetPayment = 0;
       var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
       if(retOrOut==="Outgoing Only"){//out only
         lufthansaServ.sendStripeToken(token,true).success(function(err,data){
-          if(!err){
+          if(data.errorMessage==null){
             console.log(data);
             $location.url('/confirm');
           }else{
             //console.log(err);
-            alert(err.errorMessage.message);
+            alert(data.errorMessage.message);
           }
         });
       }else{//out and ret
-        lufthansaServ.sendStripeToken(token,true).success(function(err,data){
+        lufthansaServ.sendStripeToken(token,false).success(function(err,data){
           if(data.errorMessage==null){
             //$location.url('/confirm');
             if(flagForRetPayment==0){
@@ -84,7 +84,8 @@ var flagForRetPayment = 0;
               $location.url('/confirm');
             }
           }else{
-            alert(err);
+           // console.log(err.errorMessage);
+             alert(data.errorMessage.message);
           }
         });
       }

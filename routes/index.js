@@ -288,7 +288,7 @@ router.post('/booking', function (req, res) {
     // attempt to create a charge using token
     console.log(stripeToken);
     stripe.charges.create({
-        amount: 40,
+        amount: 1000*100,
         currency: "usd",
         source: stripeToken,
         description: "test"
