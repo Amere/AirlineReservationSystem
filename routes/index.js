@@ -297,8 +297,8 @@ router.post('/booking', function (req, res) {
             //console.log(err);
             res.send({refNum: null, errorMessage: err});
         }
-        else {
-            res.send({refNum: "sghcvhjdceudgie89", errorMessage: null});
+        else {//TO DO
+            res.send({refNum: "sghcvhstripeTokenjdceudgie89", errorMessage: null});
             // payment successful
             // create reservation in database
             // get booking reference number and send it back to the user

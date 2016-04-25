@@ -510,7 +510,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             var email = this.getEmail();
             return $http.post('/booking',{
                 "paymentToken" : token,
-                "flightId": this.getFlightNumberOutGoing(),
+                "flightId": flightId,
                 "passengerDetails":[{
                     "firstName": fname, // (required)
                     "lastName": lname,  // (required)

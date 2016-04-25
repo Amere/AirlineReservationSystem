@@ -57,7 +57,10 @@ var flagForRetPayment = 0;
 
     if (response.error) { // Problem!
     alert(response.error.message);
-    } else { // Token was created!
+    } else {
+
+
+      // Token was created!
 
       // Get the token ID:
       var token = response.id;
