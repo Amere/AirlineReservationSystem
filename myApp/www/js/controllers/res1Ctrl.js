@@ -48,9 +48,9 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         var flag = lufthansaServ.getOtherCompanies();
         console.log(flag);
         if(flag==true){
-          $location.url('/payment');
+          $location.url('/landing/payment');
         }else{
-          $location.url('/reservation');
+          $location.url('/landing/reservation');
         }
       }
     };
@@ -77,7 +77,7 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
             $scope.nations = Nat;
         });
     };
-    nations();
+  //  nations();
     $scope.currentDate = new Date();
     $scope.minDate = new Date(2105, 6, 1);
     $scope.maxDate = new Date(2015, 6, 31);
