@@ -78,6 +78,17 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         });
     };
     nations();
+    $scope.currentDate = new Date();
+    $scope.minDate = new Date(2105, 6, 1);
+    $scope.maxDate = new Date(2015, 6, 31);
+
+    $scope.datePickerCallback = function (val) {
+    	if (!val) {
+    		console.log('Date not selected');
+    	} else {
+    		console.log('Selected date is : ', val);
+    	}
+    };
 
     /* Retrieve List of Offers */
 
