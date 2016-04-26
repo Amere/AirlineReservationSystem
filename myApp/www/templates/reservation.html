@@ -1,9 +1,43 @@
 <ion-view view-title="Choosing a seat">
   <ion-content class="padding">
     <h2>Choosing a seat</h2>
-    <p>
-      Here you can access the reserveCrtl w 3esh 7yataaaaaak
-    </p>
+
+
+    <ion-view title="Drop down list">
+      <ion-content>
+        <h4>Choosing a seat</h4>
+        <ion-radio ng-repeat="item in choices"
+                      ng-value="item.value"
+                      ng-model="data.choice">
+             {{ item.text }}
+           </ion-radio>
+          <div class="list list-inset" ng-repeat="seat in economySeats" ng-if="data.choice=='economy'">
+            <h4>economy seats of row {{$index+1}}</h4>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      &nbsp;
+                  </div>
+
+                  <select >
+                    <option ng-repeat="sea in seat">{{sea.seatCode}}</option>
+                  </select>
+              </label>
+          </div>
+          <div class="list list-inset" ng-repeat="seat in businessSeats" ng-if="data.choice=='business'">
+            <h4>business seats of row {{$index+1}}</h4>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      &nbsp;
+                  </div>
+                  <div >
+                  <select >
+                    <option ng-repeat="sea in seat">{{sea.seatCode}}</option>
+                  </select>
+                </div>
+              </label>
+          </div>
+        </ion-content>
+  </ion-view>
       <a href="#/tab/landing/payment">Go to Payment</a>
       <br>
       <br>
