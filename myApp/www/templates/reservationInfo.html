@@ -143,30 +143,37 @@
 
                                     <div class="list">
                                       {{nations}}
-                                      <label class="item item-input item-stacked-label">
+                                      <div class="item item-input item-stacked-label">
                                         <span class="input-label">First Name</span>
                                         <input type="text" ng-model="firstName" placeholder="Please enter your first name" required>
-                                      </label>
-                                      <label class="item item-input item-stacked-label">
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
                                         <span class="input-label">Last Name</span>
                                         <input type="text" ng-model="lastName" placeholder="Please enter your last name" required>
-                                      </label>
-                                      <label class="item item-input item-stacked-label">
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
                                         <span class="input-label">Email</span>
                                         <input type="text"  ng-model="email" placeholder="example@gmail.com" required>
-                                      </label>
-                                      <label class="item item-input item-stacked-label">
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
                                         <span class="input-label">Nationality</span>
                                         <input type="text"  ng-model="nationality"
                                          placeholder="select your Nationality"
                                           uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
                                          class="form-control"
                                          typeahead-on-select="SetNation($item.name)" required>
-                                      </label>
-                                    </label>
-                                    <label class="item item-input item-stacked-label">
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label">Date Of Birth</span>
+                                        <input type="date"  ng-model="dob" placeholder="1/1/2016" required>
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label">Your passport expiration date</span>
+                                        <input type="date"  ng-model="expDate" placeholder="1/1/2016" required>
+                                      </div>
+                                    <!-- <div class="item item-input item-stacked-label">
                                       <span class="input-label">Your Birth Date</span>
-                                      <!-- <input type="text"
+                                       <input type="text"
                                              class="form-control"
                                              uib-datepicker-popup="{{format}}"
                                              ng-model="dob"
@@ -175,16 +182,18 @@
 
                                              close-text="Close"
                                              alt-input-formats="altInputFormats" required> -->
-                                             <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
+                                             <!-- <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
                                                  <button class="button button-block button-positive ng-model="dob""> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
                                              </ionic-datepicker>
-                                    </label>
-                                    <label class="item item-input item-stacked-label">
+                                    </div> -->
+                                    <!-- <div class="item item-input item-stacked-label">
                                       <span class="input-label">Your Passport Expiration date</span>
                                              <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
                                                  <button class="button button-block button-positive ng-model="expDate""> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
                                              </ionic-datepicker>
-                                    </label>
+                                    </div>
+                                  </div> -->
+
                                     </div>
 
                                     <!-- <div class="form-group" align="center">
@@ -282,12 +291,10 @@
                                                 </span>
 
                                             </div> -->
-                                            <div class="form-group" align="center">
+                                            <div align="center">
                                                 <!-- <label class="col-md-4 control-label" for="procced">submit to procced :</label> -->
-                                                <div class="col-md-4">
 
-                                                    <button class="button button-calm"  href="#/tab/landing/payment" id="procced" name="procced" >Choose Seat </button>
-                                                </div>
+                                                    <button class="button button-calm"  href="#/tab/landing/payment" id="procced" name="procced" ng-click="setUserInfo(); seats();">Choose Seat </button>
                                             </div>
 
                                             </div>

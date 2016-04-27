@@ -1,14 +1,241 @@
 <ion-view view-title="Payment">
   <ion-content class="padding">
 
-    <h2>Payment</h2>
+    <!-- <h2>Payment</h2>
     <p>
       Here you can access the paymentCtrl w 3esh 7yataaaaaak
     </p>
       <a href="#/tab/landing/confirm">Go to Payment</a>
       <br>
       <br>
-      <br>
+      <br> -->
+
+      <link rel="stylesheet" href="css/payment.css">
+      <div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  >
+          <div class="fh5co-overlay"></div>
+          <div class="fh5co-cover-text">
+              <div class="container">
+                  <div class="row">
+                      <form class="full-height js-full-height">
+                            <br>
+                            <style>
+                            @darkGreen: #4a6a28;
+                            @lightGreen: #87ba51;
+                            @greyState: #DDD;
+                            @mainBlue: #0070c0;
+                            ol {
+
+                              &.progress-track {
+                                display: table;
+                                list-style-type: none;
+                                margin: 0;
+                                padding: 2em 1em;
+                                table-layout: fixed;
+                                width: 100%;
+
+                                li {
+                                  display: table-cell;
+                                  line-height: 3em;
+                                  position: relative;
+                                  text-align: center;
+
+                                  .icon-wrap {
+                                    border-radius: 50%;
+                                    top: -1.5em;
+
+                                    color: #fff;
+                                    display: block;
+                                    height: 2.5em;
+                                    margin: 0 auto -2em;
+                                    left: 0;
+                                    right: 0;
+                                    position: absolute;
+                                    width: 2.5em;
+                                  }
+
+                                  .icon-check-mark, .icon-down-arrow {
+                                    height: 25px;
+                                    width: 15px;
+                                    display: inline-block;
+                                    fill: currentColor;
+                                  }
+
+                                  .progress-text {
+                                     position: relative;
+                                     top: 10px;
+                                  }
+
+                                  &.progress-done {
+                                    border-top: 7px solid @lightGreen;
+                                    transition: border-color 1s ease-in-out;
+                                    -webkit-transition: border-color 1s ease-in-out;
+                                    -moz-transition: border-color 1s ease-in-out;
+
+                                    .icon-down-arrow {
+                                      display: none;
+                                    }
+
+                                      &.progress-current {
+
+                                        .icon-wrap {
+                                          background-color: @mainBlue;
+
+                                          .icon-check-mark {
+                                           display: none;
+                                          }
+
+                                          .icon-down-arrow {
+                                            display: block;
+                                          }
+                                        }
+                                      }
+
+                                    .icon-wrap {
+                                      background-color: @darkGreen;
+                                      border: 5px solid @lightGreen;
+                                    }
+                                  }
+
+                                  &.progress-todo {
+                                      border-top: 7px solid @greyState;
+                                      color: black;
+
+                                    .icon-wrap {
+                                      background-color: #FFF;
+                                      border: 5px solid @greyState;
+                                      border-radius: 50%;
+                                      bottom: 1.5em;
+                                      color: #fff;
+                                      display: block;
+                                      height: 2.5em;
+                                      margin: 0 auto -2em;
+                                      position: relative;
+                                      width: 2.5em;
+
+                                      .icon-check-mark, .icon-down-arrow {
+                                          display: none;
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            </style>
+                            <link rel="stylesheet" href="css/progress.css">
+                            <!-- <ol class="progress-track">
+                              <li class="progress-done">
+                                <center>
+                                  <div class="icon-wrap">
+                                    <svg class="icon-state icon-check-mark">
+                                      <use xlink:href="#icon-check-mark"></use>
+                                    </svg>
+
+                                    <svg class="icon-state icon-down-arrow">
+                                      <use xlink:href="#icon-down-arrow"></use>
+                                    </svg>
+                                  </div>
+                                  <span class="progress-text">Personal Info</span>
+                                </center>
+                              </li>
+                              <li class="progress-done">
+                                <center>
+                                  <div class="icon-wrap">
+                                    <svg class="icon-state icon-check-mark">
+                                      <use xlink:href="#icon-check-mark"></use>
+                                    </svg>
+
+                                    <svg class="icon-state icon-down-arrow">
+                                      <use xlink:href="#icon-down-arrow"></use>
+                                    </svg>
+                                  </div>
+                                  <span class="progress-text">Choosing Seat</span>
+                                </center>
+                              </li>
+
+                              <li class="progress-done progress-current">
+                                <center>
+                                  <div class="icon-wrap">
+                                    <svg class="icon-state icon-check-mark">
+                                      <use xlink:href="#icon-check-mark"></use>
+                                    </svg>
+
+                                    <svg class="icon-state icon-down-arrow">
+                                      <use xlink:href="#icon-down-arrow"></use>
+                                    </svg>
+                                  </div>
+                                  <span class="progress-text">Payment</span>
+                                </center>
+                              </li>
+                            </ol> -->
+
+
+                             <div class="cc">
+                               <form stripe-form="stripeCallback" name="checkoutForm">
+                                <h2>Enter your credit card details please</h2>
+
+                                <span class="provider mastercard">MasterCard</span>
+                                <span class="provider amex">American Express</span>
+                                <span class="provider visa">Visa</span>
+
+                                <!-- card number -->
+                                <br><br>
+                                <div class="number">
+                                  <input type="text" ng-model="v1" maxlength="16" placeholder="card number" ng-required="true">
+
+                                <!-- </label>
+                                  <div role="alert">
+                                    <span class="error" ng-show="myForm.userName.$error.required">
+                                     Required!</span>
+                                  </div>
+                                  <label> -->
+                                  <span class="instructions"></span>
+                                </div>
+
+                                <!-- valid / ccv -->
+                                <div class="date">
+                                  <span class="instructions valid">Valid Thru</span>
+                                  <input type="text" ng-model="validThru" maxlength="5" placeholder="00/00"
+                                         payments-format="expiry" payments-validate="expiry" required>
+
+                                  <span class="instructions valid">CVC</span>
+                                  <input type="text" ng-model="ccv" maxlength="3" placeholder="123"
+                                         payments-format="cvc" payments-validate="cvc" required>
+                                </div>
+
+                                <!-- name on card -->
+                                <div class="name">
+                                  <span class="instructions">Name on Card</span>
+                                  <input class="full-name" type="text" ng-model="fullName" maxlength="" inputmode='numeric' placeholder="John Doe" required>
+
+                                </div>
+
+                                <!-- shine -->
+                                <div class="shine"></div>
+                                <div class="shine shine-layer-two"></div>
+
+
+
+                              </div>
+                              <div class="row" style="margin: 50px;">
+                                  <span>
+                                    <a id="cancel" href="#/" class="button button-calm" role="button">cancel</a>
+                                  </span>
+                                  <span>
+                                  <a id="pay" class="button button-calm"  ng-click="setPaymentFlag(); confirm()"  role="button">make payment</a>
+                                </span>
+                              </div>
+                        </form>
+
+
+
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
 
 </ion-content>
 </ion-view>

@@ -44,15 +44,17 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-      if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
+     if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
         var flag = lufthansaServ.getOtherCompanies();
         console.log(flag);
         if(flag==true){
-          $location.url('/landing/payment');
+          console.log("************");
+          $location.url('#/tab/landing/payment');
         }else{
+          console.log("//////////////////");
           $location.url('/landing/reservation');
         }
-      }
+     }
     };
     $scope.setReservInfoFlag = function(){
       lufthansaServ.setReservInfoFlag();
@@ -60,12 +62,19 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
 
     $scope.setUserInfo = function(){
       lufthansaServ.setFirstName($scope.firstName);
+      console.log($scope.firstName);
       lufthansaServ.setLastName($scope.lastName);
+      console.log($scope.lastName);
       lufthansaServ.setEmail($scope.email);
+      console.log($scope.email);
       lufthansaServ.setNationality($scope.nationality);
+      console.log($scope.nationality);
       lufthansaServ.setDOB($scope.dob);
+      console.log($scope.dob);
       lufthansaServ.setExpDate($scope.expDate);
+      console.log($scope.expDate);
       lufthansaServ.setPassNum($scope.passNum);
+      console.log($scope.passNum);
 
     };
 
@@ -90,6 +99,34 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
     	}
     };
 
+    //react date-picker
+    // var React = require('react');
+    // var DatePicker = require('react-datepicker');
+    // var moment = require('moment');
+    //
+    // require('react-datepicker/dist/react-datepicker.css');
+
+    // var Example = React.createClass({
+    //   displayName: 'Example',
+    //
+    //   getInitialState: function() {
+    //     return {
+    //       startDate: moment()
+    //     };
+    //   },
+    //
+    //   handleChange: function(date) {
+    //     this.setState({
+    //       startDate: date
+    //     });
+    //   },
+    //
+    //   render: function() {
+    //     return <DatePicker
+    //         selected={this.state.startDate}
+    //         onChange={this.handleChange} />;
+    //   }
+    // });
     /* Retrieve List of Offers */
 
 
