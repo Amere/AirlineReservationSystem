@@ -187,12 +187,14 @@
           <div ng-show="round">
 
 
-            <h2 ng-repeat="outgoing in flights.outgoingFlights" style="color:white" id="go">  {{outgoing.origin}}    {{outgoing.destination}}</h2>
+            <h2 style="color:white" id="go"> Going flight : From {{flights.outgoingFlights[0].origin}} To {{flights.outgoingFlights[0].destination}}</h2>
+              <h2 style="color:white" id="go"> Returning flight : From {{flights.outgoingFlights[0].destination}} To {{flights.outgoingFlights[0].origin}}</h2>
 
                           <table  name="Going" class="table table-hover">
 
                         <thead>
                             <tr class="danger">
+                                <th class="text-danger">Airline</th>
                                 <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Departure Date Time</th>
@@ -200,24 +202,27 @@
                                 <th class="text-danger"> | </th>
                                 <th class="text-danger">From</th>
                                 <th class="text-danger">To</th>
+                                <th class="text-danger">Airline</th>
                                 <th class="text-danger">Departure Date Time</th>
                                 <th class="text-danger">Price</th>
                                 <th class="text-danger">Book Now</th>
                             </tr>
                         </thead>
-                        <tbody class="danger" ng-repeat="outgoing in flights.outgoingFlights">
+                        <tbody class="danger" ng-repeat="flight in flights.outgoingFlights">
                           <tr class="danger">
-                          <td>{{outgoing.origin}}</td>
-                          <td>{{outgoing.destination}}</td>
-                          <td><span>{{outgoing.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
-                          <td>{{outgoing.cost}}</td>
+                              <td>{{flight.Airline}}</td>
+                          <td>{{flight.origin}}</td>
+                          <td>{{flight.destination}}</td>
+                          <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td>{{flight.cost}}</td>
                           <td> </td>
-                          <td ng-repeat="returning in flights.returningFlights">{{returning.origin}}</td>
-                          <td ng-repeat="returning in flights.returningFlights">{{returning.destination}}</td>
-                          <td ng-repeat="returning in flights.returningFlights"><span>{{returning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
-                          <td ng-repeat="returning in flights.returningFlights">{{returning.cost}}</td>
-                          <td ng-repeat="outgoing in flights.outgoingFlights">
-                            <button type="button" class="btn btn-success btn-sm" ng-repeat="returning in flights.returningFlights" ng-click="setLandingFlag(); goToReservation(outgoing.flightNumber,returning.flightNumber)">Book</button>
+                          <td >{{flights.returnFlights[$index].origin}}</td>
+                          <td >{{flights.returnFlights[$index].destination}}</td>
+                              <td >{{flights.returnFlights[$index].Airline}}</td>
+                              <td ><span>{{flights.returnFlights[$index].departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
+                          <td> {{flights.returnFlights[$index].cost}}</td>
+                          <td >
+                            <button type="button" class="btn btn-success btn-sm"  ng-click="setLandingFlag(); goToReservation(flight.flightNumber,flight,flights.returnFlights[$index]._id,flights.returnFlights[$index].flightNumber)">Book</button>
                           </td>
 
                           <!-- <td>
@@ -266,6 +271,7 @@
 
                         <thead>
                             <tr class="danger">
+                                <th class="text-danger">Airline</th>
                                 <th class="text-danger" >From</th>
                                 <th class="text-danger">To</th>
                                 <th class="text-danger">Date</th>
@@ -275,12 +281,14 @@
                         </thead>
                         <tbody>
                           <tr class="danger" ng-repeat="flight in flights.outgoingFlights">
-                          <td>{{flight.origin}}</td>
+                              <td>{{flight.Airline}}</td>
+                              <td>{{flight.origin}}</td>
                           <td>{{flight.destination}}</td>
+
                           <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber,flight)">Book</button>
                           </td>
                         </tr>
                         </tbody>

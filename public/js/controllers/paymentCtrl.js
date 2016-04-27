@@ -37,9 +37,82 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
   $scope.popup2 = {
       opened: false
   };
+  function createTokeenStripe(){
+    var cardNumber = $scope.v1 +$scope.v2 +$scope.v3 + $scope.v4;
+    var cvv = $scope.ccv;
+    var exp = $scope.validThru;
+    console.log("number "+cardNumber);
+    console.log("cvv "+cvv);
+    console.log("expMonth "+exp.substring(0,2));
+    console.log("expYear "+ exp.substring(3));
+    Stripe.card.createToken({
+      number: +cardNumber,
+      cvc: +cvv,
+      exp_month: exp.substring(0,2),
+      exp_year: exp.substring(3)
+    }, stripeResponseHandler);
+  };
+var flagForRetPayment = 0;
+  function stripeResponseHandler(status, response) {
+   var other = lufthansaServ.getOtherCompanies();
+    if (response.error) { // Problem!
+    alert(response.error.message);
+    } else {
+
+    if(other==true){ // just create token and pass it to the other airline
+      var token = response.id;
+      console.log("Heeeeeeeeeeeeeeeer")
+      lufthansaServ.sendStripeTokenOther(token).success(function(data){
+        if(data==null){
+          console.log(data);
+          $location.url('/confirm');
+        }else{
+          console.log(data);
+          alert(data.errorMessage.message);
+        }
+      });
+    }else{ // payment is on our site and must be recorded into our DB
+      var token = response.id;
+      var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
+      if(retOrOut==="Outgoing Only"){//out only
+        lufthansaServ.sendStripeToken(token,true).success(function(data){
+          if(data.errorMessage==null){
+            console.log(data);
+            $location.url('/confirm');
+          }else{
+            //console.log(err);
+            alert(data.errorMessage.message);
+          }
+        });
+      }else{//out and ret
+        lufthansaServ.sendStripeToken(token,false).success(function(data){
+          if(data.errorMessage==null){
+            //$location.url('/confirm');
+            if(flagForRetPayment==0){
+              createTokeenStripe();
+              flagForRetPayment++;
+            }else{
+              flagForRetPayment=0;
+              $location.url('/confirm');
+            }
+          }else{
+            // console.log(err.errorMessage);
+            alert(data.errorMessage.message);
+          }
+        });
+      }
+
+    }
+      // Token was created!
+
+      // Get the token ID:
+
+    }
+  }
   $scope.confirm = function(){
     if($scope.v1!="" && $scope.v2!="" && $scope.v3!="" && $scope.v4!="" && $scope.validThru!="" && $scope.ccv!="" && $scope.fullName!="")
-          $location.url('/confirm');
+      createTokeenStripe();
+         // $location.url('/confirm');
 };
 
 

@@ -1,0 +1,22 @@
+[
+    {
+      "title": "we’ll stay in touch!",
+      "news": "With the Lufthansa app you’ll always know where your baggage is",
+      "imgUrl": "images/news2.jpg"
+    },
+    {
+        "title": "Flight information on-the-go",
+        "news": "Stay up to date with issues affecting your flight by text and email.",
+        "imgUrl": "images/news3.jpg"
+    },
+    {
+        "title": "My Lufthansa Services",
+        "news": "Now you can manage many matters relating to your flight yourself",
+        "imgUrl": "images/news4.png"
+    },
+    {
+        "title": "The new mobile booking",
+        "news": "Book, reserve seats and more – conveniently on your mobile device",
+        "imgUrl": "images/news5.png"
+    }
+]

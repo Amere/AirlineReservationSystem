@@ -1,0 +1,44 @@
+
+<ion-view view-title="Bookings">
+  <ion-content class="padding">
+   <p>
+     <input type="text" placeholder="Booking Reference Number" ng-model="book" required>
+<button class="btn btn-info" ng-click="getMyBookings(book)">Submit</button>
+    <p>
+           
+     <ion-list >
+      <ion-item ng-repeat="flights in bookings" ng-hide="flights.hidden" >
+     
+      
+ Flight From {{ flights.origin }} To {{ flights.destination }} 
+ <br>
+ Flight Number:{{ flights.flightNumber }}
+  <br>
+ AirCraftType: {{ flights.aircraftType }}
+ <br>
+ AirCraftModel:{{ flights.aircraftModel }}
+ <br>
+ Class:{{ flights.class }}
+ <br>
+ Departure: {{ flights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+   <br>
+ Arrival:{{ flights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+   <br>
+ Cost:{{ flights.cost }}
+   <br>
+      <ion-item-options>
+      <button  ng-click="hideMe(flights)">Cancel Booking</button>
+    </ion-item-options>
+  </ion-item>
+    </ion-list>
+    
+    </p>
+    <br>
+<br>
+    <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a>
+      <br>
+      <br>
+      <br>
+
+  </ion-content>
+</ion-view>
