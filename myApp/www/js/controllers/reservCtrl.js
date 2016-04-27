@@ -80,6 +80,13 @@ return res;
 $scope.rr=function(item){
   $scope.data.rows=item.rows;
 }
+$scope.chooseSeat=function(){
+  lufthansaServ.setSeat($scope.data.seat.seatCode);
+  lufthansaServ.setSeatClass($scope.data.seat.class);
+  // console.log($scope.data.seat.seatCode);
+  // console.log($scope.data.seat.class);
+
+}
 lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;

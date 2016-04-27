@@ -14,7 +14,7 @@
            </ion-radio>
            <div ng-repeat="item in choices" ng-if="data.choice==item.value" ng-value="item.rows"
            >
-
+           <h4>Please choose a row</h4>
            <ion-radio ng-repeat="a in range(item.rows)" ng-model="data.row" ng-value="a" style="display: inline-block;"
            >
                 {{ a }}
@@ -27,8 +27,8 @@
                       &nbsp;
                   </div>
 
-                  <select ng-model="data.seat">
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  <select ng-model="data.seat" ng-change="chooseSeat()" ng-options="sea.seatCode for sea in seat">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
               </label>
           </div>
@@ -39,8 +39,8 @@
                       &nbsp;
                   </div>
                   <div >
-                  <select ng-model="data.seat">
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  <select ng-model="data.seat" ng-change="chooseSeat()" ng-options="sea.seatCode for sea in seat">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
                 </div>
               </label>
@@ -52,8 +52,8 @@
                       &nbsp;
                   </div>
                   <div >
-                  <select ng-model="data.seat">
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  <select ng-model="data.seat" ng-options="sea.seatCode for sea in seat" ng-change="chooseSeat()">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
                 </div>
               </label>
@@ -65,8 +65,8 @@
                       &nbsp;
                   </div>
                   <div >
-                  <select ng-model="data.seat">
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  <select ng-model="data.seat" ng-options="sea.seatCode for sea in seat" ng-change="chooseSeat()">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
                 </div>
               </label>
