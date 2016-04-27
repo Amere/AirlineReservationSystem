@@ -281,14 +281,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.SearchFlights = function () {
         $location.url('/return');
     };
-    /* Function to save the reservation info and redirect user to the next stage */
-    $scope.goToReservation = function (out, ret) {
-        lufthansaServ.setFlightNumberOutGoing(out);
-        lufthansaServ.setFlightNumberReturning(ret);
-        lufthansaServ.setDateOutGoing(angular.element('#date1').val() + " " + "07:00 PM");
-        lufthansaServ.setDateReturning(angular.element('#date2').val() + " " + "07:00 PM");
-        $location.url('/reservation');
-    };
+
     /* Function to set Iata to default values which is 'initial' */
     function setIata() {
         lufthansaServ.setSelectedOriginAirport("intial");
@@ -366,9 +359,13 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     offers();
     /* Get news on page render */
     news();
-    $scope.goToReservation = function (out, ret) {
+    $scope.goToReservation = function (out, flight,flightIdRet,ret) {
         lufthansaServ.setFlightNumberOutGoing(out);
         lufthansaServ.setFlightNumberReturning(ret);
+        lufthansaServ.setFlightIdReturning(flightIdRet);
+        lufthansaServ.setFlight(flight);
+        console.log(flight._id);
+        console.log(flightIdRet);
         lufthansaServ.setDateOutGoing(angular.element('#date1').val() + " " + "07:00 PM");
         lufthansaServ.setDateReturning(angular.element('#date2').val() + " " + "07:00 PM");
         $location.url('/reserv1');
