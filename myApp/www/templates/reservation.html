@@ -1,9 +1,8 @@
-<ion-view view-title="Choosing a seat">
-  <ion-content class="padding">
+
     <h2>Choosing a seat</h2>
 
 
-    <ion-view title="Drop down list">
+    <ion-view title="Choosing seat">
       <ion-content>
         <h4>Choosing a seat</h4>
         <ion-radio ng-repeat="item in choices"
@@ -28,8 +27,8 @@
                       &nbsp;
                   </div>
 
-                  <select >
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'">{{sea.seatCode}}</option>
+                  <select ng-model="data.seat">
+                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
               </label>
           </div>
@@ -40,8 +39,8 @@
                       &nbsp;
                   </div>
                   <div >
-                  <select >
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'">{{sea.seatCode}}</option>
+                  <select ng-model="data.seat">
+                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
                 </div>
               </label>
@@ -53,8 +52,8 @@
                       &nbsp;
                   </div>
                   <div >
-                  <select >
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'">{{sea.seatCode}}</option>
+                  <select ng-model="data.seat">
+                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
                 </div>
               </label>
@@ -66,17 +65,19 @@
                       &nbsp;
                   </div>
                   <div >
-                  <select >
-                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'">{{sea.seatCode}}</option>
+                  <select ng-model="data.seat">
+                    <option ng-repeat="sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
                 </div>
               </label>
           </div>
+          <div align="center">
+          <button class="button button-calm" href="#/tab/landing/payment" ng-show="data.seat">Go to Payment</a>
+          </div>
         </ion-content>
+
   </ion-view>
-      <a href="#/tab/landing/payment">Go to Payment</a>
+
       <br>
       <br>
       <br>
-  </ion-content>
-</ion-view>
