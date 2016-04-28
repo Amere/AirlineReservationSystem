@@ -257,7 +257,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * Get Aircraft End point API
          */
             getAircraftRet : function() {
-            return $http.get('/api/data/aircraft/'+this.flightNumber2+'/',{
+            return $http.get('/api/data/aircraft/'+'SE1002'+'/',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
 
                 }
