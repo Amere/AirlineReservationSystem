@@ -70,5 +70,5 @@ $scope.pastflights = function (bookref){
              console.log($scope.out);
         };
       }
-
+console.log("");
 });
