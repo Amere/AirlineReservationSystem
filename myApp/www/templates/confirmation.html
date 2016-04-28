@@ -1,11 +1,30 @@
+
 <ion-view view-title="Confirmation">
   <ion-content class="padding">
-    <h2>Confirmation</h2>
-    <p>
-      Here you can access the confirmController w 3esh 7yataaaaaak
-    </p>
+     <p>
+                          Your Name:      {{Confirm.fname + ' ' + Confirm.lname}}
+                           <br>
+                              Your email:      {{Confirm.email}}
+                       <br>
+                           Seat number:       {{Confirm.seatCode}}
+                           <br>
+                           <ng-if="rr">
+                             Returning Seat number:   {{rSeat}}
+                             <br>
+                              class:    {{Confirm.seatClass}}
+                              <br>
+                             Booking Reference number:    {{receipt}}
+                             <br>
+                          Outgoing flight number: {{Confirm.flight}}
+                          <br>
+                          <ng-if="rr">
+                             returning flight number:{{rFlight}}
+                             <br>
+                            Departure date/time: {{Confirm.odate}}
+                       
       <br>
       <br>
       <br>
   </ion-content>
 </ion-view>
+
