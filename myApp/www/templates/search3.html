@@ -1,13 +1,14 @@
 <ion-view view-title="Available Flights" >
   <ion-content class="padding">
-
     <div class="card">
    <div class="item item-text-wrap" ng-repeat="f in flights.outgoingFlights">
-  <div class="list card animated zoomInLeft">
+
    <div class="item item-text-wrap">
      <div class="item item-avatar">
       <img src="img/imgres.png">
       <p>
+      {{f.Airline}}
+      <br>
       {{f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY'}}&nbsp;&nbsp;<i class="icon ion-arrow-right-c"></i>
       <br>
       {{f.flightNumber}}&nbsp;&nbsp;&nbsp;{{f.aircraftModel}} - {{f.aircraftType}}
@@ -45,12 +46,14 @@
      </div>
      <div class="item item-text-wrap">
        <a class="button button-block button-energized"  href="#/tab/landing/reserv1" ng-click="goToInfo()">
+
          BOOK NOW
        </a>
        </div>
 
-     </div>
+
    </div>
  </div>
+
   </ion-content>
 </ion-view>
