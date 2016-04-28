@@ -108,6 +108,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             this.flightNumber2 = value;
 
         },
+        setFlight : function(value){
+          this.flight = value;
+        },
         /**
          * get flight number for returning flights
          */
@@ -318,6 +321,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
                 }
             });
         },
+        getFlightData : function(){
+            return this.flight;
+        },
         /**
          * Set Seat
          */
@@ -494,23 +500,55 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getPassNum :function(){
           return this.passNum;
         },
-        sendStripeToken : function(token,isOut){
-            var flightId="";
-            if(isOut===true){
-                flightId=this.getFlightNumberOutGoing();
-            }else{
-                flightId=this.getFlightNumberReturning();
-            }
+        setFlightIdReturning :function(value){
+          this.flightIdRet=value;
+        },
+        getFlightIdReturning : function(){
+          return this.flightIdRet;
+        },
+        sendStripeToken : function(token){
             var fname = this.getFirstName();
             var lname = this.getLastName();
             var passNumber = this.getPassNum();
             var passExp = this.getExpDate();
             var dateOfBir = this.getDOB();
             var nationality = this.getNationality();
+            var flight = this.getFlightData();
             var email = this.getEmail();
             return $http.post('/booking',{
                 "paymentToken" : token,
-                "flightId": this.getFlightNumberOutGoing(),
+                "class": flight.class,  // (required)
+                "cost": flight.cost, // (required)
+                "outgoingFlightId": flight._id, // mongodb _id => 5NuiSNQdNcZwau92M (required)
+                "returnFlightId": this.getFlightIdReturning(), // mongodb _id => 9DuiBNVjNcUwiu42J (required)
+                "passengerDetails":[{
+                    "firstName": fname, // (required)
+                    "lastName": lname,  // (required)
+                    "passportNum": passNumber, // (required)
+                    "passportExpiryDate": passExp, // (optional)
+                    "dateOfBirth": dateOfBir,  // (required)
+                    "nationality": nationality, // (optional)
+                    "email": email // (optional)
+                }]
+            });
+        },
+        sendStripeTokenOther : function(token){
+            var fname = this.getFirstName();
+            var lname = this.getLastName();
+            var passNumber = this.getPassNum();
+            var passExp = this.getExpDate();
+            var dateOfBir = this.getDOB();
+            var nationality = this.getNationality();
+            var flight = this.getFlightData();
+            var email = this.getEmail();
+            console.log("in service");
+            return $http.post('/bookingOther',{
+                "paymentToken" : token,
+                "class": flight.class,  // (required)
+                "cost": flight.cost, // (required)
+                "outgoingFlightId": flight._id, // mongodb _id => 5NuiSNQdNcZwau92M (required)
+                "returnFlightId": this.getFlightIdReturning(), // mongodb _id => 9DuiBNVjNcUwiu42J (required)
+                "airline":flight.Airline,
                 "passengerDetails":[{
                     "firstName": fname, // (required)
                     "lastName": lname,  // (required)
