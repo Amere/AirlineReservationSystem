@@ -78,6 +78,24 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getdate1 : function() {
             return this.date1;
         },
+        setdate2 : function(value) {
+            this.date2= value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getdate2 : function() {
+            return this.date2;
+        },
+        setCl : function(value) {
+            this.cl= value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getCl : function() {
+            return this.cl;
+        },
         /**
          * Set Destination Airport
          */

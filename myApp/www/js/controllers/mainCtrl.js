@@ -63,6 +63,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.OneWayFlags = function () {
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
+        $scope.date2.date2=null;
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
     };
     /* Function to set Round Trip Flags  */
@@ -300,19 +301,41 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     var origin=lufthansaServ.getOr();
     var destination=lufthansaServ.getDest();
     var departingDate = lufthansaServ.getdate1();
+    var returningDate=lufthansaServ.getdate2();
+    var clas=lufthansaServ.getCl();
     if(origin!=null && destination!=null && departingDate!=null){
         // var origin = lufthansaServ.getSelectedOriginAirport();
         // var destination = lufthansaServ.getSelectedDestinationAirport();
-
+       if(returningDate==null && clas=='seat class'){
         console.log(origin + " "+ destination+" "+departingDate);
         lufthansaServ.getOneWay2(origin, destination, departingDate).success(function (result) {
             $scope.flights = result;
 
             console.log($scope.flights.outgoingFlights);
             console.log(result);
-
-
         });
+      }else if(returningDate!=null && clas=='seat class'){
+        lufthansaServ.getRound2(origin, destination, departingDate,returningDate).success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if (returningDate==null && clas!='seat class') {
+        lufthansaServ.getOneWay(origin, destination, departingDate,clas).success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if (returningDate!=null && (clas=='economy' || clas=='business')) {
+        lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas).success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }
     };
 
     /* Retrieve List of Airports Codes */
@@ -349,6 +372,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.or={};
     $scope.dest={};
     $scope.date1={};
+    $scope.date2={};
 
     $scope.goToReservation=function () {
         // lufthansaServ.setFlightNumberOutGoing(out);
@@ -356,20 +380,39 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
          lufthansaServ.setOr($scope.or.or);
          lufthansaServ.setDest($scope.dest.dest);
          lufthansaServ.setdate1($scope.date1.date1);
+         if($scope.date2.date2 !=null){
+           lufthansaServ.setdate2($scope.date2.date2);
+         };
+         lufthansaServ.setCl($scope.pick);
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
         // oneWay2();
-        //$state.go('tab.landing-search');
+        console.log($scope.pick);
+        if ($scope.date2.date2 ==null && $scope.pick=='seat class') {
+          $state.go('tab.landing-search');
+        }else if($scope.date2.date2!=null && $scope.pick=='seat class'){
+          $state.go('tab.landing-search2');
+        }else if($scope.pick!='seat class' && $scope.date2.date2 ==null ){
+          $state.go('tab.landing-search3');
+        }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null ) {
+          $state.go('tab.landing-search4');
+        }
 
     };
     $scope.goToInfo=function (fNum) {
         // lufthansaServ.setFlightNumberOutGoing(out);
         // // lufthansaServ.setFlightNumberReturning(ret);
          lufthansaServ.setFlightNumberOutGoing(fNum);
-         
+
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
         // oneWay2();
         //$state.go('tab.landing-search');
 
+    };
+    $scope.economy=function () {
+      $scope.pick='economy';
+    };
+    $scope.business=function () {
+      $scope.pick='business';
     };
     $scope.directToOutgoingFlights = function () {
         $location.url('/outgoingFlights');
