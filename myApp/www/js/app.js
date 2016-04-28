@@ -60,6 +60,15 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   }
   })
   // Each tab has its own nav history stack:
+  .state('tab.landing-search', {
+    url:'/landing/search',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
   .state('tab.landing-reserv1', {
     url:'/landing/reserv1',
     views: {
