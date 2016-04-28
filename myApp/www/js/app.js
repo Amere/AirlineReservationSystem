@@ -51,6 +51,19 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+  .state('home', {
+      url: '/home',
+      views: {
+          // instead of this
+          // 'home': {
+
+          // use this
+          '': {
+              templateUrl: 'templates/home.html',
+              controller: 'mainCtrl',
+          }
+      }
+    })
   .state('tab.landing', {
     url: '/landing',
     views: {
@@ -163,6 +176,6 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/landing');
+  $urlRouterProvider.otherwise('/home');
 
 });
