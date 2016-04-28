@@ -1,0 +1,14 @@
+<ion-view view-title="Available Flights" >
+  <ion-content class="padding">
+    <div class="card">
+   <div class="item item-text-wrap" ng-repeat="f in flights.outgoingFlights">
+     {{f.origin}}
+     {{f.destination}}
+     {{f.departureDateTime  | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}
+     {{f.price}}
+   </div>
+ </div>
+ <a class="button button-calm"  href="#/tab/landing/reserv1">
+
+  </ion-content>
+</ion-view>
