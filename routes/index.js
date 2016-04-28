@@ -166,18 +166,21 @@ router.post('/api/updateSeat', function (req, res) {
 function httpGet(url, callback) {
     const options = {
         url: url,
+        timeout:2000,
         json: false
     };
     request(options,
         function (err, res, body) {
+           // console.log(err);
             try {
-                var x = JSON.parse(body);
-                if(body != undefined && x.length!=0) {
-                    //console.log(x);
-                    callback(err,x);
-                }
+                    var x = JSON.parse(body);
+                    if (body != undefined && x.length != 0 && err==null) {
+                       // console.log(x.outgoingFlights[0].Airline);
+                        callback(err, x);
+                    }
+
             }catch (e){
-               // console.log(e);
+              // console.log(e);
             }
         }
     );
@@ -187,7 +190,7 @@ function httpGet(url, callback) {
  * For One way trip
  * */
 function generateUrlsOne(origin, destination, x, clas) {
-    var ips = require('../ips.json');
+    var ips = require('../testIp.json');
     var generated = [];
     for (var i = 0; i < ips.length; i++) {
         var element = ips[i];
@@ -200,7 +203,7 @@ function generateUrlsOne(origin, destination, x, clas) {
  * For Round trip flights
  * */
 function generateUrlsRound(origin, destination, x, y, clas) {
-    var ips = require('../ips.json');
+    var ips = require('../testIp.json');
     var generated = [];
     for (var i = 0; i < ips.length; i++) {
         var element = ips[i];
@@ -217,11 +220,12 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
     var clas = req.params.class1;
     const urls = generateUrlsOne(origin, destination, x, clas);
-
     async.map(urls, httpGet, function (err, resultOneMap) {
         manipulateOne(resultOneMap, function (finalValue) {
+           // console.log("test");
             res.json(finalValue);
         });
+
     });
 });
 /* Helper method to generate a valid JSON file that will be passed to the view for One
@@ -231,25 +235,23 @@ function manipulateOne(arrayReturn, cb) {
     var out = '';
     var returnString = '';
     var flag = false;
-    console.log("manipulaaaaaaaaaaaaaaaaaate")
+   // console.log("manipulaaaaaaaaaaaaaaaaaate");
     for (var i = 0; i < arrayReturn.length; i++) {
-        try {
+
             var item = arrayReturn[i];
+        //console.log(item);
             var tempOut = JSON.stringify(item.outgoingFlights[0]);
-            console.log(tempOut);
+            //console.log(tempOut);
             if (flag == false) {
                 if (tempOut != undefined) {
-                    console.log("Iffffffffffffffff");
+                   // console.log("Iffffffffffffffff");
                     out += tempOut;
                     flag = true;
                 }
             } else {
-
                 out += "," + tempOut;
             }
-        }catch (e){
-          console.log(e);
-        }
+
     }
     var template = '{"outgoingFlights":[' + out + ']}';
     console.log(template);
@@ -266,6 +268,7 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
     var clas = req.params.class1;
     const urls = generateUrlsRound(origin, destination, x, y, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
+        console.log(resultOneMap);
         manipulate(resultOneMap, function (finalValue) {
             res.json(finalValue);
         });
@@ -277,30 +280,35 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
 function manipulate(arrayReturn, cb) {
     var out = '';
     var returnString = '';
-    var flagOut = false;
-    var flagRet = false;
-    for (var i = 0; i < arrayReturn.length; i++) {
+    //var returnValue = [];
+    for(var i = 0 ;i<arrayReturn.length;i++){
         var item = arrayReturn[i];
+        //console.log(template);
+
+        // console.log(obj);
         var tempOut = JSON.stringify(item.outgoingFlights[0]);
         var tempRet = JSON.stringify(item.returnFlights[0]);
-        if(flagOut==false){
-            if(tempOut != undefined){
-                out += tempOut;
-                flagOut = true;
+        if(i==arrayReturn.length-1) {
+            if (tempOut != undefined && tempRet!=undefined){
+                out +=tempOut;
+                returnString +=tempRet;
             }
         }else{
-            out += ","+tempOut;
-        }
-        if(flagRet==false){
-            if(tempRet != undefined){
-                returnString += tempRet;
-                flagRet = true;
+            if (tempOut != undefined && tempRet!=undefined){
+                out+=tempOut+',';
+                returnString+=tempRet+',';
             }
-        }else{
-            returnString += ","+tempRet;
         }
+        //console.log(tempOut);
+
+
     }
-    var template = '{"outgoingFlights":[' + out + '],' + '"returnFlights":[' + returnString + ']}';
+    var template = '{"outgoingFlights":['+out+'],'+'"returnFlights":['+returnString+']}';
+    console.log(template.length);
+    console.log(JSON.parse(template));
+
+
+    // console.log(JSON.parse(template));
     cb(JSON.parse(template));
 };
 router.post('/booking', function (req, res) {
@@ -345,9 +353,8 @@ router.post('/bookingOther',function(req,res){
             ip = ips[i].ip;
         }
     }
-    console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
+    //console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
     request.post(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',{
-
         "paymentToken" : stripeToken,
         "class": Class,
         "cost": flightCost,
@@ -358,7 +365,7 @@ router.post('/bookingOther',function(req,res){
         if (!error && response.statusCode == 200) {
             res.send(JSON.parse(body));
         }else{
-            console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror "+airline);
+            //console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror "+airline);
             res.send({refNum: null, errorMessage: {
                 "message":"error while trying to connect with "+airline+" , Please try again later"
             }});
