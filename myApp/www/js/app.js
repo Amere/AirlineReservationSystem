@@ -45,11 +45,25 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   // setup an abstract state for the tabs directive
-    .state('tab', {
+
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+  .state('home', {
+      url: '/home',
+      views: {
+          // instead of this
+          // 'home': {
+
+          // use this
+          '': {
+              templateUrl: 'templates/home.html',
+              controller: 'mainCtrl',
+          }
+      }
+    })
   .state('tab.landing', {
     url: '/landing',
     views: {
@@ -60,6 +74,42 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   }
   })
   // Each tab has its own nav history stack:
+  .state('tab.landing-search', {
+    url:'/landing/search',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search2', {
+    url:'/landing/search2',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search2.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search3', {
+    url:'/landing/search3',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search3.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search4', {
+    url:'/landing/search4',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search4.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
   .state('tab.landing-reserv1', {
     url:'/landing/reserv1',
     views: {
@@ -105,9 +155,27 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
           controller: 'bookingCtrl'
           }
         }
+      })
+      .state('tab.book', {
+        url:'/book',
+        views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/book.html',
+          controller: 'bookingCtrl'
+          }
+        }
+      })
+      .state('tab.flights', {
+        url:'/flights',
+        views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/flights.html',
+          controller: 'bookingCtrl'
+          }
+        }
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/landing');
+  $urlRouterProvider.otherwise('/home');
 
 });

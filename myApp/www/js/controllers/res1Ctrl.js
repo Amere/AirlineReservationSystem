@@ -49,7 +49,7 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
        $scope.costumer.nationality!="" && $scope.costumer.expDate!="" && $scope.costumer.dob!="") {
         var flag = lufthansaServ.getOtherCompanies();
         console.log(flag);
-        if(flag==true){
+        if(flag==false){
           console.log("************");
         $state.go('tab.landing-reservation')
         }else{

@@ -1,9 +1,41 @@
-<ion-view view-title="Confirmation">
-  <ion-content class="padding">
-    <h2>Confirmation</h2>
-    <p>
-      Here you can access the confirmController w 3esh 7yataaaaaak
-    </p>
+<style>
+.home .scroll-content {
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin-top: -50px; /* the height of the centered content */
+  text-align: center;
+  padding: 30px;
+  font-size: 150%;
+}
+.home .scroll {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+</style>
+<ion-view view-title="Confirmation" class="home">
+  <ion-content class="padding" style="background-color:orange;">
+     <p>
+                          <span class="row">Your Name:</span>
+
+                          <span class="row">  Your email:     </span>
+
+                          <span class="row"> Seat number:       </span>
+
+
+                          <span class="row" ng-if="rr">   Returning Seat number:   </span>
+
+                            <span class="row">  class:    </span>
+
+                             <span class="row">Booking Reference number:   </span>
+
+                          <span class="row">Outgoing flight number:</span>
+
+
+                          <span class="row"ng-if="rr">   returning flight number:</span>
+                          <span class="row">  Departure date/time:</span>
+
       <br>
       <br>
       <br>

@@ -222,7 +222,7 @@
                               <td ><span>{{flights.returnFlights[$index].departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td> {{flights.returnFlights[$index].cost}}</td>
                           <td >
-                            <button type="button" class="btn btn-success btn-sm"  ng-click="setLandingFlag(); goToReservation(flight.flightNumber,flights.returnFlights[$index].flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm"  ng-click="setLandingFlag(); goToReservation(flight.flightNumber,flight,flights.returnFlights[$index]._id,flights.returnFlights[$index].flightNumber)">Book</button>
                           </td>
 
                           <!-- <td>
@@ -288,7 +288,7 @@
                           <td><span>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}</span></td>
                           <td>{{flight.cost}}</td>
                           <td>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber)">Book</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="setLandingFlag(); goToReservation(flight.flightNumber,flight)">Book</button>
                           </td>
                         </tr>
                         </tbody>

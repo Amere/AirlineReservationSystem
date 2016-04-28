@@ -1,7 +1,7 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log, moment) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
@@ -63,6 +63,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.OneWayFlags = function () {
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
+        $scope.date2.date2=null;
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
     };
     /* Function to set Round Trip Flags  */
@@ -131,6 +132,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     /* function To set class */
     $scope.selectClass = function (item) {
         $scope.pick = item;
+        console.log($scope.pick);
         lufthansaServ.setSeatClass(item);
     };
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
@@ -229,6 +231,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.toMain();
     };
 
+
     /* Retrieve List of News */
     function news() {
         lufthansaServ.getNews().success(function (News) {
@@ -251,13 +254,13 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         $location.url('/return');
     };
     /* Function to save the reservation info and redirect user to the next stage */
-    $scope.goToReservation = function (out, ret) {
-        lufthansaServ.setFlightNumberOutGoing(out);
-        lufthansaServ.setFlightNumberReturning(ret);
-        lufthansaServ.setDateOutGoing(angular.element('#date1').val() + " " + "07:00 PM");
-        lufthansaServ.setDateReturning(angular.element('#date2').val() + " " + "07:00 PM");
-        $location.url('/reservation');
-    };
+    // $scope.goToReservation = function (out, ret) {
+    //     lufthansaServ.setFlightNumberOutGoing(out);
+    //     lufthansaServ.setFlightNumberReturning(ret);
+    //     lufthansaServ.setDateOutGoing(angular.element('#date1').val() + " " + "07:00 PM");
+    //     lufthansaServ.setDateReturning(angular.element('#date2').val() + " " + "07:00 PM");
+    //     $location.url('/reservation');
+    // };
     /* Function to set Iata to default values which is 'initial' */
     function setIata() {
         lufthansaServ.setSelectedOriginAirport("intial");
@@ -296,14 +299,46 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         });
     };
     /* function to search One way trips flights in Our database */
-    function oneWay2() {
-        var origin = lufthansaServ.getSelectedOriginAirport();
-        var destination = lufthansaServ.getSelectedDestinationAirport();
-        var departingDate = angular.element('#date1').val();
+    var origin=lufthansaServ.getOr();
+    var destination=lufthansaServ.getDest();
+    var departingDate = lufthansaServ.getdate1();
+    var returningDate=lufthansaServ.getdate2();
+    var clas=lufthansaServ.getCl();
+    if(origin!=null && destination!=null && departingDate!=null){
+        // var origin = lufthansaServ.getSelectedOriginAirport();
+        // var destination = lufthansaServ.getSelectedDestinationAirport();
+       if(returningDate==null && clas=='seat class'){
+        console.log(origin + " "+ destination+" "+departingDate);
         lufthansaServ.getOneWay2(origin, destination, departingDate).success(function (result) {
             $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
         });
+      }else if(returningDate!=null && clas=='seat class'){
+        lufthansaServ.getRound2(origin, destination, departingDate,returningDate).success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if (returningDate==null && clas!='seat class') {
+        lufthansaServ.getOneWay(origin, destination, departingDate,clas).success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if (returningDate!=null && (clas=='economy' || clas=='business')) {
+        lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas).success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }
     };
+
     /* Retrieve List of Airports Codes */
     function AirportCodes() {
         lufthansaServ.getAirportCodes().success(function (airports) {
@@ -335,19 +370,59 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     offers();
     /* Get news on page render */
     news();
-    $scope.goToReservation = function (out, ret) {
-        lufthansaServ.setFlightNumberOutGoing(out);
-        lufthansaServ.setFlightNumberReturning(ret);
-        lufthansaServ.setDateOutGoing(angular.element('#date1').val() + " " + "07:00 PM");
-        lufthansaServ.setDateReturning(angular.element('#date2').val() + " " + "07:00 PM");
-        $location.url('/reserv1');
+    $scope.or={};
+    $scope.dest={};
+    $scope.date1={};
+    $scope.date2={};
 
+    $scope.goToReservation=function () {
+        // lufthansaServ.setFlightNumberOutGoing(out);
+        // // lufthansaServ.setFlightNumberReturning(ret);
+         lufthansaServ.setOr($scope.or.or);
+         lufthansaServ.setDest($scope.dest.dest);
+         lufthansaServ.setdate1($scope.date1.date1);
+         if($scope.date2.date2 !=null){
+           lufthansaServ.setdate2($scope.date2.date2);
+         };
+         lufthansaServ.setCl($scope.pick);
+        // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
+        // oneWay2();
+        console.log($scope.pick);
+        if ($scope.date2.date2 ==null && $scope.pick=='seat class') {
+          $state.go('tab.landing-search');
+        }else if($scope.date2.date2!=null && $scope.pick=='seat class'){
+          $state.go('tab.landing-search2');
+        }else if($scope.pick!='seat class' && $scope.date2.date2 ==null ){
+          $state.go('tab.landing-search3');
+        }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null ) {
+          $state.go('tab.landing-search4');
+        }
+
+    };
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+        };
+    $scope.goToInfo=function (fNum) {
+        // lufthansaServ.setFlightNumberOutGoing(out);
+        // // lufthansaServ.setFlightNumberReturning(ret);
+         lufthansaServ.setFlightNumberOutGoing(fNum);
+
+        // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
+        // oneWay2();
+        //$state.go('tab.landing-search');
+
+    };
+    $scope.economy=function () {
+      $scope.pick='economy';
+    };
+    $scope.business=function () {
+      $scope.pick='business';
     };
     $scope.directToOutgoingFlights = function () {
         $location.url('/outgoingFlights');
     };
     /*-------------------Google maps stuff----------------------*/
-    
+
     AirportCodes();
     slides();
 });

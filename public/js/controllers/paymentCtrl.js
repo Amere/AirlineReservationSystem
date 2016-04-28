@@ -54,16 +54,28 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
   };
 var flagForRetPayment = 0;
   function stripeResponseHandler(status, response) {
-
+   var other = lufthansaServ.getOtherCompanies();
     if (response.error) { // Problem!
     alert(response.error.message);
-    } else { // Token was created!
+    } else {
 
-      // Get the token ID:
+    if(other==true){ // just create token and pass it to the other airline
+      var token = response.id;
+      console.log("Heeeeeeeeeeeeeeeer")
+      lufthansaServ.sendStripeTokenOther(token).success(function(data){
+        if(data==null){
+          console.log(data);
+          $location.url('/confirm');
+        }else{
+          console.log(data);
+          alert(data.errorMessage.message);
+        }
+      });
+    }else{ // payment is on our site and must be recorded into our DB
       var token = response.id;
       var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
       if(retOrOut==="Outgoing Only"){//out only
-        lufthansaServ.sendStripeToken(token,true).success(function(err,data){
+        lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
             console.log(data);
             $location.url('/confirm');
@@ -73,7 +85,7 @@ var flagForRetPayment = 0;
           }
         });
       }else{//out and ret
-        lufthansaServ.sendStripeToken(token,false).success(function(err,data){
+        lufthansaServ.sendStripeToken(token,false).success(function(data){
           if(data.errorMessage==null){
             //$location.url('/confirm');
             if(flagForRetPayment==0){
@@ -84,11 +96,16 @@ var flagForRetPayment = 0;
               $location.url('/confirm');
             }
           }else{
-           // console.log(err.errorMessage);
-             alert(data.errorMessage.message);
+            // console.log(err.errorMessage);
+            alert(data.errorMessage.message);
           }
         });
       }
+
+    }
+      // Token was created!
+
+      // Get the token ID:
 
     }
   }

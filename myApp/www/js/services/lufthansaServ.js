@@ -51,6 +51,51 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getSelectedOriginAirport : function() {
             return this.selectedOriginAirport;
         },
+        setOr : function(value) {
+            this.or = value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getOr : function() {
+            return this.or;
+        },
+        setDest : function(value) {
+            this.dest= value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getDest : function() {
+            return this.dest;
+        },
+        setdate1 : function(value) {
+            this.date1= value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getdate1 : function() {
+            return this.date1;
+        },
+        setdate2 : function(value) {
+            this.date2= value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getdate2 : function() {
+            return this.date2;
+        },
+        setCl : function(value) {
+            this.cl= value;
+        },
+        /**
+         * Get Selected Origin Airport
+         */
+        getCl : function() {
+            return this.cl;
+        },
         /**
          * Set Destination Airport
          */
@@ -220,7 +265,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * Get Aircraft End point API
          */
         getAircraftOut : function() {
-            return $http.get('/api/data/aircraft/'+this.flightNumber+'/',{
+            return $http.get('/api/data/aircraft/'+'SE1600'+'/',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
@@ -230,7 +275,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * Get Aircraft End point API
          */
             getAircraftRet : function() {
-            return $http.get('/api/data/aircraft/'+this.flightNumber2+'/',{
+            return $http.get('/api/data/aircraft/'+'SE1002'+'/',{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
 
                 }
@@ -261,7 +306,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          */
         getPastFlights : function(bookref){
 
-            return $http.get('api/data/pastFlights/'+bookref,{
+            return $http.get('/api/data/pastFlights/'+bookref,{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
             });
