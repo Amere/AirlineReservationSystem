@@ -63,7 +63,7 @@ var flagForRetPayment = 0;
         lufthansaServ.sendStripeToken(token,true).success(function(err,data){
           if(!err){
             console.log(data);
-            $location.url('/landing/confirm');
+            $state.go('tab.landing-confirm')
           }else{
             //console.log(err);
             alert(err.errorMessage.message);

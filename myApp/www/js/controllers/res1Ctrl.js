@@ -1,7 +1,7 @@
 /**
  * Main Controller
  */
-lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
+lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $state) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -48,14 +48,14 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
      if($scope.costumer.firstName!= "" && $scope.costumer.lastName!="" && $scope.costumer.email != ""&&
        $scope.costumer.nationality!="" && $scope.costumer.expDate!="" && $scope.costumer.dob!="") {
         var flag = lufthansaServ.getOtherCompanies();
-        // console.log(flag);
-        // if(flag==true){
-        //   console.log("************");
-          $location.url('/landing/payment');
-        // }else{
-        //   console.log("//////////////////");
-        //   $location.url('/landing/reservation');
-        // }
+        console.log(flag);
+        if(flag==true){
+          console.log("************");
+        $state.go('tab.landing-reservation')
+        }else{
+          console.log("//////////////////");
+          $state.go('tab.landing-payment')
+        }
      }
     };
     $scope.setReservInfoFlag = function(){
