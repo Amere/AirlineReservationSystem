@@ -314,7 +314,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
 
         });
     };
-  
+
     /* Retrieve List of Airports Codes */
     function AirportCodes() {
         lufthansaServ.getAirportCodes().success(function (airports) {
@@ -356,6 +356,16 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
          lufthansaServ.setOr($scope.or.or);
          lufthansaServ.setDest($scope.dest.dest);
          lufthansaServ.setdate1($scope.date1.date1);
+        // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
+        // oneWay2();
+        //$state.go('tab.landing-search');
+
+    };
+    $scope.goToInfo=function (fNum) {
+        // lufthansaServ.setFlightNumberOutGoing(out);
+        // // lufthansaServ.setFlightNumberReturning(ret);
+         lufthansaServ.setFlightNumberOutGoing(fNum);
+         
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
         // oneWay2();
         //$state.go('tab.landing-search');
