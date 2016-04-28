@@ -45,7 +45,8 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   // setup an abstract state for the tabs directive
-    .state('tab', {
+
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
