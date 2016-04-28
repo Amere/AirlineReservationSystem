@@ -1,12 +1,12 @@
-<ion-view view-title="Home">
+<ion-view view-title="Home" class="pane">
   <ion-content class="padding">
     <h2 style="color:grey">Find Flights</h2>
     <div class="row">
       <div class="col-md-4">
         <label class="item item-radio">
-           <input type="radio" name="group1" checked="{{dt1Flag}}" style="background-color:blue" ng-click="OneWayFlags(); OneWayTable()" >
+           <input  type="radio" name="group1" checked="{{dt1Flag}}" style="background-color:blue" ng-click="OneWayFlags(); OneWayTable()" >
            <div class="item-content">
-              <h3 style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One Way Trip</h3>
+              <h3 class="positive">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One Way Trip</h3>
            </div>
            <i class="radio-icon ion-checkmark"></i>
         </label>
@@ -15,7 +15,7 @@
     <label class="item item-radio">
          <input type="radio" name="group2" style="background-color:blue" ng-click="RoundtripFlags(); RoundtripTable()">
          <div class="item-content">
-           <h3 style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round Trip</h3>
+           <h3 class="positive">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round Trip</h3>
          </div>
          <i class="radio-icon ion-checkmark"></i>
       </label>
@@ -24,26 +24,26 @@
   <br><br>
     <div class="list">
    <label class="item item-input item-stacked-label">
-   <span class="input-label" style="color:grey">Origin</span>
-   <input type="text" style="color:orange" placeholder="Flying From" id="t1" ng-model="or.or">
+   <span class="input-label" style="color:orange">Origin</span>
+   <input type="text" style="color:grey" placeholder="Flying From" id="t1" ng-model="or.or">
    </label>
  <br>
    <label class="item item-input item-stacked-label">
-   <span class="input-label" style="color:grey">Destination</span>
-   <input type="text" style="color:orange" placeholder="Flying To" id='t2' ng-model="dest.dest">
+   <span class="input-label" style="color:orange">Destination</span>
+   <input type="text" style="color:grey" placeholder="Flying To" id='t2' ng-model="dest.dest">
    </label>
    <br>
    <div class="row">
      <div class="col-md-6" ng-show="dt1Flag">
    <label class="item item-input item-stacked-label">
-     <span class="input-label" style="color:grey">Departing Date</span>
-  <input type="text" style="color:orange" placeholder="yyyy-mm-dd" ng-model="date1.date1" id="date1">
+     <span class="input-label" style="color:orange">Departing Date</span>
+  <input type="text" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date1.date1" id="date1">
  </label>
  </div>
  <div class="col-md-6" ng-show="dt2Flag">
 <label class="item item-input item-stacked-label">
-  <span class="input-label" style="color:grey">Returning Date</span>
-<input type="text" style="color:orange" placeholder="yyyy-mm-dd" ng-model="date2.date2" id="date2">
+  <span class="input-label" style="color:orange">Returning Date</span>
+<input type="text" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date2.date2" id="date2">
 </label>
 </div>
  </div>
@@ -55,13 +55,13 @@
    </label>
 </li>
 <div ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)" >
-  <ion-toggle ng-click="economy()" ng-model="cl" toggle-class="toggle-positive">economy</ion-toggle>
+  <ion-toggle ng-click="economy()" ng-model="cl" toggle-class="toggle-positive"><h3 class="positive">economy</h3></ion-toggle>
 
-  <ion-toggle ng-click="business()" ng-model="cl2" toggle-class="toggle-positive">business</ion-toggle>
+  <ion-toggle ng-click="business()" ng-model="cl2" toggle-class="toggle-positive"><h3 class="positive">business</h3></ion-toggle>
 
   </div>
-
-<a class="button button-block button-energized"   ng-click="goToReservation()">
+<br>
+<a class="button button-outline icon-right ion-chevron-right button-block button-energized"   ng-click="goToReservation()">
 
   Search Flights
 </a>
