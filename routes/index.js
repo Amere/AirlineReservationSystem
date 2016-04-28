@@ -166,11 +166,19 @@ router.post('/api/updateSeat', function (req, res) {
 function httpGet(url, callback) {
     const options = {
         url: url,
-        json: true
+        json: false
     };
     request(options,
         function (err, res, body) {
-            callback(err, body);
+            try {
+                var x = JSON.parse(body);
+                if(body != undefined && x.length!=0) {
+                    //console.log(x);
+                    callback(err,x);
+                }
+            }catch (e){
+               // console.log(e);
+            }
         }
     );
 }
@@ -179,7 +187,7 @@ function httpGet(url, callback) {
  * For One way trip
  * */
 function generateUrlsOne(origin, destination, x, clas) {
-    var ips = require('../testIp.json');
+    var ips = require('../ips.json');
     var generated = [];
     for (var i = 0; i < ips.length; i++) {
         var element = ips[i];
@@ -192,7 +200,7 @@ function generateUrlsOne(origin, destination, x, clas) {
  * For Round trip flights
  * */
 function generateUrlsRound(origin, destination, x, y, clas) {
-    var ips = require('../testIp.json');
+    var ips = require('../ips.json');
     var generated = [];
     for (var i = 0; i < ips.length; i++) {
         var element = ips[i];
@@ -222,20 +230,29 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
 function manipulateOne(arrayReturn, cb) {
     var out = '';
     var returnString = '';
+    var flag = false;
+    console.log("manipulaaaaaaaaaaaaaaaaaate")
     for (var i = 0; i < arrayReturn.length; i++) {
-        var item = arrayReturn[i];
-        var tempOut = JSON.stringify(item.outgoingFlights[0]);
-        if (i == arrayReturn.length - 1) {
-            if (tempOut != undefined) {
-                out += tempOut;
+        try {
+            var item = arrayReturn[i];
+            var tempOut = JSON.stringify(item.outgoingFlights[0]);
+            console.log(tempOut);
+            if (flag == false) {
+                if (tempOut != undefined) {
+                    console.log("Iffffffffffffffff");
+                    out += tempOut;
+                    flag = true;
+                }
+            } else {
+
+                out += "," + tempOut;
             }
-        } else {
-            if (tempOut != undefined) {
-                out += tempOut + ',';
-            }
+        }catch (e){
+          console.log(e);
         }
     }
     var template = '{"outgoingFlights":[' + out + ']}';
+    console.log(template);
     cb(JSON.parse(template));
 };
 /* API to retrieve a certain flight from other companies  */
@@ -260,21 +277,27 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
 function manipulate(arrayReturn, cb) {
     var out = '';
     var returnString = '';
+    var flagOut = false;
+    var flagRet = false;
     for (var i = 0; i < arrayReturn.length; i++) {
         var item = arrayReturn[i];
         var tempOut = JSON.stringify(item.outgoingFlights[0]);
         var tempRet = JSON.stringify(item.returnFlights[0]);
-        if (i == arrayReturn.length - 1) {
-            if (tempOut != undefined && tempRet != undefined) {
+        if(flagOut==false){
+            if(tempOut != undefined){
                 out += tempOut;
+                flagOut = true;
+            }
+        }else{
+            out += ","+tempOut;
+        }
+        if(flagRet==false){
+            if(tempRet != undefined){
                 returnString += tempRet;
+                flagRet = true;
             }
-        } else {
-            if (tempOut != undefined && tempRet != undefined) {
-                out += tempOut + ',';
-                returnString += tempRet + ',';
-            }
-
+        }else{
+            returnString += ","+tempRet;
         }
     }
     var template = '{"outgoingFlights":[' + out + '],' + '"returnFlights":[' + returnString + ']}';
