@@ -1,4 +1,4 @@
-lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
+lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location, $ionicPopup){
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[3];
   $scope.card = [];
@@ -96,11 +96,23 @@ var flagForRetPayment = 0;
     if($scope.card.v1!="" && $scope.card.validThru!="" && $scope.card.ccv!="" && $scope.card.fullName!=""){
       console.log("*******");
         createTokeenStripe();
+    }else{
+      console.log("/////////");
+      showAlert();
     }
 
          // $location.url('/confirm');
 };
+showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+         title: 'Missing Data',
+         template: 'please enter missing fields'
+       });
 
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
 
 
 });
