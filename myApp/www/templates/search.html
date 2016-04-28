@@ -1,13 +1,13 @@
 <ion-view view-title="Available Flights" >
   <ion-content class="padding">
+
     <div class="card">
    <div class="item item-text-wrap" ng-repeat="f in flights.outgoingFlights">
-
-   <div class="item item-text-wrap">
-     <div class="item item-avatar">
+   <div class="item item-text-wrap animated zoomInLeft">
+     <div class="item item-avatar animated zoomInRight">
       <img src="img/imgres.png">
       <p>
-      {{f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY'}}&nbsp;&nbsp;<i class="icon ion-arrow-right-c"></i>
+      {{f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY'}}&nbsp;&nbsp;<i class="icon ion-arrow-right-c animated zoomInLeft"></i>
       <br>
       {{f.flightNumber}}&nbsp;&nbsp;&nbsp;{{f.aircraftModel}} - {{f.aircraftType}}
       </p>
@@ -15,7 +15,7 @@
 
    </div>
 
- <div class="item item-text-wrap">
+ <div class="item item-text-wrap animated zoomInLeft">
    <div class="row">
      <h4 style="color:grey">Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price</h4>
    </div>
@@ -24,7 +24,7 @@
       <h3 style="color:orange">{{f.class}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{f.departureDateTime | amDateFormat:'h:mm a'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{f.cost}}</h3>
     </div>
    </div>
-   <div class="item item-text-wrap">
+   <div class="item item-text-wrap animated zoomInRight">
      <div class="row">
        <div class="col col-33">
          <br>
@@ -44,14 +44,11 @@
      </div>
      <div class="item item-text-wrap">
        <a class="button button-block button-energized"  href="#/tab/landing/reserv1" ng-click="goToInfo(f.flightNumber,f.departureDateTime)">
-
          BOOK NOW
        </a>
        </div>
 
-
    </div>
  </div>
-
   </ion-content>
 </ion-view>

@@ -233,6 +233,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.toMain();
     };
 
+
     /* Retrieve List of News */
     function news() {
         lufthansaServ.getNews().success(function (News) {
@@ -400,7 +401,11 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         }
 
     };
-    $scope.goToInfo=function (fNum,fdate) {
+
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+        };
+    $scope.goToInfo=function (fNum) {
          lufthansaServ.setFlightNumberOutGoing(fNum);
          lufthansaServ.setdate1(fdate);
     };
