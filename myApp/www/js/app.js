@@ -60,6 +60,42 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   }
   })
   // Each tab has its own nav history stack:
+  .state('tab.landing-search', {
+    url:'/landing/search',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search2', {
+    url:'/landing/search2',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search2.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search3', {
+    url:'/landing/search3',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search3.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search4', {
+    url:'/landing/search4',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search4.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
   .state('tab.landing-reserv1', {
     url:'/landing/reserv1',
     views: {
@@ -102,6 +138,24 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
         views:{
           'tab-bookingAndPastFlights':{
           templateUrl: 'templates/booking.html',
+          controller: 'bookingCtrl'
+          }
+        }
+      })
+      .state('tab.book', {
+        url:'/book',
+        views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/book.html',
+          controller: 'bookingCtrl'
+          }
+        }
+      })
+      .state('tab.flights', {
+        url:'/flights',
+        views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/flights.html',
           controller: 'bookingCtrl'
           }
         }

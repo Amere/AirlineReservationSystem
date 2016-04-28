@@ -1,12 +1,83 @@
-<ion-view view-title="Choosing a seat">
-  <ion-content class="padding">
+
     <h2>Choosing a seat</h2>
-    <p>
-      Here you can access the reserveCrtl w 3esh 7yataaaaaak
-    </p>
-      <a href="#/tab/landing/payment">Go to Payment</a>
+
+
+    <ion-view title="Choosing seat">
+      <ion-content>
+        <h4>Choosing a seat</h4>
+        <ion-radio ng-repeat="item in choices"
+                      ng-value="item.value"
+                      ng-model="data.choice"
+
+                      >
+             {{ item.text }}
+           </ion-radio>
+           <div ng-repeat="item in choices" ng-if="data.choice==item.value" ng-value="item.rows"
+           >
+           <h4>Please choose a row</h4>
+           <ion-radio ng-repeat="a in range(item.rows)" ng-model="data.row" ng-value="a" style="display: inline-block;"
+           >
+                {{ a }}
+              </ion-radio>
+            </div>
+          <div class="list list-inset" ng-repeat="seat in economySeats" ng-if="data.choice=='economy' && $index==data.row">
+            <h4>economy seats of row {{$index+1}}</h4>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      &nbsp;
+                  </div>
+
+                  <select ng-model="data.seat" ng-change="chooseSeat()" ng-options="sea.seatCode for sea in seat">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  </select>
+              </label>
+          </div>
+          <div class="list list-inset" ng-repeat="seat in businessSeats" ng-if="data.choice=='business' && $index==data.row">
+            <h4>business seats of row {{$index+1}}</h4>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      &nbsp;
+                  </div>
+                  <div >
+                  <select ng-model="data.seat" ng-change="chooseSeat()" ng-options="sea.seatCode for sea in seat">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  </select>
+                </div>
+              </label>
+          </div>
+          <div class="list list-inset" ng-repeat="seat in premiumEconomySeats" ng-if="data.choice=='premium' && $index==data.row">
+            <h4>premium economy seats of row {{$index+1}}</h4>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      &nbsp;
+                  </div>
+                  <div >
+                  <select ng-model="data.seat" ng-options="sea.seatCode for sea in seat" ng-change="chooseSeat()">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  </select>
+                </div>
+              </label>
+          </div>
+          <div class="list list-inset" ng-repeat="seat in firstClassSeats" ng-if="data.choice=='first' && $index==data.row">
+            <h4>first class seats of row {{$index+1}}</h4>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      &nbsp;
+                  </div>
+                  <div >
+                  <select ng-model="data.seat" ng-options="sea.seatCode for sea in seat" ng-change="chooseSeat()">
+                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  </select>
+                </div>
+              </label>
+          </div>
+          <div align="center">
+          <button class="button button-calm" href="#/tab/landing/payment" ng-show="data.seat">Go to Payment</a>
+          </div>
+        </ion-content>
+
+  </ion-view>
+
       <br>
       <br>
       <br>
-  </ion-content>
-</ion-view>
