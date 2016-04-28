@@ -45,11 +45,25 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   // setup an abstract state for the tabs directive
-    .state('tab', {
+
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+  .state('home', {
+      url: '/home',
+      views: {
+          // instead of this
+          // 'home': {
+
+          // use this
+          '': {
+              templateUrl: 'templates/home.html',
+              controller: 'mainCtrl',
+          }
+      }
+    })
   .state('tab.landing', {
     url: '/landing',
     views: {
@@ -162,6 +176,6 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/landing');
+  $urlRouterProvider.otherwise('/home');
 
 });

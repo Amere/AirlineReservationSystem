@@ -231,6 +231,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.toMain();
     };
 
+
     /* Retrieve List of News */
     function news() {
         lufthansaServ.getNews().success(function (News) {
@@ -398,6 +399,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         }
 
     };
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+        };
     $scope.goToInfo=function (fNum) {
         // lufthansaServ.setFlightNumberOutGoing(out);
         // // lufthansaServ.setFlightNumberReturning(ret);
