@@ -64,12 +64,14 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
         $scope.date2.date2=null;
+        $scope.pick='seat class';
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
     };
     /* Function to set Round Trip Flags  */
     $scope.RoundtripFlags = function () {
         $scope.dt1Flag = true;
         $scope.dt2Flag = true;
+        $scope.pick='seat class';
         lufthansaServ.setReturning_Or_Outgoing("Returning");
     };
     /* Function to clear variables in lufthansaServ */
@@ -398,15 +400,15 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         }
 
     };
-    $scope.goToInfo=function (fNum) {
-        // lufthansaServ.setFlightNumberOutGoing(out);
-        // // lufthansaServ.setFlightNumberReturning(ret);
+    $scope.goToInfo=function (fNum,fdate) {
          lufthansaServ.setFlightNumberOutGoing(fNum);
-
-        // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
-        // oneWay2();
-        //$state.go('tab.landing-search');
-
+         lufthansaServ.setdate1(fdate);
+    };
+    $scope.goToInfo2=function (fNum,fNum2,fdate,fdate2) {
+         lufthansaServ.setFlightNumberOutGoing(fNum);
+        lufthansaServ.setFlightNumberReturning(fNum2);
+        lufthansaServ.setdate1(fdate);
+        lufthansaServ.setdate2(fdate2);
     };
     $scope.economy=function () {
       $scope.pick='economy';
