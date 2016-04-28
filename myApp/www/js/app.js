@@ -106,11 +106,29 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-      .state('tab.bookingAndPastFlights', {
+    .state('tab.bookingAndPastFlights', {
         url:'/bookingAndPastFlights',
         views:{
           'tab-bookingAndPastFlights':{
           templateUrl: 'templates/booking.html',
+           //controller: 'bookingCtrl'
+          }
+        }
+      })
+      .state('tab.book', {
+        url:'/book',
+          views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/book.html',
+          controller: 'bookingCtrl'
+          }
+        }
+      })
+      .state('tab.flights', {
+        url:'/flights',
+          views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/flights.html',
           controller: 'bookingCtrl'
           }
         }
