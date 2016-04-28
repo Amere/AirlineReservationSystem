@@ -1,30 +1,43 @@
+<style>
+.home .scroll-content {
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin-top: -50px; /* the height of the centered content */
+  text-align: center;
+  padding: 30px;
+  font-size: 150%;
+}
+.home .scroll {
+  display: table-cell;
+  vertical-align: middle;
+}
 
-<ion-view view-title="Confirmation">
-  <ion-content class="padding">
+</style>
+<ion-view view-title="Confirmation" class="home">
+  <ion-content class="padding" style="background-color:orange;">
      <p>
-                          Your Name:      {{Confirm.fname + ' ' + Confirm.lname}}
-                           <br>
-                              Your email:      {{Confirm.email}}
-                       <br>
-                           Seat number:       {{Confirm.seatCode}}
-                           <br>
-                           <ng-if="rr">
-                             Returning Seat number:   {{rSeat}}
-                             <br>
-                              class:    {{Confirm.seatClass}}
-                              <br>
-                             Booking Reference number:    {{receipt}}
-                             <br>
-                          Outgoing flight number: {{Confirm.flight}}
-                          <br>
-                          <ng-if="rr">
-                             returning flight number:{{rFlight}}
-                             <br>
-                            Departure date/time: {{Confirm.odate}}
-                       
+                          <span class="row">Your Name:</span>
+
+                          <span class="row">  Your email:     </span>
+
+                          <span class="row"> Seat number:       </span>
+
+
+                          <span class="row" ng-if="rr">   Returning Seat number:   </span>
+
+                            <span class="row">  class:    </span>
+
+                             <span class="row">Booking Reference number:   </span>
+
+                          <span class="row">Outgoing flight number:</span>
+
+
+                          <span class="row"ng-if="rr">   returning flight number:</span>
+                          <span class="row">  Departure date/time:</span>
+
       <br>
       <br>
       <br>
   </ion-content>
 </ion-view>
-
