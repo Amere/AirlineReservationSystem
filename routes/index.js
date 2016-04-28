@@ -166,7 +166,6 @@ router.post('/api/updateSeat', function (req, res) {
 function httpGet(url, callback) {
     const options = {
         url: url,
-        timeout:2000,
         json: false
     };
     request(options,
@@ -222,7 +221,7 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     const urls = generateUrlsOne(origin, destination, x, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
         manipulateOne(resultOneMap, function (finalValue) {
-           // console.log("test");
+            console.log(finalValue);
             res.json(finalValue);
         });
 
@@ -254,7 +253,7 @@ function manipulateOne(arrayReturn, cb) {
 
     }
     var template = '{"outgoingFlights":[' + out + ']}';
-    console.log(template);
+    //console.log(template);
     cb(JSON.parse(template));
 };
 /* API to retrieve a certain flight from other companies  */
