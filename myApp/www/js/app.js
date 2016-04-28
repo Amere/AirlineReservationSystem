@@ -141,6 +141,24 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
           controller: 'bookingCtrl'
           }
         }
+      })
+      .state('tab.book', {
+        url:'/book',
+        views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/book.html',
+          controller: 'bookingCtrl'
+          }
+        }
+      })
+      .state('tab.flights', {
+        url:'/flights',
+        views:{
+          'tab-bookingAndPastFlights':{
+          templateUrl: 'templates/flights.html',
+          controller: 'bookingCtrl'
+          }
+        }
       });
 
   // if none of the above states are matched, use this as the fallback
