@@ -1,19 +1,20 @@
 /**
  * Main Controller
  */
-lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
+lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $state) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[2];
     /*variables set to be sent to database*/
-    $scope.firstName = "";
-    $scope.lastName = "";
-    $scope.email = "";
-    $scope.nationality = "";
-    $scope.dob = "";
-    $scope.expDate = "";
-    $scope.passNum="";
+    $scope.costumer = [];
+    $scope.costumer.firstName = "";
+    $scope.costumer.lastName = "";
+    $scope.costumer.email = "";
+    $scope.costumer.nationality = "";
+    $scope.costumer.dob = "";
+    $scope.costumer.expDate = "";
+    $scope.costumer.passNum="";
 
     $scope.open1 = function () {
         $scope.popup1.opened = true;
@@ -44,15 +45,18 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-      if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
+     if($scope.costumer.firstName!= "" && $scope.costumer.lastName!="" && $scope.costumer.email != ""&&
+       $scope.costumer.nationality!="" && $scope.costumer.expDate!="" && $scope.costumer.dob!="") {
         var flag = lufthansaServ.getOtherCompanies();
         console.log(flag);
-        if(flag==true){
-          $location.url('/payment');
+        if(flag==false){
+          console.log("************");
+        $state.go('tab.landing-reservation')
         }else{
-          $location.url('/reservation');
+          console.log("//////////////////");
+          $state.go('tab.landing-payment')
         }
-      }
+     }
     };
     $scope.setReservInfoFlag = function(){
       lufthansaServ.setReservInfoFlag();
@@ -60,12 +64,19 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
 
     $scope.setUserInfo = function(){
       lufthansaServ.setFirstName($scope.firstName);
+      console.log($scope.costumer.firstName);
       lufthansaServ.setLastName($scope.lastName);
+      console.log($scope.costumer.lastName);
       lufthansaServ.setEmail($scope.email);
+      console.log($scope.costumer.email);
       lufthansaServ.setNationality($scope.nationality);
+      console.log($scope.costumer.nationality);
       lufthansaServ.setDOB($scope.dob);
+      console.log($scope.costumer.dob);
       lufthansaServ.setExpDate($scope.expDate);
+      console.log($scope.costumer.expDate);
       lufthansaServ.setPassNum($scope.passNum);
+      console.log($scope.costumer.passNum);
 
     };
 
@@ -77,9 +88,6 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
             $scope.nations = Nat;
         });
     };
-    nations();
-
-    /* Retrieve List of Offers */
-
+  //  nations();
 
 });
