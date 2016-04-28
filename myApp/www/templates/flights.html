@@ -1,0 +1,48 @@
+<ion-view view-title="Past Flights">
+ <ion-content class="padding">
+ 
+ <input type="text" placeholder="BookingReferenceNumber" ng-model="bookref" required>
+<button class="btn btn-info" ng-click="pastflights(bookref)">Submit</button>
+    <p>
+     <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="pastflights in Pastflights" ng-hide="flights.hidden" type="item-text-wrap" >
+        <i class="icon ion-chevron-right icon-accessory"></i>
+ A PastFlight Information 
+
+<br>
+   Origin: {{ pastflights.origin }}
+    <br>
+   Destination: {{ pastflights.destination }}
+    <br>
+   FlightNumber: {{ pastflights.flightNumber }}
+   <br>
+    AirCraftType: {{ pastflights.aircraftType }}
+   <br>
+   AircraftModel: {{ pastflights.aircraftModel }}
+    <br>
+  Departure:  {{ pastflights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+   <br>
+  Arrival:  {{ pastflights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+    <br>
+      </ion-item>
+    </ion-list>
+    
+
+            <form ng-submit="addResource(settings)">
+                <div class="list" style="margin: 5px 10px;">
+                    
+                        <input type="text" ng-model="settings.email" placeholder="Your Recommendations">
+                    </label>
+                </div>
+                <button class="button button-positive">Save</button>
+           </form>
+           <br><br>
+<font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font></p>
+        {{ out }}
+   <br><br>
+    <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a>
+
+  </ion-content>
+</ion-view>
+
+

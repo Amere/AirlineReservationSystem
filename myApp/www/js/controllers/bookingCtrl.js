@@ -56,5 +56,19 @@ $scope.pastflights = function (bookref){
   $scope.hoveringOver = function(value) {
     $scope.overStar = value;
   };
+   $scope.out=[];
+   var tests = [];
+ if (typeof $scope.out == 'undefined') {
+        $scope.out = [];
+      }
+      else{
+         $scope.addResource = function (settings) {
+          tests.push(settings.email);
+            console.log(settings.email);
+             console.log(tests);
+              $scope.out.push(settings.email);
+             console.log($scope.out);
+        };
+      }
 
 });
