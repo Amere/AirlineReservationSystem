@@ -1,14 +1,11 @@
 lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[3];
-
-  $scope.v1 = "";
-  $scope.v2 = "";
-  $scope.v3 = "";
-  $scope.v4 = "";
-  $scope.validThru = "";
-  $scope.ccv = "";
-  $scope.fullName = "";
+  $scope.card = [];
+  $scope.card.v1 = "";
+  $scope.card.validThru = "";
+  $scope.card.ccv = "";
+  $scope.card.fullName = "";
 
   // if(lufthansaServ.reservInfoFlag != true){
   //   $location.url('/');
@@ -38,9 +35,9 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
       opened: false
   };
   function createTokeenStripe(){
-    var cardNumber = $scope.v1 +$scope.v2 +$scope.v3 + $scope.v4;
-    var cvv = $scope.ccv;
-    var exp = $scope.validThru;
+    var cardNumber = $scope.card.v1 ;
+    var cvv = $scope.card.ccv;
+    var exp = $scope.card.validThru;
     console.log("number "+cardNumber);
     console.log("cvv "+cvv);
     console.log("expMonth "+exp.substring(0,2));
@@ -66,7 +63,7 @@ var flagForRetPayment = 0;
         lufthansaServ.sendStripeToken(token,true).success(function(err,data){
           if(!err){
             console.log(data);
-            $location.url('/confirm');
+            $location.url('/landing/confirm');
           }else{
             //console.log(err);
             alert(err.errorMessage.message);
@@ -81,7 +78,7 @@ var flagForRetPayment = 0;
               flagForRetPayment++;
             }else{
               flagForRetPayment=0;
-              $location.url('/confirm');
+              $location.url('/landing/confirm');
             }
           }else{
             alert(err);
@@ -92,8 +89,15 @@ var flagForRetPayment = 0;
     }
   }
   $scope.confirm = function(){
-    if($scope.v1!="" && $scope.v2!="" && $scope.v3!="" && $scope.v4!="" && $scope.validThru!="" && $scope.ccv!="" && $scope.fullName!="")
-      createTokeenStripe();
+    console.log($scope.card.v1);
+        console.log($scope.card.validThru);
+            console.log($scope.card.ccv);
+                console.log($scope.card.fullName);
+    if($scope.card.v1!="" && $scope.card.validThru!="" && $scope.card.ccv!="" && $scope.card.fullName!=""){
+      console.log("*******");
+        createTokeenStripe();
+    }
+
          // $location.url('/confirm');
 };
 

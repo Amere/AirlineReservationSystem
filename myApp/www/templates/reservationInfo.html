@@ -145,19 +145,19 @@
                                       {{nations}}
                                       <div class="item item-input item-stacked-label">
                                         <span class="input-label">First Name</span>
-                                        <input type="text" ng-model="firstName" placeholder="Please enter your first name" required>
+                                        <input ng-model="firstName" placeholder="Please enter your first name" required>
                                       </div>
                                       <div class="item item-input item-stacked-label">
                                         <span class="input-label">Last Name</span>
-                                        <input type="text" ng-model="lastName" placeholder="Please enter your last name" required>
+                                        <input ng-model="lastName" placeholder="Please enter your last name" required>
                                       </div>
                                       <div class="item item-input item-stacked-label">
                                         <span class="input-label">Email</span>
-                                        <input type="text"  ng-model="email" placeholder="example@gmail.com" required>
+                                        <input ng-model="email" placeholder="example@gmail.com" required>
                                       </div>
                                       <div class="item item-input item-stacked-label">
                                         <span class="input-label">Nationality</span>
-                                        <input type="text"  ng-model="nationality"
+                                        <input  ng-model="nationality"
                                          placeholder="select your Nationality"
                                           uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
                                          class="form-control"
@@ -171,147 +171,10 @@
                                         <span class="input-label">Your passport expiration date</span>
                                         <input type="date"  ng-model="expDate" placeholder="1/1/2016" required>
                                       </div>
-                                    <!-- <div class="item item-input item-stacked-label">
-                                      <span class="input-label">Your Birth Date</span>
-                                       <input type="text"
-                                             class="form-control"
-                                             uib-datepicker-popup="{{format}}"
-                                             ng-model="dob"
-                                             is-open="popup1.opened"
-                                             ng-required="true"
-
-                                             close-text="Close"
-                                             alt-input-formats="altInputFormats" required> -->
-                                             <!-- <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
-                                                 <button class="button button-block button-positive ng-model="dob""> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
-                                             </ionic-datepicker>
-                                    </div> -->
-                                    <!-- <div class="item item-input item-stacked-label">
-                                      <span class="input-label">Your Passport Expiration date</span>
-                                             <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
-                                                 <button class="button button-block button-positive ng-model="expDate""> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
-                                             </ionic-datepicker>
                                     </div>
-                                  </div> -->
-
-                                    </div>
-
-                                    <!-- <div class="form-group" align="center">
-                                        <label class="col-md-4 control-label" for="fname">First Name</label>
-                                        <div class="col-md-4">
-
-                                            <input id="fname" name="fname" type="text" placeholder="your first name" ng-model="firstName" class="form-control input-md" required>
-
-
-                                        </div>
-                                    </div> -->
-
-                                    <!-- Text input-->
-                                    <!-- <div class="form-group" align="center">
-                                        <label class="col-md-4 control-label" for="lname">Last Name</label>
-                                        <div class="col-md-4">
-
-                                            <input id="lname" name="lname" type="text" ng-model="lastName" placeholder="your last name" class="form-control input-md" required>
-
-
-                                        </div>
-                                    </div> -->
-
-                                    <!-- Text input-->
-                                    <!-- <div class="form-group" align="center">
-                                        <label class="col-md-4 control-label" for="email">Email</label>
-
-
-                                            <input id="email" name="email" type="email" ng-model="email"  placeholder="your email" class="form-control input-md" required>
-
-                                    </div> -->
-
-                                    <!-- <div class="form-group" align="center">
-                                    <label class="col-md-4 control-label" for="nationality"> Your Nationality :</label>
-                                        <div class="col-md-4">
-                                        <input name="Nationality"
-                                           id="Nationality"
-                                           type="text"
-                                               required
-                                           placeholder="Nationality"
-
-                                           ng-model="nationality"
-
-                                           uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
-                                           class="form-control"
-                                           typeahead-on-select="SetNation($item.name)">
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="form-group" align="center">
-
-                                        <label class="col-md-4 control-label" for="dateOfBirth"> Your date of birth :</label>
-                                        <div class="col-md-4 input-group">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   uib-datepicker-popup="{{format}}"
-                                                   ng-model="dob"
-                                                   is-open="popup1.opened"
-                                                   ng-required="true"
-
-                                                   close-text="Close"
-                                                   alt-input-formats="altInputFormats" required/>
-
-                          <span class="input-group-btn">
-                            <button type="button"
-                                    class="btn btn-default"
-                                    ng-click="open1()">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                          </span>
-                                        </div>
-
-                                    </div> -->
-
-                                    <!-- <div class="form-group" align="center">
-
-                                                <label class="col-md-4 control-label" for="expiry"> Your Passport Expiration date :</label>
-                                            <div class="col-md-4 input-group">
-                                                <input id="txt1" type="text"
-                                                       class="form-control"
-                                                       uib-datepicker-popup="{{format}}"
-
-                                                       ng-model="expDate"
-
-                                                       is-open="popup2.opened"
-                                                       ng-required="true"
-                                                       close-text="Close"
-                                                       alt-input-formats="altInputFormats" required=""/>
-
-                                                        <span class="input-group-btn">
-                                                  <button type="button"
-                                                          class="btn btn-default"
-                                                          ng-click="open2()">
-                                                      <i class="glyphicon glyphicon-calendar"></i>
-                                                  </button>
-                                                </span>
-
-                                            </div> -->
                                             <div align="center">
-                                                <!-- <label class="col-md-4 control-label" for="procced">submit to procced :</label> -->
-
                                                     <button class="button button-calm"  href="#/tab/landing/payment" id="procced" name="procced" ng-click="setUserInfo(); seats();">Choose Seat </button>
                                             </div>
-
-                                            </div>
-                                    <!-- Button -->
-
-
-                                <!-- </fieldset> -->
-                            <!-- </form> -->
-                     <!-- </div> -->
-                   </div>
-<!--
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
- -->
 
   </ion-content>
 </ion-view>
