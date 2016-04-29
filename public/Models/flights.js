@@ -214,12 +214,12 @@ function getMyBookings(book,cb) {
         if (fli.length == 0) {
         } else {
           for (i = 0; i < fli.length; i++) {
-            if (fli[i].departureDateTime > Date.now()) {
+           // if (fli[i].departureDateTime > Date.now() ) {
               r = fli.map(function(el) {
                 //console.log(el);
                 return el;
               });
-            }
+           // }
           }
         }
         cb(null, r);
@@ -265,7 +265,7 @@ function getPastFlights(bookref,cb) {
           console.log("Err2:" + err);
         } else {
           for (i = 0; i < fli.length; i++) {
-            if (fli[i].departureDateTime > Date.now()) {
+            if (fli[i].departureDateTime < Date.now()) {
               r = fli.map(function(el) {
                 //console.log(el);
                 return el;
