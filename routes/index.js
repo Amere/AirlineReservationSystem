@@ -174,7 +174,7 @@ function httpGet(url, callback) {
             try {
                     var x = JSON.parse(body);
                     if (body != undefined && x.length != 0 && err==null) {
-                       // console.log(x.outgoingFlights[0].Airline);
+                       console.log(x.outgoingFlights[0].Airline);
                         callback(err, x);
                     }
 
@@ -220,6 +220,7 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     var clas = req.params.class1;
     const urls = generateUrlsOne(origin, destination, x, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
+        //console.log(resultOneMap);
         manipulateOne(resultOneMap, function (finalValue) {
             console.log(finalValue);
             res.json(finalValue);
