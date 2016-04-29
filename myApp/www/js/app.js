@@ -54,13 +54,9 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   .state('home', {
       url: '/home',
       views: {
-          // instead of this
-          // 'home': {
-
-          // use this
           '': {
               templateUrl: 'templates/home.html',
-              controller: 'mainCtrl',
+              controller: 'homeCtrl'
           }
       }
     })
