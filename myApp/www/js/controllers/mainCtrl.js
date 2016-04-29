@@ -1,7 +1,7 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state, $ionicPopup) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
@@ -27,7 +27,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     };
     function setImp() {
         lufthansaServ.setImpFlg(0);
-    }
+    };
 
     setImp();
     /* Function to set other Companies flag when checkbox's flg is true */
@@ -438,6 +438,19 @@ if($scope.or.or==null){
       // Custom functionality....
    });
 };
+$scope.showLoading = function() {
+   $ionicLoading.show({
+      template: 'Loading...'
+   });
+};
+
+$scope.hideLoading = function(){
+   $ionicLoading.hide();
+};
+$scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:clas');
+$scope.req2 = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:returningDate/:clas');
+$scope.req3 = $http.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:returningDate/');
+$scope.req4 = $http.get('/api/flights/search/:origin/:destination/:departingDate');
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
