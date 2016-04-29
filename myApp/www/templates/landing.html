@@ -9,11 +9,11 @@
 <ion-list>
   <div class="row">
     <div class="col col-55">
-      <ion-radio ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive">One Way Trip</h3></ion-radio>
+      <ion-radio ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive animated zoomInLeft">One Way Trip</h3></ion-radio>
 
     </div>
     <div class="col col-45">
-      <ion-radio ng-model="choice" ng-value="'B'" ng-click="RoundtripFlags(); RoundtripTable()"><h3 class="positive">&nbsp;&nbsp;Round Trip</h3></ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'" ng-click="RoundtripFlags(); RoundtripTable()"><h3 class="positive animated zoomInRight">&nbsp;&nbsp;Round Trip</h3></ion-radio>
 
     </div>
   </div>
@@ -22,25 +22,25 @@
 
   <br>
     <div class="list">
-   <label class="item item-input item-stacked-label">
+   <label class="item item-input item-stacked-label animated bounceInLeft">
    <span class="input-label" style="color:orange">Origin</span>
    <input type="text" style="color:grey" placeholder="Flying From" id="t1" ng-model="or.or">
    </label>
  <br>
-   <label class="item item-input item-stacked-label">
+   <label class="item item-input item-stacked-label animated bounceInRight">
    <span class="input-label" style="color:orange">Destination</span>
    <input type="text" style="color:grey" placeholder="Flying To" id='t2' ng-model="dest.dest">
    </label>
    <br>
    <div class="row">
      <div class="col-md-6" ng-show="dt1Flag">
-   <label class="item item-input item-stacked-label">
+   <label class="item item-input item-stacked-label animated bounceInDown">
      <span class="input-label" style="color:orange">Departing Date</span>
   <input type="text" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date1.date1" id="date1">
  </label>
  </div>
  <div class="col-md-6" ng-show="dt2Flag">
-<label class="item item-input item-stacked-label">
+<label class="item item-input item-stacked-label animated bounceInDown">
   <span class="input-label" style="color:orange">Returning Date</span>
 <input type="text" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date2.date2" id="date2">
 </label>
@@ -65,7 +65,6 @@
   Search Flights
 </a>
 
-    <a href="#/tab/landing/payment">Go to Payment</a>
 
   </ion-content>
 </ion-view>

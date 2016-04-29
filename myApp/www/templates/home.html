@@ -1,42 +1,75 @@
 <style>
 .pane11 {
-        background: url(img/ll2.jpg) no-repeat center center fixed;
+        background: url(img/full_2.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
 }
 </style>
+
 <ion-view title="Lufthansa, Non stop you." class="pane11">
     <ion-content class="padding">
+      <br>
+      <br>
+      <br>
+      <br><br>
+      <br>
+      <ion-slide-box class="animated zoomInLeft" >
 
-      <div class="list card animated bounceInLeft">
-  <div class="item item-body">
-    <div>
-      There is a fire in <b>sector 3</b>
-    </div>
-  </div>
-</div>
-<br><br>
-<br>
-<br>
-<br>
+          <ion-slide>
+            <div class="sp-container">
+                  <h4 class="frame-1">Paris this summer!</h4>
 
-  <button class="button button button-calm animated bounceInDown" ng-click="goToLanding()" >
-    To landing
+                <h4 class="frame-2">Visitez PARIS</h4>
+
+                <h4 class="frame-3">Eiffel tower ?!</h4>
+              <img style="width: 100%" src="img/paris.jpg">
+                <h4 class="frame-4">Just 5000LE</h4>
+                <h4 class="frame-5"><span>Lufthansa</span></h4>
+              </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="sp-container">
+                  <h4 class="frame-1">Berlin this summer</h4>
+
+                <h4 class="frame-2">Besucht Deutshcland</h4>
+
+                <h4 class="frame-3">Alienz-Arena ?!!</h4>
+              <img style="width: 100%" src="img/berlin.jpg">
+                <h4 class="frame-4">Just 6000LE</h4>
+                <h4 class="frame-5"><span>Lufthansa</span></h4>
+              </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="sp-container">
+                  <h4 class="frame-1">NYC this summer</h4>
+
+                <h4 class="frame-2">Statue of Liberty!?</h4>
+
+                <h4 class="frame-3">Don't miss this</h4>
+              <img style="width: 100%" src="img/NYC.jpg">
+                <h4 class="frame-4">Just 9000LE</h4>
+                <h4 class="frame-5"><span>Lufthansa</span></h4>
+              </div>
+          </ion-slide>
+      </ion-slide-box>
+
+      <br>
+      <br>
+      <br>
+      <br><br>
+      <br>
+
+
+
+<div align="center">
+  <button class="button button icon-right ion-plane button-energized animated zoomInRight" ng-click="goToLanding()" >
+    Book you flight now
 </button>
 
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<div class="list card animated bounceInRight">
-  <div class="item item-body">
-    <div>
-      You have <b>29</b> meetings on your calendar tomorrow.
-    </div>
-  </div>
+
 </div>
+
     </ion-content>
 </ion-view>
