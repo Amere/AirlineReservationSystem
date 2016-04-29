@@ -454,6 +454,18 @@ $scope.req4 = $http.get('/api/flights/search/:origin/:destination/:departingDate
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
+$scope.reset1=function () {
+  $scope.pick='seat class';
+  document.getElementById("t1").value ="Flying  From ";
+  document.getElementById("t2").value ="Flying  To ";
+  // $scope.or.or=null;
+  // $scope.dest.dest=null;
+  // $scope.date1.date1=null;
+  // $scope.date2.date2=null;
+
+
+
+};
     $scope.economy=function () {
       $scope.pick='economy';
     };
