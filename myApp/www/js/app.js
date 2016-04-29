@@ -5,8 +5,15 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-lufthansa = angular.module('lufthansa', ['ionic', 'angularMoment']);
+lufthansa = angular.module('lufthansa', ['ionic','cgBusy' ,'angularMoment']);
+lufthansa.value('cgBusyDefaults',{
+  message:'Loading Flights...',
+  templateUrl: 'templates/spinner.html',
+   backdrop: false,
+   delay: 300,
+ minDuration: 700,
 
+});
 lufthansa.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

@@ -1,5 +1,8 @@
 <ion-view view-title="Available Flights" >
   <ion-content class="padding">
+    <div cg-busy="req3">
+
+   </div>
     <div class="card">
    <div class="item item-text-wrap" ng-repeat="f in flights.outgoingFlights">
 
@@ -46,7 +49,7 @@
          <br>
          <h2  style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{f.destination}}</h2>
          <br>
-         <h4 style="color:orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;{{flights.returnFlights[$index].departureDateTime | amDateFormat:'h:mm a'}}</h4>
+         <h4 style="color:orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flights.returnFlights[$index].departureDateTime | amDateFormat:'h:mm a'}}</h4>
        </div>
 
      </div>

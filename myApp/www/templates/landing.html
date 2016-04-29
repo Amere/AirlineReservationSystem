@@ -1,19 +1,20 @@
 <ion-view view-title="Home" class="pane">
+
   <ion-content class="padding">
 
-       <div class="item item-avatar animated zoomInLeft">
-         <img src="img/imgres.png">&nbsp;&nbsp;&nbsp;&nbsp;<h2 style="color:orange">Lufthansa&nbsp;<h5 style="color:grey">Non Stop You..</h5></h2>
+       <div class="item item-avatar animated zoomInLeft" style="border:none">
+         <img src="img/imgres.png"><h2 style="color:orange">Lufthansa&nbsp;<h5 style="color:grey">Non Stop You..</h5></h2>
 
        </div>
-<br>
+
 <ion-list>
   <div class="row">
     <div class="col col-55">
-      <ion-radio ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive animated zoomInLeft">One Way Trip</h3></ion-radio>
+      <ion-radio name="group1" style="color:orange" ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive animated zoomInLeft">Oneway Trip</h3></ion-radio>
 
     </div>
     <div class="col col-45">
-      <ion-radio ng-model="choice" ng-value="'B'" ng-click="RoundtripFlags(); RoundtripTable()"><h3 class="positive animated zoomInRight">&nbsp;&nbsp;Round Trip</h3></ion-radio>
+      <ion-radio name="group1" style="color:orange"  ng-model="choice" ng-value="'B'" ng-click="RoundtripFlags(); RoundtripTable()"><h3 class="positive animated zoomInRight">&nbsp;&nbsp;Round Trip</h3></ion-radio>
 
     </div>
   </div>
@@ -36,7 +37,7 @@
      <div class="col-md-6" ng-show="dt1Flag">
    <label class="item item-input item-stacked-label animated bounceInDown">
      <span class="input-label" style="color:orange">Departing Date</span>
-  <input type="text" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date1.date1" id="date1">
+  <input type="date" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date1.date1" id="date1">
  </label>
  </div>
  <div class="col-md-6" ng-show="dt2Flag">
@@ -50,17 +51,21 @@
     <li class="item item-checkbox  checkbox-energized">
    <h2 class="positive">Other Airlines</h2>
    <label class="checkbox">
-   <input type="checkbox" ng-model="chekboxFlag" ng-change=" flipCheck(); setOtherCompaniesFlag()">
+   <input type="checkbox" ng-model="chekboxFlag" ng-click="setClass()" ng-change=" flipCheck(); setOtherCompaniesFlag()">
    </label>
 </li>
-<div ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)" >
-  <ion-toggle ng-click="economy()" ng-model="cl" toggle-class="toggle-positive"><h3 class="positive">economy</h3></ion-toggle>
+  <div class="row" ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)">
+    <div class="col col-55">
+      <ion-radio name="group2" style="color:orange"  ng-click="economy()" ng-value="'A'" ng-model="cl" toggle-class="toggle-positive"><h3 class="positive">economy</h3></ion-radio>
 
-  <ion-toggle ng-click="business()" ng-model="cl2" toggle-class="toggle-positive"><h3 class="positive">business</h3></ion-toggle>
+    </div>
+    <div class="col col-45">
+      <ion-radio name="group2" style="color:orange"  ng-click="business()" ng-value="'B'" ng-model="cl2" toggle-class="toggle-positive"><h3 class="positive">business</h3></ion-radio>
 
+    </div>
   </div>
 <br>
-<a class="button button-outline icon-right ion-chevron-right button-block button-energized"   ng-click="goToReservation()">
+<a class="button button-outline icon-right ion-chevron-right button-block button-energized"   ng-click="goToReservation() ; showAlert() ; showLoading()">
 
   Search Flights
 </a>
