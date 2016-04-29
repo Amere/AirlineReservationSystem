@@ -1,7 +1,7 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state, $ionicPopup) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
@@ -390,13 +390,13 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
         // oneWay2();
         console.log($scope.pick);
-        if ($scope.date2.date2 ==null && $scope.pick=='seat class') {
+        if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search');
-        }else if($scope.date2.date2!=null && $scope.pick=='seat class'){
+        }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
           $state.go('tab.landing-search2');
-        }else if($scope.pick!='seat class' && $scope.date2.date2 ==null ){
+        }else if($scope.pick!='seat class' && $scope.date2.date2 ==null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
           $state.go('tab.landing-search3');
-        }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null ) {
+        }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search4');
         }
 
@@ -415,6 +415,29 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setdate1(fdate);
         lufthansaServ.setdate2(fdate2);
     };
+    $scope.showAlert = function() {
+if($scope.or.or==null){
+  var alertPopup = $ionicPopup.alert({
+     title: 'Title',
+     template: 'Please enter an origin'
+  });
+}else if ($scope.dest.dest==null) {
+  var alertPopup = $ionicPopup.alert({
+     title: 'Title',
+     template: 'Please enter a destination'
+  });
+}else if ($scope.date1.date1==null) {
+  var alertPopup = $ionicPopup.alert({
+     title: 'Title',
+     template: 'Please enter a date'
+  });
+}
+
+
+   alertPopup.then(function(res) {
+      // Custom functionality....
+   });
+};
     $scope.economy=function () {
       $scope.pick='economy';
     };
