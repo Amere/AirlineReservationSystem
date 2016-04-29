@@ -438,6 +438,9 @@ if($scope.or.or==null){
       // Custom functionality....
    });
 };
+$scope.setClass=function () {
+  $scope.pick='seat class';
+};
     $scope.economy=function () {
       $scope.pick='economy';
     };
