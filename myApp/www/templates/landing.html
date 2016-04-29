@@ -9,7 +9,7 @@
 <ion-list>
   <div class="row">
     <div class="col col-55">
-      <ion-radio ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive animated zoomInLeft">One Way Trip</h3></ion-radio>
+      <ion-radio ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive animated zoomInLeft">Oneway Trip</h3></ion-radio>
 
     </div>
     <div class="col col-45">
@@ -53,11 +53,15 @@
    <input type="checkbox" ng-model="chekboxFlag" ng-change=" flipCheck(); setOtherCompaniesFlag()">
    </label>
 </li>
-<div ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)" >
-  <ion-toggle ng-click="economy()" ng-model="cl" toggle-class="toggle-positive"><h3 class="positive">economy</h3></ion-toggle>
+  <div class="row" ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)">
+    <div class="col col-55">
+      <ion-radio ng-click="economy()" ng-model="cl" toggle-class="toggle-positive"><h3 class="positive">economy</h3></ion-radio>
 
-  <ion-toggle ng-click="business()" ng-model="cl2" toggle-class="toggle-positive"><h3 class="positive">business</h3></ion-toggle>
+    </div>
+    <div class="col col-45">
+      <ion-radio ng-click="business()" ng-model="cl2" toggle-class="toggle-positive"><h3 class="positive">business</h3></ion-radio>
 
+    </div>
   </div>
 <br>
 <a class="button button-outline icon-right ion-chevron-right button-block button-energized"   ng-click="goToReservation() ; showAlert()">

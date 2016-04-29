@@ -423,7 +423,7 @@ if($scope.or.or==null){
   });
 }else if ($scope.dest.dest==null) {
   var alertPopup = $ionicPopup.alert({
-     title: 'Title',
+     title: 'Input Field Required',
      template: 'Please enter a destination'
   });
 }else if ($scope.date1.date1==null) {
