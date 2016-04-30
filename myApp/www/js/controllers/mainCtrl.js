@@ -309,7 +309,10 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     if(origin!=null && destination!=null && departingDate!=null){
         // var origin = lufthansaServ.getSelectedOriginAirport();
         // var destination = lufthansaServ.getSelectedDestinationAirport();
+
        if(returningDate==null && clas=='seat class'){
+         $scope.req = $http.get('/api/flights/search/:origin/:destination/:departingDate');
+
         console.log(origin + " "+ destination+" "+departingDate);
         lufthansaServ.getOneWay2(origin, destination, departingDate).success(function (result) {
             $scope.flights = result;
@@ -318,6 +321,8 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             console.log(result);
         });
       }else if(returningDate!=null && clas=='seat class'){
+        $scope.req = $http.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:returningDate/');
+
         lufthansaServ.getRound2(origin, destination, departingDate,returningDate).success(function (result) {
             $scope.flights = result;
 
@@ -325,6 +330,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             console.log(result);
         });
       }else if (returningDate==null && clas!='seat class') {
+        $scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:clas');
         lufthansaServ.getOneWay(origin, destination, departingDate,clas).success(function (result) {
             $scope.flights = result;
 
@@ -332,6 +338,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             console.log(result);
         });
       }else if (returningDate!=null && (clas=='economy' || clas=='business')) {
+        $scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:returningDate/:clas');
         lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas).success(function (result) {
             $scope.flights = result;
 
@@ -447,25 +454,11 @@ $scope.showLoading = function() {
 $scope.hideLoading = function(){
    $ionicLoading.hide();
 };
-$scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:clas');
-$scope.req2 = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:returningDate/:clas');
-$scope.req3 = $http.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:returningDate/');
-$scope.req4 = $http.get('/api/flights/search/:origin/:destination/:departingDate');
+
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
-$scope.reset1=function () {
-  $scope.pick='seat class';
-  document.getElementById("t1").value ="Flying  From ";
-  document.getElementById("t2").value ="Flying  To ";
-  // $scope.or.or=null;
-  // $scope.dest.dest=null;
-  // $scope.date1.date1=null;
-  // $scope.date2.date2=null;
 
-
-
-};
     $scope.economy=function () {
       $scope.pick='economy';
     };
