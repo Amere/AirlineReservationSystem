@@ -17,24 +17,24 @@
 <ion-view view-title="Confirmation" class="home">
   <ion-content class="padding" style="background-color:orange;">
      <p>
-                          <span class="row">Your Name:</span>
+                          <span class="row">Your Name:{{Confirm.fname + ' ' + Confirm.lname}}</span>
 
-                          <span class="row">  Your email:     </span>
+                          <span class="row">  Your email:{{Confirm.email}}     </span>
 
-                          <span class="row"> Seat number:       </span>
+                          <span class="row"> Seat number:{{Confirm.seatCode}}       </span>
 
 
                           <span class="row" ng-if="rr">   Returning Seat number:   </span>
 
-                            <span class="row">  class:    </span>
+                            <span class="row">  class:{{Confirm.seatClass}}    </span>
 
-                             <span class="row">Booking Reference number:   </span>
+                             <span class="row">Booking Reference number:{{receipt}}   </span>
 
-                          <span class="row">Outgoing flight number:</span>
+                          <span class="row">Outgoing flight number:{{Confirm.flight}}</span>
 
 
                           <span class="row"ng-if="rr">   returning flight number:</span>
-                          <span class="row">  Departure date/time:</span>
+                          <span class="row">  Departure date/time:{{Confirm.odate}}</span>
 
       <br>
       <br>

@@ -89,14 +89,14 @@ var flagForRetPayment = 0;
     }
   }
   $scope.confirm = function(){
-    console.log($scope.card.v1);
-        console.log($scope.card.validThru);
-            console.log($scope.card.ccv);
-                console.log($scope.card.fullName);
-    if($scope.card.v1!="" && $scope.card.validThru!="" && $scope.card.ccv!="" && $scope.card.fullName!=""){
-      console.log("*******");
-        createTokeenStripe();
-    }
+    // console.log($scope.card.v1);
+    //     console.log($scope.card.validThru);
+    //         console.log($scope.card.ccv);
+    //             console.log($scope.card.fullName);
+    // if($scope.card.v1!="" && $scope.card.validThru!="" && $scope.card.ccv!="" && $scope.card.fullName!=""){
+    //   console.log("*******");
+    //     createTokeenStripe();
+  //  }
 
          // $location.url('/confirm');
 };

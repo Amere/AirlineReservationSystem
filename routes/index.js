@@ -48,7 +48,7 @@ db.connect(function (err, db) {
  */
 router.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'x-access-token');
+    res.header('Access-Control-Allow-Headers', 'x-access-token,Content-Type');
     next();
 });
 
@@ -61,6 +61,13 @@ router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
     res.render('google7a607af0cf3cce8e.html');
 });
 /* POST method to update seat and make it reserved */
+// router.use(function(req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", 'http://localhost:8080');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
+//
+//   next();
+// });
 router.post('/api/updateSeat', function (req, res) {
     var fn = req.body.fn;
     var sn = req.body.sn;
@@ -158,6 +165,7 @@ router.post('/api/updateSeat', function (req, res) {
                 }
             }
         }
+
         db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
         });
     });

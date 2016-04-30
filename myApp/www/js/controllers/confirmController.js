@@ -10,7 +10,6 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
   $scope.setConfirmFlag = function(){
     lufthansaServ.confirmFlag();
   };
-if(lufthansaServ.paymentFlag === true){
   lufthansaServ.getCurrentUser(function(user){
     $scope.Confirm=user;
     var reserv={};
@@ -87,6 +86,6 @@ if(lufthansaServ.paymentFlag === true){
 
 
   });
-}
+
 
 });
