@@ -8,11 +8,7 @@
 lufthansa = angular.module('lufthansa', ['ionic','cgBusy' ,'angularMoment']);
 lufthansa.value('cgBusyDefaults',{
   message:'Loading Flights...',
-  templateUrl: 'templates/spinner.html',
-   backdrop: false,
-   delay: 300,
- minDuration: 700,
-
+  templateUrl: 'templates/spinner.html'
 });
 lufthansa.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
