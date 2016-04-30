@@ -21,12 +21,11 @@
   </div>
 </ion-list>
 
-
   <br>
     <div class="list">
-   <label class="item item-input item-stacked-label animated bounceInLeft">
+   <label class="item item-input">
    <span class="input-label" style="color:orange">Origin</span>
-   <input type="text" style="color:grey" placeholder="Flying From" id="t1" ng-model="or.or">
+   <input type="text" style="color:grey" placeholder="Flying From" id="t1" ng-model="or.or" ionic-autocomplete="{items: Airports, onSelect: onSelect}">
    </label>
  <br>
    <label class="item item-input item-stacked-label animated bounceInRight">

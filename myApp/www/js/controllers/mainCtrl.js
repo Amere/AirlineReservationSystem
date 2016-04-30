@@ -1,7 +1,7 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
@@ -252,9 +252,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setSelectedDestinationAirport(destAirport);
     };
     /* Find All Available Flights */
-    $scope.SearchFlights = function () {
-        $location.url('/return');
-    };
+
     /* Function to save the reservation info and redirect user to the next stage */
     // $scope.goToReservation = function (out, ret) {
     //     lufthansaServ.setFlightNumberOutGoing(out);
@@ -340,7 +338,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         });
       }
     };
-
     /* Retrieve List of Airports Codes */
     function AirportCodes() {
         lufthansaServ.getAirportCodes().success(function (airports) {
@@ -462,9 +459,6 @@ $scope.reset1=function () {
   // $scope.dest.dest=null;
   // $scope.date1.date1=null;
   // $scope.date2.date2=null;
-
-
-
 };
     $scope.economy=function () {
       $scope.pick='economy';
@@ -472,11 +466,11 @@ $scope.reset1=function () {
     $scope.business=function () {
       $scope.pick='business';
     };
-    $scope.directToOutgoingFlights = function () {
-        $location.url('/outgoingFlights');
-    };
-    /*-------------------Google maps stuff----------------------*/
 
+    $scope.onSelect = function(item){
+      $scope.or.or=item;
+        console.log('item', item.iata);
+    };
     AirportCodes();
     slides();
 });
