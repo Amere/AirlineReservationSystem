@@ -1,0 +1,14 @@
+<ion-modal-view view-title="News">
+  <ion-content>
+<div class="card">
+    <img ng-src="img/ll3.jpg">
+    <p class="title">Flight</p>
+    <p class="price">12</p>
+    <p class="date">{{ product.pubdate | date }}</p>
+  <div class="rating">
+    <p class="likes" ng-click="plusOne($index)">{{product.likes}} </p>
+     <p class="dislikes" ng-click="minusOne($index)">{{product.dislikes}} </p>
+   </div>
+</div>
+</ion-content>
+</ion-modal-view>
