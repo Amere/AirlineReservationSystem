@@ -2,27 +2,28 @@
  <ion-content class="padding">
  
  <input type="text" placeholder="BookingReferenceNumber" ng-model="bookref" required>
-<button class="btn btn-info" ng-click="pastflights(bookref)">Submit</button>
+ <br>
+<button class="button button-royal" ng-click="pastflights(bookref)">Submit</button>
+<br><br>
     <p>
      <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="pastflights in Pastflights" ng-hide="flights.hidden" type="item-text-wrap" >
-        <i class="icon ion-chevron-right icon-accessory"></i>
- A PastFlight Information 
+      <ion-item ng-repeat="pastflights in Pastflights" type="item-text-wrap" >
+  <span style="color:orange ">A PastFlight Information </span>
 
 <br>
-   Origin: {{ pastflights.origin }}
+   <span style="color:#700033 ">Origin: </span> <span style="color: #bf4060 ">{{ pastflights.origin }}</span>
     <br>
-   Destination: {{ pastflights.destination }}
+  <span style="color:#700033 "> Destination:</span><span style="color:  #bf4060 "> {{ pastflights.destination }}</span>
     <br>
-   FlightNumber: {{ pastflights.flightNumber }}
+  <span style="color:#700033 "> FlightNumber: </span><span style="color:  #bf4060 ">{{ pastflights.flightNumber }}</span>
    <br>
-    AirCraftType: {{ pastflights.aircraftType }}
+   <span style="color:#700033 "> AirCraftType: </span><span style="color: #bf4060 ">{{ pastflights.aircraftType }}</span>
    <br>
-   AircraftModel: {{ pastflights.aircraftModel }}
+   <span style="color:#700033 ">AircraftModel:</span><span style="color:#bf4060 "> {{ pastflights.aircraftModel }}</span>
     <br>
-  Departure:  {{ pastflights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+ <span style="color:#700033"> Departure:</span><span style="color:#bf4060 ">  {{ pastflights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
    <br>
-  Arrival:  {{ pastflights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+ <span style="color:#700033 "> Arrival:  </span><span style="color:#bf4060 ">{{ pastflights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
     <br>
       </ion-item>
     </ion-list>
@@ -34,13 +35,16 @@
                         <input type="text" ng-model="settings.email" placeholder="Your Recommendations">
                     </label>
                 </div>
-                <button class="button button-positive">Save</button>
+                <button class="button button-royal">Save</button>
            </form>
-           <br><br>
-<font color="#25383C"><h4><br><b>List Of Recommendations</b></h4></font></p>
-        {{ out }}
+           <br>
+<span style="color:orange;font-size: 15pt">List Of Recommendations</span>
+<br><br>
+       <span style="color:#700033"> {{ out }}</span>
    <br><br>
-    <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a>
+
+
+    <!-- <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a> -->
 
   </ion-content>
 </ion-view>
