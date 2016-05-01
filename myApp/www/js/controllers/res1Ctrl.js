@@ -63,19 +63,19 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
     };
 
     $scope.setUserInfo = function(){
-      lufthansaServ.setFirstName($scope.firstName);
+      lufthansaServ.setFirstName($scope.costumer.firstName);
       console.log($scope.costumer.firstName);
-      lufthansaServ.setLastName($scope.lastName);
+      lufthansaServ.setLastName($scope.costumer.lastName);
       console.log($scope.costumer.lastName);
-      lufthansaServ.setEmail($scope.email);
+      lufthansaServ.setEmail($scope.costumer.email);
       console.log($scope.costumer.email);
-      lufthansaServ.setNationality($scope.nationality);
+      lufthansaServ.setNationality($scope.costumer.nationality);
       console.log($scope.costumer.nationality);
-      lufthansaServ.setDOB($scope.dob);
+      lufthansaServ.setDOB($scope.costumer.dob);
       console.log($scope.costumer.dob);
-      lufthansaServ.setExpDate($scope.expDate);
+      lufthansaServ.setExpDate($scope.costumer.expDate);
       console.log($scope.costumer.expDate);
-      lufthansaServ.setPassNum($scope.passNum);
+      lufthansaServ.setPassNum($scope.costumer.passNum);
       console.log($scope.costumer.passNum);
 
     };

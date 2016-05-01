@@ -70,7 +70,7 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
         reserv.customer = user.fname + " " + user.lname;
         reserv.flight = user.flight;
         reserv.seatCode = lufthansaServ.getSeat();
-        lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(), $scope.Confirm.seatCode);
+        lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(), $scope.Confirm.seatCodeOut);
         lufthansaServ.addUser(user, function (res) {
           $scope.receipt = res;
           reserv.bookingRefNum = res;

@@ -27,8 +27,8 @@
                       &nbsp;
                   </div>
 
-                  <select ng-model="data.seat" ng-change="chooseSeat()" ng-options="sea.seatCode for sea in seat">
-                    <option  ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
+                  <select ng-model="data.seat" ng-change="chooseSeat()" >
+                    <option ng-value="sea" ng-repeat=" sea in seat" ng-if="sea.reserved=='false'" >{{sea.seatCode}}</option>
                   </select>
               </label>
           </div>

@@ -83,7 +83,7 @@ $scope.rr=function(item){
 $scope.chooseSeat=function(){
   lufthansaServ.setSeat($scope.data.seat.seatCode);
   lufthansaServ.setSeatClass($scope.data.seat.class);
-  // console.log($scope.data.seat.seatCode);
+  console.log($scope.data.seat);
   // console.log($scope.data.seat.class);
 
 }
