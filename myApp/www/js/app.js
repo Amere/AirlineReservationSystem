@@ -75,6 +75,24 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
     }
   }
   })
+  .state('tab.news', {
+    url:'/news',
+    views:{
+      'tab-news':{
+      templateUrl: 'templates/news.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.offers', {
+    url:'/offers',
+    views:{
+      'tab-offers':{
+      templateUrl: 'templates/offers.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
   // Each tab has its own nav history stack:
   .state('tab.landing-search', {
     url:'/landing/search',
