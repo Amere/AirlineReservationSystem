@@ -5,13 +5,16 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-lufthansa = angular.module('lufthansa', ['ionic','cgBusy' ,'angularMoment']);
-lufthansa.value('cgBusyDefaults',{
-  message:'Loading Flights...',
-  templateUrl: 'templates/spinner.html'
-});
-lufthansa.run(function($ionicPlatform) {
+lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics']);
+
+ lufthansa.value('cgBusyDefaults',{
+   message:'Loading Flights...',
+   templateUrl: 'templates/spinner.html',
+ });
+
+lufthansa.run(function($ionicPlatform,$ionicAnalytics) {
   $ionicPlatform.ready(function() {
+    $ionicAnalytics.register();
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -32,7 +35,7 @@ lufthansa.config(function($httpProvider){
     return {
       request: function(req){
         if(req.url.charAt(0)==='/'){
-          req.url = 'http://localhost:8080'+req.url;
+          req.url = 'http://54.152.123.100'+req.url;
         }
         return req;
       }

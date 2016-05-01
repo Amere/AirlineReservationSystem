@@ -1,8 +1,15 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
     /*----------- Angular Bootstrap Datepicker -----------*/
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+    };
+    lufthansaServ.getAirportCodes().success(function (airports) {
+             $scope.Airports = airports;
+         });
+    console.log($scope.flights);
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
@@ -51,7 +58,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     /* Function to set Returning_Or_Outgoing flag in the service  */
     function outgoingFlagSetter() {
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
-    }
+    };
 
     outgoingFlagSetter();
     $scope.format = $scope.formats[1];
@@ -81,7 +88,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     /* Function to clear variables in lufthansaServ */
     function flushVars() {
         lufthansaServ.clearVariables();
-    }
+    };
 
     flushVars();
     /* Function to set date picker pop up window */
@@ -153,93 +160,28 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.IsVisible = false;
     /* If DIV is visible it will be hidden and vice versa. */
     /* Also this function is responsible for selecting what the user is searching for */
-    $scope.ShowHide = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            if (lufthansaServ.getSelectedDestinationAirport() != "intial" && lufthansaServ.getSelectedOriginAirport() != "intial") {
-                $scope.IsVisible = true;
-                if (lufthansaServ.getReturning_Or_Outgoing() == "Returning" && $scope.pick != "economy" && $scope.pick != "business") {
-                    round2();
-                } else if (lufthansaServ.getReturning_Or_Outgoing() == "Returning" && ($scope.pick == "economy" || $scope.pick == "business")) {
 
-                    round();
-                } else if (lufthansaServ.getReturning_Or_Outgoing() != "Returning" && $scope.pick != "economy" && $scope.pick != "business") {
-                    oneWay2();
-                } else {
-                    oneWay();
-                }
-
-            }
-        }
-    };
     /* Google maps triger */
     $scope.IsVisible = false;
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide2 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
-    };
-    //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide3 = function () {
-        round();
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide4 = function () {
-        oneWay();
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide5 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide6 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide7 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide8 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
-    function directToMain() {
-        lufthansaServ.toMain();
-    };
+    //If DIV is visible it will be hidden and vice versa.
+
+
 
 
     /* Retrieve List of News */
-    function news() {
-        lufthansaServ.getNews().success(function (News) {
-            $scope.news = News;
-        });
-    };
+
     /* Record User's Selected Origin Airport */
     $scope.SetOriginAirport = function (originAirport) {
         lufthansaServ.setSelectedOriginAirport(originAirport);
@@ -252,9 +194,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setSelectedDestinationAirport(destAirport);
     };
     /* Find All Available Flights */
-    $scope.SearchFlights = function () {
-        $location.url('/return');
-    };
+
     /* Function to save the reservation info and redirect user to the next stage */
     // $scope.goToReservation = function (out, ret) {
     //     lufthansaServ.setFlightNumberOutGoing(out);
@@ -269,13 +209,14 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setSelectedDestinationAirport("intial");
     };
     /* function to search round trip flights in the other companies */
-    function round() {
+    function round1() {
         var origin = lufthansaServ.getSelectedOriginAirport();
         var destination = lufthansaServ.getSelectedDestinationAirport();
         var departingDate = angular.element('#date1').val();
         var returningDate = angular.element('#date2').val();
         var clas = $scope.pick;
         lufthansaServ.getRound(origin, destination, departingDate, returningDate, clas).success(function (result) {
+          lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
 
@@ -287,6 +228,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         var departingDate = angular.element('#date1').val();
         var returningDate = angular.element('#date2').val();
         lufthansaServ.getRound2(origin, destination, departingDate, returningDate).success(function (result) {
+          lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
     };
@@ -297,6 +239,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         var departingDate = angular.element('#date1').val();
         var clas = $scope.pick;
         lufthansaServ.getOneWay(origin, destination, departingDate, clas).success(function (result) {
+            lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
     };
@@ -346,37 +289,21 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
             console.log(result);
         });
       }
-    };
-
+    }
     /* Retrieve List of Airports Codes */
-    function AirportCodes() {
-        lufthansaServ.getAirportCodes().success(function (airports) {
-            $scope.Airports = airports;
-        });
-    };
+    // function AirportCodes() {
+    //     lufthansaServ.getAirportCodes().success(function (airports) {
+    //         $scope.Airports = airports;
+    //     });
+    // };
     /* landing page slides area options  */
-    function slides() {
-        $scope.myInterval = 5000;
-        lufthansaServ.getSlides().success(function (Slides) {
-            $scope.slides = Slides;
-        });
-        $scope.myInterval = 5000;
-    };
+
     /* Retrieve List of Offers */
-    function offers() {
-        lufthansaServ.getOffers().success(function (Offers) {
-            $scope.offers = Offers;
-        });
-    };
 
     /* helper function to convert a given moment date   */
 
     setIata();
 
-    /* Get offers on page render */
-    offers();
-    /* Get news on page render */
-    news();
     $scope.or={};
     $scope.dest={};
     $scope.date1={};
@@ -393,7 +320,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
          };
          lufthansaServ.setCl($scope.pick);
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
-        // oneWay2();
         console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search');
@@ -404,12 +330,11 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search4');
         }
-
     };
 
     $scope.goToLanding= function(){
             $state.go('tab.landing');
-        };
+    };
     $scope.goToInfo=function (fNum) {
          lufthansaServ.setFlightNumberOutGoing(fNum);
          lufthansaServ.setdate1(fdate);
@@ -437,25 +362,21 @@ if($scope.or.or==null){
      template: 'Please enter a date'
   });
 }
-
-
-   alertPopup.then(function(res) {
-      // Custom functionality....
-   });
 };
-$scope.showLoading = function() {
-   $ionicLoading.show({
-      template: 'Loading...'
-   });
-};
-
-$scope.hideLoading = function(){
-   $ionicLoading.hide();
-};
+// $scope.showLoading = function() {
+//    $ionicLoading.show({
+//       template: 'Loading...'
+//    });
+// };
+//
+// $scope.hideLoading = function(){
+//    $ionicLoading.hide();
+// };
 
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
+
 
     $scope.economy=function () {
       $scope.pick='economy';
@@ -463,11 +384,11 @@ $scope.setClass=function () {
     $scope.business=function () {
       $scope.pick='business';
     };
-    $scope.directToOutgoingFlights = function () {
-        $location.url('/outgoingFlights');
-    };
-    /*-------------------Google maps stuff----------------------*/
 
-    AirportCodes();
-    slides();
-});
+    $scope.onSelect = function(item){
+      //$scope.or.or=item;
+        console.log('item', item.iata);
+    };
+  //  AirportCodes();
+
+  });
