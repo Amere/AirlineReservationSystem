@@ -1,4 +1,4 @@
-lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
+lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location,stripe){
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[3];
 
@@ -37,50 +37,79 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$location){
   $scope.popup2 = {
       opened: false
   };
+
+function PK(){
+  $(function(){
+
+  Stripe.setPublishableKey('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
+
+});
+}
+
   function createTokeenStripe(){
     var cardNumber = $scope.v1 +$scope.v2 +$scope.v3 + $scope.v4;
     var cvv = $scope.ccv;
     var exp = $scope.validThru;
+    var other = lufthansaServ.getOtherCompanies();
+    var flagPK = false ;
+    if(other==true){
+      lufthansaServ.getPK().success(function(data){
+        if(data.errorMessage!=null){
+
+        }else{
+        Stripe.setPublishableKey(data);
+        flagPK=true;
+        }
+
+      });
+    }else{
+         PK();
+    }
+
     console.log("number "+cardNumber);
     console.log("cvv "+cvv);
     console.log("expMonth "+exp.substring(0,2));
     console.log("expYear "+ exp.substring(3));
-    Stripe.card.createToken({
-      number: +cardNumber,
-      cvc: +cvv,
-      exp_month: exp.substring(0,2),
-      exp_year: exp.substring(3)
-    }, stripeResponseHandler);
-  };
+    if(other==true && flagPK===true){
+      Stripe.card.createToken({
+        number: +cardNumber,
+        cvc: +cvv,
+        exp_month: exp.substring(0,2),
+        exp_year: exp.substring(3)
+      }, stripeResponseHandler);
+    }else{
+      if(other==true && flagPK===false){
+      alert('Error while trying to procced with your payment');
+      }else{
+        if(other==false){
+          PK();
+        Stripe.card.createToken({
+          number: +cardNumber,
+          cvc: +cvv,
+          exp_month: exp.substring(0,2),
+          exp_year: exp.substring(3)
+        }, stripeResponseHandler);
+      }
+      }
+    }
+
+      };
 var flagForRetPayment = 0;
   function stripeResponseHandler(status, response) {
-   var other = lufthansaServ.getOtherCompanies();
     if (response.error) { // Problem!
     alert(response.error.message);
     } else {
-
-    if(other==true){ // just create token and pass it to the other airline
-      var token = response.id;
-      console.log("Heeeeeeeeeeeeeeeer")
-      lufthansaServ.sendStripeTokenOther(token).success(function(data){
-        if(data==null){
-          console.log(data);
-          $location.url('/confirm');
-        }else{
-          console.log(data);
-          alert(data.errorMessage.message);
-        }
-      });
-    }else{ // payment is on our site and must be recorded into our DB
       var token = response.id;
       var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
       if(retOrOut==="Outgoing Only"){//out only
         lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
             console.log(data);
+            PK()
             $location.url('/confirm');
           }else{
             //console.log(err);
+            PK();
             alert(data.errorMessage.message);
           }
         });
@@ -93,16 +122,18 @@ var flagForRetPayment = 0;
               flagForRetPayment++;
             }else{
               flagForRetPayment=0;
+              PK();
               $location.url('/confirm');
             }
           }else{
             // console.log(err.errorMessage);
+            PK();
             alert(data.errorMessage.message);
           }
         });
       }
 
-    }
+
       // Token was created!
 
       // Get the token ID:

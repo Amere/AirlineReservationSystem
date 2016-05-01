@@ -338,6 +338,37 @@ router.post('/booking', function (req, res) {
 
 });
 
+router.get('/stripe/Getpubkey',function(req,res){
+  console.log('before airline');
+  var airline = req.headers['airline'];
+  console.log(airline);
+  var ip ="";
+  var ips = require('../testIp.json');
+  for(var i = 0 ;i<ips.length;i++){
+      if(ips[i].company.toLowerCase().includes(airline.toLowerCase())){
+          ip = ips[i].ip;
+      }
+  }
+  console.log('in router **');
+  request.get(ip+'stripe/pubkey?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
+  function (error,response,body){
+    if (!error && response.statusCode == 200) {
+      console.log(body);
+      res.send({key : body, errorMessage:null});
+
+    }else{
+      console.log('in else ****************');
+      res.send({key : null, errorMessage:error});
+    }
+  });
+
+
+});
+
+router.get('/stripe/pubkey',function(req,res){
+  res.send('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
+});
+
 router.post('/bookingOther',function(req,res){
     var stripeToken = req.body.paymentToken;
     var flightCost  = req.body.cost;
