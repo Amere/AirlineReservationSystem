@@ -10,6 +10,7 @@
 <ion-list>
   <div class="row">
     <div class="col col-55">
+
       <ion-radio name="group1" style="color:orange" ng-model="choice" ng-value="'A'" ng-click="OneWayFlags(); OneWayTable()"><h3 class="positive animated zoomInLeft">Oneway Trip</h3></ion-radio>
 
     </div>
@@ -20,9 +21,7 @@
   </div>
 </ion-list>
 
-
   <br>
-    <div class="list">
    <label class="item item-input item-stacked-label animated bounceInLeft">
    <span class="input-label" style="color:orange">Origin</span>
    <input type="text" style="color:grey" placeholder="Flying From" id="t1" ng-model="or.or">
@@ -43,11 +42,10 @@
  <div class="col-md-6" ng-show="dt2Flag">
 <label class="item item-input item-stacked-label animated bounceInDown">
   <span class="input-label" style="color:orange">Returning Date</span>
-<input type="text" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date2.date2" id="date2">
+<input type="date" style="color:grey" placeholder="yyyy-mm-dd" ng-model="date2.date2" id="date2">
 </label>
 </div>
  </div>
-</div>
     <li class="item item-checkbox  checkbox-energized">
    <h2 class="positive">Other Airlines</h2>
    <label class="checkbox">
@@ -65,7 +63,7 @@
     </div>
   </div>
 <br>
-<a class="button button-outline icon-right ion-chevron-right button-block button-energized"   ng-click="goToReservation() ; showAlert() ; showLoading()">
+<a class="button button-outline icon-right ion-chevron-right button-block button-energized"   ng-click="goToReservation() ; showAlert();">
 
   Search Flights
 </a>

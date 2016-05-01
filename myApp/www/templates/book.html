@@ -1,33 +1,33 @@
 
-<ion-view view-title="Bookings">
+<ion-view view-title="Bookings" class="my-book">
   <ion-content class="padding">
    <p>
      <input type="text" placeholder="Booking Reference Number" ng-model="book" required>
-<button class="btn btn-info" ng-click="getMyBookings(book)">Submit</button>
+     <br>
+<button class="button button-calm" ng-click="getMyBookings(book)">Submit</button>
     <p>
            
-     <ion-list >
+     <ion-list>
       <ion-item ng-repeat="flights in bookings" ng-hide="flights.hidden" >
      
-      
- Flight From {{ flights.origin }} To {{ flights.destination }} 
+<span style="color:#5DADE2   " > Flight From {{ flights.origin }} To {{ flights.destination }} </span>
  <br>
- Flight Number:{{ flights.flightNumber }}
+ <span style="color:#CD5C5C  ">Flight Number:</span><span style="color:#2E4053    "> {{ flights.flightNumber }}</span>
   <br>
- AirCraftType: {{ flights.aircraftType }}
+ <span style="color:#CD5C5C  ">AirCraftType:</span> <span style="color:#2E4053   ">{{ flights.aircraftType }}</span>
  <br>
- AirCraftModel:{{ flights.aircraftModel }}
+ <span style="color:#CD5C5C ">AirCraftModel:</span><span style="color:#2E4053    "> {{ flights.aircraftModel }}</span>
  <br>
- Class:{{ flights.class }}
+ <span style="color:#CD5C5C  ">Class:</span> <span style="color:#2E4053    ">{{ flights.class }}</span>
  <br>
- Departure: {{ flights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+ <span style="color:#CD5C5C  ">Departure:</span> <span style="color:#2E4053    ">{{ flights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
    <br>
- Arrival:{{ flights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+ <span style="color:#CD5C5C  ">Arrival:</span> <span style="color:#2E4053    ">{{ flights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
    <br>
- Cost:{{ flights.cost }}
-   <br>
+ <span style="color:#CD5C5C  ">Cost:</span> <span style="color:#2E4053    ">{{ flights.cost }}</span>
+   <br><br>
       <ion-item-options>
-      <button  ng-click="hideMe(flights)">Cancel Booking</button>
+      <button class="button button-calm" ng-click="hideMe(flights)">Cancel Booking</button>
     </ion-item-options>
   </ion-item>
     </ion-list>
@@ -35,7 +35,8 @@
     </p>
     <br>
 <br>
-    <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a>
+  
+    <!-- <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a> -->
       <br>
       <br>
       <br>
