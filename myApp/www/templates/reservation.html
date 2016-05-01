@@ -3,7 +3,7 @@
 
 
     <ion-view title="Choosing seat">
-      <ion-content>
+      <ion-content class="padding">
         <h4>Choosing a seat</h4>
         <ion-radio ng-repeat="item in choices"
                       ng-value="item.value"
@@ -91,7 +91,7 @@
                   </ion-radio>
                 </div>
               <div class="list list-inset" ng-repeat="seat in economySeatsR" ng-if="dataR.choice=='economy' && $index==dataR.row">
-                <h4>economy seats of row {{$index+1}}</h4>
+                <h4 >economy seats of row {{$index+1}}</h4>
                   <label class="item item-input item-select">
                       <div class="input-label">
                           &nbsp;
@@ -143,7 +143,7 @@
               </div>
           </div>
           <div align="center">
-          <a class="button button-calm" href="#/tab/landing/payment" ng-show="data.seat">Go to Payment</a>
+          <a class="button button-energized" href="#/tab/landing/payment" ng-show="data.seat">Go to Payment</a>
           </div>
         </ion-content>
 
