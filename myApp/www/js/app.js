@@ -5,13 +5,15 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics']);
+lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics','angular-stripe']);
 
  lufthansa.value('cgBusyDefaults',{
    message:'Loading Flights...',
    templateUrl: 'templates/spinner.html',
  });
-
+ lufthansa.config(function (stripeProvider) {
+ stripeProvider.setPublishableKey('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
+ });
 lufthansa.run(function($ionicPlatform,$ionicAnalytics) {
   $ionicPlatform.ready(function() {
     $ionicAnalytics.register();
