@@ -62,7 +62,7 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       views: {
           '': {
               templateUrl: 'templates/home.html',
-              controller: 'mainCtrl'
+              controller: 'homeCtrl'
           }
       }
     })

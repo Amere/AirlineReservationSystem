@@ -54,16 +54,23 @@
       </ion-slide-box>
 
       <br>
-      <br>
-      <br>
-      <br><br>
-      <br>
+
+
 
 
 
 <div align="center">
   <button class="button button icon-right ion-plane button-energized animated zoomInRight" ng-click="goToLanding()" >
     Book you flight now
+</button>
+</div>
+<br>
+  <div align="center">
+<button class="button button icon-right ion-update button-energized animated zoomInLeft" ng-click="checkForUpdates()">
+  Check for updates
+</button>
+<button class="button button-stable button-block button-pulse" ng-if="hasUpdate" ng-click="doUpdate()">
+  download update
 </button>
 
 
