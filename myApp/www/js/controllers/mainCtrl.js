@@ -216,7 +216,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         var returningDate = angular.element('#date2').val();
         var clas = $scope.pick;
         lufthansaServ.getRound(origin, destination, departingDate, returningDate, clas).success(function (result) {
-          lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
 
@@ -228,7 +227,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         var departingDate = angular.element('#date1').val();
         var returningDate = angular.element('#date2').val();
         lufthansaServ.getRound2(origin, destination, departingDate, returningDate).success(function (result) {
-          lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
     };
@@ -239,7 +237,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         var departingDate = angular.element('#date1').val();
         var clas = $scope.pick;
         lufthansaServ.getOneWay(origin, destination, departingDate, clas).success(function (result) {
-            lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
     };
@@ -335,15 +332,18 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     $scope.goToLanding= function(){
             $state.go('tab.landing');
     };
-    $scope.goToInfo=function (fNum) {
+    $scope.goToInfo=function (fNum,fdate,flight) {
          lufthansaServ.setFlightNumberOutGoing(fNum);
          lufthansaServ.setdate1(fdate);
+         lufthansaServ.setFlight(flight);
     };
-    $scope.goToInfo2=function (fNum,fNum2,fdate,fdate2) {
+    $scope.goToInfo2=function (fNum,fNum2,fdate,fdate2,flight,retFlightId) {
          lufthansaServ.setFlightNumberOutGoing(fNum);
         lufthansaServ.setFlightNumberReturning(fNum2);
         lufthansaServ.setdate1(fdate);
         lufthansaServ.setdate2(fdate2);
+        lufthansaServ.setFlight(flight);
+        lufthansaServ.setFlightIdReturning(retFlightId);
     };
     $scope.showAlert = function() {
 if($scope.or.or==null){
