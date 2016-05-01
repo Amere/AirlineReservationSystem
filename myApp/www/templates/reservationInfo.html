@@ -1,0 +1,178 @@
+<!-- <ion-view view-title="Reservation Info">
+  <ion-content class="padding">
+
+    <h2>Reservation Info</h2>
+    <p>
+      Here you can access the res1Ctrl w 3esh 7yataaaaaak
+    </p>
+      <a href="#/tab/landing/reservation">Go to Seats</a>
+      <br>
+      <br>
+      <br>
+    {{nations}}
+  </ion-content>
+</ion-view> -->
+<ion-view view-title="Personal Information">
+  <ion-content class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes" >
+    <!-- <div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url(img/iphone-2.jpg);"> -->
+        <!-- <div class="fh5co-overlay"></div>
+        <div class="fh5co-cover-text">
+                <div class="row">
+                    <div class="full-height js-full-height">
+                        <div class="fh5co-cover-intro col-md-12">
+
+                        <div class="full-height js-full-height"> -->
+                        <a class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
+                        <br>
+
+
+                            <style>
+                            @darkGreen: #4a6a28;
+                            @lightGreen: #87ba51;
+                            @greyState: #DDD;
+                            @mainBlue: #0070c0;
+                            ol {
+
+                              &.progress-track {
+                                display: table;
+                                list-style-type: none;
+                                margin: 0;
+                                padding: 2em 1em;
+                                table-layout: fixed;
+                                width: 100%;
+
+                                li {
+                                  display: table-cell;
+                                  line-height: 3em;
+                                  position: relative;
+                                  text-align: center;
+
+                                  .icon-wrap {
+                                    border-radius: 50%;
+                                    top: -1.5em;
+
+                                    color: #fff;
+                                    display: block;
+                                    height: 2.5em;
+                                    margin: 0 auto -2em;
+                                    left: 0;
+                                    right: 0;
+                                    position: absolute;
+                                    width: auto;
+                                  }
+
+                                  .icon-check-mark, .icon-down-arrow {
+                                    height: 25px;
+                                    width: auto;
+                                    display: inline-block;
+                                    fill: currentColor;
+                                  }
+
+                                  .progress-text {
+                                     position: relative;
+                                     top: 10px;
+                                  }
+
+                                  &.progress-done {
+                                    border-top: 7px solid @lightGreen;
+                                    transition: border-color 1s ease-in-out;
+                                    -webkit-transition: border-color 1s ease-in-out;
+                                    -moz-transition: border-color 1s ease-in-out;
+
+                                    .icon-down-arrow {
+                                      display: none;
+                                    }
+
+                                      &.progress-current {
+
+                                        .icon-wrap {
+                                          background-color: @mainBlue;
+
+                                          .icon-check-mark {
+                                           display: none;
+                                          }
+
+                                          .icon-down-arrow {
+                                            display: block;
+                                          }
+                                        }
+                                      }
+
+                                    .icon-wrap {
+                                      background-color: @darkGreen;
+                                      border: 5px solid @lightGreen;
+                                    }
+                                  }
+
+                                  &.progress-todo {
+                                      border-top: 7px solid @greyState;
+                                      color: black;
+
+                                    .icon-wrap {
+                                      background-color: #FFF;
+                                      border: 5px solid @greyState;
+                                      border-radius: 50%;
+                                      bottom: 1.5em;
+                                      color: #fff;
+                                      display: block;
+                                      height: 2.5em;
+                                      margin: 0 auto -2em;
+                                      position: relative;
+                                      width: 2.5em;
+
+                                      .icon-check-mark, .icon-down-arrow {
+                                          display: none;
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            </style>
+
+                            <link rel="stylesheet" href="../css/normalize.css">
+                            <link rel="stylesheet" href="../css/progress.css">
+
+                            <!-- <form class="form-horizontal "> -->
+                                <!-- <fieldset> -->
+
+                                    <!-- Form Name -->
+
+                                    <!-- Text input-->
+
+                                    <div class="list">
+                                      {{nations}}
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label" style="color:orange">First Name</span>
+                                        <input ng-model="costumer.firstName" placeholder="Please enter your first name" required>
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label" style="color:orange">Last Name</span>
+                                        <input ng-model="costumer.lastName" placeholder="Please enter your last name" required>
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label" style="color:orange">Email</span>
+                                        <input ng-model="costumer.email" placeholder="example@gmail.com" required>
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label" style="color:orange">Nationality</span>
+                                        <input  ng-model="costumer.nationality"
+                                         placeholder="select your Nationality"
+                                          uib-typeahead="nation.name for nation in nations | filter:$viewValue | limitTo:10"
+                                         class="form-control"
+                                         typeahead-on-select="SetNation($item.name)" required>
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label" style="color:orange">Date Of Birth</span>
+                                        <input type="date"  ng-model="costumer.dob" placeholder="1/1/2016" required>
+                                      </div>
+                                      <div class="item item-input item-stacked-label">
+                                        <span class="input-label" style="color:orange">Your passport expiration date</span>
+                                        <input type="date"  ng-model="costumer.expDate" placeholder="1/1/2016" required>
+                                      </div>
+                                    </div>
+                                            <div align="center">
+                                                    <button class="button button-block button-energized"  href="#/tab/landing/payment" id="procced" name="procced" ng-click="setUserInfo(); seats();">Choose Seat </button>
+                                            </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,35 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home-outline" href="#/tab/landing">
+    <ion-nav-view name="tab-landing"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Chats Tab -->
+  <ion-tab title="My Past Flights" icon-off="ion-plane" icon-on="ion-plane" href="#/tab/bookingAndPastFlights">
+    <ion-nav-view name="tab-bookingAndPastFlights"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+
+<!--We should add routing to news and offer for the tabs on app.js
+
+To be added later
+ -->
+
+  <ion-tab title="News" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/news">
+    <ion-nav-view name="tab-news"></ion-nav-view>
+  </ion-tab>
+
+
+  <ion-tab title="Offers" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/offers">
+  <ion-nav-view name="tab-offers"></ion-nav-view>
+</ion-tab>
+
+
+</ion-tabs>

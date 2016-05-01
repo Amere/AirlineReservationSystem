@@ -4,8 +4,7 @@
     <div class="fh5co-cover-text">
         <div class="container">
             <div class="row">
-                <div class="full-height js-full-height">
-                    <div class="fh5co-cover-intro col-md-12">
+                <form class="full-height js-full-height">
                       <br><br><br><br><br><br><br><br>
                       <style>
                       @darkGreen: #4a6a28;
@@ -159,7 +158,7 @@
 
 
                        <div class="cc">
-
+                         <form stripe-form="stripeCallback" name="checkoutForm">
                           <h2>Enter your credit card details please</h2>
 
                           <span class="provider mastercard">MasterCard</span>
@@ -167,6 +166,7 @@
                           <span class="provider visa">Visa</span>
 
                           <!-- card number -->
+
                           <div class="number">
                             <input type="text" ng-model="v1" maxlength="4" placeholder="" ng-required="true">
                             <input type="text" ng-model="v2" maxlength="4" required>
@@ -184,10 +184,12 @@
                           <!-- valid / ccv -->
                           <div class="date">
                             <span class="instructions valid">Valid Thru</span>
-                            <input type="text" ng-model="validThru" maxlength="5" placeholder="00/00" required>
+                            <input type="text" ng-model="validThru" maxlength="5" placeholder="00/00"
+                                   payments-format="expiry" payments-validate="expiry" required>
 
-                            <span class="instructions valid">CCV</span>
-                            <input type="text" ng-model="ccv" maxlength="3" placeholder="123" required>
+                            <span class="instructions valid">CVC</span>
+                            <input type="text" ng-model="ccv" maxlength="3" placeholder="123"
+                                   payments-format="cvc" payments-validate="cvc" required>
                           </div>
 
                           <!-- name on card -->
@@ -210,8 +212,11 @@
                           <div class="col-xs-2">
                             <a id="pay" ng-click="setPaymentFlag(); confirm()" class="btn btn-info" role="button">make payment</a>
                           </div>
-
                         </div>
+                  </form>
+
+
+
 
                     </div>
                 </div>

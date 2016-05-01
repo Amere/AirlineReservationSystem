@@ -1,0 +1,52 @@
+<ion-view view-title="Past Flights">
+ <ion-content class="padding">
+ 
+ <input type="text" placeholder="BookingReferenceNumber" ng-model="bookref" required>
+ <br>
+<button class="button button-royal" ng-click="pastflights(bookref)">Submit</button>
+<br><br>
+    <p>
+     <ion-list>
+      <ion-item ng-repeat="pastflights in Pastflights" type="item-text-wrap" >
+  <span style="color:orange ">A PastFlight Information </span>
+
+<br>
+   <span style="color:#700033 ">Origin: </span> <span style="color: #bf4060 ">{{ pastflights.origin }}</span>
+    <br>
+  <span style="color:#700033 "> Destination:</span><span style="color:  #bf4060 "> {{ pastflights.destination }}</span>
+    <br>
+  <span style="color:#700033 "> FlightNumber: </span><span style="color:  #bf4060 ">{{ pastflights.flightNumber }}</span>
+   <br>
+   <span style="color:#700033 "> AirCraftType: </span><span style="color: #bf4060 ">{{ pastflights.aircraftType }}</span>
+   <br>
+   <span style="color:#700033 ">AircraftModel:</span><span style="color:#bf4060 "> {{ pastflights.aircraftModel }}</span>
+    <br>
+ <span style="color:#700033"> Departure:</span><span style="color:#bf4060 ">  {{ pastflights.departureDateTime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+   <br>
+ <span style="color:#700033 "> Arrival:  </span><span style="color:#bf4060 ">{{ pastflights.arrivalDateTime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+    <br>
+      </ion-item>
+    </ion-list>
+    
+
+            <form ng-submit="addResource(settings)">
+                <div class="list" style="margin: 5px 10px;">
+                    
+                        <input type="text" ng-model="settings.email" placeholder="Your Recommendations">
+                    </label>
+                </div>
+                <button class="button button-royal">Save</button>
+           </form>
+           <br>
+<span style="color:orange;font-size: 15pt">List Of Recommendations</span>
+<br><br>
+       <span style="color:#700033"> {{ out }}</span>
+   <br><br>
+
+
+    <!-- <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a> -->
+
+  </ion-content>
+</ion-view>
+
+

@@ -13,6 +13,7 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
     $scope.nationality = "";
     $scope.dob = "";
     $scope.expDate = "";
+    $scope.passNum="";
 
     $scope.open1 = function () {
         $scope.popup1.opened = true;
@@ -64,7 +65,7 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
       lufthansaServ.setNationality($scope.nationality);
       lufthansaServ.setDOB($scope.dob);
       lufthansaServ.setExpDate($scope.expDate);
-  //      lufthansaServ.getCurrentUser();
+      lufthansaServ.setPassNum($scope.passNum);
 
     };
     if(lufthansaServ.landingFlag != true){
