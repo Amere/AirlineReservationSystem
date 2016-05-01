@@ -66,10 +66,10 @@ function PK(){
          PK();
     }
 
-    console.log("number "+cardNumber);
-    console.log("cvv "+cvv);
-    console.log("expMonth "+exp.substring(0,2));
-    console.log("expYear "+ exp.substring(3));
+    //console.log("number "+cardNumber);
+    //console.log("cvv "+cvv);
+    //console.log("expMonth "+exp.substring(0,2));
+    //console.log("expYear "+ exp.substring(3));
     if(other==true && flagPK===true){
       Stripe.card.createToken({
         number: +cardNumber,

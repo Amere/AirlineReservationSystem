@@ -560,7 +560,6 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
                 }]
             });
         },
-
         getPK : function(){
           var flight = this.getFlightData();
           console.log(flight.Airline);
