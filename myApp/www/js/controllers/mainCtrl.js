@@ -9,7 +9,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     lufthansaServ.getAirportCodes().success(function (airports) {
              $scope.Airports = airports;
          });
-    $scope.flights=lufthansaServ.getFlights();
     console.log($scope.flights);
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
@@ -245,21 +244,52 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         });
     };
     /* function to search One way trips flights in Our database */
-    function oneWay2(){
     var origin=lufthansaServ.getOr();
     var destination=lufthansaServ.getDest();
     var departingDate = lufthansaServ.getdate1();
     var returningDate=lufthansaServ.getdate2();
     var clas=lufthansaServ.getCl();
-    $scope.req = lufthansaServ.getOneWay2(origin, destination, departingDate)
-    $scope.req.success(function (result) {
-      lufthansaServ.setFlights(result);
-        $scope.flights = result;
+    if(origin!=null && destination!=null && departingDate!=null){
+        // var origin = lufthansaServ.getSelectedOriginAirport();
+        // var destination = lufthansaServ.getSelectedDestinationAirport();
 
-        console.log($scope.flights.outgoingFlights);
-        console.log(result);
-    });
-    };
+       if(returningDate==null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
+         $scope.req = lufthansaServ.getOneWay2(origin, destination, departingDate);
+
+      //  console.log(origin + " "+ destination+" "+departingDate);
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if(returningDate!=null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
+        $scope.req = lufthansaServ.getRound2(origin, destination, departingDate,returningDate);
+
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if (returningDate==null && clas!='seat class' && origin !=null && destination!=null && departingDate!=null) {
+       $scope.req = lufthansaServ.getOneWay(origin, destination, departingDate,clas);
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }else if (returningDate!=null && (clas=='economy' || clas=='business') && origin !=null && destination!=null && departingDate!=null) {
+        $scope.req = lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas);
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            console.log($scope.flights.outgoingFlights);
+            console.log(result);
+        });
+      }
+    }
     /* Retrieve List of Airports Codes */
     // function AirportCodes() {
     //     lufthansaServ.getAirportCodes().success(function (airports) {
@@ -292,16 +322,12 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
         console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
-          oneWay2();
           $state.go('tab.landing-search');
         }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
-          round2();
           $state.go('tab.landing-search2');
         }else if($scope.pick!='seat class' && $scope.date2.date2 ==null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
-          oneWay();
           $state.go('tab.landing-search3');
         }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
-          round1();
           $state.go('tab.landing-search4');
         }
     };
