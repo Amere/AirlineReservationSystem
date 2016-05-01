@@ -3,6 +3,14 @@
  **/
 lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
     /*----------- Angular Bootstrap Datepicker -----------*/
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+    };
+    lufthansaServ.getAirportCodes().success(function (airports) {
+             $scope.Airports = airports;
+         });
+    $scope.flights=lufthansaServ.getFlights();
+    console.log($scope.flights);
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
@@ -51,7 +59,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     /* Function to set Returning_Or_Outgoing flag in the service  */
     function outgoingFlagSetter() {
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
-    }
+    };
 
     outgoingFlagSetter();
     $scope.format = $scope.formats[1];
@@ -81,7 +89,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     /* Function to clear variables in lufthansaServ */
     function flushVars() {
         lufthansaServ.clearVariables();
-    }
+    };
 
     flushVars();
     /* Function to set date picker pop up window */
@@ -153,93 +161,28 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     $scope.IsVisible = false;
     /* If DIV is visible it will be hidden and vice versa. */
     /* Also this function is responsible for selecting what the user is searching for */
-    $scope.ShowHide = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            if (lufthansaServ.getSelectedDestinationAirport() != "intial" && lufthansaServ.getSelectedOriginAirport() != "intial") {
-                $scope.IsVisible = true;
-                if (lufthansaServ.getReturning_Or_Outgoing() == "Returning" && $scope.pick != "economy" && $scope.pick != "business") {
-                    round2();
-                } else if (lufthansaServ.getReturning_Or_Outgoing() == "Returning" && ($scope.pick == "economy" || $scope.pick == "business")) {
 
-                    round();
-                } else if (lufthansaServ.getReturning_Or_Outgoing() != "Returning" && $scope.pick != "economy" && $scope.pick != "business") {
-                    oneWay2();
-                } else {
-                    oneWay();
-                }
-
-            }
-        }
-    };
     /* Google maps triger */
     $scope.IsVisible = false;
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide2 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
-    };
-    //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide3 = function () {
-        round();
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide4 = function () {
-        oneWay();
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide5 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide6 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide7 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide8 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
-    function directToMain() {
-        lufthansaServ.toMain();
-    };
+    //If DIV is visible it will be hidden and vice versa.
+
+
 
 
     /* Retrieve List of News */
-    function news() {
-        lufthansaServ.getNews().success(function (News) {
-            $scope.news = News;
-        });
-    };
+
     /* Record User's Selected Origin Airport */
     $scope.SetOriginAirport = function (originAirport) {
         lufthansaServ.setSelectedOriginAirport(originAirport);
@@ -267,13 +210,14 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         lufthansaServ.setSelectedDestinationAirport("intial");
     };
     /* function to search round trip flights in the other companies */
-    function round() {
+    function round1() {
         var origin = lufthansaServ.getSelectedOriginAirport();
         var destination = lufthansaServ.getSelectedDestinationAirport();
         var departingDate = angular.element('#date1').val();
         var returningDate = angular.element('#date2').val();
         var clas = $scope.pick;
         lufthansaServ.getRound(origin, destination, departingDate, returningDate, clas).success(function (result) {
+          lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
 
@@ -285,6 +229,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         var departingDate = angular.element('#date1').val();
         var returningDate = angular.element('#date2').val();
         lufthansaServ.getRound2(origin, destination, departingDate, returningDate).success(function (result) {
+          lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
     };
@@ -295,80 +240,40 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         var departingDate = angular.element('#date1').val();
         var clas = $scope.pick;
         lufthansaServ.getOneWay(origin, destination, departingDate, clas).success(function (result) {
+            lufthansaServ.setFlights(result);
             $scope.flights = result;
         });
     };
     /* function to search One way trips flights in Our database */
+    function oneWay2(){
     var origin=lufthansaServ.getOr();
     var destination=lufthansaServ.getDest();
     var departingDate = lufthansaServ.getdate1();
     var returningDate=lufthansaServ.getdate2();
     var clas=lufthansaServ.getCl();
-    if(origin!=null && destination!=null && departingDate!=null){
-        // var origin = lufthansaServ.getSelectedOriginAirport();
-        // var destination = lufthansaServ.getSelectedDestinationAirport();
-       if(returningDate==null && clas=='seat class'){
-        console.log(origin + " "+ destination+" "+departingDate);
-        lufthansaServ.getOneWay2(origin, destination, departingDate).success(function (result) {
-            $scope.flights = result;
+    $scope.req = lufthansaServ.getOneWay2(origin, destination, departingDate)
+    $scope.req.success(function (result) {
+      lufthansaServ.setFlights(result);
+        $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
-        });
-      }else if(returningDate!=null && clas=='seat class'){
-        lufthansaServ.getRound2(origin, destination, departingDate,returningDate).success(function (result) {
-            $scope.flights = result;
-
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
-        });
-      }else if (returningDate==null && clas!='seat class') {
-        lufthansaServ.getOneWay(origin, destination, departingDate,clas).success(function (result) {
-            $scope.flights = result;
-
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
-        });
-      }else if (returningDate!=null && (clas=='economy' || clas=='business')) {
-        lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas).success(function (result) {
-            $scope.flights = result;
-
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
-        });
-      }
+        console.log($scope.flights.outgoingFlights);
+        console.log(result);
+    });
     };
     /* Retrieve List of Airports Codes */
-    function AirportCodes() {
-        lufthansaServ.getAirportCodes().success(function (airports) {
-            $scope.Airports = airports;
-        });
-    };
+    // function AirportCodes() {
+    //     lufthansaServ.getAirportCodes().success(function (airports) {
+    //         $scope.Airports = airports;
+    //     });
+    // };
     /* landing page slides area options  */
-    function slides() {
-        $scope.myInterval = 5000;
-        lufthansaServ.getSlides().success(function (Slides) {
-            $scope.slides = Slides;
-        });
-        $scope.myInterval = 5000;
-    };
+
     /* Retrieve List of Offers */
-    function offers() {
-        lufthansaServ.getOffers().success(function (Offers) {
-            $scope.offers = Offers;
-        });
-    };
 
     /* helper function to convert a given moment date   */
-    function convert(mom) {
-        return moment(mom).format('YYYY-MM-DD');
-    };
+
     setIata();
 
-    /* Get offers on page render */
-    offers();
-    /* Get news on page render */
-    news();
     $scope.or={};
     $scope.dest={};
     $scope.date1={};
@@ -385,23 +290,25 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
          };
          lufthansaServ.setCl($scope.pick);
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
-        // oneWay2();
         console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
+          oneWay2();
           $state.go('tab.landing-search');
         }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
+          round2();
           $state.go('tab.landing-search2');
         }else if($scope.pick!='seat class' && $scope.date2.date2 ==null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
+          oneWay();
           $state.go('tab.landing-search3');
         }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
+          round1();
           $state.go('tab.landing-search4');
         }
-
     };
 
     $scope.goToLanding= function(){
             $state.go('tab.landing');
-        };
+    };
     $scope.goToInfo=function (fNum) {
          lufthansaServ.setFlightNumberOutGoing(fNum);
          lufthansaServ.setdate1(fdate);
@@ -429,37 +336,22 @@ if($scope.or.or==null){
      template: 'Please enter a date'
   });
 }
-
-
-   alertPopup.then(function(res) {
-      // Custom functionality....
-   });
 };
-$scope.showLoading = function() {
-   $ionicLoading.show({
-      template: 'Loading...'
-   });
-};
+// $scope.showLoading = function() {
+//    $ionicLoading.show({
+//       template: 'Loading...'
+//    });
+// };
+//
+// $scope.hideLoading = function(){
+//    $ionicLoading.hide();
+// };
 
-$scope.hideLoading = function(){
-   $ionicLoading.hide();
-};
-$scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:clas');
-$scope.req2 = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:returningDate/:clas');
-$scope.req3 = $http.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:returningDate/');
-$scope.req4 = $http.get('/api/flights/search/:origin/:destination/:departingDate');
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
-$scope.reset1=function () {
-  $scope.pick='seat class';
-  document.getElementById("t1").value ="Flying  From ";
-  document.getElementById("t2").value ="Flying  To ";
-  // $scope.or.or=null;
-  // $scope.dest.dest=null;
-  // $scope.date1.date1=null;
-  // $scope.date2.date2=null;
-};
+
+
     $scope.economy=function () {
       $scope.pick='economy';
     };
@@ -468,9 +360,9 @@ $scope.reset1=function () {
     };
 
     $scope.onSelect = function(item){
-      $scope.or.or=item;
+      //$scope.or.or=item;
         console.log('item', item.iata);
     };
-    AirportCodes();
-    slides();
-});
+  //  AirportCodes();
+
+  });

@@ -25,7 +25,6 @@ angular.module('autocomplete.directive', [])
                 //Add autocorrect="off" so the 'change' event is detected when user tap the keyboard
                 $element.attr('autocorrect', 'off');
 
-
                 popover = $ionicPopover.fromTemplate(popoverTemplate, {
                     scope: $scope
                 });

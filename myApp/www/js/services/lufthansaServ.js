@@ -529,6 +529,14 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         setConfirmFlag : function(){
           this.confirmFlag = true;
         },
+        setFlights : function(flights){
+          console.log("HEREEEEEEEEEEE");
+          this.flights = flights;
+        },
+        getFlights : function(){
+          console.log("hereeeeeeeeeeeee");
+          return this.flights;
+        },
         // return the reference number for this reservation
         getReceipt:function(){
           return this.receipt;
