@@ -310,36 +310,36 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         // var origin = lufthansaServ.getSelectedOriginAirport();
         // var destination = lufthansaServ.getSelectedDestinationAirport();
 
-       if(returningDate==null && clas=='seat class'){
-         $scope.req = $http.get('/api/flights/search/:origin/:destination/:departingDate');
+       if(returningDate==null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
+         $scope.req = lufthansaServ.getOneWay2(origin, destination, departingDate);
 
-        console.log(origin + " "+ destination+" "+departingDate);
-        lufthansaServ.getOneWay2(origin, destination, departingDate).success(function (result) {
+      //  console.log(origin + " "+ destination+" "+departingDate);
+        $scope.req.success(function (result) {
             $scope.flights = result;
 
             console.log($scope.flights.outgoingFlights);
             console.log(result);
         });
-      }else if(returningDate!=null && clas=='seat class'){
-        $scope.req = $http.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:returningDate/');
+      }else if(returningDate!=null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
+        $scope.req = lufthansaServ.getRound2(origin, destination, departingDate,returningDate);
 
-        lufthansaServ.getRound2(origin, destination, departingDate,returningDate).success(function (result) {
+        $scope.req.success(function (result) {
             $scope.flights = result;
 
             console.log($scope.flights.outgoingFlights);
             console.log(result);
         });
-      }else if (returningDate==null && clas!='seat class') {
-        $scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:clas');
-        lufthansaServ.getOneWay(origin, destination, departingDate,clas).success(function (result) {
+      }else if (returningDate==null && clas!='seat class' && origin !=null && destination!=null && departingDate!=null) {
+       $scope.req = lufthansaServ.getOneWay(origin, destination, departingDate,clas);
+        $scope.req.success(function (result) {
             $scope.flights = result;
 
             console.log($scope.flights.outgoingFlights);
             console.log(result);
         });
-      }else if (returningDate!=null && (clas=='economy' || clas=='business')) {
-        $scope.req = $http.get('/api/companies/flights/search/:origin/:destination/:departingDate/:returningDate/:clas');
-        lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas).success(function (result) {
+      }else if (returningDate!=null && (clas=='economy' || clas=='business') && origin !=null && destination!=null && departingDate!=null) {
+        $scope.req = lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas);
+        $scope.req.success(function (result) {
             $scope.flights = result;
 
             console.log($scope.flights.outgoingFlights);
@@ -370,9 +370,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     };
 
     /* helper function to convert a given moment date   */
-    function convert(mom) {
-        return moment(mom).format('YYYY-MM-DD');
-    };
+
     setIata();
 
     /* Get offers on page render */
