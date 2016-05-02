@@ -70,24 +70,7 @@ router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
 //
 //   next();
 // });
-router.post('/api/updateSeat', function (req, res) {
-    var fn = req.body.fn;
-    var sn = req.body.sn;
-    db.db().collection('flightsXaircrafts').findOne({flightNumber: fn}, function (err, data) {
-        var cc = data.plane;
-        for (var i = 0; i < cc.economeySeats.length; i++) {
-            for (var j = 0; j < cc.economeySeats[i].length; j++) {
-                if (cc.economeySeats[i][j].seatCode == sn) {
-                    cc.economeySeats[i][j].reserved = "true";
-                }
-            }
-        }
-        db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
-        });
-    });
 
-
-});
 
 
 /* GET past flights given that booking reference */

@@ -22,7 +22,7 @@
                         <div class="fh5co-cover-intro col-md-12">
 
                         <div class="full-height js-full-height"> -->
-                        <a class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
+                      <!--  <a class="button icon-left ion-chevron-left button-clear button-dark">Back</a>-->
                         <br>
 
 
@@ -139,8 +139,12 @@
 
                                     <!-- Text input-->
 
-                                    <div class="list">
-                                      {{nations}}
+
+
+                                    <div class="card">
+                                      <div class="item item-divider" align="center">
+                                        Complete your Persona Info to proceed
+                                      </div>
                                       <div class="item item-input item-stacked-label">
                                         <span class="input-label" style="color:orange">First Name</span>
                                         <input ng-model="costumer.firstName" placeholder="Please enter your first name" required>
@@ -171,7 +175,7 @@
                                       </div>
                                     </div>
                                             <div align="center">
-                                                    <button class="button button-block button-energized"  href="#/tab/landing/payment" id="procced" name="procced" ng-click="setUserInfo(); seats();">Choose Seat </button>
+                                                    <button class="button button button-energized"  href="#/tab/landing/payment" id="procced" name="procced" ng-click="setUserInfo(); seats();">Choose Seat </button>
                                             </div>
 
   </ion-content>

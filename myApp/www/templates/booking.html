@@ -17,7 +17,7 @@ margin-top: -100px;*/
   font-size: 150%;
 }
 .booking .scroll {
-	
+
   display: table-cell;
   vertical-align: middle;
 }
@@ -29,7 +29,7 @@ background: url(img/sk1.jpg);
 </style>
 
 <ion-view view-title="My past flights and bookings" class="booking">
-  <ion-content class="padding">
+  <ion-content class="padding" on-swipe-right="goBack()" on-swipe-left="goForward()">
     <br>
     <a class="button icon ion-ios-book button-energized" href="#/tab/book"> Bookings</a>
     <br>

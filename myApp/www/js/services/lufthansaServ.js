@@ -135,7 +135,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * get flight number for out going flights
          */
         getFlightNumberOutGoing : function() {
-          console.log(this.flightNumber+"**************************");
+        //  console.log(this.flightNumber+"**************************");
             return this.flightNumber;
 
         },
@@ -312,7 +312,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * Get Bookings End point API
          */
          getMyBookings : function(bookref){
-            console.log("hereeeeeeeeeeeeee is the bookref"+bookref);
+          //  console.log("hereeeeeeeeeeeeee is the bookref"+bookref);
             return $http.get('/api/data/bookings/'+bookref,{
                 "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
                 }
@@ -606,7 +606,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             var nationality = this.getNationality();
             var flight = this.getFlightData();
             var email = this.getEmail();
-            console.log("in service");
+          //  console.log("in service");
             return $http.post('/bookingOther',{
                 "paymentToken" : token,
                 "class": flight.class,  // (required)
@@ -628,7 +628,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
 
         getPK : function(){
           var flight = this.getFlightData();
-          console.log(flight.Airline);
+          //console.log(flight.Airline);
           return $http.get('/stripe/Getpubkey',{
               "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
             ,'airline':''+flight.Airline},

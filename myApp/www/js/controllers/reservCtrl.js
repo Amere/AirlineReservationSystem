@@ -111,17 +111,17 @@ lufthansaServ.getAircraftOut().success(function(flight) {
 
            };
    });
-   if($scope.isReturning){
+   if($scope.isReturning=='Returning'){
      lufthansaServ.getAircraftRet().success(function(flight){
        $scope.economySeatsR = flight.plane.economeySeats;
        $scope.premiumEconomySeatsR = flight.plane.premiumEconomySeats;
        $scope.businessSeatsR = flight.plane.businessSeats;
        $scope.firstClassSeatsR = flight.plane.firstClassSeats;
        $scope.choicesR = [
-           { text: "economy", value: "economy",rows:$scope.economySeats.length},
-           { text: "business", value: "business",rows:$scope.premiumEconomySeats.length },
-           { text: "premiumEconomySeats", value: "premium",rows:$scope.businessSeats.length },
-           { text: "firstClassSeats", value: "first",rows:$scope.firstClassSeats.length }
+           { text: "economy", value: "economy",rows:$scope.economySeatsR.length},
+           { text: "business", value: "business",rows:$scope.premiumEconomySeatsR.length },
+           { text: "premiumEconomySeats", value: "premium",rows:$scope.businessSeatsR.length },
+           { text: "firstClassSeats", value: "first",rows:$scope.firstClassSeatsR.length }
          ];
          $scope.dataR = {
 

@@ -1,10 +1,23 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http,$ionicTabsDelegate) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.goToLanding= function(){
             $state.go('tab.landing');
+    };
+    $scope.goForward = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1) {
+            $ionicTabsDelegate.select(selected + 1);
+        }
+    };
+
+    $scope.goBack = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1 && selected != 0) {
+            $ionicTabsDelegate.select(selected - 1);
+        }
     };
     lufthansaServ.getAirportCodes().success(function (airports) {
              $scope.Airports = airports;
@@ -257,8 +270,8 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }else if(returningDate!=null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
         $scope.req = lufthansaServ.getRound2(origin, destination, departingDate,returningDate);
@@ -266,24 +279,24 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }else if (returningDate==null && clas!='seat class' && origin !=null && destination!=null && departingDate!=null) {
        $scope.req = lufthansaServ.getOneWay(origin, destination, departingDate,clas);
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }else if (returningDate!=null && (clas=='economy' || clas=='business') && origin !=null && destination!=null && departingDate!=null) {
         $scope.req = lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas);
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }
     }
@@ -317,7 +330,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
          };
          lufthansaServ.setCl($scope.pick);
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
-        console.log($scope.pick);
+      //  console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search');
         }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
@@ -337,14 +350,14 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
          lufthansaServ.setdate1(fdate);
          lufthansaServ.setFlight(flight);
     };
-    $scope.goToInfo2=function (fNum,fNum2,fdate,fdate2,flight,retFlightId) {
+    $scope.goToInfo2=function (fNum,fdate,fNum2,fdate2,flight,retFlightId) {
       lufthansaServ.setReturning_Or_Outgoing("Returning");
          lufthansaServ.setFlightNumberOutGoing(fNum);
         lufthansaServ.setFlightNumberReturning(fNum2);
         lufthansaServ.setdate1(fdate);
         lufthansaServ.setdate2(fdate2);
         lufthansaServ.setFlight(flight);
-        lufthansaServ.setFlightIdReturning(retFlightId);
+        //lufthansaServ.setFlightIdReturning(retFlightId);
     };
     $scope.showAlert = function() {
 if($scope.or.or==null){
@@ -388,7 +401,7 @@ $scope.setClass=function () {
 
     $scope.onSelect = function(item){
       //$scope.or.or=item;
-        console.log('item', item.iata);
+      //  console.log('item', item.iata);
     };
   //  AirportCodes();
 

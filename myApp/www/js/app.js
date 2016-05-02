@@ -37,7 +37,8 @@ lufthansa.config(function($httpProvider){
     return {
       request: function(req){
         if(req.url.charAt(0)==='/'){
-          req.url = 'http://localhost:80'+req.url;
+          req.url = 'http://localhost:8080'+req.url;
+
         }
         return req;
       }
