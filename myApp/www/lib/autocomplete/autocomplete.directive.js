@@ -7,7 +7,7 @@ angular.module('autocomplete.directive', [])
          '<ion-popover-view style="margin-top:5px">' +
              '<ion-content>' +
                  '<div class="list">' +
-                    '<a href="#" class="item" ng-repeat="item in items | filter:inputSearch" ng-click="selectItem(item)"><h5>{{item.iata}} - {{item.name}}</h5></a>' +
+                    '<a class="item" ng-repeat="item in items | filter:inputSearch" ng-click="selectItem(item)"><h5>{{item.iata}} - {{item.name}}</h5></a>' +
                  '</div>' +
              '</ion-content>' +
          '</ion-popover-view>';

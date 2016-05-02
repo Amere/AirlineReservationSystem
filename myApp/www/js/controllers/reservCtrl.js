@@ -78,7 +78,7 @@ for (var i = 0; i < n; i++) {
 return res;
     };
 $scope.rr=function(item){
-  $scope.datas.rows=item.rows;
+  $scope.data.rows=item.rows;
 }
 $scope.chooseSeat=function(){
   lufthansaServ.setSeat($scope.data.seat);

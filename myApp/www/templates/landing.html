@@ -12,13 +12,13 @@
     <div class="col col-50">
    <label class="item item-input item-stacked-label animated fadeInLeft">
    <span class="input-label" style="color:orange">Origin</span>
-   <input type="text" placeholder="Flying From" id="t1" ng-model="or.or">
+   <input type="text" placeholder="Flying From" id="t1" ionic-autocomplete="{items: Airports, onSelect: onSelect}" ng-model="or.or">
    </label>
  </div>
   <div class="col col-50">
    <label class="item item-input item-stacked-label animated fadeInRight">
    <span class="input-label" style="color:orange">Destination</span>
-   <input type="text" placeholder="Flying To" id='t2' ng-model="dest.dest">
+   <input type="text" placeholder="Flying To" id='t2' ionic-autocomplete="{items: Airports, onSelect: onSelect2}" ng-model="dest.dest">
    </label>
  </div>
    <br>
