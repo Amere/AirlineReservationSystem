@@ -102,7 +102,7 @@ var flagForRetPayment = 0;
       if(retOrOut==="Outgoing Only"){//out only
         lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
-            console.log(data);
+          //  console.log(data);
             PK()
             $state.go('tab.landing-confirm');
           }else{
@@ -135,6 +135,7 @@ var flagForRetPayment = 0;
     }
   }
   $scope.confirm = function(){
+
     //console.log($scope.card.v1);
     //    console.log($scope.card.validThru);
     //        console.log($scope.card.ccv);
@@ -146,6 +147,7 @@ var flagForRetPayment = 0;
       //console.log("/////////");
       showAlert();
     }
+
 
          // $location.url('/confirm');
 };

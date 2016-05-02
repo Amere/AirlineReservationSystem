@@ -46,11 +46,13 @@ db.connect(function (err, db) {
 /**
  * middelware to add Access-Control-Allow-Origin header to res
  */
+
  router.all('*', function (req, res, next) {
      res.header('Access-Control-Allow-Origin', '*');
      res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type']);
      next();
  });
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -61,24 +63,14 @@ router.get('/google7a607af0cf3cce8e.html', function (req, res, next) {
     res.render('google7a607af0cf3cce8e.html');
 });
 /* POST method to update seat and make it reserved */
-router.post('/api/updateSeat', function (req, res) {
-    var fn = req.body.fn;
-    var sn = req.body.sn;
-    db.db().collection('flightsXaircrafts').findOne({flightNumber: fn}, function (err, data) {
-        var cc = data.plane;
-        for (var i = 0; i < cc.economeySeats.length; i++) {
-            for (var j = 0; j < cc.economeySeats[i].length; j++) {
-                if (cc.economeySeats[i][j].seatCode == sn) {
-                    cc.economeySeats[i][j].reserved = "true";
-                }
-            }
-        }
-        db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
-        });
-    });
+// router.use(function(req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", 'http://localhost:8080');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
+//
+//   next();
+// });
 
-
-});
 
 
 /* GET past flights given that booking reference */
@@ -158,6 +150,7 @@ router.post('/api/updateSeat', function (req, res) {
                 }
             }
         }
+
         db.db().collection('flightsXaircrafts').update({flightNumber: fn}, {$set: {plane: cc}}, function (err, data) {
         });
     });
