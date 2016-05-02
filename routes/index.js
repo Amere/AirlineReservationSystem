@@ -46,11 +46,13 @@ db.connect(function (err, db) {
 /**
  * middelware to add Access-Control-Allow-Origin header to res
  */
-router.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'x-access-token,Content-Type');
-    next();
-});
+
+ router.all('*', function (req, res, next) {
+     res.header('Access-Control-Allow-Origin', '*');
+     res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type']);
+     next();
+ });
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -182,7 +184,7 @@ function httpGet(url, callback) {
             try {
                     var x = JSON.parse(body);
                     if (body != undefined && x.length != 0 && err==null) {
-                       // console.log(x.outgoingFlights[0].Airline);
+                       console.log(x.outgoingFlights[0].Airline);
                         callback(err, x);
                     }
 
@@ -228,6 +230,7 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     var clas = req.params.class1;
     const urls = generateUrlsOne(origin, destination, x, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
+        //console.log(resultOneMap);
         manipulateOne(resultOneMap, function (finalValue) {
             console.log(finalValue);
             res.json(finalValue);
@@ -343,6 +346,37 @@ router.post('/booking', function (req, res) {
 
     });
 
+});
+
+router.get('/stripe/Getpubkey',function(req,res){
+  console.log('before airline');
+  var airline = req.headers['airline'];
+  console.log(airline);
+  var ip ="";
+  var ips = require('../testIp.json');
+  for(var i = 0 ;i<ips.length;i++){
+      if(ips[i].company.toLowerCase().includes(airline.toLowerCase())){
+          ip = ips[i].ip;
+      }
+  }
+  console.log('in router **');
+  request.get(ip+'stripe/pubkey?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
+  function (error,response,body){
+    if (!error && response.statusCode == 200) {
+      console.log(body);
+      res.send({key : body, errorMessage:null});
+
+    }else{
+      console.log('in else ****************');
+      res.send({key : null, errorMessage:error});
+    }
+  });
+
+
+});
+
+router.get('/stripe/pubkey',function(req,res){
+  res.send('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
 });
 
 router.post('/bookingOther',function(req,res){

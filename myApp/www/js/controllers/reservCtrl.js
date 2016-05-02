@@ -78,29 +78,29 @@ for (var i = 0; i < n; i++) {
 return res;
     };
 $scope.rr=function(item){
-  $scope.data.rows=item.rows;
+  $scope.datas.rows=item.rows;
 }
 $scope.chooseSeat=function(){
-  lufthansaServ.setSeat($scope.data.seat.seatCode);
-  lufthansaServ.setSeatClass($scope.data.seat.class);
-  console.log($scope.data.seat);
+  lufthansaServ.setSeat($scope.data.seat);
+  lufthansaServ.setSeatClass($scope.data.choice);
+//  console.log($scope.data.seat);
   // console.log($scope.data.seat.class);
 
 }
 $scope.chooseSeatR=function(){
-  //lufthansaServ.setSeat($scope.data.seat.seatCode);
-  //lufthansaServ.setSeatClass($scope.data.seat.class);
+  lufthansaServ.setSeatR($scope.dataR.seat);
+  lufthansaServ.setSeatClassR($scope.dataR.choice);
   // console.log($scope.data.seat.seatCode);
   // console.log($scope.data.seat.class);
 
 }
-$scope.isReturning=false;
+$scope.isReturning=lufthansaServ.getReturning_Or_Outgoing();
 lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
        $scope.businessSeats = flight.plane.businessSeats;
        $scope.firstClassSeats = flight.plane.firstClassSeats;
-       console.log($scope.flg+"*******888888888888888********");
+       //console.log($scope.flg+"*******888888888888888********");
        $scope.choices = [
            { text: "economy", value: "economy",rows:$scope.economySeats.length},
            { text: "business", value: "business",rows:$scope.premiumEconomySeats.length },

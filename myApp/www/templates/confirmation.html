@@ -24,7 +24,7 @@
                           <span class="row"> Seat number:{{Confirm.seatCode}}       </span>
 
 
-                          <span class="row" ng-if="rr">   Returning Seat number:   </span>
+                          <span class="row" ng-if="rr">   Returning Seat number:{{rSeat}}   </span>
 
                             <span class="row">  class:{{Confirm.seatClass}}    </span>
 
@@ -33,7 +33,7 @@
                           <span class="row">Outgoing flight number:{{Confirm.flight}}</span>
 
 
-                          <span class="row"ng-if="rr">   returning flight number:</span>
+                          <span class="row"ng-if="rr">   returning flight number:{{rFlight}}</span>
                           <span class="row">  Departure date/time:{{Confirm.odate}}</span>
 
       <br>

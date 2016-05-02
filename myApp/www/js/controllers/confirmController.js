@@ -19,8 +19,8 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
     if(lufthansaServ.getSeat()) {
       $scope.rr = true;
       var reserv2 = {};
-      $scope.rSeat = lufthansaServ.getSeat();
-      $scope.Confirm.seatCodeOut = lufthansaServ.getSeatR();
+      $scope.rSeat = lufthansaServ.getSeatR();
+      $scope.Confirm.seatCodeOut = lufthansaServ.getSeat();
       $scope.Confirm.seatClass = lufthansaServ.getSeatClass_();
       $scope.Confirm.flight = lufthansaServ.getFlightNumberOutGoing();
       $scope.Confirm.odate = lufthansaServ.getDateOutGoing();
@@ -28,12 +28,12 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
       user.flight = lufthansaServ.getFlightNumberOutGoing();
       user.returnFlight = lufthansaServ.getFlightNumberReturning();
       $scope.rFlight = user.returnFlight;
-      user.seatCode = lufthansaServ.getSeatR();
-      user.seatReturn = lufthansaServ.getSeat();
+      user.seatCode = lufthansaServ.getSeat();
+      user.seatReturn = lufthansaServ.getSeatR();
       user.seatClass = lufthansaServ.getSeatClass_();
       reserv.customer = user.fname + " " + user.lname;
       reserv.flight = user.flight;
-      reserv.seatCode = lufthansaServ.getSeatR();
+      reserv.seatCode = lufthansaServ.getSeat();
       reserv.customer = user.fname + " " + user.lname;
       reserv.flight = user.returnFlight;
       reserv.seatCode = lufthansaServ.getSeat();

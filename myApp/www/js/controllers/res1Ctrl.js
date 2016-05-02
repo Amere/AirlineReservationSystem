@@ -1,7 +1,7 @@
 /**
  * Main Controller
  */
-lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $state) {
+lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $state, $ionicPopup) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -56,6 +56,8 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
           console.log("//////////////////");
           $state.go('tab.landing-payment')
         }
+     }else{
+       showAlert();
      }
     };
     $scope.setReservInfoFlag = function(){
@@ -64,19 +66,19 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
 
     $scope.setUserInfo = function(){
       lufthansaServ.setFirstName($scope.costumer.firstName);
-      console.log($scope.costumer.firstName);
+      //console.log($scope.costumer.firstName);
       lufthansaServ.setLastName($scope.costumer.lastName);
-      console.log($scope.costumer.lastName);
+      //console.log($scope.costumer.lastName);
       lufthansaServ.setEmail($scope.costumer.email);
-      console.log($scope.costumer.email);
+      //console.log($scope.costumer.email);
       lufthansaServ.setNationality($scope.costumer.nationality);
-      console.log($scope.costumer.nationality);
+      //console.log($scope.costumer.nationality);
       lufthansaServ.setDOB($scope.costumer.dob);
-      console.log($scope.costumer.dob);
+      //console.log($scope.costumer.dob);
       lufthansaServ.setExpDate($scope.costumer.expDate);
-      console.log($scope.costumer.expDate);
+      //console.log($scope.costumer.expDate);
       lufthansaServ.setPassNum($scope.costumer.passNum);
-      console.log($scope.costumer.passNum);
+      //console.log($scope.costumer.passNum);
 
     };
 
@@ -88,6 +90,16 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
             $scope.nations = Nat;
         });
     };
+    showAlert = function() {
+       var alertPopup = $ionicPopup.alert({
+         title: 'Missing Data',
+         template: 'please enter missing fields'
+       });
+
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
   //  nations();
 
 });

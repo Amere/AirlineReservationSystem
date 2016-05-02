@@ -94,6 +94,10 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         setdate2 : function(value) {
             this.date2= value;
         },
+        getFlightData : function(){
+            return this.flight;
+        },
+
         /**
          * Get Selected Origin Airport
          */
@@ -418,6 +422,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         setSeatClass : function(value){
           this.class=value;
         },
+        setSeatClassR : function(value){
+          this.classr=value;
+        },
         /**
          * Set other companies flag
          */
@@ -435,6 +442,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          */
         getSeatClass_ : function(value){
           return this.class;
+        },
+        getSeatClass_R : function(value){
+          return this.classr;
         },
         /**
          * Redirect to landing page
@@ -542,6 +552,9 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         setConfirmFlag : function(){
           this.confirmFlag = true;
         },
+        setFlight : function(value){
+          this.flight = value;
+        },
         // return the reference number for this reservation
         getReceipt:function(){
           return this.receipt;
@@ -552,23 +565,21 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getPassNum :function(){
           return this.passNum;
         },
-        sendStripeToken : function(token,isOut){
-            var flightId="";
-            if(isOut===true){
-                flightId=this.getFlightNumberOutGoing();
-            }else{
-                flightId=this.getFlightNumberReturning();
-            }
+        sendStripeToken : function(token){
             var fname = this.getFirstName();
             var lname = this.getLastName();
             var passNumber = this.getPassNum();
             var passExp = this.getExpDate();
             var dateOfBir = this.getDOB();
             var nationality = this.getNationality();
+            var flight = this.getFlightData();
             var email = this.getEmail();
             return $http.post('/booking',{
                 "paymentToken" : token,
-                "flightId": this.getFlightNumberOutGoing(),
+                "class": flight.class,  // (required)
+                "cost": flight.cost, // (required)
+                "outgoingFlightId": flight._id, // mongodb _id => 5NuiSNQdNcZwau92M (required)
+                "returnFlightId": this.getFlightIdReturning(), // mongodb _id => 9DuiBNVjNcUwiu42J (required)
                 "passengerDetails":[{
                     "firstName": fname, // (required)
                     "lastName": lname,  // (required)
@@ -579,9 +590,51 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
                     "email": email // (optional)
                 }]
             });
+        },
+        setFlightIdReurning : function(id){
+          this.flightIdRet = id;
+        },
+        getFlightIdReturning : function(){
+          return this.flighIdRet;
+        },
+        sendStripeTokenOther : function(token){
+            var fname = this.getFirstName();
+            var lname = this.getLastName();
+            var passNumber = this.getPassNum();
+            var passExp = this.getExpDate();
+            var dateOfBir = this.getDOB();
+            var nationality = this.getNationality();
+            var flight = this.getFlightData();
+            var email = this.getEmail();
+            console.log("in service");
+            return $http.post('/bookingOther',{
+                "paymentToken" : token,
+                "class": flight.class,  // (required)
+                "cost": flight.cost, // (required)
+                "outgoingFlightId": flight._id, // mongodb _id => 5NuiSNQdNcZwau92M (required)
+                "returnFlightId": this.getFlightIdReturning(), // mongodb _id => 9DuiBNVjNcUwiu42J (required)
+                "airline":flight.Airline,
+                "passengerDetails":[{
+                    "firstName": fname, // (required)
+                    "lastName": lname,  // (required)
+                    "passportNum": passNumber, // (required)
+                    "passportExpiryDate": passExp, // (optional)
+                    "dateOfBirth": dateOfBir,  // (required)
+                    "nationality": nationality, // (optional)
+                    "email": email // (optional)
+                }]
+            });
+        },
+
+        getPK : function(){
+          var flight = this.getFlightData();
+          console.log(flight.Airline);
+          return $http.get('/stripe/Getpubkey',{
+              "headers" :{'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+            ,'airline':''+flight.Airline},
+
+          });
         }
-
-
 
         // You can add here http get to you dummyData and get the result at the mainCtrl
         // Yous should make getters and setters for all your functions here

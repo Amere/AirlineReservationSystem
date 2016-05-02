@@ -5,13 +5,18 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-lufthansa = angular.module('lufthansa', ['ionic','cgBusy' ,'angularMoment']);
-lufthansa.value('cgBusyDefaults',{
-  message:'Loading Flights...',
-  templateUrl: 'templates/spinner.html'
-});
-lufthansa.run(function($ionicPlatform) {
+lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics','angular-stripe']);
+
+ lufthansa.value('cgBusyDefaults',{
+   message:'Loading Flights...',
+   templateUrl: 'templates/spinner.html',
+ });
+ lufthansa.config(function (stripeProvider) {
+ stripeProvider.setPublishableKey('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
+ });
+lufthansa.run(function($ionicPlatform,$ionicAnalytics) {
   $ionicPlatform.ready(function() {
+    $ionicAnalytics.register();
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -32,7 +37,7 @@ lufthansa.config(function($httpProvider){
     return {
       request: function(req){
         if(req.url.charAt(0)==='/'){
-          req.url = 'http://localhost:8080'+req.url;
+          req.url = 'http://localhost:80'+req.url;
         }
         return req;
       }
@@ -71,6 +76,24 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
     controller: 'mainCtrl'
     }
   }
+  })
+  .state('tab.news', {
+    url:'/news',
+    views:{
+      'tab-news':{
+      templateUrl: 'templates/news.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.offers', {
+    url:'/offers',
+    views:{
+      'tab-offers':{
+      templateUrl: 'templates/offers.html',
+      controller: 'mainCtrl'
+      }
+    }
   })
   // Each tab has its own nav history stack:
   .state('tab.landing-search', {
