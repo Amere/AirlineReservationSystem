@@ -53,6 +53,9 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$state, $ionicP
     if(other==true){
       lufthansaServ.getPK().success(function(data){
         if(data.errorMessage!=null){
+
+          console.log(data.errorMessage);
+          showAlert2(data.errorMessage.message);
         }else{
         Stripe.setPublishableKey(data);
         flagPK=true;
