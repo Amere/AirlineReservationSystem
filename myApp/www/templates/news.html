@@ -1,6 +1,6 @@
 <ion-modal-view view-title="News">
-  <ion-content>
-    <div class="list card">
+  <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
+    <div class="list card animated fadeInLeft">
 
     <div class="item item-avatar">
       <img src="img/adam.jpg">
@@ -17,7 +17,7 @@
 
   </div>
 
-  <div class="list card">
+  <div class="list card animated fadeInRight">
 
     <div class="item item-avatar">
       <img src="img/mike.png">
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="list card">
+  <div class="list card animated fadeInLeft">
 
     <div class="item item-avatar">
       <img src="img/perry.png">
