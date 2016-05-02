@@ -1,15 +1,25 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http,$ionicTabsDelegate) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.goToLanding= function(){
             $state.go('tab.landing');
     };
-    lufthansaServ.getAirportCodes().success(function (airports) {
-             $scope.Airports = airports;
-         });
-    console.log($scope.flights);
+    $scope.goForward = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1) {
+            $ionicTabsDelegate.select(selected + 1);
+        }
+    };
+
+    $scope.goBack = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1 && selected != 0) {
+            $ionicTabsDelegate.select(selected - 1);
+        }
+    };
+
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
@@ -376,19 +386,221 @@ if($scope.or.or==null){
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
-
-
     $scope.economy=function () {
       $scope.pick='economy';
     };
     $scope.business=function () {
       $scope.pick='business';
     };
-
     $scope.onSelect = function(item){
-      //$scope.or.or=item;
+        $scope.or.or=item.iata;
         console.log('item', item.iata);
     };
+    $scope.onSelect2 = function(item){
+        $scope.dest.dest=item.iata;
+        console.log('item', item.iata);
+    };
+
+    $scope.Airports = [
+      {
+          "iata": "MXP",
+          "lon": "8.71237",
+          "iso": "IT",
+          "status": 1,
+          "name": "Malpensa International Airport",
+          "continent": "EU",
+          "type": "airport",
+          "lat": "45.627403",
+          "size": "large"
+      },{
+          "iata": "FCO",
+          "lon": "12.250346",
+          "iso": "IT",
+          "status": 1,
+          "name": "Leonardo Da Vinci (Fiumicino) International Airport",
+          "continent": "EU",
+          "type": "airport",
+          "lat": "41.794594",
+          "size": "large"
+      },{
+          "iata": "JED",
+          "lon": "39.150578",
+          "iso": "SA",
+          "status": 1,
+          "name": "King Abdulaziz International Airport",
+          "continent": "AS",
+          "type": "airport",
+          "lat": "21.670233",
+          "size": "large"
+      },{
+          "iata": "CAI",
+          "lon": "31.40647",
+          "iso": "EG",
+          "status": 1,
+          "name": "Cairo International Airport",
+          "continent": "AF",
+          "type": "airport",
+          "lat": "30.120106",
+          "size": "large"
+      },{
+          "iata": "BOM",
+          "lon": "72.87497",
+          "iso": "IN",
+          "status": 1,
+          "name": "Chhatrapati Shivaji International Airport",
+          "continent": "AS",
+          "type": "airport",
+          "lat": "19.095509",
+          "size": "large"
+      },{
+            "iata": "DEL",
+            "lon": "77.10079",
+            "iso": "IN",
+            "status": 1,
+            "name": "Indira Gandhi International Airport",
+            "continent": "AS",
+            "type": "airport",
+            "lat": "28.556555",
+            "size": "large"
+        },{
+            "iata": "HKG",
+            "iso": "HK",
+            "status": 0,
+            "name": "Hong Kong International Airport Kai Tak",
+            "continent": "AS",
+            "type": "closed",
+            "size": null
+        },{
+            "iata": "TPE",
+            "lon": "121.22389",
+            "iso": "TW",
+            "status": 1,
+            "name": "Taiwan Taoyuan International Airport",
+            "continent": "AS",
+            "type": "airport",
+            "lat": "25.07639",
+            "size": "large"
+        },{
+            "iata": "JNB",
+            "lon": "28.231314",
+            "iso": "ZA",
+            "status": 1,
+            "name": "OR Tambo International Airport",
+            "continent": "AF",
+            "type": "airport",
+            "lat": "-26.132664",
+            "size": "large"
+        },
+        {
+            "iata": "CPT",
+            "lon": "18.596489",
+            "iso": "ZA",
+            "status": 1,
+            "name": "Cape Town International Airport",
+            "continent": "AF",
+            "type": "airport",
+            "lat": "-33.968906",
+            "size": "large"
+        },
+        {
+            "iata": "RUH",
+            "lon": "46.702877",
+            "iso": "SA",
+            "status": 1,
+            "name": "King Khaled International Airport",
+            "continent": "AS",
+            "type": "airport",
+            "lat": "24.95929",
+            "size": "large"
+        },
+        {
+            "iata": "LHR",
+            "lon": "-0.453566",
+            "iso": "GB",
+            "status": 1,
+            "name": "London Heathrow Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "51.469604",
+            "size": "large"
+        },
+        {
+            "iata": "JFK",
+            "lon": "-73.78817",
+            "iso": "US",
+            "status": 1,
+            "name": "John F Kennedy International Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "40.642334",
+            "size": "large"
+        },{
+            "iata": "LCF",
+            "lon": "-88.94778",
+            "iso": "GT",
+            "status": 1,
+            "name": "Las Vegas Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "15.667778",
+            "size": "small"
+        },
+        {
+            "iata": "LAX",
+            "lon": "-118.40828",
+            "iso": "US",
+            "status": 1,
+            "name": "Los Angeles International Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "33.943398",
+            "size": "large"
+        },
+        {
+            "iata": "SFO",
+            "lon": "-122.38988",
+            "iso": "US",
+            "status": 1,
+            "name": "San Francisco International Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "37.615215",
+            "size": "large"
+        },
+        {
+            "iata": "FRA",
+            "lon": "8.570773",
+            "iso": "DE",
+            "status": 1,
+            "name": "Frankfurt am Main International Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "50.050735",
+            "size": "large"
+        },
+        {
+            "iata": "TXL",
+            "lon": "13.291722",
+            "iso": "DE",
+            "status": 1,
+            "name": "Berlin-Tegel International Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "52.553944",
+            "size": "large"
+        },
+        {
+            "iata": "LIN",
+            "lon": "9.279157",
+            "iso": "IT",
+            "status": 1,
+            "name": "Linate Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "45.460957",
+            "size": "large"
+        }
+    ]
   //  AirportCodes();
 
   });
