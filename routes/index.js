@@ -174,6 +174,7 @@ function httpGet(url, callback) {
             try {
                     var x = JSON.parse(body);
                     if (body != undefined && x.length != 0 && err==null) {
+
                        console.log(x.outgoingFlights[0].Airline);
                         callback(err, x);
                     }
@@ -220,13 +221,13 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     var clas = req.params.class1;
     const urls = generateUrlsOne(origin, destination, x, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
-        console.log(resultOneMap);
-        console.log(err);
+        //console.log(resultOneMap);
+        //console.log(err);
         manipulateOne(resultOneMap, function (finalValue) {
-            console.log(finalValue);
+            //console.log(finalValue);
             res.json(finalValue);
         });
-        console.log("Here1");
+      //  console.log("Here1");
     });
 });
 /* Helper method to generate a valid JSON file that will be passed to the view for One
@@ -268,12 +269,12 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
     var clas = req.params.class1;
     const urls = generateUrlsRound(origin, destination, x, y, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
-        console.log(resultOneMap);
+        //console.log(resultOneMap);
         manipulate(resultOneMap, function (finalValue) {
             res.json(finalValue);
         });
     });
-    console.log("Here2");
+    //console.log("Here2");
 });
 
 /* Helper method to generate a valid JSON file that will be passed to the view  */
@@ -304,8 +305,8 @@ function manipulate(arrayReturn, cb) {
 
     }
     var template = '{"outgoingFlights":['+out+'],'+'"returnFlights":['+returnString+']}';
-    console.log(template.length);
-    console.log(JSON.parse(template));
+    //console.log(template.length);
+    //console.log(JSON.parse(template));
 
 
     // console.log(JSON.parse(template));
@@ -339,9 +340,9 @@ router.post('/booking', function (req, res) {
 });
 
 router.get('/stripe/Getpubkey',function(req,res){
-  console.log('before airline');
+  //console.log('before airline');
   var airline = req.headers['airline'];
-  console.log(airline);
+  //console.log(airline);
   var ip ="";
   var ips = require('../testIp.json');
   for(var i = 0 ;i<ips.length;i++){
@@ -349,15 +350,15 @@ router.get('/stripe/Getpubkey',function(req,res){
           ip = ips[i].ip;
       }
   }
-  console.log('in router **');
+  //console.log('in router **');
   request.get(ip+'stripe/pubkey?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
   function (error,response,body){
     if (!error && response.statusCode == 200) {
-      console.log(body);
+      //console.log(body);
       res.send({key : body, errorMessage:null});
 
     }else{
-      console.log('in else ****************');
+      //console.log('in else ****************');
       res.send({key : null, errorMessage:error});
     }
   });
