@@ -20,7 +20,6 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         }
     };
 
-    console.log($scope.flights);
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
@@ -397,7 +396,11 @@ $scope.setClass=function () {
     };
 
     $scope.onSelect = function(item){
-      //$scope.or.or=item;
+        $scope.or.or=item.iata;
+        console.log('item', item.iata);
+    };
+    $scope.onSelect2 = function(item){
+        $scope.dest.dest=item.iata;
         console.log('item', item.iata);
     };
 
