@@ -48,7 +48,7 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$state, $ionicP
     var cardNumber = $scope.card.v1;
     var cvv = $scope.card.ccv;
     var exp = $scope.card.validThru;
-    var other = lufthansaServ.getOtherCompanies();
+    var other = true;
     var flagPK = false ;
     if(other==true){
       lufthansaServ.getPK().success(function(data){

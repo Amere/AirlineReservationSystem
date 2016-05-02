@@ -386,15 +386,12 @@ if($scope.or.or==null){
 $scope.setClass=function () {
   $scope.pick='seat class';
 };
-
-
     $scope.economy=function () {
       $scope.pick='economy';
     };
     $scope.business=function () {
       $scope.pick='business';
     };
-
     $scope.onSelect = function(item){
         $scope.or.or=item.iata;
         console.log('item', item.iata);
