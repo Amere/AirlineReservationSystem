@@ -269,6 +269,7 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
     const urls = generateUrlsRound(origin, destination, x, y, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
         manipulate(resultOneMap, function (finalValue) {
+          console.log(finalValue);
             res.json(finalValue);
         });
     });
@@ -280,10 +281,12 @@ function manipulate(arrayReturn, cb) {
     var out = '';
     var returnString = '';
     //var returnValue = [];
-    for(var i = 0 ;i<arrayReturn.length;i++){
+    console.log("enetered1");
+    console.log(arrayReturn[0]+"********");
+    for(var i = 0;i<arrayReturn.length;i++){
+      console.log("enetered2");
         var item = arrayReturn[i];
         //console.log(template);
-
         // console.log(obj);
           var tempOut = JSON.stringify(item.outgoingFlights[0]);
           var tempRet = JSON.stringify(item.returnFlights[0]);
@@ -299,15 +302,13 @@ function manipulate(arrayReturn, cb) {
             }
         }
       //  console.log(tempOut);
-
-
     }
     var template = '{"outgoingFlights":['+out+'],'+'"returnFlights":['+returnString+']}';
     //console.log(template.length);
     //console.log(JSON.parse(template));
 
 
-    // console.log(JSON.parse(template));
+    console.log(JSON.parse(template));
     cb(JSON.parse(template));
 };
 router.post('/booking', function (req, res) {

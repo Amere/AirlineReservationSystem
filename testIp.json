@@ -1,11 +1,7 @@
 [
     {
       "company": "lufthansa airline",
-      "ip": "http://localhost:8080/"
-    },
-    {
-      "company": "Hawaiian airline",
-      "ip": "http://54.93.36.94/"
+      "ip": "http://ec2-54-152-123-100.compute-1.amazonaws.com/"
     },
     {
       "company": "swiss-air airline",
@@ -26,5 +22,9 @@
     {
       "company": "NewZeland airline",
       "ip": "http://52.28.246.230/"
+    },
+    {
+      "company": "United airline",
+      "ip": "http://54.187.103.196/"
     }
 ]
