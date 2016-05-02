@@ -4,13 +4,13 @@
    <p>
      <input type="text" placeholder="Booking Reference Number" ng-model="book" required>
      <br>
-<button class="button button-calm" ng-click="getMyBookings(book)">Submit</button>
+     <button class="button button-calm" ng-click="getMyBookings(book)">Submit</button>
     <p>
-           
+
      <ion-list>
       <ion-item ng-repeat="flights in bookings" ng-hide="flights.hidden" >
-     
-<span style="color:#5DADE2   " > Flight From {{ flights.origin }} To {{ flights.destination }} </span>
+
+<span style="color:#5DADE2   "> Flight From {{ flights.origin }} To {{ flights.destination }} </span>
  <br>
  <span style="color:#CD5C5C  ">Flight Number:</span><span style="color:#2E4053    "> {{ flights.flightNumber }}</span>
   <br>
@@ -31,11 +31,11 @@
     </ion-item-options>
   </ion-item>
     </ion-list>
-    
+
     </p>
     <br>
 <br>
-  
+
     <!-- <a class="button icon icon  ion-chevron-left" href="#/tab/bookingAndPastFlights"> Back</a> -->
       <br>
       <br>

@@ -364,8 +364,8 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setFlightNumberReturning(ret);
         lufthansaServ.setFlightIdReturning(flightIdRet);
         lufthansaServ.setFlight(flight);
-        console.log(flight._id);
-        console.log(flightIdRet);
+        //console.log(flight._id);
+        //console.log(flightIdRet);
         lufthansaServ.setDateOutGoing(angular.element('#date1').val() + " " + "07:00 PM");
         lufthansaServ.setDateReturning(angular.element('#date2').val() + " " + "07:00 PM");
         $location.url('/reserv1');

@@ -48,7 +48,7 @@ db.connect(function (err, db) {
  */
  router.all('*', function (req, res, next) {
      res.header('Access-Control-Allow-Origin', '*');
-     res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type']);
+     res.header('Access-Control-Allow-Headers', '*');
      next();
  });
 
@@ -193,7 +193,7 @@ function generateUrlsOne(origin, destination, x, clas) {
     var generated = [];
     for (var i = 0; i < ips.length; i++) {
         var element = ips[i];
-        var url = element.ip + 'api/flights/search/' + origin + '/' + destination + '/' + x + '/' + clas + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+        var url = element.ip + 'api/flights/search/' + origin + '/' + destination + '/' + x + '/' + clas + '/' + '1' + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
         generated.push(url);
     }
     return generated;
@@ -206,7 +206,7 @@ function generateUrlsRound(origin, destination, x, y, clas) {
     var generated = [];
     for (var i = 0; i < ips.length; i++) {
         var element = ips[i];
-        var url = element.ip + 'api/flights/search/' + origin + '/' + destination + '/' + x + '/' + y + '/' + clas + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
+        var url = element.ip + 'api/flights/search/' + origin + '/' + destination + '/' + x + '/' + y + '/' + clas + '/' + '1' + '?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE'
         generated.push(url);
     }
     return generated;
@@ -220,12 +220,13 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:c
     var clas = req.params.class1;
     const urls = generateUrlsOne(origin, destination, x, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
-        //console.log(resultOneMap);
+        console.log(resultOneMap);
+        console.log(err);
         manipulateOne(resultOneMap, function (finalValue) {
             console.log(finalValue);
             res.json(finalValue);
         });
-
+        console.log("Here1");
     });
 });
 /* Helper method to generate a valid JSON file that will be passed to the view for One
@@ -239,7 +240,6 @@ function manipulateOne(arrayReturn, cb) {
     for (var i = 0; i < arrayReturn.length; i++) {
 
             var item = arrayReturn[i];
-        //console.log(item);
             var tempOut = JSON.stringify(item.outgoingFlights[0]);
             //console.log(tempOut);
             if (flag == false) {
@@ -272,8 +272,8 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
         manipulate(resultOneMap, function (finalValue) {
             res.json(finalValue);
         });
-
     });
+    console.log("Here2");
 });
 
 /* Helper method to generate a valid JSON file that will be passed to the view  */
@@ -446,7 +446,7 @@ router.get('/api/data/ips', function (req, res) {
  * @returns {Array}
  */
 
-router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function (req, res) {
+router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class/:seats', function (req, res) {
     var origin = req.params.origin;
     var destination = req.params.destination;
     var departingDate = (++req.params.departingDate) + 68400000;
@@ -480,7 +480,7 @@ router.get('/api/flights/searchSecure/:origin/:destination/:departingDate/:retur
  * @param class - economy or business only
  * @returns {Array}
  */
-router.get('/api/flights/search/:origin/:destination/:departingDate/:class1', function (req, res) {
+router.get('/api/flights/search/:origin/:destination/:departingDate/:class1/:seats', function (req, res) {
     var origin = req.params.origin;
     var destination = req.params.destination;
     var departingDate = (++req.params.departingDate) + 68400000;
