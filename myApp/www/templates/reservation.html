@@ -5,7 +5,7 @@
     <ion-view title="Choosing seat">
       <ion-content class="padding">
         <h4>Choosing a seat</h4>
-        <ion-radio ng-repeat="item in choices"
+        <ion-radio class="animated fadeInRight" ng-repeat="item in choices"
                       ng-value="item.value"
                       ng-model="data.choice"
 
@@ -20,9 +20,9 @@
                 {{ a }}
               </ion-radio>
             </div>
-          <div class="list list-inset" ng-repeat="seat in economySeats" ng-if="data.choice=='economy' && $index==data.row">
+          <div class="list list-inset animated fadeInLeft" ng-repeat="seat in economySeats" ng-if="data.choice=='economy' && $index==data.row">
             <h4>economy seats of row {{$index+1}}</h4>
-              <label class="item item-input item-select">
+              <label class="item item-input item-select animated fadeInRight">
                   <div class="input-label">
                       &nbsp;
                   </div>
@@ -32,7 +32,7 @@
                   </select>
               </label>
           </div>
-          <div class="list list-inset" ng-repeat="seat in businessSeats" ng-if="data.choice=='business' && $index==data.row">
+          <div class="list list-inset animated fadeInRight" ng-repeat="seat in businessSeats" ng-if="data.choice=='business' && $index==data.row">
             <h4>business seats of row {{$index+1}}</h4>
               <label class="item item-input item-select">
                   <div class="input-label">
@@ -45,7 +45,7 @@
                 </div>
               </label>
           </div>
-          <div class="list list-inset" ng-repeat="seat in premiumEconomySeats" ng-if="data.choice=='premium' && $index==data.row">
+          <div class="list list-inset animated fadeInRight" ng-repeat="seat in premiumEconomySeats" ng-if="data.choice=='premium' && $index==data.row">
             <h4>premium economy seats of row {{$index+1}}</h4>
               <label class="item item-input item-select">
                   <div class="input-label">
@@ -58,7 +58,7 @@
                 </div>
               </label>
           </div>
-          <div class="list list-inset" ng-repeat="seat in firstClassSeats" ng-if="data.choice=='first' && $index==data.row">
+          <div class="list list-inset animated fadeInRight" ng-repeat="seat in firstClassSeats" ng-if="data.choice=='first' && $index==data.row">
             <h4>first class seats of row {{$index+1}}</h4>
               <label class="item item-input item-select">
                   <div class="input-label">
@@ -90,7 +90,7 @@
                     {{ a }}
                   </ion-radio>
                 </div>
-              <div class="list list-inset" ng-repeat="seat in economySeatsR" ng-if="dataR.choice=='economy' && $index==dataR.row">
+              <div class="list list-inset animated fadeInLeft" ng-repeat="seat in economySeatsR" ng-if="dataR.choice=='economy' && $index==dataR.row">
                 <h4 >economy seats of row {{$index+1}}</h4>
                   <label class="item item-input item-select">
                       <div class="input-label">
@@ -102,7 +102,7 @@
                       </select>
                   </label>
               </div>
-              <div class="list list-inset" ng-repeat="seat in businessSeatsR" ng-if="dataR.choice=='business' && $index==dataR.row">
+              <div class="list list-inset animated fadeInRight" ng-repeat="seat in businessSeatsR" ng-if="dataR.choice=='business' && $index==dataR.row">
                 <h4>business seats of row {{$index+1}}</h4>
                   <label class="item item-input item-select">
                       <div class="input-label">
