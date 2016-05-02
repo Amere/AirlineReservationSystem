@@ -99,7 +99,7 @@ var flagForRetPayment = 0;
       if(retOrOut==="Outgoing Only"){//out only
         lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
-            console.log(data);
+          //  console.log(data);
             PK()
             $state.go('tab.landing-confirm');
           }else{

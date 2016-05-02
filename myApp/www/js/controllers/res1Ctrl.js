@@ -48,12 +48,12 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
      if($scope.costumer.firstName!= "" && $scope.costumer.lastName!="" && $scope.costumer.email != ""&&
        $scope.costumer.nationality!="" && $scope.costumer.expDate!="" && $scope.costumer.dob!="") {
         var flag = lufthansaServ.getOtherCompanies();
-        console.log(flag);
+      //  console.log(flag);
         if(flag==false){
-          console.log("************");
+        //  console.log("************");
         $state.go('tab.landing-reservation')
         }else{
-          console.log("//////////////////");
+      //    console.log("//////////////////");
           $state.go('tab.landing-payment')
         }
      }else{

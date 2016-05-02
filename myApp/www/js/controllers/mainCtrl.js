@@ -22,7 +22,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     lufthansaServ.getAirportCodes().success(function (airports) {
              $scope.Airports = airports;
          });
-    console.log($scope.flights);
+  //  console.log($scope.flights);
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
@@ -154,7 +154,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     /* function To set class */
     $scope.selectClass = function (item) {
         $scope.pick = item;
-        console.log($scope.pick);
+      //  console.log($scope.pick);
         lufthansaServ.setSeatClass(item);
     };
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
