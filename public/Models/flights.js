@@ -87,14 +87,9 @@ function getAllFlightsFromDB(cb) {
 
 
 
-function getRoundTrip(origin,destination,departingDate,returningDate,clas,db,cb) {
-
- //=con.db().collection('flights').find({"origin": destination , "destination" : origin,"departingDate" : returningDate}).toArray();
-
-
-
- var after = departingDate+84600000;
-var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class":clas}).toArray(function (err,fli){
+function getRoundTrip(origin,destination,departingDate,returningDate,clas,seats,db,cb) { // *********here
+   var after = departingDate+84600000;
+   var out =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class":clas}).toArray(function (err,fli){
 
 
   if (fli.length==0) {
@@ -103,7 +98,35 @@ var out =con.db().collection('flights').find( { "origin": origin , "destination"
     getOneWayTrip(destination,origin,returningDate,clas,db,function (err1,result) {
       if (err1) {
       }else {
-        cb(null,{ "outgoingFlights" : fli,"returnFlights" : result});
+
+        con.db().collection('flightsXaircrafts').findOne({flightNumber: fli[0].flightNumber}, function (err, data1) {
+            if (err) {
+                console.log('error in retrieving aircraft');
+            } else {
+
+              con.db().collection('flightsXaircrafts').findOne({flightNumber: result[0].flightNumber}, function (err, data2) {
+                  if (err) {
+                      console.log('error in retrieving aircraft');
+                  } else {
+                     console.log(data1.plane.seats+" ... " +seats);
+                     console.log(data2.plane.seats+" ... " +seats);
+                    if(data1.plane.seats>=seats && data2.plane.seats>=seats){
+                        cb(null,{ "outgoingFlights" : fli,"returnFlights" : result});
+                    }else{
+
+                      cb(null,{ "outgoingFlights" : [{}],"returnFlights" : [{}]});
+                    }
+                  }
+              });
+
+
+
+
+            }
+        });
+
+
+
       }
     });
 
@@ -170,14 +193,27 @@ function getOneWayTrip2(origin,destination,departingDate,db,cb) {
     }
   });
 };
-function oneWayOtherCompanies(origin,destination,departingDate,clas,db,cb) {
+function oneWayOtherCompanies(origin,destination,departingDate,clas,seats,db,cb) { // hereee *******************8
   var after = departingDate+84600000;
      var data =con.db().collection('flights').find( { "origin": origin , "destination" : destination,$and:[{"departureDateTime" : {$gte:departingDate}},{"departureDateTime" : {$lt:after}}],"class" : clas}).toArray(function (err,fli) {
        if (fli.length==0) {
          cb(err,fli);
        }  else {
          //console.log('heeeeeeeeeeeeeeeeeeeeeeere');
-         cb(null,{"outgoingFlights":fli});
+         con.db().collection('flightsXaircrafts').findOne({flightNumber: fli[0].flightNumber}, function (err, data) {
+             if (err) {
+                 console.log('error in retrieving aircraft');
+             } else {
+
+                 if(data.plane.seats>=seats){
+                   cb(null,{"outgoingFlights":fli});
+                 }else{
+
+                   cb(null,{"outgoingFlights":[{}]});
+                 }
+             }
+         });
+
        }
      });
 };

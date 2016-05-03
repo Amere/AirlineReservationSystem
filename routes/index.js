@@ -236,12 +236,15 @@ function manipulateOne(arrayReturn, cb) {
             var tempOut = JSON.stringify(item.outgoingFlights[0]);
             //console.log(tempOut);
             if (flag == false) {
-                if (tempOut != undefined) {
+                if (tempOut != undefined && tempOut != JSON.stringify({})) {
                    // console.log("Iffffffffffffffff");
+                   console.log(tempOut);
+                   console.log(tempOut);
                     out += tempOut;
                     flag = true;
                 }
             } else {
+
                 out += "," + tempOut;
             }
 
@@ -284,12 +287,12 @@ function manipulate(arrayReturn, cb) {
           var tempOut = JSON.stringify(item.outgoingFlights[0]);
           var tempRet = JSON.stringify(item.returnFlights[0]);
           if(i==arrayReturn.length-1) {
-              if (tempOut != undefined && tempRet!=undefined){
+              if (tempOut != undefined && tempRet!=undefined && tempOut != JSON.stringify({}) && tempRet != JSON.stringify({})){
                   out +=tempOut;
                   returnString +=tempRet;
                 }
               }else{
-                if (tempOut != undefined && tempRet!=undefined){
+                if (tempOut != undefined && tempRet!=undefined  && tempOut != JSON.stringify({}) && tempRet != JSON.stringify({})){
                   out+=tempOut+',';
                   returnString+=tempRet+',';
             }
@@ -461,7 +464,8 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
     var y = moment(returningDate).add(19, 'hours').toDate().getTime();
     var clas = req.params.class;
-    flights.getRoundTrip(origin, destination, departingDate,returningDate, clas, db, function (err, result) {
+    var seats = req.params.seats;
+    flights.getRoundTrip(origin, destination, departingDate,returningDate, clas,seats, db, function (err, result) {
         res.json(result);
     });
 
@@ -492,8 +496,10 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class1/:sea
     var destination = req.params.destination;
     var departingDate = (++req.params.departingDate) + 68400000;
     var clas = req.params.class1;
+    var seats =  req.params.seats;
+    console.log(seats+" must be here ");
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
-    flights.oneWayOtherCompanies(origin, destination, departingDate, clas, db, function (err, result) {
+    flights.oneWayOtherCompanies(origin, destination, departingDate, clas,seats, db, function (err, result) {
         res.json(result);
     });
 
