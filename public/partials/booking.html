@@ -31,8 +31,6 @@
     </button>
     </div>
     <br>
-    <h4>NB: If nothing is displayed, then there are no bookings</h4>
-    <br>
     <div class="container">
     <div class="well well-lg"  ng-repeat="flights in bookings" ng-hide="flights.hidden">
         <font color="#25383C"><p><b> Flight From {{ flights.origin }} To {{ flights.destination }} </b></p></font>
@@ -125,8 +123,6 @@
     </button>
     </div>
     <br>
-     <h4>NB: If nothing is displayed, then there are no past flights</h4>
-     <br>
     <div class="well well-lg" ng-repeat="pastflights in Pastflights">
      <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
      <font color=" #8C001A">
