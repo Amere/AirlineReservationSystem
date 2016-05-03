@@ -1,11 +1,14 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http,$ionicTabsDelegate) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http,$ionicTabsDelegate,$cordovaVibration,$ionicPlatform) {
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.goToLanding= function(){
             $state.go('tab.landing');
     };
+
+
+
     $scope.goForward = function () {
         var selected = $ionicTabsDelegate.selectedIndex();
         if (selected != -1) {
@@ -88,6 +91,10 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     };
     /* Function to set One Way Flags  */
     $scope.OneWayFlags = function () {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+    });
+      //$cordovaVibration.vibrate(100);
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
         $scope.date2.date2=null;
@@ -96,6 +103,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     };
     /* Function to set Round Trip Flags  */
     $scope.RoundtripFlags = function () {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+    });
         $scope.dt1Flag = true;
         $scope.dt2Flag = true;
         $scope.pick='seat class';
@@ -161,7 +171,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     /* function To set class */
     $scope.selectClass = function (item) {
         $scope.pick = item;
-        console.log($scope.pick);
+      //  console.log($scope.pick);
         lufthansaServ.setSeatClass(item);
     };
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
@@ -277,8 +287,8 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }else if(returningDate!=null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
         $scope.req = lufthansaServ.getRound2(origin, destination, departingDate,returningDate);
@@ -286,24 +296,24 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }else if (returningDate==null && clas!='seat class' && origin !=null && destination!=null && departingDate!=null) {
        $scope.req = lufthansaServ.getOneWay(origin, destination, departingDate,clas);
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }else if (returningDate!=null && (clas=='economy' || clas=='business') && origin !=null && destination!=null && departingDate!=null) {
         $scope.req = lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas);
         $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
       }
     }
@@ -327,6 +337,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     $scope.date2={};
 
     $scope.goToReservation=function () {
+
         // lufthansaServ.setFlightNumberOutGoing(out);
         // // lufthansaServ.setFlightNumberReturning(ret);
          lufthansaServ.setOr($scope.or.or);
@@ -337,7 +348,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
          };
          lufthansaServ.setCl($scope.pick);
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
-        console.log($scope.pick);
+      //  console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search');
       //    $scope.chekboxFlag = false;
@@ -354,23 +365,34 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         //  $scope.chekboxFlag = true;
         }
         console.log($scope.chekboxFlag.chekboxFlag);
+
+      //   $ionicPlatform.ready( function(){
+      //   $cordovaVibration.vibrate(100);
+      // });
     };
 
     $scope.goToLanding= function(){
             $state.go('tab.landing');
     };
     $scope.goToInfo=function (fNum,fdate,flight) {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });
          lufthansaServ.setFlightNumberOutGoing(fNum);
          lufthansaServ.setdate1(fdate);
          lufthansaServ.setFlight(flight);
     };
-    $scope.goToInfo2=function (fNum,fNum2,fdate,fdate2,flight,retFlightId) {
+    $scope.goToInfo2=function (fNum,fdate,fNum2,fdate2,flight,retFlightId) {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });
+      lufthansaServ.setReturning_Or_Outgoing("Returning");
          lufthansaServ.setFlightNumberOutGoing(fNum);
         lufthansaServ.setFlightNumberReturning(fNum2);
         lufthansaServ.setdate1(fdate);
         lufthansaServ.setdate2(fdate2);
         lufthansaServ.setFlight(flight);
-        lufthansaServ.setFlightIdReturning(retFlightId);
+        //lufthansaServ.setFlightIdReturning(retFlightId);
     };
     $scope.showAlert = function() {
 if($scope.or.or==null){
@@ -401,20 +423,30 @@ if($scope.or.or==null){
 // };
 
 $scope.setClass=function () {
-  $scope.pick='seat class';
+  $ionicPlatform.ready( function(){
+  $cordovaVibration.vibrate(100);
+  });  $scope.pick='seat class';
 };
     $scope.economy=function () {
-      $scope.pick='economy';
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });      $scope.pick='economy';
     };
     $scope.business=function () {
-      $scope.pick='business';
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });      $scope.pick='business';
     };
     $scope.onSelect = function(item){
-        $scope.or.or=item.iata;
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });        $scope.or.or=item.iata;
         console.log('item', item.iata);
     };
     $scope.onSelect2 = function(item){
-        $scope.dest.dest=item.iata;
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });        $scope.dest.dest=item.iata;
         console.log('item', item.iata);
     };
 

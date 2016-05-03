@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics','angular-stripe']);
+lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics','angular-stripe','ngCordova']);
 
  lufthansa.value('cgBusyDefaults',{
    message:'Loading Flights...',
@@ -38,6 +38,10 @@ lufthansa.config(function($httpProvider){
       request: function(req){
         if(req.url.charAt(0)==='/'){
           req.url = 'http://localhost:8080'+req.url;
+// =======
+//           req.url = 'http://54.152.123.100'+req.url;
+//
+// >>>>>>> fa21cc8a0664c4b2917e2854b3505bcfdd64f046
         }
         return req;
       }
