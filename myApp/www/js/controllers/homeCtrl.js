@@ -1,4 +1,4 @@
-lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaDatePicker,$ionicPlatform,$cordovaVibration,$cordovaNativeAudio, $timeout) {
+lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaDatePicker,$ionicPlatform,$cordovaVibration,$cordovaToast,$cordovaNativeAudio, $timeout) {
 
 
   $scope.goToLanding= function(){
@@ -20,38 +20,55 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
     };
 
     $scope.showDatePicker  = function(){
+      $ionicPlatform.ready( function(){
         $cordovaVibration.vibrate(100);
-        $cordovaNativeAudio
-    .preloadSimple('click', 'audio/click.mp3')
-    .then(function (msg) {
+        $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+
+          $cordovaToast.showShortTop('Here is a message').then(function(success) {
+            // success
+          }, function (error) {
+            // error
+          });
+
+          $cordovaToast.showLongBottom('Here is a message').then(function(success) {
+            // success
+          }, function (error) {
+            // error
+          });
+
+
+        $cordovaNativeAudio.preloadSimple('click', 'audio/click.mp3').then(function (msg) {
       console.log(msg);
     }, function (error) {
       alert(error);
     });
 
-  $cordovaNativeAudio
-    .preloadComplex('music', 'audio/music.mp3', 1, 1)
-    .then(function (msg) {
+
+  $cordovaNativeAudio.preloadComplex('music', 'audio/music.mp3', 1, 1).then(function (msg) {
       console.log(msg);
     }, function (error) {
       console.error(error);
     });
 
-  $scope.play = function () {
-    $cordovaNativeAudio.play('click');
-    $cordovaNativeAudio.loop('music');
 
-    // stop 'music' loop and unload
-    $timeout(function () {
-      $cordovaNativeAudio.stop('music');
+})
+    };
+    $scope.play = function () {
+      $cordovaNativeAudio.play('click');
+      $cordovaNativeAudio.loop('music');
 
-      $cordovaNativeAudio.unload('click');
-      $cordovaNativeAudio.unload('music');
-    }, 1000 * 60);
-  };
+      // stop 'music' loop and unload
+      $timeout(function () {
+        $cordovaNativeAudio.stop('music');
 
-
-    }
+        $cordovaNativeAudio.unload('click');
+        $cordovaNativeAudio.unload('music');
+      }, 1000 * 60);
+    };
   // Update app code with new release from Ionic Deploy
   $scope.doUpdate = function() {
     deploy.update().then(function(res) {
