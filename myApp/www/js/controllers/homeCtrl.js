@@ -21,7 +21,9 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
 
     $scope.showDatePicker  = function(){
       $ionicPlatform.ready( function(){
-        $cordovaVibration.vibrate(100);
+        alert("here is an alert");
+         $cordovaVibration.vibrate(100);
+
         $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
               // success
             }, function (error) {
@@ -57,7 +59,7 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
 
 })
     };
-    
+
   // Update app code with new release from Ionic Deploy
   $scope.doUpdate = function() {
     deploy.update().then(function(res) {
