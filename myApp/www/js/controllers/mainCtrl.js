@@ -37,10 +37,20 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     $scope.dt1Flag = true;
     $scope.dt2Flag = false;
     /*Flag for checkbox which is in landing page search box */
-    $scope.chekboxFlag = false;
+    $scope.chekboxFlag={};
+    //$scope.chekboxFlag.chekboxFlag=false;
     /* Function to change checkbox flag when it is clicked  */
     $scope.flipCheck = function () {
-        $scope.chekboxFlag = !$scope.chekboxFlag;
+        //$scope.chekboxFlag.chekboxFlag = !$scope.chekboxFlag.chekboxFlag;
+        if ($scope.chekboxFlag.chekboxFlag==null || $scope.chekboxFlag.chekboxFlag==false) {
+          $scope.chekboxFlag.chekboxFlag=true
+        }else{
+          $scope.chekboxFlag.chekboxFlag=false
+
+        }
+        console.log($scope.chekboxFlag.chekboxFlag);
+        lufthansaServ.setOtherCompanies($scope.chekboxFlag.chekboxFlag);
+        console.log(lufthansaServ.getOtherCompanies());
     };
     function setImp() {
         lufthansaServ.setImpFlg(0);
@@ -49,7 +59,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     setImp();
     /* Function to set other Companies flag when checkbox's flg is true */
     $scope.setOtherCompaniesFlag = function () {
-        lufthansaServ.setOtherCompanies($scope.chekboxFlag);
+        lufthansaServ.setOtherCompanies($scope.chekboxFlag.chekboxFlag);
     };
 
     /* Flags to set the dates field to be visible by default round flag is false */
@@ -330,13 +340,20 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
         console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search');
+      //    $scope.chekboxFlag = false;
         }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
           $state.go('tab.landing-search2');
+        //  $scope.chekboxFlag = false;
         }else if($scope.pick!='seat class' && $scope.date2.date2 ==null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
+      //    lufthansaServ.setOtherCompanies(true);
           $state.go('tab.landing-search3');
+      //    $scope.chekboxFlag = true;
         }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
+         //lufthansaServ.setOtherCompanies(true);
           $state.go('tab.landing-search4');
+        //  $scope.chekboxFlag = true;
         }
+        console.log($scope.chekboxFlag.chekboxFlag);
     };
 
     $scope.goToLanding= function(){

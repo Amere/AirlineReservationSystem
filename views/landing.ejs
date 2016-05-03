@@ -65,28 +65,64 @@
 
 <div id="fh5co-page">
 
-	<nav class="fh5co-nav-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
-		<div class="container">
+	<nav class="fh5co-nav-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+	<style>
+.inline	ul li a{
+	color:#ead6b7;
+	display:block;
+	text-decoration:none;
+	padding:16px;
+	}
+
+	ul{
+	list-style-type:none;
+	}
+
+	li{
+	display:inline-block;
+	}
+
+	ul li a:hover{
+	color:#332419;
+	display:block;
+	text-decoration:none;
+	}
+
+.inline	li:hover{
+	background-color:#ead6b7;
+	text-shadow: 20px;
+	text-decoration: underline;
+	}
+
+	</style>
+		<div class="container"  style="background-color:orange">
+			<br>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo">
 				<a href="#/" class="js-fh5co-mobile-toggle fh5co-nav-toggle"><i></i></a>
-				<div>
+				<div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
 
 					<div class="col-md-3">
-						<a href="#/"><img class="img-circle img-responsive" src="images/imgres.png"  height="42" width="42" alt="" /></a>
+						<a href="#/"><img class="img-circle img-responsive" src="images/imgres.png"  height="45" width="45" alt="" /></a>
 					</div>
-					<div class="col-md-3">
-						<a href="#/">lufthansa</a>
-					</div>
+
+						<div class="col-md-3">
+							<a href="#/"><h2 style="color:rgb(0,0,65)">Lufthansa</h2></a>
+						</div>
+
+
+
+
+
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap" ng-controller="mainCtrl">
-				<ul data-offcanvass="yes">
-					<li class="active"><a href="#/" ng-click="clearVars()">Home</a></li>
-          <li><a href="#/bookingAndPastFlights">My Flights</a></li>
-						<li><a href="" ng-click="ShowHide6()">Offers</a></li>
-					<li><a href="" ng-click="ShowHide7()">News</a></li>
-					<li><a href="" ng-click="ShowHide8()">Contact us</a></li>
+			<div class="col-lg-6  text-center fh5co-link-wrap" ng-controller="mainCtrl">
+				<ul data-offcanvass="yes" class="inline">
+					<li><a href="#/" ng-click="clearVars()" style="color:rgb(0,0,120)">Home</a></li>
+          <li><a href="#/bookingAndPastFlights"  style="color:rgb(0,0,120)">My Flights</a></li>
+						<li><a href="" ng-click="ShowHide6()" style="color:rgb(0,0,120)">Offers</a></li>
+					<li><a href="" ng-click="ShowHide7()" style="color:rgb(0,0,120)">News</a></li>
+					<li style="float:right"><a href="" ng-click="ShowHide8()" style="color:rgb(0,0,120)">Contact us</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-3 col-md-4 col-sm-4 text-right fh5co-link-wrap">

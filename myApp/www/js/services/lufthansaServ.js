@@ -413,13 +413,13 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * Set other companies flag
          */
         setOtherCompanies : function(flag){
-          this.OtherCompaniesFlag=flag;
+          this.chekboxFlag=flag;
         },
         /**
          * get other companies flag
          */
         getOtherCompanies : function(){
-          return this.OtherCompaniesFlag;
+          return this.chekboxFlag;
         },
         /**
          * Set Seat Class
@@ -555,6 +555,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             var nationality = this.getNationality();
             var flight = this.getFlightData();
             var email = this.getEmail();
+            console.log(fname);
             return $http.post('/booking',{
                 "paymentToken" : token,
                 "class": flight.class,  // (required)
@@ -592,7 +593,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
                 "paymentToken" : token,
                 "class": flight.class,  // (required)
                 "cost": flight.cost, // (required)
-                "outgoingFlightId": flight._id, // mongodb _id => 5NuiSNQdNcZwau92M (required)
+                "outgoingFlightId": flight.flightId, // mongodb _id => 5NuiSNQdNcZwau92M (required)
                 "returnFlightId": this.getFlightIdReturning(), // mongodb _id => 9DuiBNVjNcUwiu42J (required)
                 "airline":flight.Airline,
                 "passengerDetails":[{

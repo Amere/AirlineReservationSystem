@@ -48,7 +48,7 @@ db.connect(function (err, db) {
  */
  router.all('*', function (req, res, next) {
      res.header('Access-Control-Allow-Origin', '*');
-     res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type']);
+     res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type','airline']);
      next();
  });
 
@@ -317,7 +317,6 @@ router.post('/booking', function (req, res) {
     // retrieve the token
     var stripeToken = req.body.paymentToken;
     var flightCost  = req.body.cost;
-
     stripe.charges.create({
         amount: flightCost*100,
         currency: "usd",
@@ -325,10 +324,10 @@ router.post('/booking', function (req, res) {
         description: "test"
     }, function (err, data) {
         if (err) {
-            res.send({refNum: null, errorMessage: err});
+            res.send({'refNum': null, 'errorMessage': err});
         }
         else {//TO DO
-            res.send({refNum: "sghcvhstripeTokenjdceudgie89", errorMessage: null});
+            res.send({'refNum': "sghcvhstripeTokenjdceudgie89", 'errorMessage': null});
             // payment successful
             // create reservation in database
             // get booking reference number and send it back to the user
@@ -350,7 +349,6 @@ router.get('/stripe/Getpubkey',function(req,res){
           ip = ips[i].ip;
       }
   }
-  //console.log('in router **');
   request.get(ip+'stripe/pubkey?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
   function (error,response,body){
     if (!error && response.statusCode == 200) {
@@ -381,29 +379,45 @@ router.post('/bookingOther',function(req,res){
     var ip ="";
     var ips = require('../testIp.json');
     for(var i = 0 ;i<ips.length;i++){
-        if(ips[i].company.toLowerCase().includes(airline.toLowerCase())){
+      var companyName= ""+ips[i].company.toLowerCase();
+      var airlineNew = ""+airline.toLowerCase();
+
+        if(companyName.indexOf(airlineNew) > -1){
+          console.log('in if condetion');
             ip = ips[i].ip;
         }
     }
-    //console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
-    request.post(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',{
-        "paymentToken" : stripeToken,
-        "class": Class,
-        "cost": flightCost,
-        "outgoingFlightId": flightIdOut,
-        "returnFlightId": flightIdRet,
-        "passengerDetails":info
-    },function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.send(JSON.parse(body));
-        }else{
-            //console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror "+airline);
-            res.send({refNum: null, errorMessage: {
-                "message":"error while trying to connect with "+airline+" , Please try again later"
-            }});
+   request({
+        url: ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
+        method: "POST",
+        json: true,
+        body:{
+          "paymentToken" : stripeToken,
+         "class": Class,
+          "cost": flightCost,
+          "outgoingFlightId": flightIdOut,
+          "returnFlightId": flightIdRet,
+          "passengerDetails":info
         }
-    })
+    }, function (error, response, body){
+      if (!error && response.statusCode == 200) {
+          res.send(body);
+      }else{
+          res.send({refNum: null, errorMessage: {
+              "message":"error while trying to connect with "+airline+" , Please try again later"
+          }});
+      }
+    });
+
+
+
+
+
+
+    //console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
+
 });
+
 
 /**
  * middelware to add guarantee that the request is coming from our server not from
