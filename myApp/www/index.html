@@ -7,6 +7,16 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/angular-busy.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/textLanding.css">
+    <!-- <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css" rel="stylesheet"> -->
+
+
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -14,11 +24,16 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
 
     <!-- your app's js -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+     <script src="lib/autocomplete/autocomplete.directive.js"></script>
     <script src="js/modernizr-2.6.2.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
@@ -35,29 +50,36 @@
     <script src="js/controllers/confirmController.js"></script>
     <script src="js/services/lufthansaServ.js"></script>
     <script src="js/controllers/paymentCtrl.js"></script>
+    <script src="js/controllers/homeCtrl.js"></script>
     <script src="js/controllers/bookingCtrl.js"></script>
     <script src="js/controllers/res1Ctrl.js"></script>
+    <!-- <script scr="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js"> </script> -->
+
     <script src="js/moment.js"></script>
     <script src="js/angular-moment.js"></script>
     <script src="js/jquery/jquery.splitflap.js"></script>
-    <script src="js/angular-smooth-scroll.min.js">
+    <script src="js/angular-busy.js"></script>
+    <script src="js/angular-smooth-scroll.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="js/angular-stripe.js"></script>
 
-
-    </script>
   </head>
   <body ng-app="lufthansa">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+    <ion-nav-bar class="bar-energized" align-title="center">
+       <ion-nav-back-button class="button-icon ion-arrow-left-c ">
+        </ion-nav-back-button>
+
     </ion-nav-bar>
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
       have templates inline in this html file if you'd like).
     -->
-    <ion-nav-view></ion-nav-view>
+    <ion-nav-view>
+
+    </ion-nav-view>
   </body>
 </html>

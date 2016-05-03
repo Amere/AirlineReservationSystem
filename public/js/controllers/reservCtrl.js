@@ -13,7 +13,7 @@ lufthansa.controller('reservCtrl', function ($scope, $location, lufthansaServ) {
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
        $scope.businessSeats = flight.plane.businessSeats;
        $scope.firstClassSeats = flight.plane.firstClassSeats;
-       console.log($scope.flg+"*******888888888888888********");
+       //console.log($scope.flg+"*******888888888888888********");
    });
  }
   if($scope.flg==1){

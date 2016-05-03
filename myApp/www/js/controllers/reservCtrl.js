@@ -81,18 +81,26 @@ $scope.rr=function(item){
   $scope.data.rows=item.rows;
 }
 $scope.chooseSeat=function(){
-  lufthansaServ.setSeat($scope.data.seat.seatCode);
-  lufthansaServ.setSeatClass($scope.data.seat.class);
+  lufthansaServ.setSeat($scope.data.seat);
+  lufthansaServ.setSeatClass($scope.data.choice);
+//  console.log($scope.data.seat);
+  // console.log($scope.data.seat.class);
+
+}
+$scope.chooseSeatR=function(){
+  lufthansaServ.setSeatR($scope.dataR.seat);
+  lufthansaServ.setSeatClassR($scope.dataR.choice);
   // console.log($scope.data.seat.seatCode);
   // console.log($scope.data.seat.class);
 
 }
+$scope.isReturning=lufthansaServ.getReturning_Or_Outgoing();
 lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;
        $scope.premiumEconomySeats = flight.plane.premiumEconomySeats;
        $scope.businessSeats = flight.plane.businessSeats;
        $scope.firstClassSeats = flight.plane.firstClassSeats;
-       console.log($scope.flg+"*******888888888888888********");
+       //console.log($scope.flg+"*******888888888888888********");
        $scope.choices = [
            { text: "economy", value: "economy",rows:$scope.economySeats.length},
            { text: "business", value: "business",rows:$scope.premiumEconomySeats.length },
@@ -103,5 +111,21 @@ lufthansaServ.getAircraftOut().success(function(flight) {
 
            };
    });
+   if($scope.isReturning=='Returning'){
+     lufthansaServ.getAircraftRet().success(function(flight){
+       $scope.economySeatsR = flight.plane.economeySeats;
+       $scope.premiumEconomySeatsR = flight.plane.premiumEconomySeats;
+       $scope.businessSeatsR = flight.plane.businessSeats;
+       $scope.firstClassSeatsR = flight.plane.firstClassSeats;
+       $scope.choicesR = [
+           { text: "economy", value: "economy",rows:$scope.economySeatsR.length},
+           { text: "business", value: "business",rows:$scope.premiumEconomySeatsR.length },
+           { text: "premiumEconomySeats", value: "premium",rows:$scope.businessSeatsR.length },
+           { text: "firstClassSeats", value: "first",rows:$scope.firstClassSeatsR.length }
+         ];
+         $scope.dataR = {
 
+           };
+     });
+   }
 });

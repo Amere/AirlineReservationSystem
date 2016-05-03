@@ -1,5 +1,5 @@
 
-lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
+lufthansa.controller('bookingCtrl',function($scope, lufthansaServ,$ionicTabsDelegate) {
 
     $scope.collapse= true;
     $scope.isVisible= false;
@@ -9,6 +9,19 @@ lufthansa.controller('bookingCtrl',function($scope, lufthansaServ) {
   $scope.change = function() {
   $scope.isVisible = !$scope.isVisible;
  };
+ $scope.goForward = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1) {
+            $ionicTabsDelegate.select(selected + 1);
+        }
+    }
+
+    $scope.goBack = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1 && selected != 0) {
+            $ionicTabsDelegate.select(selected - 1);
+        }
+    }
 
 $scope.pastflights = function (bookref){
   $scope.bookref=bookref;

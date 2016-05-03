@@ -1,8 +1,28 @@
 /**
  * Our main Controller
  **/
-lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $document, $log,$state) {
+lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $log,$state, $ionicPopup, $ionicLoading,$http,$ionicTabsDelegate,$cordovaVibration,$ionicPlatform) {
     /*----------- Angular Bootstrap Datepicker -----------*/
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+    };
+
+
+
+    $scope.goForward = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1) {
+            $ionicTabsDelegate.select(selected + 1);
+        }
+    };
+
+    $scope.goBack = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1 && selected != 0) {
+            $ionicTabsDelegate.select(selected - 1);
+        }
+    };
+
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.open1 = function () {
@@ -27,7 +47,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     };
     function setImp() {
         lufthansaServ.setImpFlg(0);
-    }
+    };
 
     setImp();
     /* Function to set other Companies flag when checkbox's flg is true */
@@ -51,7 +71,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     /* Function to set Returning_Or_Outgoing flag in the service  */
     function outgoingFlagSetter() {
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
-    }
+    };
 
     outgoingFlagSetter();
     $scope.format = $scope.formats[1];
@@ -61,14 +81,24 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     };
     /* Function to set One Way Flags  */
     $scope.OneWayFlags = function () {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+    });
+      //$cordovaVibration.vibrate(100);
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
+        $scope.date2.date2=null;
+        $scope.pick='seat class';
         lufthansaServ.setReturning_Or_Outgoing("Outgoing Only");
     };
     /* Function to set Round Trip Flags  */
     $scope.RoundtripFlags = function () {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+    });
         $scope.dt1Flag = true;
         $scope.dt2Flag = true;
+        $scope.pick='seat class';
         lufthansaServ.setReturning_Or_Outgoing("Returning");
     };
     /* Function to clear variables in lufthansaServ */
@@ -78,7 +108,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     /* Function to clear variables in lufthansaServ */
     function flushVars() {
         lufthansaServ.clearVariables();
-    }
+    };
 
     flushVars();
     /* Function to set date picker pop up window */
@@ -131,7 +161,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     /* function To set class */
     $scope.selectClass = function (item) {
         $scope.pick = item;
-        console.log($scope.pick);
+      //  console.log($scope.pick);
         lufthansaServ.setSeatClass(item);
     };
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
@@ -150,92 +180,28 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.IsVisible = false;
     /* If DIV is visible it will be hidden and vice versa. */
     /* Also this function is responsible for selecting what the user is searching for */
-    $scope.ShowHide = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            if (lufthansaServ.getSelectedDestinationAirport() != "intial" && lufthansaServ.getSelectedOriginAirport() != "intial") {
-                $scope.IsVisible = true;
-                if (lufthansaServ.getReturning_Or_Outgoing() == "Returning" && $scope.pick != "economy" && $scope.pick != "business") {
-                    round2();
-                } else if (lufthansaServ.getReturning_Or_Outgoing() == "Returning" && ($scope.pick == "economy" || $scope.pick == "business")) {
 
-                    round();
-                } else if (lufthansaServ.getReturning_Or_Outgoing() != "Returning" && $scope.pick != "economy" && $scope.pick != "business") {
-                    oneWay2();
-                } else {
-                    oneWay();
-                }
-
-            }
-        }
-    };
     /* Google maps triger */
     $scope.IsVisible = false;
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide2 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
-    };
-    //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide3 = function () {
-        round();
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide4 = function () {
-        oneWay();
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide5 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide6 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide7 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
     //If DIV is visible it will be hidden and vice versa.
-    $scope.ShowHide8 = function () {
-        if ($scope.IsVisible == true) {
-            $scope.IsVisible = false;
-        } else {
-            $scope.IsVisible = true;
-        }
 
-    };
-    function directToMain() {
-        lufthansaServ.toMain();
-    };
+    //If DIV is visible it will be hidden and vice versa.
+
+
+
 
     /* Retrieve List of News */
-    function news() {
-        lufthansaServ.getNews().success(function (News) {
-            $scope.news = News;
-        });
-    };
+
     /* Record User's Selected Origin Airport */
     $scope.SetOriginAirport = function (originAirport) {
         lufthansaServ.setSelectedOriginAirport(originAirport);
@@ -248,9 +214,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setSelectedDestinationAirport(destAirport);
     };
     /* Find All Available Flights */
-    $scope.SearchFlights = function () {
-        $location.url('/return');
-    };
+
     /* Function to save the reservation info and redirect user to the next stage */
     // $scope.goToReservation = function (out, ret) {
     //     lufthansaServ.setFlightNumberOutGoing(out);
@@ -265,7 +229,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
         lufthansaServ.setSelectedDestinationAirport("intial");
     };
     /* function to search round trip flights in the other companies */
-    function round() {
+    function round1() {
         var origin = lufthansaServ.getSelectedOriginAirport();
         var destination = lufthansaServ.getSelectedDestinationAirport();
         var departingDate = angular.element('#date1').val();
@@ -300,72 +264,374 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     var origin=lufthansaServ.getOr();
     var destination=lufthansaServ.getDest();
     var departingDate = lufthansaServ.getdate1();
+    var returningDate=lufthansaServ.getdate2();
+    var clas=lufthansaServ.getCl();
     if(origin!=null && destination!=null && departingDate!=null){
         // var origin = lufthansaServ.getSelectedOriginAirport();
         // var destination = lufthansaServ.getSelectedDestinationAirport();
 
-        console.log(origin + " "+ destination+" "+departingDate);
-        lufthansaServ.getOneWay2(origin, destination, departingDate).success(function (result) {
+       if(returningDate==null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
+         $scope.req = lufthansaServ.getOneWay2(origin, destination, departingDate);
+
+      //  console.log(origin + " "+ destination+" "+departingDate);
+        $scope.req.success(function (result) {
             $scope.flights = result;
 
-            console.log($scope.flights.outgoingFlights);
-            console.log(result);
-
-
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
         });
-    };
-  
+      }else if(returningDate!=null && clas=='seat class' && origin !=null && destination!=null && departingDate!=null){
+        $scope.req = lufthansaServ.getRound2(origin, destination, departingDate,returningDate);
+
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
+        });
+      }else if (returningDate==null && clas!='seat class' && origin !=null && destination!=null && departingDate!=null) {
+       $scope.req = lufthansaServ.getOneWay(origin, destination, departingDate,clas);
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
+        });
+      }else if (returningDate!=null && (clas=='economy' || clas=='business') && origin !=null && destination!=null && departingDate!=null) {
+        $scope.req = lufthansaServ.getRound(origin, destination, departingDate,returningDate,clas);
+        $scope.req.success(function (result) {
+            $scope.flights = result;
+
+            // console.log($scope.flights.outgoingFlights);
+            // console.log(result);
+        });
+      }
+    }
     /* Retrieve List of Airports Codes */
-    function AirportCodes() {
-        lufthansaServ.getAirportCodes().success(function (airports) {
-            $scope.Airports = airports;
-        });
-    };
+    // function AirportCodes() {
+    //     lufthansaServ.getAirportCodes().success(function (airports) {
+    //         $scope.Airports = airports;
+    //     });
+    // };
     /* landing page slides area options  */
-    function slides() {
-        $scope.myInterval = 5000;
-        lufthansaServ.getSlides().success(function (Slides) {
-            $scope.slides = Slides;
-        });
-        $scope.myInterval = 5000;
-    };
+
     /* Retrieve List of Offers */
-    function offers() {
-        lufthansaServ.getOffers().success(function (Offers) {
-            $scope.offers = Offers;
-        });
-    };
 
     /* helper function to convert a given moment date   */
-    function convert(mom) {
-        return moment(mom).format('YYYY-MM-DD');
-    };
+
     setIata();
 
-    /* Get offers on page render */
-    offers();
-    /* Get news on page render */
-    news();
     $scope.or={};
     $scope.dest={};
     $scope.date1={};
+    $scope.date2={};
 
     $scope.goToReservation=function () {
+
         // lufthansaServ.setFlightNumberOutGoing(out);
         // // lufthansaServ.setFlightNumberReturning(ret);
          lufthansaServ.setOr($scope.or.or);
          lufthansaServ.setDest($scope.dest.dest);
          lufthansaServ.setdate1($scope.date1.date1);
+         if($scope.date2.date2 !=null){
+           lufthansaServ.setdate2($scope.date2.date2);
+         };
+         lufthansaServ.setCl($scope.pick);
         // lufthansaServ.setDateReturning($scope.date2 + " " + "07:00 PM");
-        // oneWay2();
-        //$state.go('tab.landing-search');
-
+      //  console.log($scope.pick);
+        if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
+          $state.go('tab.landing-search');
+        }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
+          $state.go('tab.landing-search2');
+        }else if($scope.pick!='seat class' && $scope.date2.date2 ==null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
+          $state.go('tab.landing-search3');
+        }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
+          $state.go('tab.landing-search4');
+        }
+        $ionicPlatform.ready( function(){
+        $cordovaVibration.vibrate(100);
+      });
     };
-    $scope.directToOutgoingFlights = function () {
-        $location.url('/outgoingFlights');
-    };
-    /*-------------------Google maps stuff----------------------*/
 
-    AirportCodes();
-    slides();
-});
+    $scope.goToLanding= function(){
+            $state.go('tab.landing');
+    };
+    $scope.goToInfo=function (fNum,fdate,flight) {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });
+         lufthansaServ.setFlightNumberOutGoing(fNum);
+         lufthansaServ.setdate1(fdate);
+         lufthansaServ.setFlight(flight);
+    };
+    $scope.goToInfo2=function (fNum,fdate,fNum2,fdate2,flight,retFlightId) {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });
+      lufthansaServ.setReturning_Or_Outgoing("Returning");
+         lufthansaServ.setFlightNumberOutGoing(fNum);
+        lufthansaServ.setFlightNumberReturning(fNum2);
+        lufthansaServ.setdate1(fdate);
+        lufthansaServ.setdate2(fdate2);
+        lufthansaServ.setFlight(flight);
+        //lufthansaServ.setFlightIdReturning(retFlightId);
+    };
+    $scope.showAlert = function() {
+if($scope.or.or==null){
+  var alertPopup = $ionicPopup.alert({
+     title: 'Title',
+     template: 'Please enter an origin'
+  });
+}else if ($scope.dest.dest==null) {
+  var alertPopup = $ionicPopup.alert({
+     title: 'Input Field Required',
+     template: 'Please enter a destination'
+  });
+}else if ($scope.date1.date1==null) {
+  var alertPopup = $ionicPopup.alert({
+     title: 'Title',
+     template: 'Please enter a date'
+  });
+}
+};
+// $scope.showLoading = function() {
+//    $ionicLoading.show({
+//       template: 'Loading...'
+//    });
+// };
+//
+// $scope.hideLoading = function(){
+//    $ionicLoading.hide();
+// };
+
+$scope.setClass=function () {
+  $ionicPlatform.ready( function(){
+  $cordovaVibration.vibrate(100);
+  });  $scope.pick='seat class';
+};
+    $scope.economy=function () {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });      $scope.pick='economy';
+    };
+    $scope.business=function () {
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });      $scope.pick='business';
+    };
+    $scope.onSelect = function(item){
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });        $scope.or.or=item.iata;
+        console.log('item', item.iata);
+    };
+    $scope.onSelect2 = function(item){
+      $ionicPlatform.ready( function(){
+      $cordovaVibration.vibrate(100);
+      });        $scope.dest.dest=item.iata;
+        console.log('item', item.iata);
+    };
+
+    $scope.Airports = [
+      {
+          "iata": "MXP",
+          "lon": "8.71237",
+          "iso": "IT",
+          "status": 1,
+          "name": "Malpensa International Airport",
+          "continent": "EU",
+          "type": "airport",
+          "lat": "45.627403",
+          "size": "large"
+      },{
+          "iata": "FCO",
+          "lon": "12.250346",
+          "iso": "IT",
+          "status": 1,
+          "name": "Leonardo Da Vinci (Fiumicino) International Airport",
+          "continent": "EU",
+          "type": "airport",
+          "lat": "41.794594",
+          "size": "large"
+      },{
+          "iata": "JED",
+          "lon": "39.150578",
+          "iso": "SA",
+          "status": 1,
+          "name": "King Abdulaziz International Airport",
+          "continent": "AS",
+          "type": "airport",
+          "lat": "21.670233",
+          "size": "large"
+      },{
+          "iata": "CAI",
+          "lon": "31.40647",
+          "iso": "EG",
+          "status": 1,
+          "name": "Cairo International Airport",
+          "continent": "AF",
+          "type": "airport",
+          "lat": "30.120106",
+          "size": "large"
+      },{
+          "iata": "BOM",
+          "lon": "72.87497",
+          "iso": "IN",
+          "status": 1,
+          "name": "Chhatrapati Shivaji International Airport",
+          "continent": "AS",
+          "type": "airport",
+          "lat": "19.095509",
+          "size": "large"
+      },{
+            "iata": "DEL",
+            "lon": "77.10079",
+            "iso": "IN",
+            "status": 1,
+            "name": "Indira Gandhi International Airport",
+            "continent": "AS",
+            "type": "airport",
+            "lat": "28.556555",
+            "size": "large"
+        },{
+            "iata": "HKG",
+            "iso": "HK",
+            "status": 0,
+            "name": "Hong Kong International Airport Kai Tak",
+            "continent": "AS",
+            "type": "closed",
+            "size": null
+        },{
+            "iata": "TPE",
+            "lon": "121.22389",
+            "iso": "TW",
+            "status": 1,
+            "name": "Taiwan Taoyuan International Airport",
+            "continent": "AS",
+            "type": "airport",
+            "lat": "25.07639",
+            "size": "large"
+        },{
+            "iata": "JNB",
+            "lon": "28.231314",
+            "iso": "ZA",
+            "status": 1,
+            "name": "OR Tambo International Airport",
+            "continent": "AF",
+            "type": "airport",
+            "lat": "-26.132664",
+            "size": "large"
+        },
+        {
+            "iata": "CPT",
+            "lon": "18.596489",
+            "iso": "ZA",
+            "status": 1,
+            "name": "Cape Town International Airport",
+            "continent": "AF",
+            "type": "airport",
+            "lat": "-33.968906",
+            "size": "large"
+        },
+        {
+            "iata": "RUH",
+            "lon": "46.702877",
+            "iso": "SA",
+            "status": 1,
+            "name": "King Khaled International Airport",
+            "continent": "AS",
+            "type": "airport",
+            "lat": "24.95929",
+            "size": "large"
+        },
+        {
+            "iata": "LHR",
+            "lon": "-0.453566",
+            "iso": "GB",
+            "status": 1,
+            "name": "London Heathrow Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "51.469604",
+            "size": "large"
+        },
+        {
+            "iata": "JFK",
+            "lon": "-73.78817",
+            "iso": "US",
+            "status": 1,
+            "name": "John F Kennedy International Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "40.642334",
+            "size": "large"
+        },{
+            "iata": "LCF",
+            "lon": "-88.94778",
+            "iso": "GT",
+            "status": 1,
+            "name": "Las Vegas Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "15.667778",
+            "size": "small"
+        },
+        {
+            "iata": "LAX",
+            "lon": "-118.40828",
+            "iso": "US",
+            "status": 1,
+            "name": "Los Angeles International Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "33.943398",
+            "size": "large"
+        },
+        {
+            "iata": "SFO",
+            "lon": "-122.38988",
+            "iso": "US",
+            "status": 1,
+            "name": "San Francisco International Airport",
+            "continent": "NA",
+            "type": "airport",
+            "lat": "37.615215",
+            "size": "large"
+        },
+        {
+            "iata": "FRA",
+            "lon": "8.570773",
+            "iso": "DE",
+            "status": 1,
+            "name": "Frankfurt am Main International Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "50.050735",
+            "size": "large"
+        },
+        {
+            "iata": "TXL",
+            "lon": "13.291722",
+            "iso": "DE",
+            "status": 1,
+            "name": "Berlin-Tegel International Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "52.553944",
+            "size": "large"
+        },
+        {
+            "iata": "LIN",
+            "lon": "9.279157",
+            "iso": "IT",
+            "status": 1,
+            "name": "Linate Airport",
+            "continent": "EU",
+            "type": "airport",
+            "lat": "45.460957",
+            "size": "large"
+        }
+    ]
+  //  AirportCodes();
+
+  });

@@ -9,25 +9,25 @@ body {
   background: url(http://i.imgur.com/h97pmPj.png) repeat;
 }
 #pay {
-  margin-left: 250px;
+  margin-left: 30px;
   float: right;
   display: inline;
 }
 
 #cancel {
-  margin-left: 20px;
+  margin-left: 10px;
   float: left;
   display: inline;
 }
 .cc {
   background: #174395;
   border-radius: 20px;
-  height: 310px;
-  margin: 50px;
+  height: 350px;
+  margin: 1px;
   overflow: hidden;
-  padding: 20px;
+  padding: 10px;
   position: relative;
-  width: 510px;
+  width: 320px;
 }
 
 .shine {
@@ -55,7 +55,7 @@ body {
 }
 
 .cc h2 {
-  font: 22px Anaheim;
+  font: 16px Anaheim;
   color: #fff;
   margin: 0 10px 10px 0;
   padding: 0;
@@ -68,12 +68,12 @@ body {
 
 .number,
 .date {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .provider {
   display: inline-block;
-  margin: 0 10px 10px 0;
+  margin: 0 1px 1px 0;
   width: 71px;
   height: 44px;
 }
@@ -101,10 +101,10 @@ input {
   border-radius: 4px;
   font: 20px Inconsolata, sans-serif;
   color: #303030;
-  margin: 0 2px 3px 0;
-  padding: 8px 10px;
+  margin: 0 0px 3px 0;
+  padding: 1px 10px;
   text-align: center;
-  width: 24%;
+  width: 70%;
   -moz-box-shadow: 1px 1px 0px 1px #0e306e;
   -webkit-box-shadow: 1px 1px 0px 1px #0e306e;
   box-shadow: 1px 1px 0px 1px #0e306e;
@@ -117,6 +117,7 @@ input:nth-child(4) {
 
 .date input {
   margin-right: 20px;
+  width: 24%;
 }
 
 .valid {

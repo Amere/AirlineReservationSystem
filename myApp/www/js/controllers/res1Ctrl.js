@@ -1,19 +1,20 @@
 /**
  * Main Controller
  */
-lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
+lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $state, $ionicPopup) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[2];
     /*variables set to be sent to database*/
-    $scope.firstName = "";
-    $scope.lastName = "";
-    $scope.email = "";
-    $scope.nationality = "";
-    $scope.dob = "";
-    $scope.expDate = "";
-    $scope.passNum="";
+    $scope.costumer = [];
+    $scope.costumer.firstName = "";
+    $scope.costumer.lastName = "";
+    $scope.costumer.email = "";
+    $scope.costumer.nationality = "";
+    $scope.costumer.dob = "";
+    $scope.costumer.expDate = "";
+    $scope.costumer.passNum="";
 
     $scope.open1 = function () {
         $scope.popup1.opened = true;
@@ -44,28 +45,40 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
         lufthansaServ.setSelectedNation(item);
     };
     $scope.seats = function(){
-      if($scope.firstName!= null && $scope.lastName!=null && $scope.email && $scope.nationality!=null && $scope.expDate!=null && $scope.dob!=null) {
+     if($scope.costumer.firstName!= "" && $scope.costumer.lastName!="" && $scope.costumer.email != ""&&
+       $scope.costumer.nationality!="" && $scope.costumer.expDate!="" && $scope.costumer.dob!="") {
         var flag = lufthansaServ.getOtherCompanies();
-        console.log(flag);
-        if(flag==true){
-          $location.url('/payment');
+      //  console.log(flag);
+        if(flag==false){
+        //  console.log("************");
+        $state.go('tab.landing-reservation')
         }else{
-          $location.url('/reservation');
+      //    console.log("//////////////////");
+          $state.go('tab.landing-payment')
         }
-      }
+     }else{
+       showAlert();
+     }
     };
     $scope.setReservInfoFlag = function(){
       lufthansaServ.setReservInfoFlag();
     };
 
     $scope.setUserInfo = function(){
-      lufthansaServ.setFirstName($scope.firstName);
-      lufthansaServ.setLastName($scope.lastName);
-      lufthansaServ.setEmail($scope.email);
-      lufthansaServ.setNationality($scope.nationality);
-      lufthansaServ.setDOB($scope.dob);
-      lufthansaServ.setExpDate($scope.expDate);
-      lufthansaServ.setPassNum($scope.passNum);
+      lufthansaServ.setFirstName($scope.costumer.firstName);
+      //console.log($scope.costumer.firstName);
+      lufthansaServ.setLastName($scope.costumer.lastName);
+      //console.log($scope.costumer.lastName);
+      lufthansaServ.setEmail($scope.costumer.email);
+      //console.log($scope.costumer.email);
+      lufthansaServ.setNationality($scope.costumer.nationality);
+      //console.log($scope.costumer.nationality);
+      lufthansaServ.setDOB($scope.costumer.dob);
+      //console.log($scope.costumer.dob);
+      lufthansaServ.setExpDate($scope.costumer.expDate);
+      //console.log($scope.costumer.expDate);
+      lufthansaServ.setPassNum($scope.costumer.passNum);
+      //console.log($scope.costumer.passNum);
 
     };
 
@@ -77,9 +90,16 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location) {
             $scope.nations = Nat;
         });
     };
-    nations();
+    showAlert = function() {
+       var alertPopup = $ionicPopup.alert({
+         title: 'Missing Data',
+         template: 'please enter missing fields'
+       });
 
-    /* Retrieve List of Offers */
-
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
+  //  nations();
 
 });

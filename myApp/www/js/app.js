@@ -5,10 +5,18 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-lufthansa = angular.module('lufthansa', ['ionic', 'angularMoment']);
+lufthansa = angular.module('lufthansa', ['ionic','ionic.service.core','cgBusy' ,'angularMoment', 'autocomplete.directive','ionic.service.analytics','angular-stripe','ngCordova']);
 
-lufthansa.run(function($ionicPlatform) {
+ lufthansa.value('cgBusyDefaults',{
+   message:'Loading Flights...',
+   templateUrl: 'templates/spinner.html',
+ });
+ lufthansa.config(function (stripeProvider) {
+ stripeProvider.setPublishableKey('pk_test_w9rj63MfOpwqhpHG3ekIOxoV');
+ });
+lufthansa.run(function($ionicPlatform,$ionicAnalytics) {
   $ionicPlatform.ready(function() {
+    $ionicAnalytics.register();
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -29,7 +37,8 @@ lufthansa.config(function($httpProvider){
     return {
       request: function(req){
         if(req.url.charAt(0)==='/'){
-          req.url = 'http://localhost:8080'+req.url;
+          req.url = 'http://54.152.123.100'+req.url;
+
         }
         return req;
       }
@@ -45,11 +54,21 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   // setup an abstract state for the tabs directive
-    .state('tab', {
+
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+  .state('home', {
+      url: '/home',
+      views: {
+          '': {
+              templateUrl: 'templates/home.html',
+              controller: 'homeCtrl'
+          }
+      }
+    })
   .state('tab.landing', {
     url: '/landing',
     views: {
@@ -59,12 +78,57 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
     }
   }
   })
+  .state('tab.news', {
+    url:'/news',
+    views:{
+      'tab-news':{
+      templateUrl: 'templates/news.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.offers', {
+    url:'/offers',
+    views:{
+      'tab-offers':{
+      templateUrl: 'templates/offers.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
   // Each tab has its own nav history stack:
   .state('tab.landing-search', {
     url:'/landing/search',
     views: {
       'tab-landing' : {
       templateUrl: 'templates/search.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search2', {
+    url:'/landing/search2',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search2.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search3', {
+    url:'/landing/search3',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search3.html',
+      controller: 'mainCtrl'
+      }
+    }
+  })
+  .state('tab.landing-search4', {
+    url:'/landing/search4',
+    views: {
+      'tab-landing' : {
+      templateUrl: 'templates/search4.html',
       controller: 'mainCtrl'
       }
     }
@@ -106,18 +170,18 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-    .state('tab.bookingAndPastFlights', {
+      .state('tab.bookingAndPastFlights', {
         url:'/bookingAndPastFlights',
         views:{
           'tab-bookingAndPastFlights':{
           templateUrl: 'templates/booking.html',
-           //controller: 'bookingCtrl'
+          controller: 'bookingCtrl'
           }
         }
       })
       .state('tab.book', {
         url:'/book',
-          views:{
+        views:{
           'tab-bookingAndPastFlights':{
           templateUrl: 'templates/book.html',
           controller: 'bookingCtrl'
@@ -126,7 +190,7 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       })
       .state('tab.flights', {
         url:'/flights',
-          views:{
+        views:{
           'tab-bookingAndPastFlights':{
           templateUrl: 'templates/flights.html',
           controller: 'bookingCtrl'
@@ -135,6 +199,6 @@ lufthansa.config(function($stateProvider, $urlRouterProvider) {
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/landing');
+  $urlRouterProvider.otherwise('/home');
 
 });
