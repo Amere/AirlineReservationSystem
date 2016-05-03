@@ -48,12 +48,12 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
      if($scope.costumer.firstName!= "" && $scope.costumer.lastName!="" && $scope.costumer.email != ""&&
        $scope.costumer.nationality!="" && $scope.costumer.expDate!="" && $scope.costumer.dob!="") {
         var flag = lufthansaServ.getOtherCompanies();
-        console.log(flag);
+      //  console.log(flag);
         if(flag==false){
-          console.log("************");
+        //  console.log("************");
         $state.go('tab.landing-reservation')
         }else{
-          console.log("//////////////////");
+      //    console.log("//////////////////");
           $state.go('tab.landing-payment')
         }
      }else{
@@ -65,20 +65,20 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
     };
 
     $scope.setUserInfo = function(){
-      lufthansaServ.setFirstName($scope.firstName);
-      console.log($scope.costumer.firstName);
-      lufthansaServ.setLastName($scope.lastName);
-      console.log($scope.costumer.lastName);
-      lufthansaServ.setEmail($scope.email);
-      console.log($scope.costumer.email);
-      lufthansaServ.setNationality($scope.nationality);
-      console.log($scope.costumer.nationality);
-      lufthansaServ.setDOB($scope.dob);
-      console.log($scope.costumer.dob);
-      lufthansaServ.setExpDate($scope.expDate);
-      console.log($scope.costumer.expDate);
-      lufthansaServ.setPassNum($scope.passNum);
-      console.log($scope.costumer.passNum);
+      lufthansaServ.setFirstName($scope.costumer.firstName);
+      //console.log($scope.costumer.firstName);
+      lufthansaServ.setLastName($scope.costumer.lastName);
+      //console.log($scope.costumer.lastName);
+      lufthansaServ.setEmail($scope.costumer.email);
+      //console.log($scope.costumer.email);
+      lufthansaServ.setNationality($scope.costumer.nationality);
+      //console.log($scope.costumer.nationality);
+      lufthansaServ.setDOB($scope.costumer.dob);
+      //console.log($scope.costumer.dob);
+      lufthansaServ.setExpDate($scope.costumer.expDate);
+      //console.log($scope.costumer.expDate);
+      lufthansaServ.setPassNum($scope.costumer.passNum);
+      //console.log($scope.costumer.passNum);
 
     };
 
