@@ -1,4 +1,4 @@
-lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaDatePicker) {
+lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaDatePicker,$ionicPlatform,$cordovaVibration,$cordovaNativeAudio, $timeout) {
 
 
   $scope.goToLanding= function(){
@@ -7,7 +7,7 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
 
       var deploy = new Ionic.Deploy();
 
-      var options = {
+       $scope.options = {
       date: new Date(),
       mode: 'date', // or 'time'
       minDate: new Date() - 10000,
@@ -18,10 +18,39 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
       cancelButtonLabel: 'CANCEL',
       cancelButtonColor: '#000000'
     };
+
     $scope.showDatePicker  = function(){
-            $cordovaDatePicker.show(options).then(function(date){
-          alert(date);
-      });
+        $cordovaVibration.vibrate(100);
+        $cordovaNativeAudio
+    .preloadSimple('click', 'audio/click.mp3')
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      alert(error);
+    });
+
+  $cordovaNativeAudio
+    .preloadComplex('music', 'audio/music.mp3', 1, 1)
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+
+  $scope.play = function () {
+    $cordovaNativeAudio.play('click');
+    $cordovaNativeAudio.loop('music');
+
+    // stop 'music' loop and unload
+    $timeout(function () {
+      $cordovaNativeAudio.stop('music');
+
+      $cordovaNativeAudio.unload('click');
+      $cordovaNativeAudio.unload('music');
+    }, 1000 * 60);
+  };
+
+
     }
   // Update app code with new release from Ionic Deploy
   $scope.doUpdate = function() {
