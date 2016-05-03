@@ -161,14 +161,14 @@ function httpGet(url, callback) {
         url: url,
         json: false
     };
+    //console.log(url);
     request(options,
         function (err, res, body) {
            // console.log(err);
             try {
                     var x = JSON.parse(body);
                     if (body != undefined && x.length != 0 && err==null) {
-
-                       console.log(x.outgoingFlights[0].Airline);
+                        console.log(x.outgoingFlights[0].Airline);
                         callback(err, x);
                     }
 
@@ -230,9 +230,8 @@ function manipulateOne(arrayReturn, cb) {
     var out = '';
     var returnString = '';
     var flag = false;
-   // console.log("manipulaaaaaaaaaaaaaaaaaate");
+   //console.log(arrayReturn);
     for (var i = 0; i < arrayReturn.length; i++) {
-
             var item = arrayReturn[i];
             var tempOut = JSON.stringify(item.outgoingFlights[0]);
             //console.log(tempOut);
@@ -248,7 +247,7 @@ function manipulateOne(arrayReturn, cb) {
 
     }
     var template = '{"outgoingFlights":[' + out + ']}';
-    //console.log(template);
+    console.log(template);
     cb(JSON.parse(template));
 };
 /* API to retrieve a certain flight from other companies  */
@@ -262,8 +261,8 @@ router.get('/api/companies/flights/search/:origin/:destination/:departingDate/:r
     var clas = req.params.class1;
     const urls = generateUrlsRound(origin, destination, x, y, clas);
     async.map(urls, httpGet, function (err, resultOneMap) {
-        //console.log(resultOneMap);
         manipulate(resultOneMap, function (finalValue) {
+          console.log(finalValue);
             res.json(finalValue);
         });
     });
@@ -275,34 +274,34 @@ function manipulate(arrayReturn, cb) {
     var out = '';
     var returnString = '';
     //var returnValue = [];
-    for(var i = 0 ;i<arrayReturn.length;i++){
+    console.log("enetered1");
+    console.log(arrayReturn[0]+"********");
+    for(var i = 0;i<arrayReturn.length;i++){
+      console.log("enetered2");
         var item = arrayReturn[i];
         //console.log(template);
-
         // console.log(obj);
-        var tempOut = JSON.stringify(item.outgoingFlights[0]);
-        var tempRet = JSON.stringify(item.returnFlights[0]);
-        if(i==arrayReturn.length-1) {
-            if (tempOut != undefined && tempRet!=undefined){
-                out +=tempOut;
-                returnString +=tempRet;
-            }
-        }else{
-            if (tempOut != undefined && tempRet!=undefined){
-                out+=tempOut+',';
-                returnString+=tempRet+',';
+          var tempOut = JSON.stringify(item.outgoingFlights[0]);
+          var tempRet = JSON.stringify(item.returnFlights[0]);
+          if(i==arrayReturn.length-1) {
+              if (tempOut != undefined && tempRet!=undefined){
+                  out +=tempOut;
+                  returnString +=tempRet;
+                }
+              }else{
+                if (tempOut != undefined && tempRet!=undefined){
+                  out+=tempOut+',';
+                  returnString+=tempRet+',';
             }
         }
-        //console.log(tempOut);
-
-
+      //  console.log(tempOut);
     }
     var template = '{"outgoingFlights":['+out+'],'+'"returnFlights":['+returnString+']}';
     //console.log(template.length);
     //console.log(JSON.parse(template));
 
 
-    // console.log(JSON.parse(template));
+    console.log(JSON.parse(template));
     cb(JSON.parse(template));
 };
 router.post('/booking', function (req, res) {
@@ -448,7 +447,7 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
     var y = moment(returningDate).add(19, 'hours').toDate().getTime();
     var clas = req.params.class;
-    flights.getOneWayTrip(origin, destination, departingDate, clas, db, function (err, result) {
+    flights.getRoundTrip(origin, destination, departingDate,returningDate, clas, db, function (err, result) {
         res.json(result);
     });
 

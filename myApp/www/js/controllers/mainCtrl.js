@@ -6,6 +6,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     $scope.goToLanding= function(){
             $state.go('tab.landing');
     };
+
+
+
     $scope.goForward = function () {
         var selected = $ionicTabsDelegate.selectedIndex();
         if (selected != -1) {
