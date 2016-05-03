@@ -1,4 +1,4 @@
-lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state) {
+lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaDatePicker) {
 
 
   $scope.goToLanding= function(){
@@ -7,6 +7,22 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state) {
 
       var deploy = new Ionic.Deploy();
 
+      var options = {
+      date: new Date(),
+      mode: 'date', // or 'time'
+      minDate: new Date() - 10000,
+      allowOldDates: true,
+      allowFutureDates: false,
+      doneButtonLabel: 'DONE',
+      doneButtonColor: '#F2F3F4',
+      cancelButtonLabel: 'CANCEL',
+      cancelButtonColor: '#000000'
+    };
+    $scope.showDatePicker  = function(){
+            $cordovaDatePicker.show(options).then(function(date){
+          alert(date);
+      });
+    }
   // Update app code with new release from Ionic Deploy
   $scope.doUpdate = function() {
     deploy.update().then(function(res) {
