@@ -607,7 +607,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
             var nationality = this.getNationality();
             var flight = this.getFlightData();
             var email = this.getEmail();
-          //  console.log("in service");
+            // console.log("in service");
             return $http.post('/bookingOther',{
                 "paymentToken" : token,
                 "class": flight.class,  // (required)
