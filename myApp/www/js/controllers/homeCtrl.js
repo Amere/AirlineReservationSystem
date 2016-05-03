@@ -57,18 +57,7 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
 
 })
     };
-    $scope.play = function () {
-      $cordovaNativeAudio.play('click');
-      $cordovaNativeAudio.loop('music');
-
-      // stop 'music' loop and unload
-      $timeout(function () {
-        $cordovaNativeAudio.stop('music');
-
-        $cordovaNativeAudio.unload('click');
-        $cordovaNativeAudio.unload('music');
-      }, 1000 * 60);
-    };
+    
   // Update app code with new release from Ionic Deploy
   $scope.doUpdate = function() {
     deploy.update().then(function(res) {
