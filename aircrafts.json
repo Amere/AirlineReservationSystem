@@ -2,6 +2,7 @@
   {
     "name" : "AirbusA330-300",
     "economySeatsCount" : 60,
+    "seats" : 120,
     "premiumEconomySeatsCount" : 30,
     "BusinessSeatsCount" : 12,
     "firstSeatsCount" : 8,

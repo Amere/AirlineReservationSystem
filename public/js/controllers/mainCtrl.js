@@ -23,7 +23,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     $scope.chekboxFlag = false;
     /* Function to change checkbox flag when it is clicked  */
     $scope.flipCheck = function () {
+      console.log($scope.chekboxFlag +" Before");
         $scope.chekboxFlag = !$scope.chekboxFlag;
+          console.log($scope.chekboxFlag +" after");
     };
     function setImp() {
         lufthansaServ.setImpFlg(0);
@@ -32,7 +34,11 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ, $location, $do
     setImp();
     /* Function to set other Companies flag when checkbox's flg is true */
     $scope.setOtherCompaniesFlag = function () {
+        console.log($scope.chekboxFlag +" to be set ");
         lufthansaServ.setOtherCompanies($scope.chekboxFlag);
+        if($scope.chekboxFlag===false){
+          $scope.pick="seat class";
+        }
     };
 
     /* Flags to set the dates field to be visible by default round flag is false */
