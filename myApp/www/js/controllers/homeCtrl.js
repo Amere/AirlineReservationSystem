@@ -19,45 +19,45 @@ lufthansa.controller('homeCtrl', function ($scope,lufthansaServ,$state,$cordovaD
       cancelButtonColor: '#000000'
     };
 
-    $scope.showDatePicker  = function(){
-      $ionicPlatform.ready(function(){
-         $cordovaVibration.vibrate(100);
-  //
-  //       $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
-  //             // success
-  //           }, function (error) {
-  //             // error
-  //           });
-  //
-  //         $cordovaToast.showShortTop('Here is a message').then(function(success) {
-  //           // success
-  //         }, function (error) {
-  //           // error
-  //         });
-  //
-  //         $cordovaToast.showLongBottom('Here is a message').then(function(success) {
-  //           // success
-  //         }, function (error) {
-  //           // error
-  //         });
-  //
-  //
-  //       $cordovaNativeAudio.preloadSimple('click', 'audio/click.mp3').then(function (msg) {
-  //     console.log(msg);
-  //   }, function (error) {
-  //     alert(error);
-  //   });
-  //
-  //
-  // $cordovaNativeAudio.preloadComplex('music', 'audio/music.mp3', 1, 1).then(function (msg) {
-  //     console.log(msg);
-  //   }, function (error) {
-  //     console.error(error);
-  //   });
-
-
-})
-    };
+//     $scope.showDatePicker  = function(){
+//       $ionicPlatform.ready(function(){
+//          $cordovaVibration.vibrate(100);
+//   //
+//   //       $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
+//   //             // success
+//   //           }, function (error) {
+//   //             // error
+//   //           });
+//   //
+//   //         $cordovaToast.showShortTop('Here is a message').then(function(success) {
+//   //           // success
+//   //         }, function (error) {
+//   //           // error
+//   //         });
+//   //
+//   //         $cordovaToast.showLongBottom('Here is a message').then(function(success) {
+//   //           // success
+//   //         }, function (error) {
+//   //           // error
+//   //         });
+//   //
+//   //
+//   //       $cordovaNativeAudio.preloadSimple('click', 'audio/click.mp3').then(function (msg) {
+//   //     console.log(msg);
+//   //   }, function (error) {
+//   //     alert(error);
+//   //   });
+//   //
+//   //
+//   // $cordovaNativeAudio.preloadComplex('music', 'audio/music.mp3', 1, 1).then(function (msg) {
+//   //     console.log(msg);
+//   //   }, function (error) {
+//   //     console.error(error);
+//   //   });
+//
+//
+// })
+//     };
 
   // Update app code with new release from Ionic Deploy
   $scope.doUpdate = function() {
