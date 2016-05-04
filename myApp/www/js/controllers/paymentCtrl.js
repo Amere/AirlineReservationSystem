@@ -107,6 +107,7 @@ var flagForRetPayment = 0;
               console.log(data);
               lufthansaServ.setOtherRef(data.refNum);
               PK();
+              showAlert2("You are charged successfully");
                 $state.go('tab.landing-confirm');
 
             }else{
@@ -126,6 +127,7 @@ var flagForRetPayment = 0;
                 flagForRetPayment=0;
                 PK();
                 lufthansaServ.setOtherRef(data.refNum);
+                showAlert2("You are charged successfully");
                   $state.go('tab.landing-confirm');
               }
             }else{
@@ -144,6 +146,7 @@ var flagForRetPayment = 0;
             console.log(data);
             lufthansaServ.setOtherRef(data.refNum);
             PK();
+            showAlert2("You are charged successfully");
               $state.go('tab.landing-confirm');
 
           }else{
@@ -163,6 +166,7 @@ var flagForRetPayment = 0;
               flagForRetPayment=0;
               PK();
               lufthansaServ.setOtherRef(data.refNum);
+              showAlert2("You are charged successfully");
                 $state.go('tab.landing-confirm');
             }
           }else{
@@ -211,7 +215,7 @@ showAlert = function() {
      };
      showAlert2 = function(message) {
         var alertPopup = $ionicPopup.alert({
-              title: 'Error',
+              title: 'Payment message',
               template: ''+message
             });
 
