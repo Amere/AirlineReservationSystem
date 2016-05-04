@@ -52,11 +52,11 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
       reserv.seatCode = lufthansaServ.getSeat();
       lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(), $scope.Confirm.seatCodeOut);
       lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberReturning(), $scope.rSeat);
-      lufthansaServ.addUser(user, function (res) {
-        $scope.receipt = res;
-        reserv.bookingRefNum = res;
-        lufthansaServ.addReservation(reserv);
-      });
+      // lufthansaServ.addUser(user, function (res) {
+      //   $scope.receipt = res;
+      //   reserv.bookingRefNum = res;
+      //   lufthansaServ.addReservation(reserv);
+      // });
       // lufthansaServ.addUser(user,function(res){
       //   $scope.returnreceipt=res;
       //  reserv2.bookingRefNum=res;
@@ -84,11 +84,11 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
         reserv.flight = user.flight;
         reserv.seatCode = lufthansaServ.getSeat();
         lufthansaServ.reserveSeat(lufthansaServ.getFlightNumberOutGoing(), $scope.Confirm.seatCodeOut);
-        lufthansaServ.addUser(user, function (res) {
-          $scope.receipt = res;
-          reserv.bookingRefNum = res;
-          lufthansaServ.addReservation(reserv);
-        });
+        // lufthansaServ.addUser(user, function (res) {
+        //   $scope.receipt = res;
+        //   reserv.bookingRefNum = res;
+        //   lufthansaServ.addReservation(reserv);
+        // });
       }else{
         $scope.Confirm.flight = lufthansaServ.getFlightNumberOutGoing();
         $scope.Confirm.odate = lufthansaServ.getDateOutGoing();
