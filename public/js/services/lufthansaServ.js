@@ -5,12 +5,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
 
     return {
         /*Add user */
-         addUser:function(user1,cb){
-            $http.post('/api/adduser',{user:user1}).success(function(res){
-              //console.log(res["ops"][0]["_id"]);
-             cb( res["ops"][0]["_id"]);
-           });
-         },
+
          //responsible for updating the seatmap and reserving a seat
          reserveSeat:function(fn1,seat1){
            return $http.post('/api/updateSeat',{fn:fn1,sn:seat1});
@@ -73,7 +68,7 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          * get flight number for out going flights
          */
         getFlightNumberOutGoing : function() {
-          console.log(this.flightNumber+"**************************");
+          //console.log(this.flightNumber+"**************************");
             return this.flightNumber;
 
         },
@@ -383,6 +378,12 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
          */
         getSeatClass_ : function(value){
           return this.class;
+        },
+        setReceipt2 :function(value){
+          this.receipt2=value;
+        },
+        getReceipt2:function(){
+          return this.receipt2;
         },
         /**
          * Redirect to landing page

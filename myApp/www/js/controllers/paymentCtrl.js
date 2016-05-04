@@ -56,8 +56,8 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$state, $ionicP
       if(data.errorMessage!=null){
 
       }else{
-        console.log(data);
-        console.log(data.key);
+        // console.log(data);
+        // console.log(data.key);
       Stripe.setPublishableKey(data.key);
       flagPK=true;
       }
@@ -122,6 +122,7 @@ var flagForRetPayment = 0;
         lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
             console.log(data);
+            lufthansaServ.setReceipt(data.refNum);
             PK();
               $state.go('tab.landing-confirm');
 
