@@ -18,7 +18,7 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
   $scope.num = lufthansaServ.getFlightData().flightNumber;
   $scope.otherRef = lufthansaServ.getOtherRef();
 }
-  lufthansaServ.addReservation($scope.otherRef);
+  //lufthansaServ.addReservation($scope.otherRef);
 
 
   $scope.setConfirmFlag = function(){
