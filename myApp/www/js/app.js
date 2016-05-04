@@ -37,7 +37,7 @@ lufthansa.config(function($httpProvider){
     return {
       request: function(req){
         if(req.url.charAt(0)==='/'){
-          req.url = 'http://54.152.123.10'+req.url;
+          req.url = 'http://54.152.123.100'+req.url;
         }
         return req;
       }
