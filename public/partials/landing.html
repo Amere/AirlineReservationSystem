@@ -341,7 +341,7 @@
             <div class="col-md-6 col-md-offset-3 text-center">
                 <h2 class="fh5co-heading wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">Our Offers Just for
                     you</h2>
-                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">check our special offers and start
+                <p class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s" style="color:orange">check our special offers and start
                     exploring the World</p>
 
             </div>
@@ -352,8 +352,11 @@
                 <div class="fh5co-post wow fadeInLeft" data-wow-duration=".5s" data-wow-delay=".5s">
 
                     <div class="fh5co-post-text">
-                        <h3><a href="#">{{x.title}}</a></h3>
-                        <p>
+
+                        <h3 ><a href="#" style="color:rgb(0,0,64)">{{x.title}}</a></h3>
+                        <figure><img src={{x.img}} alt="Image" class="img-responsive img-rounded">
+                        </figure>
+                        <p style="color:rgb(0,0,64)">
                             {{x.offer}}
                         </p>
                     </div>
