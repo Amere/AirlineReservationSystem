@@ -61,7 +61,7 @@
     <li class="item item-checkbox  checkbox-energized" >
    <h2 class="positive" style="color:rgb(0,0,100)">Search for other Airlines</h2>
    <label class="checkbox">
-   <input type="checkbox" ng-model="chekboxFlag.chekboxFlag" ng-click="setClass()" >
+   <input type="checkbox" ng-model="chekboxFlag.chekboxFlag" ng-click="setClass(); flipCheck()" >
    </label>
 </li>
   <div class="row" ng-show="chekboxFlag.chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)">

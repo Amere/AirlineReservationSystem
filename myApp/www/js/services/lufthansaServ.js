@@ -437,6 +437,12 @@ lufthansa.factory('lufthansaServ', function ($http,$q, $timeout) {
         getOtherCompanies : function(){
           return this.chekboxFlag;
         },
+        setOtherRef : function(ref){
+          this.otherRef = ref;
+        },
+        getOtherRef : function(){
+          return this.otherRef;
+        },
         /**
          * Set Seat Class
          */

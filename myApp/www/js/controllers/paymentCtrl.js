@@ -107,7 +107,9 @@ var flagForRetPayment = 0;
           if(data.errorMessage==null){
             console.log(data);
             PK();
-              $state.go('tab.landing-confirm');
+            lufthansaServ.setOtherRef(data.refNum);
+            showAlert2("You have charged successfuly");
+            $state.go('tab.landing-confirm');
           }else{
             //console.log(err);
             PK();

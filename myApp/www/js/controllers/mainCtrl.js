@@ -42,21 +42,12 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     /*Flag for checkbox which is in landing page search box */
     $scope.chekboxFlag={};
     $scope.chekboxFlag.chekboxFlag=false;
-    lufthansaServ.setOtherCompanies($scope.chekboxFlag.chekboxFlag);
 
     //$scope.chekboxFlag.chekboxFlag=false;
     /* Function to change checkbox flag when it is clicked  */
     $scope.flipCheck = function () {
         //$scope.chekboxFlag.chekboxFlag = !$scope.chekboxFlag.chekboxFlag;
-        console.log($scope.chekboxFlag.chekboxFlag);
-        if ($scope.chekboxFlag.chekboxFlag==false) {
-          $scope.chekboxFlag.chekboxFlag=true
-        }else{
-          $scope.chekboxFlag.chekboxFlag=false
-
-        }
         lufthansaServ.setOtherCompanies($scope.chekboxFlag.chekboxFlag);
-        console.log(lufthansaServ.getOtherCompanies());
     };
     function setImp() {
         lufthansaServ.setImpFlg(0);
