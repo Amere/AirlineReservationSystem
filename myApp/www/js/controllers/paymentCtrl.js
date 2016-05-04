@@ -120,8 +120,8 @@ var flagForRetPayment = 0;
             if(data.errorMessage==null){
               //$location.url('/confirm');
               if(flagForRetPayment==0){
-                createTokeenStripe();
                 flagForRetPayment++;
+                createTokeenStripe();
               }else{
                 flagForRetPayment=0;
                 PK();
@@ -157,8 +157,8 @@ var flagForRetPayment = 0;
           if(data.errorMessage==null){
             //$location.url('/confirm');
             if(flagForRetPayment==0){
-              createTokeenStripe();
               flagForRetPayment++;
+              createTokeenStripe();
             }else{
               flagForRetPayment=0;
               PK();

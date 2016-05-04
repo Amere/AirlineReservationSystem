@@ -6,7 +6,7 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
   if(lufthansaServ.paymentFlag != true){
     $location.url('/');
   }
-
+  $scope.other = lufthansaServ.getOtherCompanies();
   $scope.setConfirmFlag = function(){
     lufthansaServ.confirmFlag();
   };
@@ -56,6 +56,9 @@ if(lufthansaServ.paymentFlag === true){
       user.flight = lufthansaServ.getFlightNumberOutGoing();
       user.returnFlight = lufthansaServ.getFlightNumberReturning();
       $scope.rFlight = user.returnFlight;
+
+      $scope.receipt = lufthansaServ.getReceipt2();
+      reserv.bookingRefNum = lufthansaServ.getReceipt2();
     }
   }else{
       if(lufthansaServ.getSeat()) {
@@ -78,6 +81,8 @@ if(lufthansaServ.paymentFlag === true){
         $scope.Confirm.flight = lufthansaServ.getFlightNumberOutGoing();
         $scope.Confirm.odate = lufthansaServ.getDateOutGoing();
         user.odate = lufthansaServ.getDateOutGoing();
+        $scope.receipt = lufthansaServ.getReceipt2();
+        reserv.bookingRefNum = lufthansaServ.getReceipt2();
         user.flight = lufthansaServ.getFlightNumberOutGoing();
       }
     }

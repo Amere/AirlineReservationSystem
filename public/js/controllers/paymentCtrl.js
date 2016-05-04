@@ -108,22 +108,43 @@ var flagForRetPayment = 0;
     if (response.error) { // Problem!
     alert(response.error.message);
     } else {
-      if(other==true){
-        var otherToken = response.id;
-        console.log(otherToken+' token hereeeeeee');
-        lufthansaServ.sendStripeTokenOther(otherToken).success(function(data){
-          if(data.errorMessage==null){
-            //console.log(data);
-            PK()
-            lufthansaServ.setReceipt2(data.refNum);
-            $location.url('/confirm');
-          }else{
-            //console.log(err);
-            PK();
-          //  console.log(data);
-            alert(data.errorMessage.message);
-          }
-        })
+      if(other==true){//other ******
+        var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
+        var token = response.id;
+        if(retOrOut==="Outgoing Only"){//out only
+          lufthansaServ.sendStripeTokenOther(token,true).success(function(data){
+            if(data.errorMessage==null){
+              console.log(data);
+              lufthansaServ.setReceipt2(data.refNum);
+              PK();
+                $location.url('/confirm');
+
+            }else{
+              //console.log(err);
+              PK();
+              alert(data.errorMessage.message);
+            }
+          });
+        }else{//out and ret
+          lufthansaServ.sendStripeTokenOther(token,false).success(function(data){
+            if(data.errorMessage==null){
+              //$location.url('/confirm');
+              if(flagForRetPayment==0){
+                flagForRetPayment++;
+                createTokeenStripe();
+              }else{
+                flagForRetPayment=0;
+                PK();
+                lufthansaServ.setReceipt2(data.refNum);
+                $location.url('/confirm');
+               }
+            }else{
+              // console.log(err.errorMessage);
+              PK();
+              alert(data.errorMessage.message);
+            }
+          });
+        }
       }else{
       var token = response.id;
       var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
@@ -145,8 +166,8 @@ var flagForRetPayment = 0;
           if(data.errorMessage==null){
             //$location.url('/confirm');
             if(flagForRetPayment==0){
-              createTokeenStripe();
               flagForRetPayment++;
+              createTokeenStripe();
             }else{
               flagForRetPayment=0;
               lufthansaServ.setReceipt2(data.refNum);
