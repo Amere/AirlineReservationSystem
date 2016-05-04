@@ -1,7 +1,7 @@
 [
     {
       "company": "lufthansa airline",
-      "ip": "http://ec2-54-152-123-100.compute-1.amazonaws.com/"
+      "ip": "http://localhost:8080/"
     },
     {
       "company": "swiss-air airline",
