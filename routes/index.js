@@ -104,12 +104,12 @@ router.get('/api/data/aircraft/:flightNum', function (req, res) {
 
 });
 /* POST method to add new user to users collection*/
-router.post('/api/adduser', function (req, res) {
-    var user = req.body.user;
-    db.db().collection('users').insert(user, function (err, docs) {
-        res.json(docs);
-    });
-});
+// router.post('/api/adduser', function (req, res) {
+//     var user = req.body.user;
+//     db.db().collection('users').insert(user, function (err, docs) {
+//         res.json(docs);
+//     });
+// });
 /* POST method to add new reservation to reservation collection*/
 router.post('/api/addreservation', function (req, res) {
     var reserv = req.body.reserv;
@@ -304,11 +304,18 @@ function manipulate(arrayReturn, cb) {
     console.log(JSON.parse(template));
     cb(JSON.parse(template));
 };
+function add_user(user,cb){
+
+  db.db().collection('users').insert(user, function (err, docs) {
+      cb(docs["ops"][0]["_id"]);
+  });
+}
 router.post('/booking', function (req, res) {
 
     // retrieve the token
     var stripeToken = req.body.paymentToken;
     var flightCost  = req.body.cost;
+    var passengers=req.body.passengerDetails;
     stripe.charges.create({
         amount: flightCost*100,
         currency: "usd",
@@ -319,7 +326,11 @@ router.post('/booking', function (req, res) {
             res.send({'refNum': null, 'errorMessage': err});
         }
         else {//TO DO
-            res.send({'refNum': "sghcvhstripeTokenjdceudgie89", 'errorMessage': null});
+          add_user(passengers[0],function(ref){
+            //console.log("*************8"+ref);
+            res.send({'refNum': ref, 'errorMessage': null});
+          });
+
             // payment successful
             // create reservation in database
             // get booking reference number and send it back to the user

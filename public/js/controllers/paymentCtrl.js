@@ -59,8 +59,8 @@ function PK(){
         if(data.errorMessage!=null){
 
         }else{
-          console.log(data);
-          console.log(data.key);
+          // console.log(data);
+          // console.log(data.key);
         Stripe.setPublishableKey(data.key);
         flagPK=true;
         }
@@ -113,13 +113,13 @@ var flagForRetPayment = 0;
         console.log(otherToken+' token hereeeeeee');
         lufthansaServ.sendStripeTokenOther(otherToken).success(function(data){
           if(data.errorMessage==null){
-            console.log(data);
+            //console.log(data);
             PK()
             $location.url('/confirm');
           }else{
             //console.log(err);
             PK();
-            console.log(data);
+          //  console.log(data);
             alert(data.errorMessage.message);
           }
         })
@@ -130,6 +130,7 @@ var flagForRetPayment = 0;
         lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
             console.log(data);
+            lufthansaServ.setReceipt2(data.refNum);
             PK()
             $location.url('/confirm');
           }else{
