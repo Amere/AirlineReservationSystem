@@ -313,6 +313,31 @@ function add_user(user,cb){
       cb(docs["ops"][0]["_id"]);
   });
 }
+
+
+
+/**
+ * middelware to add guarantee that the request is coming from our server not from
+ * an unauthorised person
+ */
+
+router.use(function (req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
+
+    var jwtSecret = process.env.JWTSECRET;
+
+    jwt.verify(token, jwtSecret, function (err, decoded) {
+        if (err) {
+            res.send('unauthorised access');
+        } else {
+            next();
+        }
+    });
+
+});
+
 router.post('/booking', function (req, res) {
 
     // retrieve the token
@@ -421,29 +446,6 @@ router.post('/bookingOther',function(req,res){
 
 
     //console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
-
-});
-
-
-/**
- * middelware to add guarantee that the request is coming from our server not from
- * an unauthorised person
- */
-
-router.use(function (req, res, next) {
-
-    // check header or url parameters or post parameters for token
-    var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
-
-    var jwtSecret = process.env.JWTSECRET;
-
-    jwt.verify(token, jwtSecret, function (err, decoded) {
-        if (err) {
-            res.send('unauthorised access');
-        } else {
-            next();
-        }
-    });
 
 });
 

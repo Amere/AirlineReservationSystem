@@ -86,14 +86,14 @@ $scope.chooseSeat=function(){
 //  console.log($scope.data.seat);
   // console.log($scope.data.seat.class);
 
-}
+};
 $scope.chooseSeatR=function(){
   lufthansaServ.setSeatR($scope.dataR.seat);
   lufthansaServ.setSeatClassR($scope.dataR.choice);
   // console.log($scope.data.seat.seatCode);
   // console.log($scope.data.seat.class);
 
-}
+};
 $scope.isReturning=lufthansaServ.getReturning_Or_Outgoing();
 lufthansaServ.getAircraftOut().success(function(flight) {
        $scope.economySeats = flight.plane.economeySeats;
@@ -111,7 +111,7 @@ lufthansaServ.getAircraftOut().success(function(flight) {
 
            };
    });
-   if($scope.isReturning=='Returning'){
+   if(lufthansaServ.getReturning_Or_Outgoing()=='Returning'){
      lufthansaServ.getAircraftRet().success(function(flight){
        $scope.economySeatsR = flight.plane.economeySeats;
        $scope.premiumEconomySeatsR = flight.plane.premiumEconomySeats;

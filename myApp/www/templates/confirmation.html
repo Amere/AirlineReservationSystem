@@ -1,49 +1,47 @@
-<style>
-
-.home .scroll-content {
-  display: table !important;
-  width: 100% !important;
-  height: 100% !important;
-
-  padding: 30px;
-  font-size: 150%;
-
-}
-
-
-</style>
-<div></div>
-<ion-view view-title="Confirmation" class="home">
-  <ion-content class="padding" style="background-color:;">
-    <div class="card animated bounceInLeft">
+<ion-view view-title="Confirmation">
+  <ion-content class="padding">
+    <div class="card animated bounceInLeft" align="center">
        <div class="item item-divider animated fadeInLeft" align="center">
          You have successfully completed the process
        </div>
-                          <span style="color:#471f33">Your Name:</span><span style="color:#2E4053"> {{Confirm.fname + ' ' + Confirm.lname}}</span>
-                          <br><br>
-                          <span style="color:#471f33">Your email:</span><span style="color:#2E4053"> {{Confirm.email}}     </span>
-                          <br><br>
-                          <span style="color:#471f33"> Outgoing Seat number:</span><span style="color:#2E4053"> {{Confirm.seatCode}}       </span>
-                          <br><br>
-
-                          <span style="color:#471f33" ng-if="flg=='Returning'">Returning Seat number:</span><span style="color:#2E4053" ng-if="flg=='Returning'">  {{rSeat}}
-                          <br><br>   </span>
-
-                          <span style="color:#471f33" ng-if="flg=='Returning'">Returning Seat class:</span><span style="color:#666633" ng-if="flg=='Returning'"> {{rClass}}
-                            <br><br>
-  </span>
-                            <span style="color:#471f33">Outgoing seat class:</span><span style="color:#666633"> {{Confirm.seatClass}}</span>
-                            <br><br>
-                             <span style="color:#471f33">Booking Reference number:</span>
-                             <br>
-                             <span style="color:#666633">{{receipt}}</span>
-                             <br><br>
-                          <span style="color:#471f33" >Outgoing flight number:</span><span style="color:#666633"> {{Confirm.flight}}</span>
-                          <br><br>
-
-                          <span style="color:#471f33" ng-if="flg=='Returning'"> returning flight number:</span><span style="color:#666633" ng-if="flg=='Returning'"> {{rFlight}}</span>
-                          <br>
-
+       <div class="item item-divider animated fadeInLeft" align="center">
+         Your travelling with {{Airline}}
+       </div>
+       <div class="item item-text-wrap">
+         Passenger name : {{Confirm.email}}
+       </div>
+       <div class="item item-text-wrap" ng-if="other==false">
+         Outgoing Seat number : {{Confirm.seatCode}}
+         <div ng-if="flg=='Returning'">
+         <br>
+         Returning Seat number : {{rSeat}}
+        </div>
+       </div>
+       <div class="item item-text-wrap" ng-if="other==false">
+         Outgoing Seat class : {{Confirm.seatClass}}
+         <div ng-if="flg=='Returning'">
+         <br>
+         Returning Seat class : {{rClass}}
+        </div>
+       </div>
+       <div class="item item-text-wrap" ng-if="other==false">
+        Booking Reference number :
+        <br>
+        {{otherRef}}
+       </div>
+       <div class="item item-text-wrap" ng-if="other==true">
+         Booking Reference number : {{otherRef}}
+         <div ng-if="other==true">
+         <br>
+         **You can keep track of your flights using this bookingRefNum only in their website not ours
+        </div>
+       </div>
+       <div class="item item-text-wrap">
+         Your flight number : {{num}}
+       </div>
+       <div class="item item-divider">
+           We have charged you with {{cost}} dollars
+       </div>
 </div>
 </ion-content>
 </ion-view>

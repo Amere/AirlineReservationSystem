@@ -60,13 +60,13 @@ style="background-image: url(images/solo.jpg);
                         <p>
                               <FONT COLOR ="000000">Your email:      </FONT><FONT COLOR ="ffffff">{{Confirm.email}}</FONT>
                         </p>
-                        <p>
+                        <p ng-if="other==false">
                            <FONT COLOR ="000000">Seat number:       </FONT><FONT COLOR ="ffffff">{{Confirm.seatCode}}</FONT>
                            </p>
                            <p ng-if="rr">
                               <FONT COLOR ="000000">Returning Seat number:       </FONT><FONT COLOR ="ffffff">{{rSeat}}</FONT>
                               </p>
-                           <p>
+                           <p ng-if="other==false">
                               <FONT COLOR ="000000">class:     </FONT><FONT COLOR ="ffffff">{{Confirm.seatClass}}</FONT>
                               </p>
                         <p>
