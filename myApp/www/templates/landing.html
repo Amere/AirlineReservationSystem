@@ -61,10 +61,10 @@
     <li class="item item-checkbox  checkbox-energized" >
    <h2 class="positive" style="color:rgb(0,0,100)">Search for other Airlines</h2>
    <label class="checkbox">
-   <input type="checkbox" ng-model="chekboxFlag" ng-click="setClass()" ng-change=" flipCheck(); setOtherCompaniesFlag()">
+   <input type="checkbox" ng-model="chekboxFlag.chekboxFlag" ng-click="setClass(); flipCheck()" >
    </label>
 </li>
-  <div class="row" ng-show="chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)">
+  <div class="row" ng-show="chekboxFlag.chekboxFlag" class="btn-group" uib-dropdown on-toggle="toggled(open)">
     <div class="col col-55">
       <ion-radio name="group2" style="color:orange"  ng-click="economy()" ng-value="'A'" ng-model="cl" toggle-class="toggle-positive"><h3 class="positive" style="color:rgb(0,0,100)">Economy</h3></ion-radio>
 

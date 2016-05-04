@@ -1,14 +1,14 @@
 [
     {
       "company": "lufthansa airline",
-      "ip": "http://ec2-54-152-123-100.compute-1.amazonaws.com/"
+      "ip": "http://54.152.123.10/"
     },
     {
       "company": "swiss-air airline",
       "ip": "http://www.swiss-air.me/"
     },
     {
-      "company": "Austrain airline",
+      "company": "Austrian airline",
       "ip": "http://ec2-52-90-41-197.compute-1.amazonaws.com/"
     },
     {
@@ -22,9 +22,5 @@
     {
       "company": "NewZeland airline",
       "ip": "http://52.28.246.230/"
-    },
-    {
-      "company": "United airline",
-      "ip": "http://54.187.103.196/"
     }
 ]

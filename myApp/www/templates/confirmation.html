@@ -1,41 +1,47 @@
-<style>
-.home .scroll-content {
-  display: table !important;
-  width: 100% !important;
-  height: 100% !important;
-
-  padding: 30px;
-  font-size: 150%;
-}
-
-
-</style>
-<ion-view view-title="Confirmation" class="home">
-  <ion-content class="padding" style="background-color:orange;">
-     <p>
-                          <span class="row">Your Name:{{Confirm.fname + ' ' + Confirm.lname}}</span>
-                          <br>
-                          <span class="row">Your email:{{Confirm.email}}     </span>
-                          <br>
-                          <span class="row"> Outgoing Seat number:{{Confirm.seatCode}}       </span>
-                          <br>
-
-                          <span class="row" ng-if="rr">Returning Seat number:{{rSeat}}   </span>
-                          <br>
-                          <span class="row" ng-if="rr">Returning Seat class:{{rClass}}   </span>
-                          <br>
-                            <span class="row">Outgoing seat class:{{Confirm.seatClass}}</span>
-                            <br>
-                             <span class="row">Booking Reference number:</span>
-                             <br>
-                             <span>{{receipt}}</span>
-                          <span class="row">Outgoing flight number:{{Confirm.flight}}</span>
-                          <br>
-
-                          <span class="row"ng-if="rr"> returning flight number:{{rFlight}}</span>
-                          <br>
-
-
-      
-  </ion-content>
+<ion-view view-title="Confirmation">
+  <ion-content class="padding">
+    <div class="card animated bounceInLeft" align="center">
+       <div class="item item-divider animated fadeInLeft" align="center">
+         You have successfully completed the process
+       </div>
+       <div class="item item-divider animated fadeInLeft" align="center">
+         Your travelling with {{Airline}}
+       </div>
+       <div class="item item-text-wrap">
+         Passenger name : {{Confirm.email}}
+       </div>
+       <div class="item item-text-wrap" ng-if="other==false">
+         Outgoing Seat number : {{Confirm.seatCode}}
+         <div ng-if="flg=='Returning'">
+         <br>
+         Returning Seat number : {{rSeat}}
+        </div>
+       </div>
+       <div class="item item-text-wrap" ng-if="other==false">
+         Outgoing Seat class : {{Confirm.seatClass}}
+         <div ng-if="flg=='Returning'">
+         <br>
+         Returning Seat class : {{rClass}}
+        </div>
+       </div>
+       <div class="item item-text-wrap" ng-if="other==false">
+        Booking Reference number :
+        <br>
+        {{otherRef}}
+       </div>
+       <div class="item item-text-wrap" ng-if="other==true">
+         Booking Reference number : {{otherRef}}
+         <div ng-if="other==true">
+         <br>
+         **You can keep track of your flights using this bookingRefNum only in their website not ours
+        </div>
+       </div>
+       <div class="item item-text-wrap">
+         Your flight number : {{num}}
+       </div>
+       <div class="item item-divider">
+           We have charged you with {{cost}} dollars
+       </div>
+</div>
+</ion-content>
 </ion-view>

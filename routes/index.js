@@ -49,7 +49,7 @@ db.connect(function (err, db) {
 
  router.all('*', function (req, res, next) {
      res.header('Access-Control-Allow-Origin', '*');
-     res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type']);
+     res.header('Access-Control-Allow-Headers', ['x-access-token','x-Requested-With','Content-Type','airline']);
      next();
  });
 
@@ -104,12 +104,12 @@ router.get('/api/data/aircraft/:flightNum', function (req, res) {
 
 });
 /* POST method to add new user to users collection*/
-router.post('/api/adduser', function (req, res) {
-    var user = req.body.user;
-    db.db().collection('users').insert(user, function (err, docs) {
-        res.json(docs);
-    });
-});
+// router.post('/api/adduser', function (req, res) {
+//     var user = req.body.user;
+//     db.db().collection('users').insert(user, function (err, docs) {
+//         res.json(docs);
+//     });
+// });
 /* POST method to add new reservation to reservation collection*/
 router.post('/api/addreservation', function (req, res) {
     var reserv = req.body.reserv;
@@ -236,12 +236,15 @@ function manipulateOne(arrayReturn, cb) {
             var tempOut = JSON.stringify(item.outgoingFlights[0]);
             //console.log(tempOut);
             if (flag == false) {
-                if (tempOut != undefined) {
+                if (tempOut != undefined && tempOut != JSON.stringify({})) {
                    // console.log("Iffffffffffffffff");
+                   console.log(tempOut);
+                   console.log(tempOut);
                     out += tempOut;
                     flag = true;
                 }
             } else {
+
                 out += "," + tempOut;
             }
 
@@ -284,12 +287,12 @@ function manipulate(arrayReturn, cb) {
           var tempOut = JSON.stringify(item.outgoingFlights[0]);
           var tempRet = JSON.stringify(item.returnFlights[0]);
           if(i==arrayReturn.length-1) {
-              if (tempOut != undefined && tempRet!=undefined){
+              if (tempOut != undefined && tempRet!=undefined && tempOut != JSON.stringify({}) && tempRet != JSON.stringify({})){
                   out +=tempOut;
                   returnString +=tempRet;
                 }
               }else{
-                if (tempOut != undefined && tempRet!=undefined){
+                if (tempOut != undefined && tempRet!=undefined  && tempOut != JSON.stringify({}) && tempRet != JSON.stringify({})){
                   out+=tempOut+',';
                   returnString+=tempRet+',';
             }
@@ -304,12 +307,43 @@ function manipulate(arrayReturn, cb) {
     console.log(JSON.parse(template));
     cb(JSON.parse(template));
 };
+function add_user(user,cb){
+
+  db.db().collection('users').insert(user, function (err, docs) {
+      cb(docs["ops"][0]["_id"]);
+  });
+}
+
+
+
+/**
+ * middelware to add guarantee that the request is coming from our server not from
+ * an unauthorised person
+ */
+
+router.use(function (req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
+
+    var jwtSecret = process.env.JWTSECRET;
+
+    jwt.verify(token, jwtSecret, function (err, decoded) {
+        if (err) {
+            res.send('unauthorised access');
+        } else {
+            next();
+        }
+    });
+
+});
+
 router.post('/booking', function (req, res) {
 
     // retrieve the token
     var stripeToken = req.body.paymentToken;
     var flightCost  = req.body.cost;
-
+    var passengers=req.body.passengerDetails;
     stripe.charges.create({
         amount: flightCost*100,
         currency: "usd",
@@ -317,10 +351,14 @@ router.post('/booking', function (req, res) {
         description: "test"
     }, function (err, data) {
         if (err) {
-            res.send({refNum: null, errorMessage: err});
+            res.send({'refNum': null, 'errorMessage': err});
         }
         else {//TO DO
-            res.send({refNum: "sghcvhstripeTokenjdceudgie89", errorMessage: null});
+          add_user(passengers[0],function(ref){
+            //console.log("*************8"+ref);
+            res.send({'refNum': ref, 'errorMessage': null});
+          });
+
             // payment successful
             // create reservation in database
             // get booking reference number and send it back to the user
@@ -342,7 +380,6 @@ router.get('/stripe/Getpubkey',function(req,res){
           ip = ips[i].ip;
       }
   }
-  //console.log('in router **');
   request.get(ip+'stripe/pubkey?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
   function (error,response,body){
     if (!error && response.statusCode == 200) {
@@ -373,49 +410,42 @@ router.post('/bookingOther',function(req,res){
     var ip ="";
     var ips = require('../testIp.json');
     for(var i = 0 ;i<ips.length;i++){
-        if(ips[i].company.toLowerCase().includes(airline.toLowerCase())){
+      var companyName= ""+ips[i].company.toLowerCase();
+      var airlineNew = ""+airline.toLowerCase();
+
+        if(companyName.indexOf(airlineNew) > -1){
+          console.log('in if condetion');
             ip = ips[i].ip;
         }
     }
-    //console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
-    request.post(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',{
-        "paymentToken" : stripeToken,
-        "class": Class,
-        "cost": flightCost,
-        "outgoingFlightId": flightIdOut,
-        "returnFlightId": flightIdRet,
-        "passengerDetails":info
-    },function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.send(JSON.parse(body));
-        }else{
-            //console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror "+airline);
-            res.send({refNum: null, errorMessage: {
-                "message":"error while trying to connect with "+airline+" , Please try again later"
-            }});
+   request({
+        url: ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE',
+        method: "POST",
+        json: true,
+        body:{
+          "paymentToken" : stripeToken,
+         "class": Class,
+          "cost": flightCost,
+          "outgoingFlightId": flightIdOut,
+          "returnFlightId": flightIdRet,
+          "passengerDetails":info
         }
-    })
-});
-
-/**
- * middelware to add guarantee that the request is coming from our server not from
- * an unauthorised person
- */
-
-router.use(function (req, res, next) {
-
-    // check header or url parameters or post parameters for token
-    var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
-
-    var jwtSecret = process.env.JWTSECRET;
-
-    jwt.verify(token, jwtSecret, function (err, decoded) {
-        if (err) {
-            res.send('unauthorised access');
-        } else {
-            next();
-        }
+    }, function (error, response, body){
+      if (!error && response.statusCode == 200) {
+          res.send(body);
+      }else{
+          res.send({refNum: null, errorMessage: {
+              "message":"error while trying to connect with "+airline+" , Please try again later"
+          }});
+      }
     });
+
+
+
+
+
+
+    //console.log(ip+'booking?wt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjdXN0b21lciIsInN1YiI6Imx1ZnRoYW5zYSBhaXJsaW5lIHJlc2VydmF0aW9uIHN5c3RlbSIsIm5iZiI6MTQ2MDY2NDA1MiwiZXhwIjoxNDkyMjAwMDUyLCJpYXQiOjE0NjA2NjQwNTIsImp0aSI6Imx1ZnRoYW5zYSIsInR5cCI6InNlY3VyaXR5In0.FLLbC6QjABq4_7VH0Q8rY3PVnyVFy8vSiz4kg6bcQrE');
 
 });
 
@@ -447,7 +477,8 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:returningDa
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
     var y = moment(returningDate).add(19, 'hours').toDate().getTime();
     var clas = req.params.class;
-    flights.getRoundTrip(origin, destination, departingDate,returningDate, clas, db, function (err, result) {
+    var seats = req.params.seats;
+    flights.getRoundTrip(origin, destination, departingDate,returningDate, clas,seats, db, function (err, result) {
         res.json(result);
     });
 
@@ -478,8 +509,10 @@ router.get('/api/flights/search/:origin/:destination/:departingDate/:class1/:sea
     var destination = req.params.destination;
     var departingDate = (++req.params.departingDate) + 68400000;
     var clas = req.params.class1;
+    var seats =  req.params.seats;
+    console.log(seats+" must be here ");
     var x = moment(departingDate).add(19, 'hours').toDate().getTime();
-    flights.oneWayOtherCompanies(origin, destination, departingDate, clas, db, function (err, result) {
+    flights.oneWayOtherCompanies(origin, destination, departingDate, clas,seats, db, function (err, result) {
         res.json(result);
     });
 

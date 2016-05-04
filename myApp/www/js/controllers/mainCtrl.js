@@ -40,10 +40,14 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     $scope.dt1Flag = true;
     $scope.dt2Flag = false;
     /*Flag for checkbox which is in landing page search box */
-    $scope.chekboxFlag = false;
+    $scope.chekboxFlag={};
+    $scope.chekboxFlag.chekboxFlag=false;
+
+    //$scope.chekboxFlag.chekboxFlag=false;
     /* Function to change checkbox flag when it is clicked  */
     $scope.flipCheck = function () {
-        $scope.chekboxFlag = !$scope.chekboxFlag;
+        //$scope.chekboxFlag.chekboxFlag = !$scope.chekboxFlag.chekboxFlag;
+        lufthansaServ.setOtherCompanies($scope.chekboxFlag.chekboxFlag);
     };
     function setImp() {
         lufthansaServ.setImpFlg(0);
@@ -52,7 +56,7 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     setImp();
     /* Function to set other Companies flag when checkbox's flg is true */
     $scope.setOtherCompaniesFlag = function () {
-        lufthansaServ.setOtherCompanies($scope.chekboxFlag);
+        lufthansaServ.setOtherCompanies($scope.chekboxFlag.chekboxFlag);
     };
 
     /* Flags to set the dates field to be visible by default round flag is false */
@@ -81,9 +85,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     };
     /* Function to set One Way Flags  */
     $scope.OneWayFlags = function () {
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-    });
+    //   $ionicPlatform.ready( function(){
+    // //  $cordovaVibration.vibrate(100);
+    // });
       //$cordovaVibration.vibrate(100);
         $scope.dt1Flag = true;
         $scope.dt2Flag = false;
@@ -93,9 +97,9 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
     };
     /* Function to set Round Trip Flags  */
     $scope.RoundtripFlags = function () {
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-    });
+    //   $ionicPlatform.ready( function(){
+    //   //$cordovaVibration.vibrate(100);
+    // });
         $scope.dt1Flag = true;
         $scope.dt2Flag = true;
         $scope.pick='seat class';
@@ -341,33 +345,40 @@ lufthansa.controller('mainCtrl', function ($scope, lufthansaServ , $document, $l
       //  console.log($scope.pick);
         if ($scope.date2.date2 ==null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
           $state.go('tab.landing-search');
+      //    $scope.chekboxFlag = false;
         }else if($scope.date2.date2!=null && $scope.pick=='seat class' && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
           $state.go('tab.landing-search2');
+        //  $scope.chekboxFlag = false;
         }else if($scope.pick!='seat class' && $scope.date2.date2 ==null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null){
+      //    lufthansaServ.setOtherCompanies(true);
           $state.go('tab.landing-search3');
+      //    $scope.chekboxFlag = true;
         }else if ($scope.pick!='seat class' && $scope.date2.date2 !=null && $scope.or.or!=null && $scope.dest.dest!=null && $scope.date1.date1!=null) {
+         //lufthansaServ.setOtherCompanies(true);
           $state.go('tab.landing-search4');
+        //  $scope.chekboxFlag = true;
         }
-        $ionicPlatform.ready( function(){
-        $cordovaVibration.vibrate(100);
-      });
+        console.log($scope.chekboxFlag.chekboxFlag);
+
+
+      // });
     };
 
     $scope.goToLanding= function(){
             $state.go('tab.landing');
     };
     $scope.goToInfo=function (fNum,fdate,flight) {
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-      });
+      // $ionicPlatform.ready( function(){
+      // //$cordovaVibration.vibrate(100);
+      // });
          lufthansaServ.setFlightNumberOutGoing(fNum);
          lufthansaServ.setdate1(fdate);
          lufthansaServ.setFlight(flight);
     };
     $scope.goToInfo2=function (fNum,fdate,fNum2,fdate2,flight,retFlightId) {
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-      });
+      // $ionicPlatform.ready( function(){
+      // $cordovaVibration.vibrate(100);
+      // });
       lufthansaServ.setReturning_Or_Outgoing("Returning");
          lufthansaServ.setFlightNumberOutGoing(fNum);
         lufthansaServ.setFlightNumberReturning(fNum2);
@@ -405,31 +416,36 @@ if($scope.or.or==null){
 // };
 
 $scope.setClass=function () {
-  $ionicPlatform.ready( function(){
-  $cordovaVibration.vibrate(100);
-  });  $scope.pick='seat class';
+  // $ionicPlatform.ready( function(){
+  // $cordovaVibration.vibrate(100);
+  // });
+   $scope.pick='seat class';
 };
     $scope.economy=function () {
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-      });      $scope.pick='economy';
+      // $ionicPlatform.ready( function(){
+      // $cordovaVibration.vibrate(100);
+      // });
+         $scope.pick='economy';
     };
     $scope.business=function () {
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-      });      $scope.pick='business';
+      // $ionicPlatform.ready( function(){
+      // $cordovaVibration.vibrate(100);
+      // });
+        $scope.pick='business';
     };
     $scope.onSelect = function(item){
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-      });        $scope.or.or=item.iata;
-        console.log('item', item.iata);
+      // $ionicPlatform.ready( function(){
+      // $cordovaVibration.vibrate(100);
+      // });
+        $scope.or.or=item.iata;
+        //console.log('item', item.iata);
     };
     $scope.onSelect2 = function(item){
-      $ionicPlatform.ready( function(){
-      $cordovaVibration.vibrate(100);
-      });        $scope.dest.dest=item.iata;
-        console.log('item', item.iata);
+      // $ionicPlatform.ready( function(){
+      // $cordovaVibration.vibrate(100);
+      // });
+        $scope.dest.dest=item.iata;
+        //console.log('item', item.iata);
     };
 
     $scope.Airports = [

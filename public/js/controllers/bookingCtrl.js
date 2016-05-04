@@ -15,6 +15,9 @@ $scope.pastflights = function (bookref){
    console.log("bookrefNCTRL"+ $scope.bookref);
    lufthansaServ.getPastFlights($scope.bookref).success(function(data){
       $scope.Pastflights=data;
+      if(data.length==0){
+        alert("Sorry,no matching results");
+       }
       console.log("in fl");
    }).error(function(response) {
      console.log(response, 'error');
@@ -25,6 +28,9 @@ $scope.pastflights = function (bookref){
     console.log("bookref"+ $scope.book);
     lufthansaServ.getMyBookings($scope.book).success(function(data){
        $scope.bookings=data;
+       if(data.length==0){
+        alert("Sorry,no matching results");
+       }
         $scope.hideMe = function (data) {
      data.hidden=true;
      };

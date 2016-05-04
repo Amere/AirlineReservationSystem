@@ -6,6 +6,18 @@ lufthansa.controller('confirmController', function($scope, lufthansaServ, $locat
   // if(lufthansaServ.paymentFlag != true){
   //   $location.url('/');
   // }
+  $scope.other = lufthansaServ.getOtherCompanies();
+  if(lufthansaServ.getReturning_Or_Outgoing()=="Returning"){
+  $scope.cost = lufthansaServ.getFlightData().cost*2;
+  $scope.Airline = lufthansaServ.getFlightData().Airline;
+  $scope.num = lufthansaServ.getFlightData().flightNumber;
+  $scope.otherRef = lufthansaServ.getOtherRef();
+}else{
+  $scope.Airline = lufthansaServ.getFlightData().Airline;
+  $scope.cost = lufthansaServ.getFlightData().cost;
+  $scope.num = lufthansaServ.getFlightData().flightNumber;
+  $scope.otherRef = lufthansaServ.getOtherRef();
+}
 
   $scope.setConfirmFlag = function(){
     lufthansaServ.confirmFlag();

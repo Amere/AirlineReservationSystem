@@ -6,7 +6,7 @@
                 <div class="full-height js-full-height">
                     <div class="fh5co-cover-intro col-md-12">
 
-            <br> <br><br><br><br>
+            <br> <br><br><br><br><br><br>
 
 <uib-tabset active="active">
 </uib-tab>
@@ -30,8 +30,6 @@
     <button type="button" class="btn btn-info" ng-click="getMyBookings(book)">Check Your Flight Schedule
     </button>
     </div>
-    <br>
-    <h4>NB: If nothing is displayed, then there are no bookings</h4>
     <br>
     <div class="container">
     <div class="well well-lg"  ng-repeat="flights in bookings" ng-hide="flights.hidden">
@@ -125,8 +123,6 @@
     </button>
     </div>
     <br>
-     <h4>NB: If nothing is displayed, then there are no past flights</h4>
-     <br>
     <div class="well well-lg" ng-repeat="pastflights in Pastflights">
      <font color="#25383C"><p><b> A PastFlight Information </b></p></font>
      <font color=" #8C001A">
