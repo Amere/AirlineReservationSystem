@@ -168,6 +168,7 @@ function httpGet(url, callback) {
             try {
                     var x = JSON.parse(body);
                     if (body != undefined && x.length != 0 && err==null) {
+                      console.log(url);
                         console.log(x.outgoingFlights[0].Airline);
                         callback(err, x);
                     }
