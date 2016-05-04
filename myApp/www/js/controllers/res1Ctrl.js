@@ -56,10 +56,10 @@ lufthansa.controller('res1Ctrl', function ($scope, lufthansaServ, $location, $st
         console.log(flag);
         if(flag==false){
         //  console.log("************");
-        $state.go('tab.landing-reservation')
+        $state.go('tab.landing-reservation');
         }else{
       //    console.log("//////////////////");
-          $state.go('tab.landing-payment')
+        $state.go('tab.landing-payment');
         }
      }else{
        showAlert();
