@@ -115,6 +115,7 @@ var flagForRetPayment = 0;
           if(data.errorMessage==null){
             //console.log(data);
             PK()
+            lufthansaServ.setReceipt2(data.refNum);
             $location.url('/confirm');
           }else{
             //console.log(err);
@@ -148,6 +149,7 @@ var flagForRetPayment = 0;
               flagForRetPayment++;
             }else{
               flagForRetPayment=0;
+              lufthansaServ.setReceipt2(data.refNum);
               PK();
               $location.url('/confirm');
             }
@@ -158,7 +160,7 @@ var flagForRetPayment = 0;
           }
         });
       }
-      }
+    }
 
 
       // Token was created!

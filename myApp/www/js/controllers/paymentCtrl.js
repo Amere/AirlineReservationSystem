@@ -95,28 +95,46 @@ lufthansa.controller('paymentCtrl',function($scope,lufthansaServ,$state, $ionicP
 var flagForRetPayment = 0;
   function stripeResponseHandler(status, response) {
     var other = lufthansaServ.getOtherCompanies(); ///////////////////////
-    console.log(other);
-    showAlert2(other);
     if (response.error) { // Problem!
     showAlert2(response.error.message);
     } else {
-      if(other==true){
-        var otherToken = response.id;
-        console.log(otherToken+' token hereeeeeee');
-        lufthansaServ.sendStripeTokenOther(otherToken).success(function(data){
-          if(data.errorMessage==null){
-            console.log(data);
-            PK();
-            lufthansaServ.setOtherRef(data.refNum);
-            showAlert2("You have charged successfuly");
-            $state.go('tab.landing-confirm');
-          }else{
-            //console.log(err);
-            PK();
-            console.log(data);
-            showAlert2(data.errorMessage.message);
-          }
-        })
+      if(other==true){//other flag ******
+        var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
+        var token = response.id;
+        if(retOrOut==="Outgoing Only"){//out only
+          lufthansaServ.sendStripeTokenOther(token,true).success(function(data){
+            if(data.errorMessage==null){
+              console.log(data);
+              lufthansaServ.setOtherRef(data.refNum);
+              PK();
+                $state.go('tab.landing-confirm');
+
+            }else{
+              //console.log(err);
+              PK();
+              showAlert2(data.errorMessage.message);
+            }
+          });
+        }else{//out and ret
+          lufthansaServ.sendStripeTokenOther(token,false).success(function(data){
+            if(data.errorMessage==null){
+              //$location.url('/confirm');
+              if(flagForRetPayment==0){
+                createTokeenStripe();
+                flagForRetPayment++;
+              }else{
+                flagForRetPayment=0;
+                PK();
+                lufthansaServ.setOtherRef(data.refNum);
+                  $state.go('tab.landing-confirm');
+              }
+            }else{
+              // console.log(err.errorMessage);
+              PK();
+              showAlert2(data.errorMessage.message);
+            }
+          });
+        }
       }else{
       var token = response.id;
       var retOrOut = lufthansaServ.getReturning_Or_Outgoing();
@@ -124,7 +142,7 @@ var flagForRetPayment = 0;
         lufthansaServ.sendStripeToken(token,true).success(function(data){
           if(data.errorMessage==null){
             console.log(data);
-            lufthansaServ.setReceipt(data.refNum);
+            lufthansaServ.setOtherRef(data.refNum);
             PK();
               $state.go('tab.landing-confirm');
 
@@ -144,6 +162,7 @@ var flagForRetPayment = 0;
             }else{
               flagForRetPayment=0;
               PK();
+              lufthansaServ.setOtherRef(data.refNum);
                 $state.go('tab.landing-confirm');
             }
           }else{
@@ -187,7 +206,7 @@ showAlert = function() {
        });
 
        alertPopup.then(function(res) {
-         console.log('Thank you for not eating my delicious ice cream cone');
+         //console.log('Thank you for not eating my delicious ice cream cone');
        });
      };
      showAlert2 = function(message) {
@@ -197,7 +216,7 @@ showAlert = function() {
             });
 
             alertPopup.then(function(res) {
-              console.log('Thank you for not eating my delicious ice cream cone');
+              //console.log('Thank you for not eating my delicious ice cream cone');
             });
   };
 
