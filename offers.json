@@ -1,14 +1,17 @@
 [
     {
-        "title": "Offer #1",
-        "offer": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "title": "Cairo",
+        "offer": "High season is October to April. The daytime is still sunny throughout the winter which makes perfect weather for travelling and visiting the country’s many impressive historic sites.",
+        "img" : "images/cairo.jpg"
     },
     {
-        "title": "Offer #2",
-        "offer": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "title": "Berlin",
+        "offer": "Every year summer uncovers Berlin’s most beautiful aspects! We have picked out the best tips: from food and drink to ice cream, from swimming to beach bars."
+        ,"img": "images/berlin.jpg"
     },
     {
-        "title": "Offer #3",
-        "offer": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "title": "Paris",
+        "offer": "If nothing else will convince you, then the prospect of saving money might. The fact is, with visitor numbers down, the hotel and tourism sector is hurting and that puts you in a great position to get even better deals."
+      , "img" : "images/paris.jpg"
     }
 ]

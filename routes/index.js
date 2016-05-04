@@ -33,6 +33,7 @@ const request = require('request');
  * Seeding our database
  */
 db.connect(function (err, db) {
+
     flights.seed(function (err, seeded) {
 
         if (!seeded) {
